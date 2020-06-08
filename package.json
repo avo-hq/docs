@@ -1,0 +1,12 @@
+{
+  "name": "avocado-docs",
+  "version": "0.1.0",
+  "description": "Documentation for Avocado",
+  "main": "index.js",
+  "repository": "https://github.com/AvocadoHQ/docs",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "vitepress": "^0.3.1"
+  }
+}
