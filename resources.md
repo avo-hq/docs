@@ -1,3 +1,7 @@
+---
+sidebar: auto
+---
+
 # Basics
 
 Avocado empowers you in a very easy way to build a full administration dashboard for your Ruby on Rails application.
