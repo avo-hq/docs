@@ -1,7 +1,3 @@
----
-sidebar: auto
----
-
 # Fields
 
 [[toc]]
@@ -20,7 +16,7 @@ end
 
 This will create a text input field that will update the `name` attribute on that model.
 
-# Field conventions
+## Field conventions
 
 Avocado will try to get the snake case version of your field. But, if you want you can give it a name that's different from the field itself you can use the `name` property.
 
@@ -34,7 +30,7 @@ In the following example it will get the `is_available` attribute and render the
 boolean :IsAvailable
 ```
 
-# Showing / Hiding fields
+## Showing / Hiding fields
 
 You may want to display a field in the Show, Create & Edit and hide on the Index view. You may use `hide_on`, `show_on`, `only_on` and `except_on` methods like so:
 
@@ -42,7 +38,7 @@ You may want to display a field in the Show, Create & Edit and hide on the Index
 text :body, hide_on: [:index, :show]
 ```
 
-# Computed Fields
+## Computed Fields
 
 You might need to show a field with something else than you have available in the database. In this case you may compute the value using a block that receives the `user` (the actual database record), `resource` (the Avocado configured resource) and the `view` in which it's displayed.
 
@@ -52,7 +48,7 @@ boolean 'Has written something' do |model, resource, view|
 end
 ```
 
-# Fields Formatter
+## Fields Formatter
 
 There could be a case where you will want to process the database value before you show it to the user. You may do that using `format_using` block
 
@@ -60,7 +56,7 @@ There could be a case where you will want to process the database value before y
 boolean :IsWriter, format_using: -> (value) { value ? '👍' : '👎' }
 ```
 
-# Sortable Fields
+## Sortable Fields
 
 You may need to sort the records by one of your fields. You can do that using the `sortable` attribute.
 
@@ -68,7 +64,7 @@ You may need to sort the records by one of your fields. You can do that using th
 text :name, sortable: true
 ```
 
-# Placeholder
+## Placeholder
 
 Some fields support the `placeholder` attribute which will be passed to the inputs on `edit` and `new` views.
 
@@ -76,7 +72,7 @@ Some fields support the `placeholder` attribute which will be passed to the inpu
 text :name, placeholder: 'John Doe`
 ```
 
-# Required
+## Required
 
 Sometimes you will want to prevent the user from submitting the form without filling in a field
 
@@ -84,7 +80,7 @@ Sometimes you will want to prevent the user from submitting the form without fil
 text :name, required: true
 ```
 
-# Readonly
+## Readonly
 
 Sometimes you will want to prevent the user from editing a field. `readonly` will render the field as disabled.
 

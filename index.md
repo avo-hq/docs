@@ -1,7 +1,3 @@
----
-sidebar: auto
----
-
 # Installation
 
 - [Requirements](#requirements)
