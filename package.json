@@ -7,7 +7,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "npx vitepress build"
+    "build": "npx vuepress build"
   },
   "dependencies": {
     "vitepress": "^0.3.1",
