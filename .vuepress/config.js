@@ -6,25 +6,35 @@ function buildMenu() {
 }
 
 module.exports = {
-  title: 'Avocado documentation',
+  title: 'Docs',
   description: 'Avocado documentation',
   port: 3011,
   activeHeaderLinks: true,
-  markdown: {
-    toc: {},
-  },
-  // extraWatchFiles: [
-  //   './0.1/**/*'
-  // ],
-
+  extraWatchFiles: [
+    './0.1/**/*'
+  ],
   plugins: [
     '@vuepress/pwa',
   ],
   themeConfig: {
+    logo: `/assets/img/logo.png`,
     displayAllHeaders: true,
     sidebarDepth: 2,
     nav: [
-      { text: 'Home', link: '/0.1/index.html' },
+      {
+        text: 'Home',
+        link: '/0.1/index.html'
+      },
+      {
+        text: 'Version',
+        link: '/',
+        items: [
+          {
+            text: "0.1",
+            link: "/0.1/"
+          }
+        ]
+      }
     ],
     sidebar: {
       '/0.1/': [

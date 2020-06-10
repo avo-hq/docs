@@ -1,0 +1,44 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    "extends": [
+        "plugin:vue/essential",
+        "airbnb-base"
+    ],
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "vue",
+        "sort-imports-es6-autofix"
+    ],
+    "rules": {
+        "sort-imports-es6-autofix/sort-imports-es6": [2, {
+            "ignoreCase": false,
+            "ignoreMemberSort": false,
+            "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
+        }],
+        // "sort-imports": ["error"],
+        "semi": ["error", "never"],
+        "no-multi-spaces": 0,
+        "camelcase": ["error", {"ignoreDestructuring": true}],
+        "newline-before-return": 1
+    },
+    "settings": {
+        "import/resolver": {
+            "alias": {
+                "map": [
+                    ["@", "./app/frontend"],
+                    ["~", "./node_modules"]
+                ]
+            }
+        }
+    }
+}
