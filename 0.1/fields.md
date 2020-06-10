@@ -1,5 +1,6 @@
 ---
-prev: /fields-reference
+prev: ./fields-reference
+next: ./relations
 ---
 
 # Fields

@@ -1,6 +1,6 @@
 ---
-prev: /
-next: /fields-reference
+prev: /0.1/
+next: ./fields-reference
 ---
 
 # Basics

@@ -1,38 +1,63 @@
+function buildMenu() {
+  const menu = []
+
+
+  return menu
+}
+
 module.exports = {
-  title: 'Avocado',
+  title: 'Avocado documentation',
   description: 'Avocado documentation',
   port: 3011,
-  activeHeaderLinks: false,
+  activeHeaderLinks: true,
   markdown: {
     toc: {},
   },
   themeConfig: {
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Resources', link: '/resources' },
-      { text: 'Fields reference', link: '/fields-reference' },
-      { text: 'Fields', link: '/fields' },
+      { text: 'Home', link: '/0.1/index.html' },
     ],
     sidebar: [
       {
         title: 'Getting started',
-        path: '/',
+        path: '/0.1/',
         collapsable: false,
-        sidebarDepth: 1,
+        sidebarDepth: 4,
         children: [
-          '/',
-          '/new',
+          '/0.1/resources',
+          '/0.1/fields-reference',
         ]
       },
       {
         title: 'Fields',
-        path: '/fields/',
+        path: '/0.1/fields',
         collapsable: false,
+        sidebarDepth: 4,
         children: [
-          ['/fields/text', 'Text field']
+          '/0.1/fields',
+          '/0.1/relations',
         ]
-      },
-    ],
-    sidebar: 'auto',
+      }
+    ]
+    // }
+      // {
+      //   title: 'Getting started',
+      //   path: '/0.1/',
+      //   // collapsable: false,
+      //   // sidebarDepth: 1,
+      //   // children: [
+      //   //   '/',
+      //   //   '/new',
+      //   // ]
+      // },
+      // {
+      //   title: 'Fields',
+      //   path: '/0.1/fields/',
+      //   // collapsable: false,
+      //   // children: [
+      //   //   ['/fields/text', 'Text field']
+      //   // ]
+      // },
+    // },
   },
 }

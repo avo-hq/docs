@@ -1,6 +1,6 @@
 ---
-prev: /resources
-next: /fields
+prev: ./resources
+next: ./fields
 ---
 
 # Fields reference

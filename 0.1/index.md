@@ -1,4 +1,5 @@
 ---
+title: Home
 next: ./resources
 ---
 
