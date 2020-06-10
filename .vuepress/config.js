@@ -1,10 +1,3 @@
-function buildMenu() {
-  const menu = []
-
-
-  return menu
-}
-
 module.exports = {
   title: 'Docs',
   description: 'Avocado documentation',
