@@ -74,7 +74,7 @@ text :name, sortable: true
 Some fields support the `placeholder` attribute which will be passed to the inputs on `edit` and `new` views.
 
 ```ruby
-text :name, placeholder: 'John Doe`
+text :name, placeholder: 'John Doe'
 ```
 
 ## Required
