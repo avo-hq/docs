@@ -11,5 +11,5 @@ prev: ./fields
 You can use `belongs_to` like so:
 
 ```ruby
-belongs_to :User
+belongs_to :user
 ```

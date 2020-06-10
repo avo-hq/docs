@@ -15,7 +15,7 @@ To add a field you just need to declare it in the `fields` method like so:
 
 ```ruby
 fields do
-  text :Name
+  text :name
 end
 ```
 
@@ -32,7 +32,7 @@ text :body, name: 'Post body'
 In the following example it will get the `is_available` attribute and render the label and placeholder `Is available`.
 
 ```ruby
-boolean :IsAvailable
+boolean :is_available
 ```
 
 ## Showing / Hiding fields
@@ -58,7 +58,7 @@ end
 There could be a case where you will want to process the database value before you show it to the user. You may do that using `format_using` block
 
 ```ruby
-boolean :IsWriter, format_using: -> (value) { value ? '👍' : '👎' }
+boolean :is_writer, format_using: -> (value) { value ? '👍' : '👎' }
 ```
 
 ## Sortable Fields
