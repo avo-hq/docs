@@ -1,12 +1,16 @@
 module.exports = {
-  title: 'Hello VitePress',
-  description: 'Just playing around',
-  port: 3010,
-  // activeHeaderLinks: false, // Default: true
+  title: 'Avocado',
+  description: 'Avocado documentation',
+  port: 3011,
+  activeHeaderLinks: false,
+  markdown: {
+    toc: {},
+  },
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Resources', link: '/resources' },
+      { text: 'Fields reference', link: '/fields-reference' },
       { text: 'Fields', link: '/fields' },
     ],
     sidebar: [

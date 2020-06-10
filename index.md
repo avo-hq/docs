@@ -1,3 +1,7 @@
+---
+next: ./resources
+---
+
 # Installation
 
 - [Requirements](#requirements)
