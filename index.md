@@ -15,7 +15,7 @@ next: ./resources
 
 # Installing Avocado
 
-Run `gem install avocado.gem` and add `gem 'avocado'` in your Ruby on Rails app.
+Run `gem install avocado.gem` (you need to pass a relative path to `avocado.gem`), add `gem 'avocado'` in your Ruby on Rails app and run `bundle`.
 
 Run `rails generate avo:install` to generate the initializer and add the route.
 

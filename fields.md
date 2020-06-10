@@ -174,7 +174,3 @@ textarea :body,
   format_using: -> (value) { value.truncate 3 },
   rows: 5 # The size of the element
 ```
-
-# Relations
-
-
