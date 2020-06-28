@@ -108,7 +108,7 @@ heading 'Address fields'
 ```
 The options for this field include `as_html`, which renders your value as HTML.
 ```ruby
-heading '<div class="underline text-gray-800 uppercase">Personal Documents</div>', 
+heading '<div class="underline text-gray-800 uppercase">Address fields</div>', 
   as_html: true
 ```
 On `index` the field is not visible, because it is not necessary.
