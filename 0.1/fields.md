@@ -172,7 +172,7 @@ status :progress, # The database field ID
   loading_when: ['loading', 'running', 'waiting'] # The values for 'loading' state (spinner shown)
 ```
 
-Be aware that `failed_when` defaults to 'failed', while `loading_when` defaults to either 'waiting' or 'running'.
+Be aware that `failed_when` defaults to 'failed', while `loading_when` defaults to both 'waiting' and 'running'.
 
 ## Text
 
