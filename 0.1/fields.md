@@ -100,6 +100,19 @@ files :documents,
   is_image: true # Whether the files are images
 ```
 
+## Heading
+The Heading field is used to display a banner between different fields, such as a separator for big lists or header for different sections.
+This field is not assigned to any column in the database. 
+```ruby
+heading 'Address fields'
+```
+The options for this field include `as_html`, which renders your value as HTML.
+```ruby
+heading '<div class="underline text-gray-800 uppercase">Personal Documents</div>', 
+  as_html: true
+```
+On `index` the field is not visible, because it is not necessary.
+
 ## ID
 
 The ID field is used to show the record's id.
