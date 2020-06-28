@@ -121,6 +121,29 @@ The ID field is used to show the record's id.
 id :ID
 ```
 
+## KeyValue
+
+The keyvalue field gives you the chance to edit flat key-value pairs stored in JSON format in database.
+
+```ruby
+key_value :meta, # The database field ID
+  key_label: 'Meta key', # Custom value for key header. Defaults to 'Key'.
+  value_label: 'Meta value', # Custom value for value header. Defaults to 'Value'.
+  action_text: 'New item', # Custom value for button to add a row. Defaults to 'Add'.
+  delete_text: 'Remove item', # Custom value for button to delete a row.. Defaults to 'Delete'.
+  disable_editing_keys: false, # Option to disable the ability to edit keys. Implies disabling to add rows. Defaults to false.
+  disable_adding_rows: false, # Option to disable the ability to add rows. Defaults to false.
+  disable_deleting_rows: false # Option to disable the ability to delete rows. Defaults to false.
+```
+You can easily customize the values displayed in the UI by mentioning custom values in `key_label`, `value_label`, `action_text` and `delete_text`
+ properties when defining the field.
+
+You can enforce some restrictions by removing the ability to edit the keys of the field, by setting `disable_editing_keys` to `true`. Be aware that
+ this option will also disable adding rows as well. You can separately remove the ability to add new row by setting `disable_adding_rows` to `true`.
+  Deletion of rows can be enforced by setting `disable_deleting_rows` to `true`.
+
+On the index you have to click on `View` to see the KeyValue field value.
+
 ## Number
 
 The number field renders a `number` `input` and supports the following options:
@@ -168,8 +191,8 @@ The status field is used to visually display the state of a column, supporting t
 
 ```ruby
 status :progress, # The database field ID
-  failed_when: ['closed', 'reject', 'failed'], # The values for 'failed' state (text displayed in red)
-  loading_when: ['loading', 'running', 'waiting'] # The values for 'loading' state (spinner shown)
+  failed_when: ['closed', 'rejected', 'failed'], # The values for 'failed' state (text displayed in red)
+  loading_when: ['loading', 'running', 'waiting', 'in progress'] # The values for 'loading' state (spinner shown)
 ```
 
 Be aware that `failed_when` defaults to 'failed', while `loading_when` defaults to both 'waiting' and 'running'.
