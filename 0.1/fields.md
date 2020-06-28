@@ -162,6 +162,18 @@ select :type,
 
 On `index` and `show` views you may want to display the values and not the labels off the options. You may change that using `display_with_value`.
 
+## Status
+
+The status field is used to visually display the state of a column, supporting the following options:
+
+```ruby
+status :progress, # The database field ID
+  failed_when: ['closed', 'reject', 'failed'], # The values for 'failed' state (text displayed in red)
+  loading_when: ['loading', 'running', 'waiting'] # The values for 'loading' state (spinner shown)
+```
+
+Be aware that `failed_when` defaults to 'failed', while `loading_when` defaults to either 'waiting' or 'running'.
+
 ## Text
 
 The text field renders a `text` `input` and supports the following options:
