@@ -7,6 +7,20 @@ next: ./relations
 
 [[toc]]
 
+## Badge
+
+The badge field can be used to display the status, condition of a value in the database. This field is intended only for
+`index` and `show` pages. In order to modify the value shown by badge field, use another field: ex `text`, in combination with `hide_on: index`
+and `hide_on: show`.
+
+```ruby
+badge :condition,
+  map: { informational: 'info', failure: 'danger', cancelled: 'danger' } # The mapping of custom values to badge values.
+```
+
+By default, the badge field supports four values: `info` (blue), `success` (green), `danger` (red), `warning` (yellow), having the possibility
+to override and/or add values by providing `map` parameter.
+
 ## Boolean
 
 The boolean field renders a `checkbox` `input` and supports the following options.
@@ -42,6 +56,28 @@ boolean_group :roles,
   name: 'User roles',
   required: true,
   readonly: true,
+```
+
+## Country
+
+Country field generates a `select` field that includes all [ISO 3166-1](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes) countries.
+You can easily choose to display the `name` of the countries in `index` and `show` views by declaring `display_name` to `true`.
+
+```ruby
+country :country,
+  display_name: true # Option to display full name of countries instead of country code. Defaults to false.
+```
+
+## Currency
+
+The currency field generates a `number` field that is automatically formatted using [Vue Currency Input](https://dm4t2.github.io/vue-currency-input/) to look
+ currency alike. You may use `currency` and `locale` to specify the sign and format of the currency field. Be aware that `currency` defaults to `USD`, while
+ `locale` defaults to `en-US`.
+
+```ruby
+currency :salary,
+  currency: 'EUR', # Option to specify the currency. Defaults to USD.
+  locale: 'de-DE', # Option to specify the locale formatting. Defaults to en-US.
 ```
 
 ## Date
@@ -98,6 +134,21 @@ files :documents,
   required: true,
   readonly: true,
   is_image: true # Whether the files are images
+```
+
+## Gravatar
+
+The Gravatar field is linked to the email from database, displaying the avatar image assigned to that email address in [Gravatar](https://en.gravatar.com/site/implement/images/) database. However, if
+ the email address is stored in another column, you can specify that column.
+
+By default, the image is rounded, but it can be changed by setting `squared` to `true` in field declaration. You can customize the appeareance of the avatar
+ by specifing the `size` (in pixels) and `default_url` (url) - picture displayed when no gravatar is associated with the email.
+
+```ruby
+gravatar :email,
+  squared: true,
+  size: 100,
+  default_url: 'some image url'
 ```
 
 ## Heading
