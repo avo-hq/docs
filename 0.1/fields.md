@@ -14,8 +14,8 @@ The badge field can be used to display the status, condition of a value in the d
 and `hide_on: show`.
 
 ```ruby
-badge :condition,
-  map: { informational: 'info', failure: 'danger', cancelled: 'danger' } # The mapping of custom values to badge values.
+badge :stage,
+  map: { info: [:discovery, :idea], success: :done, warning: 'on hold', danger: :cancelled } # The mapping of custom values to badge values.
 ```
 
 By default, the badge field supports four values: `info` (blue), `success` (green), `danger` (red), `warning` (yellow), having the possibility
@@ -57,6 +57,25 @@ boolean_group :roles,
   required: true,
   readonly: true,
 ```
+
+## Code
+
+The Code field generates a code editor using [vue-codemirror](https://github.surmon.me/vue-codemirror/), linked to a text field. On index, a code editor
+ is not displayed.
+
+```ruby
+code :custom_css,
+  theme: 'dracula',
+  language: 'css'
+```
+
+### Customize Theme
+You may customize the theme of the Code field using the theme method. It defaults to `material-darker`, but you can choose from: `material-darker`, `eclipse`,
+ `dracula`.
+
+### Customize Syntax Highlighting
+You may customize the programming language highlighting of the Code field using the language method. It defaults to `javascript`, but you can choose from: `css`, `dockerfile`,
+ `htmlmixed`, `javascript`, `markdown`, `nginx`, `php`, `ruby`, `sass`, `shell`, `sql`, `vue`, `xml`.
 
 ## Country
 
@@ -141,13 +160,16 @@ files :documents,
 The Gravatar field is linked to the email from database, displaying the avatar image assigned to that email address in [Gravatar](https://en.gravatar.com/site/implement/images/) database. However, if
  the email address is stored in another column, you can specify that column.
 
-By default, the image is rounded, but it can be changed by setting `squared` to `true` in field declaration. You can customize the appeareance of the avatar
- by specifing the `size` (in pixels) and `default_url` (url) - picture displayed when no gravatar is associated with the email.
+On index, by default, the image is `rounded` and has size of `40 px`, but it can be changed by setting `rounded` to `false` and by specifying the `size` (in pixels) in field declaration.
+
+On show, the image is always `squared` and the size is `responsive`.
+
+You can customize the image shown when gravatar is not found by changing `default_url` (url) to custom image URL (for example company's logo).
 
 ```ruby
 gravatar :email,
-  squared: true,
-  size: 100,
+  rounded: false,
+  size: 60,
   default_url: 'some image url'
 ```
 
@@ -163,6 +185,13 @@ heading '<div class="underline text-gray-800 uppercase">Address fields</div>',
   as_html: true
 ```
 On `index` the field is not visible, because it is not necessary.
+
+## Hidden
+The Hidden field is used to display a value in a hidden input, mostly used to pass any value that doesn't have to be changed by user but is
+ required to save the form.
+```ruby
+hidden :group_id
+```
 
 ## ID
 
