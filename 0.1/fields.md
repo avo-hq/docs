@@ -71,7 +71,7 @@ code :custom_css,
 
 ### Customize Theme
 You may customize the theme of the Code field using the theme method. It defaults to `material-darker`, but you can choose from: `material-darker`, `eclipse`,
- `dracula`.
+ `dracula`. You can preview the themes here: [codemirror-themes](https://codemirror.net/demo/theme.html).
 
 ### Customize Syntax Highlighting
 You may customize the programming language highlighting of the Code field using the language method. It defaults to `javascript`, but you can choose from: `css`, `dockerfile`,
