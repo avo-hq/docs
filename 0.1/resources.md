@@ -7,6 +7,7 @@ next: ./fields-reference
 
 [[toc]]
 
+
 Avo empowers you in a very easy way to build a full admin dashboard for your Ruby on Rails application.
 One of the most powerful features is how easy you can administer your database records.
 Avo does this using **Resources**. Each resource maps out one of your models.
