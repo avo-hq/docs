@@ -5,6 +5,8 @@ next: ./fields
 
 # Grid view
 
+<img :src="$withBase('/assets/img/grid-view.jpg')" alt="Avo grid view" />
+
 Some resources are best displayed in a grid view. The grid view enables you to display the resource using an image (`:preview`), a title (`:title`) and a sub-title (`:body`).
 To enable grid view in a resource you need to declare it in the resource initializer.
 
@@ -22,7 +24,7 @@ module Avo
 end
 ```
 
-You add your fields as you regularly do in the `fields` block, then, the next step is to tell Avo which fields are which in grid view.
+You add and configure your fields as you regularly do in the `fields` block, then, the next step is to tell Avo which fields are which in grid view.
 
 ```ruby
   fields do
@@ -39,6 +41,4 @@ You add your fields as you regularly do in the `fields` block, then, the next st
   end
 ```
 
-This will render the `Post` resource index view as a **grid view** with the selected fields. You also get a button to toggle between the two view types `:grid` and `:table`.
-
-<img :src="$withBase('/assets/img/grid-view.jpg')" alt="Avo grid view">
+This will render the `Post` resource index view as a **grid view** using the selected fields. You also get a button to toggle between the two view types `:grid` and `:table`.

@@ -9,38 +9,37 @@ next: ./relations
 
 ## Badge
 
-The badge field can be used to display the status, condition of a value in the database. This field is intended only for
-`index` and `show` pages. In order to modify the value shown by badge field, use another field: ex `text`, in combination with `hide_on: index`
-and `hide_on: show`.
+The badge field can be used to display the status of a record in the database.
+
+<img :src="$withBase('/assets/img/fields/badge.jpg')" alt="Badge field" />
 
 ```ruby
-badge :stage,
-  map: { info: [:discovery, :idea], success: :done, warning: 'on hold', danger: :cancelled } # The mapping of custom values to badge values.
+badge :stage, map: { info: [:discovery, :idea], success: :done, warning: 'on hold', danger: :cancelled } # The mapping of custom values to badge values.
 ```
 
-By default, the badge field supports four values: `info` (blue), `success` (green), `danger` (red), `warning` (yellow), having the possibility
-to override and/or add values by providing `map` parameter.
+By default, the badge field supports four values: `info` (blue), `success` (green), `danger` (red) and `warning` (yellow), having the possibility to override and/or add values by providing `map` parameter.
+
+The `map` parameter is a Hash the has the state as the `key` and your agreed values as `value`. The `value` param can be a symbol, string or array of symbols or strings.
+
+The Badge field is intended to be displayed only on **Index** and **Show** views. In order to update the value shown by badge field you need to use another field like [Text](#text) or [Select](#select), in combination with `hide_on: index` and `hide_on: show`.
 
 ## Boolean
+
+<img :src="$withBase('/assets/img/fields/boolean.jpg')" alt="Boolean field" />
 
 The boolean field renders a `checkbox` `input` and supports the following options.
 
 ```ruby
-boolean :is_published,
-  name: 'Published',
-  required: true,
-  readonly: true,
-  true_value: 'yes',
-  false_value: 'no',
+boolean :is_published, name: 'Published', true_value: 'yes', false_value: 'no',
 ```
 
-### Customize true/false values
-
-You might store the value differently than `1` and `0`. You may customize those values using `true_value` and `false_value`.
+You might not use `true`/`false` or `1`/`0` to store the value in the database. By using `true_value` and `false_value` you may declare different values for that database field like `yes`/`no`.
 
 ## Boolean Group
 
-The boolean group can be used to update a Hash with string keys and boolean values in the database.
+<img :src="$withBase('/assets/img/fields/boolean-group.jpg')" alt="Boolean group field" />
+
+The boolean group is used to update a `Hash` with `string` keys and `boolean` values in the database.
 
 ```ruby
 # Example boolean group hash
@@ -52,66 +51,57 @@ The boolean group can be used to update a Hash with string keys and boolean valu
 ```
 
 ```ruby
-boolean_group :roles,
-  name: 'User roles',
-  required: true,
-  readonly: true,
+boolean_group :roles, name: 'User roles'
 ```
 
 ## Code
 
-The Code field generates a code editor using [vue-codemirror](https://github.surmon.me/vue-codemirror/), linked to a text field. On index, a code editor
- is not displayed.
+<img :src="$withBase('/assets/img/fields/code.jpg')" alt="Code field" />
+
+The Code field generates a code editor using [vue-codemirror](https://github.surmon.me/vue-codemirror/). This field is hidden on **Index** view.
 
 ```ruby
-code :custom_css,
-  theme: 'dracula',
-  language: 'css'
+code :custom_css, theme: 'dracula', language: 'css'
 ```
 
 ### Customize Theme
-You may customize the theme of the Code field using the theme method. It defaults to `material-darker`, but you can choose from: `material-darker`, `eclipse`,
- `dracula`. You can preview the themes here: [codemirror-themes](https://codemirror.net/demo/theme.html).
+
+You can customize the theme of the Code field using the theme method. It defaults to `material-darker`, but you can choose from `material-darker`, `eclipse`, `dracula`. You can preview the themes here: [codemirror-themes](https://codemirror.net/demo/theme.html).
 
 ### Customize Syntax Highlighting
-You may customize the programming language highlighting of the Code field using the language method. It defaults to `javascript`, but you can choose from: `css`, `dockerfile`,
- `htmlmixed`, `javascript`, `markdown`, `nginx`, `php`, `ruby`, `sass`, `shell`, `sql`, `vue`, `xml`.
+
+You can customize the programming language highlighting of the Code field using the language method. It defaults to `javascript` but you can choose from `css`, `dockerfile`, `htmlmixed`, `javascript`, `markdown`, `nginx`, `php`, `ruby`, `sass`, `shell`, `sql`, `vue` or `xml`.
 
 ## Country
 
-Country field generates a `select` field that includes all [ISO 3166-1](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes) countries.
-You can easily choose to display the `name` of the countries in `index` and `show` views by declaring `display_name` to `true`.
+Country field generates a [Select](/#sellect) field on **Edit** view that includes all [ISO 3166-1](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes) countries. The value stored in the database is going to be the country code and the value displayed in Avo is going to be the name of the country.
+
+You can easily choose to display the `name` of the countries in **Index** and **Show** views by declaring `display_name` to `true`.
 
 ```ruby
-country :country,
-  display_name: true # Option to display full name of countries instead of country code. Defaults to false.
+country :country, display_name: true
 ```
 
 ## Currency
 
-The currency field generates a `number` field that is automatically formatted using [Vue Currency Input](https://dm4t2.github.io/vue-currency-input/) to look
- currency alike. You may use `currency` and `locale` to specify the sign and format of the currency field. Be aware that `currency` defaults to `USD`, while
- `locale` defaults to `en-US`.
+The currency field generates a [Number](/#number) field that is automatically formatted using [Vue Currency Input](https://dm4t2.github.io/vue-currency-input/) to look linke a currency. You may use `currency` and `locale` to specify the sign and format of the currency field.
+
+Be aware that `currency` defaults to `USD` and `locale` defaults to `en`.
 
 ```ruby
-currency :salary,
-  currency: 'EUR', # Option to specify the currency. Defaults to USD.
-  locale: 'de-DE', # Option to specify the locale formatting. Defaults to en-US.
+currency :salary, currency: 'EUR', locale: 'de'
 ```
 
 ## Date
 
-The Date field may be used to display date values. The `edit` view of the picker is using flatpickr. You may use the [formatting tokens](https://flatpickr.js.org/formatting/) to format the `edit` element and the moment.js [tokens](https://momentjs.com/docs/#/displaying/format/) to display the `index` and `show` element.
+The Date field may be used to display date values.
+
+The **Edit**** view of the picker is using [flatpickr](https://flatpickr.js.org). You may use the [formatting tokens](https://flatpickr.js.org/formatting/) to format the **Edit** view element and the [moment.js](https://momentjs.com) [tokens](https://momentjs.com/docs/#/displaying/format/) to display the **Index** and **Show** views element.
+
+You may also pass the `first_day_of_week` attribute to have that reflected on the generated calendar component.
 
 ```ruby
-boolean_group :roles,
-  name: 'User roles',
-  placeholder: 'The date',
-  required: true,
-  readonly: true,
-  first_day_of_week: 1, # 1 is Monday (default), 7 is Sunday
-  picker_format: 'Y-m-d', # flatpickr date forma
-  format: 'YYYY-MM-DD' # momentjs date format
+date :birthday, first_day_of_week: 1, picker_format: 'F J Y', format: 'MMMM Do YYYY', placeholder: 'Feb 24th 1955', required: true
 ```
 
 ## DateTime
@@ -184,7 +174,7 @@ The options for this field include `as_html`, which renders your value as HTML.
 heading '<div class="underline text-gray-800 uppercase">Address fields</div>',
   as_html: true
 ```
-On `index` the field is not visible, because it is not necessary.
+On **Index** the field is not visible, because it is not necessary.
 
 ## Hidden
 The Hidden field is used to display a value in a hidden input, mostly used to pass any value that doesn't have to be changed by user but is
@@ -263,7 +253,7 @@ select :type,
   placeholder: 'Choose the size of the container.'
 ```
 
-On `index` and `show` views you may want to display the values and not the labels off the options. You may change that using `display_with_value`.
+On **Index** and **Show** views you may want to display the values and not the labels off the options. You may change that using `display_with_value`.
 
 ## Status
 

@@ -1,7 +1,7 @@
 module.exports = {
   title: 'Docs',
   description: 'Avo documentation',
-
+  theme: '@vuepress/theme-default',
   port: 3011,
   activeHeaderLinks: true,
   extraWatchFiles: [
@@ -9,10 +9,10 @@ module.exports = {
   ],
   plugins: [
     '@vuepress/pwa',
-    ['vuepress-plugin-code-copy', {
-      align: 'top',
-      staticIcon: true
-    }],
+    // ['vuepress-plugin-code-copy', {
+    //   align: 'top',
+    //   staticIcon: true
+    // }],
     [
       '@vuepress/google-analytics',
       {
