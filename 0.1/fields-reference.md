@@ -1,6 +1,6 @@
 ---
 prev: ./resources
-next: ./fields
+next: ./grid-view
 ---
 
 # Fields reference
@@ -9,7 +9,7 @@ next: ./fields
 
 ## Defining fields
 
-Each Avocado resource has a `fields` method that registers your configured fields. Avocado ships with a variety of fields like `text`, `textarea`, `number`, `password`, `boolean`, `select`, and others.
+Each Avo resource has a `fields` method that registers your configured fields. Avo ships with a variety of fields like `text`, `textarea`, `number`, `password`, `boolean`, `select`, and others.
 
 To add a field you just need to declare it in the `fields` method like so:
 
@@ -23,7 +23,7 @@ This will create a text input field that will update the `name` attribute on tha
 
 ## Field conventions
 
-Avocado will try to get the snake case version of your field. But, if you want you can give it a name that's different from the field itself you can use the `name` property.
+Avo will try to get the snake case version of your field. But, if you want you can give it a name that's different from the field itself you can use the `name` property.
 
 ```ruby
 text :body, name: 'Post body'
@@ -45,7 +45,7 @@ text :body, hide_on: [:index, :show]
 
 ## Computed Fields
 
-You might need to show a field with something else than you have available in the database. In this case you may compute the value using a block that receives the `user` (the actual database record), `resource` (the Avocado configured resource) and the `view` in which it's displayed.
+You might need to show a field with something else than you have available in the database. In this case you may compute the value using a block that receives the `user` (the actual database record), `resource` (the Avo configured resource) and the `view` in which it's displayed.
 
 ```ruby
 boolean 'Has written something' do |model, resource, view|

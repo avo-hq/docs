@@ -1,6 +1,7 @@
 module.exports = {
   title: 'Docs',
-  description: 'Avocado documentation',
+  description: 'Avo documentation',
+
   port: 3011,
   activeHeaderLinks: true,
   extraWatchFiles: [
@@ -8,6 +9,16 @@ module.exports = {
   ],
   plugins: [
     '@vuepress/pwa',
+    ['vuepress-plugin-code-copy', {
+      align: 'top',
+      staticIcon: true
+    }],
+    [
+      '@vuepress/google-analytics',
+      {
+        'ga': 'UA-174545089-1'
+      }
+    ]
   ],
   themeConfig: {
     logo: `/assets/img/logo.png`,
@@ -16,7 +27,7 @@ module.exports = {
     nav: [
       {
         text: 'Home',
-        link: '/0.1/index.html'
+        link: 'https://avohq.io'
       },
       {
         text: 'Version',
@@ -39,6 +50,8 @@ module.exports = {
           children: [
             '/0.1/resources',
             '/0.1/fields-reference',
+            '/0.1/grid-view',
+
           ]
         },
         {
@@ -49,6 +62,15 @@ module.exports = {
           children: [
             '/0.1/fields',
             '/0.1/relations',
+          ]
+        },
+        {
+          title: 'Filters',
+          path: '/0.1/filters',
+          collapsable: false,
+          sidebarDepth: 4,
+          children: [
+            '/0.1/filters',
           ]
         }
       ],

@@ -7,22 +7,22 @@ next: ./fields-reference
 
 [[toc]]
 
-Avocado empowers you in a very easy way to build a full administration dashboard for your Ruby on Rails application.
-This gets done by giving you the ability of adding "Resources".
+Avo empowers you in a very easy way to build a full admin dashboard for your Ruby on Rails application.
+One of the most powerful features is how easy you can administer your database records.
+Avo does this using **Resources**. Each resource maps out one of your models.
 
 ## Defining Resources
 
-```
-rails generate avo:resource RESOURCE_NAME
+```bash
+bin/rails generate avo:resource post
 ```
 
-In your app under `app/services` an `avocado` directory will be created. This directory will hold all of your Avocado configuration files.
-The resource config file will be created under the `resources` sub-directory.
+This command will generate a resource file under your `app/avo/resources` directory. The `app/avo` directory will hold all of your Avo configuration files.
 
 Inside the creates resource file will look like so:
 
 ```ruby
-module Avocado
+module Avo
   module Resources
     class Post < Resource
       def initialize
@@ -31,29 +31,49 @@ module Avocado
       end
 
       fields do
-        id :ID
+        id :id
       end
     end
   end
 end
 ```
 
-From this config Avocado will infer that the resource's model will be the `Post` model.
+From this config Avo will infer that the resource's model will be the `Post` model.
 
 ## Setting the title of the resource
 
-Initially the `@title` attribute is set to `:id`, so the model's `id` will be used to reference the resource on index, search and other views. You usually change it to something more representative like the model's `title` or `name` attributes.
+Initially the `@title` attribute is set to `:id`, so the model's `id` attribute will be used to reference the resource on index, search and other views. You usually change it to something more representative like the model's `title` or `name` attributes.
 
 ## Search
 
-Using the `@search` property you can instruct Avocado in which fields should it look through when doing a search on this resource.
+Using the `@search` property you can tell Avo in which fields should it look through when doing a search on this resource.
 
 ## Eager loading
 
-If you regularly need access to the resource's relations you can instruct Avocado to eager load those relations on the `index` screen using `@includes` in your initializer
+If you regularly need access to a resource's relations you tell Avo to eager load those relations on the `index` screen using `@includes` in your initializer
 
 ```ruby
 def initialize
-  @includes = :user
+  @includes = [:user, :tags]
 end
 ```
+
+## Grid view
+
+On index, the most common view type is `:table`. But you might have some data that you want to display it in a **grid view**. You change that by setting `@default_view_type`.
+
+<img :src="$withBase('/assets/img/grid-view.jpg')" alt="Avo grid view">
+
+```ruby
+  @default_view_type = :grid
+```
+
+Check out the additional [grid view documentation](grid-view).
+
+## Filters
+
+It's a very common scenario to add filters to your resources to make it easier to find your records. This is very easy with Avo.
+
+<img :src="$withBase('/assets/img/filters.jpg')" alt="Avo filters" style="width: 300px;" />
+
+Check out the additional [filters documentation](filters).
