@@ -16,6 +16,7 @@ next: ./resources
 
 # Installing Avo
 
+1. [Sign up](https://avohq.io) for early access and get `avo.gem`
 1. Run `gem install avo.gem`
 1. Add `gem 'avo'` in your Ruby on Rails app
 1. Run `bundle install`.
