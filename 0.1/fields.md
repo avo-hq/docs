@@ -98,7 +98,7 @@ The Date field may be used to display date values.
 
 The **Edit**** view of the picker is using [flatpickr](https://flatpickr.js.org). You may use the [formatting tokens](https://flatpickr.js.org/formatting/) to format the **Edit** view element and the [moment.js](https://momentjs.com) [tokens](https://momentjs.com/docs/#/displaying/format/) to display the **Index** and **Show** views element.
 
-You may also pass the `first_day_of_week` attribute to have that reflected on the generated calendar component.
+You may also pass the `first_day_of_week` attribute to have that reflected on the generated calendar component. 1 is Monday (default) and 7 is Sunday.
 
 ```ruby
 date :birthday, first_day_of_week: 1, picker_format: 'F J Y', format: 'MMMM Do YYYY', placeholder: 'Feb 24th 1955', required: true
@@ -106,79 +106,69 @@ date :birthday, first_day_of_week: 1, picker_format: 'F J Y', format: 'MMMM Do Y
 
 ## DateTime
 
-The DateTime field is similar to the Date field.
+<img :src="$withBase('/assets/img/fields/date-time.jpg')" alt="DateTime field" />
+
+The DateTime field is similar to the Date field with two new attributes. `time_24hr` tells the component to use 24 hours format and `timezone` to tell it in what timezone to display the time.
 
 ```ruby
-datetime :created_at,
-  name: 'User joined',
-  required: true,
-  readonly: true,
-  first_day_of_week: 1, # 1 is Monday (default), 7 is Sunday
-  picker_format: 'Y-m-d', # flatpickr date format
-  format: 'YYYY-MM-DD', # momentjs date format
-  time_24hr: true, # Whether to display the field in a 24 hour format
-  timezone: 'PST' # The timezone in which to display the time
+datetime :created_at, name: 'User joined', first_day_of_week: 1, picker_format: 'Y-m-d', format: 'YYYY-MM-DD', time_24hr: true, timezone: 'PST'
 ```
 
 ## File
 
-The File field may be used to attach files using the [Active Storage](https://edgeguides.rubyonrails.org/active_storage_overview.html) module.
+The File field may be used to attach files using [Active Storage](https://edgeguides.rubyonrails.org/active_storage_overview.html).
 
 ```ruby
-file :avatar,
-  name: 'User avatar',
-  required: true,
-  readonly: true,
-  is_avatar: true, # Whether to show the image next to the model in searches. Also sets is_image: true
-  is_image: true # Whether the file is an image
+file :avatar, is_image: true
 ```
+
+The `is_image` option renders the file as an image instead of rendering the file name.
+<!-- The `is_avatar` option is used to show the image next to the model searches. It also sets the `is_image` to `true`. -->
 
 ## Files
 
-The File field may be used to attach files using the [Active Storage](https://edgeguides.rubyonrails.org/active_storage_overview.html) module.
+The Files field is similar to File and enables you to upload multiple files at once using [Active Storage](https://edgeguides.rubyonrails.org/active_storage_overview.html).
 
 ```ruby
-files :documents,
-  name: 'User docs',
-  required: true,
-  readonly: true,
-  is_image: true # Whether the files are images
+files :documents
 ```
 
 ## Gravatar
 
-The Gravatar field is linked to the email from database, displaying the avatar image assigned to that email address in [Gravatar](https://en.gravatar.com/site/implement/images/) database. However, if
- the email address is stored in another column, you can specify that column.
+The Gravatar field should be linked to an email field from the database, displaying the avatar image assigned to that email address in the [Gravatar](https://en.gravatar.com/site/implement/images/) database. By default it uses the `email` filed, but if the email address is stored in another column, you can specify that column.
+
+```ruby
+gravatar :email, rounded: false, size: 60, default_url: 'some image url'
+```
 
 On index, by default, the image is `rounded` and has size of `40 px`, but it can be changed by setting `rounded` to `false` and by specifying the `size` (in pixels) in field declaration.
 
 On show, the image is always `squared` and the size is `responsive`.
 
-You can customize the image shown when gravatar is not found by changing `default_url` (url) to custom image URL (for example company's logo).
-
-```ruby
-gravatar :email,
-  rounded: false,
-  size: 60,
-  default_url: 'some image url'
-```
+You can customize the image shown when gravatar is not found by changing the `default_url` attribute to a custom image URL.
 
 ## Heading
-The Heading field is used to display a banner between different fields, such as a separator for big lists or header for different sections.
-This field is not assigned to any column in the database.
+
+<img :src="$withBase('/assets/img/fields/heading.jpg')" alt="Heading field" />
+
+The Heading field is used to display a banner between fields, such as a separator for big lists or header for different sections.
+
+Heading is not assigned to any column in the database and only visible on **Edit** and **Create** views.
+
 ```ruby
 heading 'Address fields'
 ```
-The options for this field include `as_html`, which renders your value as HTML.
+
+The `as_html` option will render it as HTML.
+
 ```ruby
-heading '<div class="underline text-gray-800 uppercase">Address fields</div>',
-  as_html: true
+heading '<div class="underline text-gray-800 uppercase">Address fields</div>', as_html: true
 ```
-On **Index** the field is not visible, because it is not necessary.
 
 ## Hidden
-The Hidden field is used to display a value in a hidden input, mostly used to pass any value that doesn't have to be changed by user but is
- required to save the form.
+
+You might have a scenario where you need a value to update a model. You may use the Hidden field to add the field to the form a hidden input but not render it on the page.
+
 ```ruby
 hidden :group_id
 ```
@@ -188,88 +178,95 @@ hidden :group_id
 The ID field is used to show the record's id.
 
 ```ruby
-id :ID
+id :id
 ```
 
 ## KeyValue
 
-The keyvalue field gives you the chance to edit flat key-value pairs stored in JSON format in database.
+<img :src="$withBase('/assets/img/fields/key-value.jpg')" alt="KeyValue field" />
+
+The KeyValue field allows you to edit flat key-value pairs stored in JSON format in database.
+
+```ruby
+key_value :meta
+```
+
+## Customizing the labels
+
+You can easily customize the labels displayed in the UI by mentioning custom values in `key_label`, `value_label`, `action_text` and `delete_text` properties when defining the field.
 
 ```ruby
 key_value :meta, # The database field ID
   key_label: 'Meta key', # Custom value for key header. Defaults to 'Key'.
   value_label: 'Meta value', # Custom value for value header. Defaults to 'Value'.
   action_text: 'New item', # Custom value for button to add a row. Defaults to 'Add'.
-  delete_text: 'Remove item', # Custom value for button to delete a row.. Defaults to 'Delete'.
+  delete_text: 'Remove item' # Custom value for button to delete a row.. Defaults to 'Delete'.
+```
+
+## Enforce restrictions
+
+You can enforce some restrictions by removing the ability to edit the keys of the field, by setting `disable_editing_keys` to `true`. Be aware that this option will also disable adding rows as well. You can separately remove the ability to add new row by setting `disable_adding_rows` to `true`. Deletion of rows can be enforced by setting `disable_deleting_rows` to `true`.
+
+```ruby
+key_value :meta, # The database field ID
   disable_editing_keys: false, # Option to disable the ability to edit keys. Implies disabling to add rows. Defaults to false.
   disable_adding_rows: false, # Option to disable the ability to add rows. Defaults to false.
   disable_deleting_rows: false # Option to disable the ability to delete rows. Defaults to false.
 ```
-You can easily customize the values displayed in the UI by mentioning custom values in `key_label`, `value_label`, `action_text` and `delete_text`
- properties when defining the field.
 
-You can enforce some restrictions by removing the ability to edit the keys of the field, by setting `disable_editing_keys` to `true`. Be aware that
- this option will also disable adding rows as well. You can separately remove the ability to add new row by setting `disable_adding_rows` to `true`.
-  Deletion of rows can be enforced by setting `disable_deleting_rows` to `true`.
-
-On the index you have to click on `View` to see the KeyValue field value.
+This field is hidden on **Index** view.
 
 ## Number
 
-The number field renders a `number` `input` and supports the following options:
+The Number field renders a `number` `input` and has the regular `min`, `max` and `step` options.
 
 ```ruby
-number :age,
-  name: "User's age",
-  required: true,
-  readonly: true,
-  placeholder: 'Happy Birthday!',
-  format_using: -> (value) { "🥂 #{value}" }
-  min: 0,
-  max: 120,
-  step: 5
+number :age, min: 0, max: 120, step: 5
 ```
 
 ## Password
 
-The password field renders a `password` `input` and supports the following options:
+The Password field renders a `password` `input`.
 
 ```ruby
-password :password,
-  name: 'The password',
-  required: true,
-  readonly: true,
-  placeholder: 'secret',
+password :password placeholder: 'secret',
 ```
 
 ## Select
 
-The select field renders a `select` element and supports the following options:
+The Select field renders a `select`
 
 ```ruby
-select :type,
-  options: { large: 'Large container', medium: 'Medium container', small: 'Tiny container' }, # The options that should be listed in the dropdown
-  display_with_value: true, # Wether to display the values of the labels
-  placeholder: 'Choose the size of the container.'
+select :type, options: { large: 'Large container', medium: 'Medium container', small: 'Tiny container' }
 ```
+<!-- # , display_with_value: true,
+# placeholder: 'Choose the size of the container.' -->
 
-On **Index** and **Show** views you may want to display the values and not the labels off the options. You may change that using `display_with_value`.
+You may add options using the `options` option which is a `Hash` with the id (database value) as the `key` and the label as `value`.
+
+<!-- On **Index** and **Show** views you may want to display the values and not the labels off the options. You may change that using `display_with_value`. -->
 
 ## Status
 
 The status field is used to visually display the state of a column, supporting the following options:
 
+<img :src="$withBase('/assets/img/fields/status.jpg')" alt="Status field" />
+
 ```ruby
-status :progress, # The database field ID
-  failed_when: ['closed', 'rejected', 'failed'], # The values for 'failed' state (text displayed in red)
-  loading_when: ['loading', 'running', 'waiting', 'in progress'] # The values for 'loading' state (spinner shown)
+status :progress, failed_when: ['closed', 'rejected', 'failed'], loading_when: ['loading', 'running', 'waiting', 'in progress']
 ```
 
-Be aware that `failed_when` defaults to 'failed', while `loading_when` defaults to both 'waiting' and 'running'.
+You may customize the `failed` and `loading` states by using `failed_when` and `loading_when`. `failed_when` defaults to `failed`, while `loading_when` defaults to both `waiting` and `running`.
 
 ## Text
 
-The text field renders a `text` `input` and supports the following options:
+The text field renders a regular `text` `input`.
+
+```ruby
+text :title
+```
+
+You may customize it with a lot of options.
 
 ```ruby
 text :title, # The database field ID
@@ -282,14 +279,8 @@ text :title, # The database field ID
 
 ## Textarea
 
-The textarea field renders a `textarea` element and supports the following options:
+The textarea field renders a `textarea` element and takes has the `rows` option that controls how many rows it should render.
 
 ```ruby
-textarea :body,
-  name: 'Post contents',
-  required: true,
-  readonly: true,
-  placeholder: 'My shiny new post',
-  format_using: -> (value) { value.truncate 3 },
-  rows: 5 # The size of the element
+textarea :body, rows: 5
 ```
