@@ -1,7 +1,7 @@
 module.exports = {
   title: 'Docs',
   description: 'Avo documentation',
-  // theme: '@vuepress/theme-default',
+  theme: '@vuepress/theme-default',
   port: 3011,
   activeHeaderLinks: true,
   extraWatchFiles: [
