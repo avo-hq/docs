@@ -8,7 +8,11 @@ module.exports = {
     './0.1/**/*'
   ],
   plugins: [
-    '@vuepress/pwa',
+    ['@vuepress/pwa',
+    {
+      serviceWorker: true,
+      updatePopup: true
+    }],
     // ['vuepress-plugin-code-copy', {
     //   align: 'top',
     //   staticIcon: true
