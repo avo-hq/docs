@@ -1,6 +1,6 @@
 ---
 title: Home
-next: ./resources
+next: ./dashboard
 ---
 
 # Installation

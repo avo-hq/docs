@@ -1,12 +1,11 @@
 ---
-prev: /0.1/
+prev: /dashboard
 next: ./fields-reference
 ---
 
 # Basics
 
 [[toc]]
-
 
 Avo empowers you in a very easy way to build a full admin dashboard for your Ruby on Rails application.
 One of the most powerful features is how easy you can administer your database records.

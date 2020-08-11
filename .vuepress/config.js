@@ -52,6 +52,7 @@ module.exports = {
           collapsable: false,
           sidebarDepth: 4,
           children: [
+            '/0.1/dashboard',
             '/0.1/resources',
             '/0.1/fields-reference',
             '/0.1/grid-view',
