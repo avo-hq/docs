@@ -1,5 +1,5 @@
 ---
-prev: /dashboard
+prev: ./dashboard
 next: ./fields-reference
 ---
 
