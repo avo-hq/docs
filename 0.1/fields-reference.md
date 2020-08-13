@@ -141,3 +141,19 @@ status :updated_status, failed_when: [:closed, :rejected, :failed], loading_when
 # using custom null values
 textarea :body, nullable: true, null_values: ['0', '', 'null', 'nil']
 ```
+
+## As Link To Resource
+
+Sometimes you may want a field in the table to contain a link to the resource, so that you don't have to scroll to the end of the table to click on the `show` icon. This can be achieved using `as_link_to_resource` method, which is available only on index
+and only for `Id`, `Text` and `Gravatar` fields.
+
+```ruby
+# for id field
+id as_link_to_resource: true
+
+# for text field
+text :name, as_link_to_resource: true
+
+# for gravatar field
+gravatar :email, as_link_to_resource: true
+```
