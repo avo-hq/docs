@@ -26,18 +26,8 @@ module.exports = {
       }
     ],
     ['@vuepress/back-to-top'],
-    ['@silvanite/tailwind', {
-      config: require('./tailwind.config.js'),
-      purgecss: {
-        enabled: true,
-        content: [
-          "./.vuepress/theme/**/*.*",
-          './0.1/**/*.md',
-        ],
-      },
-    }]
   ],
-  // postcss: require('./postcss.config.js'),
+  postcss: require('./postcss.config.js'),
   themeConfig: {
     logo: `/assets/img/logo.png`,
     displayAllHeaders: true,
