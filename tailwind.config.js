@@ -1,6 +1,6 @@
 module.exports = {
   purge: [
-    '/0.1/'
+    './0.1/**/*'
   ],
   theme: {
     extend: {
