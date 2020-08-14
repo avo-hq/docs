@@ -36,7 +36,7 @@ end
 For `bundler` to install the gem in automated processes like CI systems, it needs authenticate with the source server.
 It does that using an environment variable with the authentication token.
 
-```
+```env
 BUNDLE_RUBYGEMS__PKG__GITHUB__COM=TOKEN
 ```
 
@@ -44,6 +44,6 @@ BUNDLE_RUBYGEMS__PKG__GITHUB__COM=TOKEN
 
 You may add the environment variable using `config:set`.
 
-```bash
+```env
 heroku config:set BUNDLE_RUBYGEMS__PKG__GITHUB__COM=TOKEN
 ```

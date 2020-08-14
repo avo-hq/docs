@@ -25,7 +25,7 @@ module.exports = {
         'ga': 'UA-174545089-1'
       }
     ],
-    ['@silvanite/tailwind'],
+    // ['@silvanite/tailwind'],
     ['@vuepress/back-to-top'],
   ],
   themeConfig: {
