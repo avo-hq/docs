@@ -26,9 +26,7 @@ module.exports = {
       }
     ],
     ['@vuepress/back-to-top'],
-    ['@silvanite/tailwind', {
-      config: "./tailwind.js"
-    }]
+    ['@silvanite/tailwind', { config: './tailwind.config.js'}]
   ],
   // postcss: require('./postcss.config.js'),
   themeConfig: {
