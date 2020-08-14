@@ -1,5 +1,7 @@
 module.exports = {
-  purge: [],
+  purge: [
+    '/0.1/'
+  ],
   theme: {
     extend: {
       fontFamily: {
