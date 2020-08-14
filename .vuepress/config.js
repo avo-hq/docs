@@ -27,17 +27,15 @@ module.exports = {
     ],
     ['@vuepress/back-to-top'],
     ['@silvanite/tailwind', {
+      config: require('./tailwind.config.js'),
       purgecss: {
         enabled: true,
-        purgecssOptions: {
-          // whitelister will return array of classes in the css file
-          // whitelist: whitelister('./node_modules/prismjs/themes/prism-okaidia.css'),
-          // this will merge with whitelistPatterns
-          whitelistPatterns: [
-            "./.vuepress/theme/**/*.*",
-            './0.1/**/*.md',
-          ],
-        },
+        content: [
+          `${cwd}/.vuepress/theme/**/*.*`,
+          `${cwd}/!(node_modules)/**/*.md`,
+          "./.vuepress/theme/**/*.*",
+          './0.1/**/*.md',
+        ],
       },
     }]
   ],
