@@ -1,6 +1,5 @@
 ---
-prev: /0.1/
-next: ./resources
+prev: ./filters
 ---
 
 # Dashboard

@@ -60,11 +60,9 @@ module.exports = {
           collapsable: false,
           sidebarDepth: 1,
           children: [
-            '/0.1/dashboard',
             '/0.1/resources',
             '/0.1/fields-reference',
             '/0.1/grid-view',
-
           ]
         },
         {
@@ -85,7 +83,8 @@ module.exports = {
           children: [
             '/0.1/filters',
           ]
-        }
+        },
+        '/0.1/dashboard',
       ],
     },
   },
