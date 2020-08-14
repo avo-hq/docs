@@ -33,7 +33,7 @@ module.exports = {
     displayAllHeaders: true,
     docsRepo: 'AvocadoHQ/docs',
     editLinks: true,
-    editLinkText: 'Help us improve this page!',
+    editLinkText: 'Could you help us improve this page?',
     smoothScroll: true,
     sidebarDepth: 1,
     nav: [
