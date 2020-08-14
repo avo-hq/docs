@@ -1,33 +1,41 @@
 module.exports = {
-  title: 'Docs',
+  title: 'Avo Docs',
   description: 'Avo documentation',
   theme: '@vuepress/theme-default',
   port: 3011,
   activeHeaderLinks: true,
+  head: [
+    ['link', {href: "https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&amp;display=swap", rel: "stylesheet"}],
+  ],
   extraWatchFiles: [
     './0.1/**/*'
   ],
   plugins: [
-    ['@vuepress/pwa',
-    {
-      serviceWorker: true,
-      updatePopup: true
-    }],
-    // ['vuepress-plugin-code-copy', {
-    //   align: 'top',
-    //   staticIcon: true
-    // }],
+    [
+      '@vuepress/pwa',
+      {
+        serviceWorker: true,
+        updatePopup: true
+      }
+    ],
+    ['vuepress-plugin-code-copy'],
     [
       '@vuepress/google-analytics',
       {
         'ga': 'UA-174545089-1'
       }
-    ]
+    ],
+    ['@silvanite/tailwind'],
   ],
   themeConfig: {
     logo: `/assets/img/logo.png`,
     displayAllHeaders: true,
-    sidebarDepth: 2,
+    repo: 'AvocadoHQ/avo',
+    docsRepo: 'AvocadoHQ/docs',
+    editLinks: true,
+    editLinkText: 'Help us improve this page!',
+    smoothScroll: true,
+    sidebarDepth: 1,
     nav: [
       {
         text: 'Home',
@@ -50,7 +58,7 @@ module.exports = {
           title: 'Getting started',
           path: '/0.1/',
           collapsable: false,
-          sidebarDepth: 4,
+          sidebarDepth: 1,
           children: [
             '/0.1/dashboard',
             '/0.1/resources',
@@ -63,7 +71,7 @@ module.exports = {
           title: 'Fields',
           path: '/0.1/fields',
           collapsable: false,
-          sidebarDepth: 4,
+          sidebarDepth: 1,
           children: [
             '/0.1/fields',
             '/0.1/relations',
@@ -73,7 +81,7 @@ module.exports = {
           title: 'Filters',
           path: '/0.1/filters',
           collapsable: false,
-          sidebarDepth: 4,
+          sidebarDepth: 1,
           children: [
             '/0.1/filters',
           ]

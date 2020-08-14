@@ -34,7 +34,7 @@ end
 
 # Deploying with CI
 
-For `bundler` to be able to install the gem on automated systems like CI systems it needs authenticate with the source server.
+For `bundler` to install the gem in automated processes like CI systems, it needs authenticate with the source server.
 It does that using an environment variable with the authentication token.
 
 ```

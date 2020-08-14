@@ -1,10 +1,9 @@
 {$contentClass}
   code
     color lighten($textColor, 20%)
-    padding 0.25rem 0.5rem
+    padding 0.1rem 0.3rem
     margin 0
     font-size 0.85em
-    background-color rgba(27,31,35,0.05)
     border-radius 3px
     .token
       &.deleted
@@ -135,3 +134,32 @@ div[class~="language-php"]:before
   content "php"
 
 @import '~prismjs/themes/prism-tomorrow.css'
+
+{$contentClass}
+  code
+    @apply border border-gray-300 bg-gray-300 text-gray-800
+  pre, pre[class*="language-"]
+    code
+      font-weight: 700
+      color: #E06C75
+      @apply border-none
+      .token
+        color #D19A66
+        &.string
+          color #98C379
+        &.punctuation
+          color #ABB2BF
+        &.operator
+          color #ABB2BF
+        &.comment
+          color #5C6370
+        &.keyword
+          color #C678DD
+        &.class-name
+          color #E0BC79
+        &.constant
+          color #E0BC79
+        &.function
+          color #61AFEF
+        &.variable
+          color: #E06C75

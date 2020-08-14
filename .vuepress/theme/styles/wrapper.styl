@@ -1,3 +1,6 @@
+.panel
+  @apply relative bg-white rounded-xl shadow-xl mb-8 mt-20
+
 $wrapper
   max-width $contentWidth
   margin 0 auto
@@ -6,4 +9,7 @@ $wrapper
     padding 2rem
   @media (max-width: $MQMobileNarrow)
     padding 1.5rem
+
+.wrapper
+  @extend $wrapper
 

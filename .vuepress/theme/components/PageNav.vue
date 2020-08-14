@@ -3,7 +3,7 @@
     v-if="prev || next"
     class="page-nav"
   >
-    <p class="inner">
+    <div class="inner">
       <span
         v-if="prev"
         class="prev"
@@ -53,7 +53,7 @@
         </RouterLink>
         →
       </span>
-    </p>
+    </div>
   </div>
 </template>
 
@@ -146,15 +146,12 @@ function flatten (items, res) {
 </script>
 
 <style lang="stylus">
-@require '../styles/wrapper.styl'
-
 .page-nav
-  @extend $wrapper
-  padding-top 1rem
+  padding-top 0
   padding-bottom 0
   .inner
     min-height 2rem
-    margin-top 0
+    margin-top 1rem
     border-top 1px solid $borderColor
     padding-top 1rem
     overflow auto // clear float

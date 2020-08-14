@@ -12,11 +12,11 @@ Filters allow you to better scope the index queries for records you are looking 
 
 Avo has two types of filters available at the moment [Boolean filter](#boolean-filter) and [Select filter](#select-filter).
 
-<img :src="$withBase('/assets/img/filters.jpg')" alt="Avo filters" style="width: 300px;" />
+<img :src="$withBase('/assets/img/filters.jpg')" alt="Avo filters" style="width: 300px;" class="border" />
 
 ## Boolean Filter
 
-You generate one running `bin/rails generate avo:boolean_filter featured_filter`. This will create a filter config file.
+You generate one running `bin/rails generate avo:boolean_filter featured_filter` creating a filter configuration file.
 
 ```ruby
 module Avo
@@ -42,7 +42,7 @@ Each filter file comes with a `name`, `apply` and `options` methods.
 
 The `name` method lets you set the name of the filter.
 
-The `apply` method is responsible for filtering out the records by giving you access to modify the `query` object. The `apply` method also give you access to the current `request` object and the passed `values`. The `values` object is a `Hash` containing all the configured `options` with the option name as the key and `true`/`false` as the value.
+The `apply` method is responsible for filtering out the records by giving you access to modify the `query` object. The `apply` method also gives you access to the current `request` object, and the passed `values`. The `values` object is a `Hash` containing all the configured `options` with the option name as the key and `true`/`false` as the value.
 
 ```ruby
 # Example values payload
@@ -91,9 +91,9 @@ end
 
 Select filters are similar to Boolean ones. You generate one running `rails generate avo:select_filter published_filter`.
 
-The biggest difference from the **Boolean filter** is in the `apply` method. You only get back one `value` attribute which represents which entry from the `options` method is selected.
+The biggest difference from the **Boolean filter** is in the `apply` method. You only get back one `value` attribute, which represents which entry from the `options` method is selected.
 
-A finished select filter might look like this.
+A finished, select filter might look like this.
 
 ```ruby
 module Avo

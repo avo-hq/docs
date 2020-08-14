@@ -5,9 +5,12 @@
     <div class="theme-default-content">
       <Content />
     </div>
-    <PageEdit />
 
-    <PageNav v-bind="{ sidebarItems }" />
+    <div class="wrapper panel mb-4">
+      <PageEdit />
+
+      <PageNav v-bind="{ sidebarItems }" />
+    </div>
 
     <slot name="bottom" />
   </main>
