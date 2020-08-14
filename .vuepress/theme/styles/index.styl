@@ -117,6 +117,19 @@ blockquote
 ul, ol
   padding-left 1.2em
 
+{$contentClass}
+  .table-of-contents
+    ul, ol
+      @apply list-none
+
+{$contentClass}
+    ul
+      @apply list-disc
+
+{$contentClass}
+    ol
+      @apply list-decimal
+
 strong
   font-weight 600
 
