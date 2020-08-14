@@ -26,7 +26,13 @@ module.exports = {
       }
     ],
     ['@vuepress/back-to-top'],
-    ['@silvanite/tailwind', { config: require('./tailwind.config.js')}]
+    ['@silvanite/tailwind', {
+      config: require('./tailwind.config.js'),
+      purgecssConfig: [
+        "./.vuepress/theme/**/*.*",
+        './0.1/**/*.md',
+      ]
+    }]
   ],
   // postcss: require('./postcss.config.js'),
   themeConfig: {
