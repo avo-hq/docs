@@ -3,7 +3,8 @@ module.exports = {
     "./.vuepress/theme/**/*.*",
     "./!(node_modules)/**/*.md",
     "./*.md",
-    './0.1/**/*'
+    './0.1/**/*',
+    './vuepress/dist/**/*.*',
   ],
   theme: {
     extend: {
