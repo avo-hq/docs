@@ -84,7 +84,7 @@ The `Currency` field generates a [Number](/#number) field that is automatically 
 Be aware that `currency` defaults to `USD`, and `locale` defaults to `en`.
 
 ```ruby
-currency :salary, currency: 'EUR', locale: 'de'
+currency :salary, currency: 'EUR', locale: 'de-DE'
 ```
 
 ## Date
