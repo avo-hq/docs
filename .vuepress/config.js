@@ -26,11 +26,11 @@ module.exports = {
       }
     ],
     ['@silvanite/tailwind'],
+    ['@vuepress/back-to-top'],
   ],
   themeConfig: {
     logo: `/assets/img/logo.png`,
     displayAllHeaders: true,
-    repo: 'AvocadoHQ/avo',
     docsRepo: 'AvocadoHQ/docs',
     editLinks: true,
     editLinkText: 'Help us improve this page!',
