@@ -10,7 +10,6 @@
     "build": "npx vuepress build"
   },
   "dependencies": {
-    "@silvanite/vuepress-plugin-tailwind": "^1.3.0",
     "autoprefixer": "^9.8.6",
     "vue": "^2.6.11"
   },
