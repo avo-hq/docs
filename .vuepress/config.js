@@ -25,15 +25,9 @@ module.exports = {
         'ga': 'UA-174545089-1'
       }
     ],
-    // ['@silvanite/tailwind'],
     ['@vuepress/back-to-top'],
   ],
-  postcss: {
-    plugins: [
-      require("autoprefixer"),
-      require("tailwindcss")
-    ]
-  },
+  postcss: require('./postcss.config.js'),
   themeConfig: {
     logo: `/assets/img/logo.png`,
     displayAllHeaders: true,
