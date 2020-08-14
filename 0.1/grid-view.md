@@ -1,8 +1,3 @@
----
-prev: ./resources
-next: ./fields
----
-
 # Grid view
 
 <img :src="$withBase('/assets/img/grid-view.jpg')" alt="Avo grid view" class="border" />

@@ -1,8 +1,3 @@
----
-prev: ./resources
-next: ./grid-view
----
-
 # Fields reference
 
 [[toc]]

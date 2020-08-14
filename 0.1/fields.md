@@ -1,8 +1,3 @@
----
-prev: ./grid-view
-next: ./relations
----
-
 # Fields
 
 [[toc]]
