@@ -31,8 +31,6 @@ module.exports = {
       purgecss: {
         enabled: true,
         content: [
-          `${cwd}/.vuepress/theme/**/*.*`,
-          `${cwd}/!(node_modules)/**/*.md`,
           "./.vuepress/theme/**/*.*",
           './0.1/**/*.md',
         ],
