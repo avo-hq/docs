@@ -28,10 +28,13 @@ module.exports = {
     ['@vuepress/back-to-top'],
     ['@silvanite/tailwind', {
       config: require('./tailwind.config.js'),
-      purgecssConfig: [
-        "./.vuepress/theme/**/*.*",
-        './0.1/**/*.md',
-      ]
+      purgecssConfig: {
+        content: [
+          "./.vuepress/theme/**/*.*",
+          './0.1/**/*.md',
+        ],
+        defaultExtractor: content => content.match(/[\w-\/:]+(?<!:)/g) || []
+      }
     }]
   ],
   // postcss: require('./postcss.config.js'),
