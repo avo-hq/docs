@@ -1,5 +1,8 @@
 module.exports = {
   purge: [
+    "./.vuepress/theme/**/*.*",
+    "./!(node_modules)/**/*.md",
+    "./*.md",
     './0.1/**/*'
   ],
   theme: {
