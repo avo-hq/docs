@@ -5,7 +5,7 @@ module.exports = {
   port: 3011,
   activeHeaderLinks: true,
   head: [
-    ['link', {href: "https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&amp;display=swap", rel: "stylesheet"}],
+    ['link', { href: "https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&amp;display=swap", rel: "stylesheet" }],
   ],
   extraWatchFiles: [
     './0.1/**/*'
@@ -27,14 +27,18 @@ module.exports = {
     ],
     ['@vuepress/back-to-top'],
     ['@silvanite/tailwind', {
-      config: require('./tailwind.config.js'),
-      purgecssConfig: {
-        content: [
-          "./.vuepress/theme/**/*.*",
-          './0.1/**/*.md',
-        ],
-        defaultExtractor: content => content.match(/[\w-\/:]+(?<!:)/g) || []
-      }
+      purgecss: {
+        enabled: true,
+        purgecssOptions: {
+          // whitelister will return array of classes in the css file
+          // whitelist: whitelister('./node_modules/prismjs/themes/prism-okaidia.css'),
+          // this will merge with whitelistPatterns
+          whitelistPatterns: [
+            "./.vuepress/theme/**/*.*",
+            './0.1/**/*.md',
+          ],
+        },
+      },
     }]
   ],
   // postcss: require('./postcss.config.js'),
