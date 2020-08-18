@@ -155,19 +155,19 @@ status :updated_status, failed_when: [:closed, :rejected, :failed], loading_when
 textarea :body, nullable: true, null_values: ['0', '', 'null', 'nil']
 ```
 
-## As link to resource
+## Link to resource
 
-Sometimes, on the **Index** view, you may want a field in the table to be a link to the resource, so that you don't have to scroll to the right to click on the `show` icon. You can use `as_link_to_resource` to change a table cell to be a link to that resource. You can add this property on `Id`, `Text`, and `Gravatar` fields.
+Sometimes, on the **Index** view, you may want a field in the table to be a link to the resource, so that you don't have to scroll to the right to click on the `show` icon. You can use `link_to_resource` to change a table cell to be a link to that resource. You can add this property on `Id`, `Text`, and `Gravatar` fields.
 
 ```ruby
 # for id field
-id as_link_to_resource: true
+id link_to_resource: true
 
 # for text field
-text :name, as_link_to_resource: true
+text :name, link_to_resource: true
 
 # for gravatar field
-gravatar :email, as_link_to_resource: true
+gravatar :email, link_to_resource: true
 ```
 
 <img :src="$withBase('/assets/img/fields-reference/as-link-to-resource.jpg')" alt="As link to resource" class="border" />

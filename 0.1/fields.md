@@ -9,12 +9,12 @@ The `Badge` field is used to display an easily recognizable status of a record i
 <img :src="$withBase('/assets/img/fields/badge.jpg')" alt="Badge field" class="border" />
 
 ```ruby
-badge :stage, map: { info: [:discovery, :idea], success: :done, warning: 'on hold', danger: :cancelled } # The mapping of custom values to badge values.
+badge :stage, options: { info: [:discovery, :idea], success: :done, warning: 'on hold', danger: :cancelled } # The mapping of custom values to badge values.
 ```
 
-By default, the badge field supports four values: `info` (blue), `success` (green), `danger` (red) and `warning` (yellow), having the possibility to override and or add values by providing `map` parameter.
+By default, the badge field supports four values: `info` (blue), `success` (green), `danger` (red) and `warning` (yellow), having the possibility to override and or add values by providing `options` parameter.
 
-The `map` parameter is a `Hash` the has the state as the `key` and your agreed values as `value`. The `value` param can be a symbol, string, or array of symbols or strings.
+The `options` parameter is a `Hash` the has the state as the `key` and your agreed values as `value`. The `value` param can be a symbol, string, or array of symbols or strings.
 
 The `Badge` field is intended to be displayed only on **Index** and **Show** views. In order to update the value shown by badge field you need to use another field like [Text](#text) or [Select](#select), in combination with `hide_on: index` and `hide_on: show`.
 
@@ -234,14 +234,16 @@ password :password placeholder: 'secret',
 The `Select` field renders a `select` field.
 
 ```ruby
-select :type, options: { large: 'Large container', medium: 'Medium container', small: 'Tiny container' }
+select :type,
+  options: { large: 'Large container', medium: 'Medium container', small: 'Tiny container' },
+  display_with_value: true,
+  placeholder: 'Choose the size of the container.'
 ```
-<!-- # , display_with_value: true,
-# placeholder: 'Choose the size of the container.' -->
+<!-- #  -->
 
 You may add options using the `options` option, which is a `Hash` with the id (database value) as the `key` and the label as `value`.
 
-<!-- On **Index** and **Show** views you may want to display the values and not the labels off the options. You may change that using `display_with_value`. -->
+On **Index**, **Show** and **Edit** views you may want to display the values and not the labels of the options. You may change that by setting `display_value` to true.
 
 ## Status
 
