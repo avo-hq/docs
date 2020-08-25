@@ -73,10 +73,51 @@ On **Index view**, the most common view type is `:table`. But you might have som
 
 Check out the additional [grid view documentation](grid-view).
 
+## Custom model
+
+You might have a model that belongs to a namespace or that has a different name than than the resource. For those occasions you can use the `@model` option to tell Avo which model to reference.
+
+```ruby{5}
+module Avo
+  module Resources
+    class DelayedJob < Resource
+      def initialize
+        @model = Delayed::Job
+      end
+
+      fields do
+        id
+        number :priority, readonly: true
+        number :attempts, readonly: true
+        code :handler, readonly: true, language: :yaml
+        code :last_error, readonly: true, language: :shell
+        datetime :run_at, readonly: true
+        datetime :locked_at, readonly: true
+        datetime :failed_at, readonly: true
+        text :locked_by, readonly: true
+        text :queue, readonly: true
+      end
+
+      use_action Avo::Actions::RetryJob
+    end
+  end
+end
+
+```
+
+
 ## Filters
 
 It's a very common scenario to add filters to your resources to make it easier to find your records. This is very easy with Avo.
 
-<img :src="$withBase('/assets/img/filters.jpg')" alt="Avo filters" style="width: 300px;"  class="border" />
+<img :src="$withBase('/assets/img/filters.jpg')" alt="Avo filters" style="width: 300px;" class="border" />
 
-Check out the additional [filters documentation](filters).
+Check out the additional [Filters documentation](filters).
+
+## Actions
+
+Most of the time, you will want to trigger some events against your records or run more heavy updates. Avo makes this so easy with **Actions**.
+
+<img :src="$withBase('/assets/img/actions.jpg')" alt="Avo actions" class="border" />
+
+Check out the additional [Actions documentation](actions).

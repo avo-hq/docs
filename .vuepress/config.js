@@ -80,9 +80,12 @@ module.exports = {
           path: '/0.1/filters',
           collapsable: false,
           sidebarDepth: 1,
-          children: [
-            '/0.1/filters',
-          ]
+        },
+        {
+          title: 'Actions',
+          path: '/0.1/actions',
+          collapsable: false,
+          sidebarDepth: 1,
         },
         '/0.1/dashboard',
       ],
