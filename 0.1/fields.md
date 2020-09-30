@@ -245,6 +245,21 @@ You may add options using the `options` option, which is a `Hash` with the id (d
 
 On **Index**, **Show** and **Edit** views you may want to display the values and not the labels of the options. You may change that by setting `display_value` to true.
 
+The Select field also supports Active Record hash [enums](https://edgeapi.rubyonrails.org/classes/ActiveRecord/Enum.html). For that to work you only need to remove `options` and add `enum` instead.
+
+```ruby
+class Project < ApplicationRecord
+  enum type: { 'Large container': 'large', 'Medium container': 'medium', 'Tiny container': 'small' }
+end
+
+select :type,
+  enum: ::Project.types
+  display_with_value: true,
+  placeholder: 'Choose the size of the container.'
+```
+
+This tells Avo to treat the value and the options a bit different because of the way Rails casts the attribute with the value from the enum.
+
 ## Status
 
 The `Status` field is used to visually display the status of a column, supporting the following options:
