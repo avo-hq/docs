@@ -16,8 +16,8 @@ next: ./resources
 ## Installing Avo
 
 1. [Sign up](https://avohq.io) for early access to get a preview `TOKEN`
-1. **Locally** run `bundle config https://rubygems.pkg.github.com/avo-hq TOKEN`
-1. Add `gem 'avo', source: 'https://rubygems.pkg.github.com/avo-hq'` in your app's `Gemfile`
+1. **Locally** run `bundle config https://packager.avohq.io/avo-hq TOKEN`
+1. Add `gem 'avo', source: 'https://#{ENV['PACKAGER_TOKEN']}@packager.avohq.io/avo-hq'` in your app's `Gemfile`
 1. Run `bundle install`.
 1. Run `bin/rails generate avo:install` to generate the initializer and add the route.
 
@@ -37,7 +37,7 @@ For `bundler` to install the gem in automated processes like CI systems, it need
 It does that using an environment variable with the authentication token.
 
 ```env
-BUNDLE_RUBYGEMS__PKG__GITHUB__COM=TOKEN
+BUNDLE_PACKAGER__AVOHQ__IO={THE_LICENSE_TOKEN_FROM_AVOHQ.IO}
 ```
 
 ## Deploying to Heroku
@@ -45,5 +45,5 @@ BUNDLE_RUBYGEMS__PKG__GITHUB__COM=TOKEN
 You may add the environment variable using `config:set`.
 
 ```env
-heroku config:set BUNDLE_RUBYGEMS__PKG__GITHUB__COM=TOKEN
+heroku config:set BUNDLE_PACKAGER__AVOHQ__IO={THE_LICENSE_TOKEN_FROM_AVOHQ.IO}
 ```
