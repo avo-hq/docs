@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Documentation for Avo",
   "main": "index.js",
-  "repository": "https://github.com/AvocadoHQ/docs",
+  "repository": "https://github.com/avo-hq/docs",
   "license": "MIT",
   "private": true,
   "scripts": {

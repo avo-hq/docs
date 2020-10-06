@@ -31,7 +31,7 @@ module.exports = {
   themeConfig: {
     logo: `/assets/img/logo.png`,
     displayAllHeaders: true,
-    docsRepo: 'AvocadoHQ/docs',
+    docsRepo: 'avo-hq/docs',
     editLinks: true,
     editLinkText: 'Could you help us improve this page?',
     smoothScroll: true,
