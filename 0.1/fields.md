@@ -91,12 +91,19 @@ currency :salary, currency: 'EUR', locale: 'de-DE'
 
 The `Date` field may be used to display date values.
 
-The **Edit**** view of the picker is using [flatpickr](https://flatpickr.js.org). You may use the [formatting tokens](https://flatpickr.js.org/formatting/) to format the **Edit** view element and the [moment.js](https://momentjs.com) [tokens](https://momentjs.com/docs/#/displaying/format/) to display the **Index** and **Show** views element.
+The **Edit**** view of the picker is using [flatpickr](https://flatpickr.js.org). You may use the [formatting tokens](https://flatpickr.js.org/formatting/) to format the **Edit** view element and the [moment.js tokens](https://momentjs.com/docs/#/displaying/format/) to display the **Index** and **Show** views element.
 
 You may also pass the `first_day_of_week` attribute to have that reflected on the generated calendar component. 1 is Monday (default), and 7 is Sunday.
 
 ```ruby
 date :birthday, first_day_of_week: 1, picker_format: 'F J Y', format: 'MMMM Do YYYY', placeholder: 'Feb 24th 1955', required: true
+```
+
+If you'd like to show the time relative to the present (4 months ago, in 3 years, etc.) use the `relative: true` option.
+
+
+```ruby
+date :valid_until, relative: true
 ```
 
 ## DateTime
