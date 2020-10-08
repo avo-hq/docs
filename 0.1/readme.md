@@ -16,8 +16,8 @@ next: ./resources
 ## Installing Avo
 
 1. [Sign up](https://avohq.io) for early access to get a preview `TOKEN`
-1. **Locally** run `bundle config https://packager.avohq.io/avo-hq TOKEN`
-1. Add `gem 'avo', source: 'https://#{ENV['PACKAGER_TOKEN']}@packager.avohq.io/avo-hq'` in your app's `Gemfile`
+1. **Locally** run `bundle config packager.avohq.io TOKEN`
+1. Add `gem 'avo', source: 'https://packager.avohq.io/avo-hq'` in your app's `Gemfile`
 1. Run `bundle install`.
 1. Run `bin/rails generate avo:install` to generate the initializer and add the route.
 
