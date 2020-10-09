@@ -87,6 +87,7 @@ module.exports = {
           collapsable: false,
           sidebarDepth: 1,
         },
+        '/0.1/customization',
         '/0.1/dashboard',
       ],
     },
