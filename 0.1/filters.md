@@ -83,6 +83,47 @@ module Avo
 end
 ```
 
+### Default value
+
+You can set a default value to the filter so it has a predetermined state on load. To do that return the state you desire it from the `default` method.
+
+```ruby{20-24}
+module Avo
+  module Filters
+    class FeaturedFilter < BooleanFilter
+      def name
+        'Featured status'
+      end
+
+      def apply(request, query, values)
+        return query if values[:is_featured] && values[:is_unfeatured]
+
+        if values[:is_featured]
+          query = query.where(is_featured: true)
+        elsif values[:is_unfeatured]
+          query = query.where(is_featured: false)
+        end
+
+        query
+      end
+
+      def default
+        {
+          is_featured: true
+        }
+      end
+
+      def options
+        {
+          'is_featured': 'Featured',
+          'is_unfeatured': 'Unfeatured',
+        }
+      end
+    end
+  end
+end
+```
+
 ## Select Filter
 
 Select filters are similar to Boolean ones. You generate one running `rails generate avo:select_filter published_filter`.
@@ -108,6 +149,44 @@ module Avo
         else
           query
         end
+      end
+
+      def options
+        {
+          'published': 'Published',
+          'unpublished': 'Unpublished',
+        }
+      end
+    end
+  end
+end
+```
+
+### Default value
+
+The select filter supports setting a default too.
+
+```ruby{19-21}
+module Avo
+  module Filters
+    class PublishedFilter < SelectFilter
+      def name
+        'Published status'
+      end
+
+      def apply(request, query, value)
+        case value
+        when 'published'
+          query.where.not(published_at: nil)
+        when 'unpublished'
+          query.where(published_at: nil)
+        else
+          query
+        end
+      end
+
+      def default
+        'published'
       end
 
       def options
