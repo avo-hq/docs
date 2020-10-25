@@ -61,3 +61,28 @@ class PostPolicy < ApplicationPolicy
   end
 end
 ```
+
+## Using different policy methods
+
+By default Avo will use the usual generated Pundit methods (`index?`, `show?`, `create?`, `new?`, `update?`, `edit?` and `destroy?`). But maybe, in your app, you're using them in a different way than you would like to use them on Avo. You may override these methods inside your configuration with a simple map using the `authorization_methods` key.
+
+
+```ruby{6-14}
+Avo.configure do |config|
+  config.root_path = '/avo'
+  config.app_name = 'Avocadelicious'
+  config.license = 'pro'
+  config.license_key = ENV['AVO_LICENSE_KEY']
+  config.authorization_methods = {
+    index: 'avo_index?',
+    show: 'avo_show?',
+    edit: 'avo_edit?',
+    new: 'avo_new?',
+    update: 'avo_update?',
+    create: 'avo_create?',
+    destroy: 'avo_destroy?',
+  }
+end
+```
+
+Now, Avo will use `avo_index?` instead of `index?` to manage the `Index` view authorization.
