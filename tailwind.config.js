@@ -8,8 +8,8 @@ module.exports = {
     mode: 'layers',
     layers: ['components', 'utilities'],
     content: [
-      "./.vuepress/theme/components/*.*",
-      './0.1/*.md',
+      "./.vuepress/theme/**/*.*",
+      './0.1/**/*.md',
     ],
     options: {
       whitelist: [],
