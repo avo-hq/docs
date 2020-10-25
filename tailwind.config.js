@@ -1,12 +1,12 @@
 module.exports = {
   future: {
-    purgeLayersByDefault: true,
+    // purgeLayersByDefault: true,
     removeDeprecatedGapUtilities: true,
     standardFontWeights: true,
   },
   purge: {
-    mode: 'layers',
-    layers: ['components', 'utilities'],
+    // mode: 'layers',
+    // layers: ['components', 'utilities'],
     content: [
       "./.vuepress/theme/**/*.*",
       './0.1/**/*.md',
