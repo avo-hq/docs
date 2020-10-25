@@ -1,4 +1,4 @@
-@tailwind base;
+@require './tailwindcss/base'
 @require './config'
 @require './code'
 @require './custom-blocks'
@@ -63,8 +63,6 @@ body
   .content__default
     > h1:first-child
       @apply -mt-16
-  // > *:first-child
-  //   margin-top $navbarHeight
 
   a:hover
     text-decoration underline
@@ -227,5 +225,5 @@ th, td
 
 @require 'mobile.styl'
 
-@tailwind components;
-@tailwind utilities;
+@require './tailwindcss/components'
+@require './tailwindcss/utilities'

@@ -23,3 +23,7 @@ The `_header.html.erb` partial enables you to customize the name and link of you
 The `_footer.html.erb` partial enables you to customize the footer of your admin.
 
 <img :src="$withBase('/assets/img/customization/footer.jpg')" alt="Avo footer customization" class="border" />
+
+### Scripts
+
+The `_scripts.html.erb` partial enables you to insert scripts in the footer of your admin.
