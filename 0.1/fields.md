@@ -195,7 +195,7 @@ The `KeyValue` field allows you to edit flat key-value pairs stored in `JSON` fo
 key_value :meta
 ```
 
-## Customizing the labels
+### Customizing the labels
 
 You can easily customize the labels displayed in the UI by mentioning custom values in `key_label`, `value_label`, `action_text`, and `delete_text` properties when defining the field.
 
@@ -207,7 +207,7 @@ key_value :meta, # The database field ID
   delete_text: 'Remove item' # Custom value for button to delete a row.. Defaults to 'Delete'.
 ```
 
-## Enforce restrictions
+### Enforce restrictions
 
 You can enforce some restrictions by removing the ability to edit the field's key, by setting `disable_editing_keys` to `true`. Be aware that this option will also disable adding rows as well. You can separately remove the ability to add a new row by setting `disable_adding_rows` to `true`. Deletion of rows can be enforced by setting `disable_deleting_rows` to `true`.
 
@@ -219,6 +219,21 @@ key_value :meta, # The database field ID
 ```
 
 `KeyValue` is hidden on **Index** view.
+
+## Markdown
+
+<img :src="$withBase('/assets/img/fields/markdown.jpg')" alt="Trix field" class="border" />
+
+The `Markdown` field renders a [Markdown Editor](https://github.com/hinesboy/mavonEditor) and is associated to a text or textarea column in the database.
+`Markdown` field converts text within the editor in raw Markdown text and stores it back to database. 
+
+Markdown field is hidden from **Index** view. By default, the Markdown field is not directly shown to the user on the **Show** view, instead being hidden under a 
+'Show Content' link, that triggers the visibility of the content. You can set Markdown to always display the content by setting `always_show` to **true**.
+
+```ruby
+markdown :description, 
+  always_show: true
+```
 
 ## Number
 
@@ -304,4 +319,19 @@ The `Textarea` field renders a `textarea` element and takes has the `rows` optio
 
 ```ruby
 textarea :body, rows: 5
+```
+
+## Trix
+
+<img :src="$withBase('/assets/img/fields/trix.jpg')" alt="Trix field" class="border" />
+
+The `Trix` field renders a [WYSIWYG Trix Editor](https://trix-editor.org/) and is associated to a text or textarea column in the database.
+`Trix` field converts text within the editor in HTML and stores it back to database. 
+
+Trix field is hidden from **Index** view. By default, the Trix field is not directly shown to the user on the **Show** view, instead being hidden under a 
+'Show Content' link, that triggers the visibility of the content. You can set Trix to always display the content by setting `always_show` to **true**.
+
+```ruby
+trix :body, 
+  always_show: true
 ```
