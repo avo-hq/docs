@@ -36,9 +36,14 @@ text :body, name: 'Post body'
 
 <img :src="$withBase('/assets/img/fields-reference/naming-convention-override.jpg')" alt="Field naming convention override" class="border" />
 
-## Showing / Hiding fields
+## Showing / Hiding fields on different views
 
-You may want to display a field in the **New** and **Edit** view and hide it **Index** and **Show** view. For this may use `hide_on`, `show_on`, `only_on` and `except_on` methods like so.
+You may want to display a field in the **Create** and **Edit** view and hide it **Index** and **Show** view. For this you may use `hide_on`, 
+`show_on`, `only_on` and `except_on` methods like so. Available options for these methods are: `:create`, `:edit`, `:index`, `:show`, `:forms` 
+(both `:create` and `:edit`) and `:all` (only for `hide_on` and `show_on`).
+
+Be aware that some fields are designed in such a way that a few methods or a few options don't work. Check the documentation for fields to find out 
+more!
 
 ```ruby
 text :body, hide_on: [:index, :show]

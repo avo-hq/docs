@@ -245,7 +245,10 @@ number :age, min: 0, max: 120, step: 5
 
 ## Password
 
-The `Password` field renders a `input[type="password"]` element for that field.
+The `Password` field renders a `input[type="password"]` element for that field. 
+
+`Password` field is by default enforced to be shown only on `:forms` (`:create` and `:edit`). Because of security reasons, this type of field allows 
+only a few additional options for view visibility: `only_on`, `hide_on` methods and `:create`, `:edit` options for each method.
 
 ```ruby
 password :password placeholder: 'secret',
