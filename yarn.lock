@@ -8410,6 +8410,10 @@ vuepress-plugin-container@^2.0.2:
   dependencies:
     markdown-it-container "^2.0.0"
 
+"vuepress-plugin-hotjar@https://github.com/simonwjackson/vuepress-plugin-hotjar":
+  version "1.0.0"
+  resolved "https://github.com/simonwjackson/vuepress-plugin-hotjar#d45215f03b9cca61adf3a3e65dd8ba371f3c0699"
+
 vuepress-plugin-smooth-scroll@^0.0.3:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/vuepress-plugin-smooth-scroll/-/vuepress-plugin-smooth-scroll-0.0.3.tgz#6eff2d4c186cca917cc9f7df2b0af7de7c8c6438"

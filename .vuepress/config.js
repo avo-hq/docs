@@ -26,6 +26,12 @@ module.exports = {
       }
     ],
     ['@vuepress/back-to-top'],
+    [
+      'vuepress-plugin-hotjar',
+      {
+        id: 2077263
+      }
+    ],
   ],
   postcss: require('./postcss.config.js'),
   themeConfig: {

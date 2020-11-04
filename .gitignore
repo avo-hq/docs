@@ -2,3 +2,5 @@ node_modules
 
 .vuepress/dist
 .vitepress/dist
+
+yarn-error.log
