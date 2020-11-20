@@ -14,7 +14,7 @@ belongs_to :user
 
 When you add a `BelongsTo` relation to a model, you will see three different field types.
 
-On the **Index** view, you'll see a column with the [`@title`](http://localhost:3011/0.x/resources.html#setting-the-title-of-the-resource) value of the associated model.
+On the **Index** view, you'll see a column with the [`@title`](/0.x/resources.html#setting-the-title-of-the-resource) value of the associated model.
 
 <img :src="$withBase('/assets/img/relations/belongs-to-index.jpg')" alt="Belongs to index" class="border" />
 
