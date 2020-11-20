@@ -1,20 +1,15 @@
 module.exports = {
-  future: {
-    // purgeLayersByDefault: true,
-    removeDeprecatedGapUtilities: true,
-    standardFontWeights: true,
-  },
   purge: {
-    // mode: 'layers',
-    // layers: ['components', 'utilities'],
+
     content: [
-      "./.vuepress/theme/**/*.*",
-      './0.1/**/*.md',
+      // "./.vuepress/theme/**/*.*",
+      // './0.1/**/*.md',
     ],
     options: {
       whitelist: [],
     },
   },
+  darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
       fontFamily: {
@@ -25,8 +20,10 @@ module.exports = {
       },
     }
   },
-  variants: {},
+  variants: {
+    extend: {},
+  },
   plugins: [
-    require('@tailwindcss/ui'),
-  ]
+    // require('@tailwindcss/ui'),
+  ],
 }

@@ -6,11 +6,13 @@ module.exports = {
   activeHeaderLinks: true,
   head: [
     ['link', { href: "https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&amp;display=swap", rel: "stylesheet" }],
+    ['meta', { name: 'theme-color', content: '#3eaf7c' }],
+    ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
+    ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }]
   ],
-  // extraWatchFiles: [
-  //   './0.1/**/*'
-  // ],
   plugins: [
+    '@vuepress/plugin-back-to-top',
+    '@vuepress/plugin-medium-zoom',
     [
       '@vuepress/pwa',
       {
@@ -18,7 +20,7 @@ module.exports = {
         updatePopup: true
       }
     ],
-    ['vuepress-plugin-code-copy'],
+    'vuepress-plugin-code-copy',
     [
       '@vuepress/google-analytics',
       {
@@ -52,51 +54,59 @@ module.exports = {
         link: '/',
         items: [
           {
-            text: "0.1",
-            link: "/0.1/"
+            text: "0.x",
+            link: "/0.x/"
           }
         ]
       }
     ],
     sidebar: {
-      '/0.1/': [
+      '/0.x/': [
         {
           title: 'Getting started',
-          path: '/0.1/',
+          path: '/0.x/',
           collapsable: false,
           sidebarDepth: 1,
           children: [
-            '/0.1/resources',
-            '/0.1/fields-reference',
-            '/0.1/grid-view',
+            '/0.x/resources',
+            '/0.x/fields-reference',
+            '/0.x/grid-view',
           ]
         },
         {
           title: 'Fields',
-          path: '/0.1/fields',
+          path: '/0.x/fields',
           collapsable: false,
           sidebarDepth: 1,
           children: [
-            '/0.1/fields',
-            '/0.1/relations',
+            '/0.x/fields',
+            '/0.x/relations',
           ]
         },
         {
           title: 'Filters',
-          path: '/0.1/filters',
+          path: '/0.x/filters',
           collapsable: false,
           sidebarDepth: 1,
         },
         {
           title: 'Actions',
-          path: '/0.1/actions',
+          path: '/0.x/actions',
           collapsable: false,
           sidebarDepth: 1,
         },
-        '/0.1/authorization',
-        '/0.1/customization',
-        '/0.1/dashboard',
-        '/0.1/localization',
+        '/0.x/authorization',
+        {
+          title: 'Customize Avo',
+          path: '/0.x/customization',
+          collapsable: false,
+          sidebarDepth: 1,
+          children: [
+            '/0.x/customization',
+            '/0.x/localization',
+          ]
+        },
+        '/0.x/dashboard',
       ],
     },
   },
