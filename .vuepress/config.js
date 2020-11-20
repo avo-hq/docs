@@ -7,9 +7,9 @@ module.exports = {
   head: [
     ['link', { href: "https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&amp;display=swap", rel: "stylesheet" }],
   ],
-  extraWatchFiles: [
-    './0.1/**/*'
-  ],
+  // extraWatchFiles: [
+  //   './0.1/**/*'
+  // ],
   plugins: [
     [
       '@vuepress/pwa',
@@ -96,6 +96,7 @@ module.exports = {
         '/0.1/authorization',
         '/0.1/customization',
         '/0.1/dashboard',
+        '/0.1/localization',
       ],
     },
   },
