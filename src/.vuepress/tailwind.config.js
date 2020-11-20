@@ -1,9 +1,8 @@
 module.exports = {
   purge: {
-
     content: [
-      // "./.vuepress/theme/**/*.*",
-      // './0.1/**/*.md',
+      "./.vuepress/theme/**/*.*",
+      './0.x/**/*.md',
     ],
     options: {
       whitelist: [],
@@ -23,7 +22,5 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [
-    // require('@tailwindcss/ui'),
-  ],
+  plugins: [],
 }
