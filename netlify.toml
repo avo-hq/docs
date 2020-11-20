@@ -1,5 +1,11 @@
 [[redirects]]
   from = "/"
-  to = "/0.1"
+  to = "/0.x"
+  status = 301
+  force = false
+
+[[redirects]]
+  from = "/0.1"
+  to = "/0.x"
   status = 301
   force = false
