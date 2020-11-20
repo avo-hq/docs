@@ -24,7 +24,7 @@
     "postcss-flexbugs-fixes": "^4.2.1",
     "postcss-preset-env": "^6.7.0",
     "vue": "^2.6.12",
-    "vuepress": "^1.5.3"
+    "vuepress": "^1.5.3",
     "vuepress-plugin-code-copy": "^1.0.6",
     "vuepress-plugin-hotjar": "https://github.com/simonwjackson/vuepress-plugin-hotjar"
   }

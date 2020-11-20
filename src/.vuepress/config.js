@@ -20,7 +20,7 @@ module.exports = {
         updatePopup: true
       }
     ],
-    'vuepress-plugin-code-copy',
+    ['vuepress-plugin-code-copy'],
     [
       '@vuepress/google-analytics',
       {

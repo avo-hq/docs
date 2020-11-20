@@ -1,5 +1,5 @@
 ---
-prev: /0.1/
+prev: /0.x/
 ---
 
 # Basics

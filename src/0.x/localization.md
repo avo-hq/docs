@@ -50,7 +50,6 @@ module Avo
       def initialize
         @title = :name
       end
-
       fields do
         id
         # ... other fields
@@ -59,7 +58,6 @@ module Avo
     end
   end
 end
-
 ```
 
 ```yml{6-10}
