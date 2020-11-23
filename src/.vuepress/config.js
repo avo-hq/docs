@@ -68,6 +68,7 @@ module.exports = {
           collapsable: false,
           sidebarDepth: 1,
           children: [
+            '/0.x/installation',
             '/0.x/resources',
             '/0.x/fields-reference',
             '/0.x/grid-view',

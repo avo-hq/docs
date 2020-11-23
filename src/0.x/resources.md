@@ -1,8 +1,4 @@
----
-prev: /0.x/
----
-
-# Basics
+# Resources
 
 [[toc]]
 
