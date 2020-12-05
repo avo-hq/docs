@@ -12,7 +12,7 @@ Avo has two types of filters available at the moment [Boolean filter](#boolean-f
 
 ## Boolean Filter
 
-You generate one running `bin/rails generate avo:boolean_filter featured_filter` creating a filter configuration file.
+You generate one running `bin/rails generate avo:filter featured_filter` creating a filter configuration file.
 
 ```ruby
 module Avo
@@ -126,7 +126,7 @@ end
 
 ## Select Filter
 
-Select filters are similar to Boolean ones. You generate one running `rails generate avo:select_filter published_filter`.
+Select filters are similar to Boolean ones. You generate one running `rails generate avo:filter published_filter --select`.
 
 The biggest difference from the **Boolean filter** is in the `apply` method. You only get back one `value` attribute, which represents which entry from the `options` method is selected.
 
