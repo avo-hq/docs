@@ -36,3 +36,17 @@ authenticate :user, -> user { user.admin? } do
   mount Avo::Engine => '/avo'
 end
 ```
+
+### Adding the license key
+
+After you purchase an Avo license add it to your `config/initializers/avo.rb` file along with changing the license type from `community` to `pro`.
+
+```ruby{5-6}
+Avo.configure do |config|
+  config.root_path = '/avo'
+  config.app_name = 'The most amazing rails app'
+  config.locale = 'en-US'
+  config.license = 'pro'
+  config.license_key = '************************' # or use ENV['AVO_LICENSE_KEY']
+end
+```
