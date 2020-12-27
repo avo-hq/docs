@@ -72,3 +72,14 @@ en:
         one: 'archivo'
         other: 'archivos'
 ```
+
+## Setting the locale
+
+Setting the locale for Avo is simple. Just use the `config.locale = 'en-US'` config attribute.
+
+
+```ruby{2}
+Avo.configure do |config|
+  config.locale = 'en-US'
+end
+```

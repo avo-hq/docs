@@ -37,15 +37,46 @@ authenticate :user, -> user { user.admin? } do
 end
 ```
 
+### `authorize_with` method
+
+Alternatively you can user the `authorize_with` config attribute. It takes a block and evaluates it in Avo's `ApplicationController` as a `before_action`.
+
+```ruby
+Avo.configure do |config|
+  config.authenticate_with do
+    authenticate_admin_user
+  end
+end
+```
+
+### Customize the `current_user` method
+
+If you're not using [devise](https://github.com/heartcombo/devise) for authentication you may customize the `current_user` method to something else. The `current_user_method` key takes a block parameter (shorthand or full block).
+
+```ruby
+Avo.configure do |config|
+  config.current_user_method(&:current_admin)
+end
+```
+
+Using the block notation:
+
+```ruby
+Avo.configure do |config|
+  config.current_user_method do
+    current_admin
+  end
+end
+```
+
+### Custom the
+
 ### Adding the license key
 
 After you purchase an Avo license add it to your `config/initializers/avo.rb` file along with changing the license type from `community` to `pro`.
 
-```ruby{5-6}
+```ruby{2-3}
 Avo.configure do |config|
-  config.root_path = '/avo'
-  config.app_name = 'The most amazing rails app'
-  config.locale = 'en-US'
   config.license = 'pro'
   config.license_key = '************************' # or use ENV['AVO_LICENSE_KEY']
 end
