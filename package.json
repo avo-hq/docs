@@ -8,7 +8,8 @@
   "private": true,
   "scripts": {
     "dev": "vuepress dev src",
-    "build": "vuepress build src"
+    "build": "vuepress build src",
+    "postinstall": "echo \\$contentClass = \\'.content__default\\' > node_modules/@vuepress/theme-default/styles/config.styl"
   },
   "dependencies": {
     "@tailwindcss/ui": "^0.7.2",
