@@ -1,6 +1,7 @@
 module.exports = {
   purge: {
     content: [
+      "./.vuepress/components/**/*.vue",
       "./.vuepress/theme/**/*.*",
       './0.x/**/*.md',
     ],
