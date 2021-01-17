@@ -64,7 +64,7 @@ end
 
 ## Using different policy methods
 
-By default Avo will use the usual generated Pundit methods (`index?`, `show?`, `create?`, `new?`, `update?`, `edit?` and `destroy?`). But maybe, in your app, you're using them in a different way than you would like to use them on Avo. You may override these methods inside your configuration with a simple map using the `authorization_methods` key.
+By default Avo will use the usual generated Pundit methods (`index?`, `show?`, `create?`, `new?`, `update?`, `edit?` and `destroy?`). But maybe, in your app, you're already using these methods and would like to use different ones for Avo. You may override these methods inside your configuration with a simple map using the `authorization_methods` key.
 
 
 ```ruby{6-14}
