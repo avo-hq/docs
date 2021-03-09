@@ -8,7 +8,7 @@ Filters allow you to better scope the index queries for records you are looking 
 
 Avo has two types of filters available at the moment [Boolean filter](#boolean-filter) and [Select filter](#select-filter).
 
-<img :src="$withBase('/assets/img/filters.jpg')" alt="Avo filters" style="width: 300px;" class="border" />
+<img :src="$withBase('/assets/img/filters.jpg')" alt="Avo filters" style="width: 300px;" class="border mb-4" />
 
 ## Boolean Filter
 

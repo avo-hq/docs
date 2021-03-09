@@ -61,7 +61,7 @@ Each generated resource will have four views **Index** view where you see all yo
 
 On **Index view**, the most common view type is `:table`. But you might have some data that you want to display it in a **grid view**. You change that by setting `@default_view_type`.
 
-<img :src="$withBase('/assets/img/grid-view.jpg')" alt="Avo grid view" class="border" />
+<img :src="$withBase('/assets/img/grid-view.jpg')" alt="Avo grid view" class="border mb-4" />
 
 ```ruby
   @default_view_type = :grid
@@ -106,7 +106,7 @@ end
 
 It's a very common scenario to add filters to your resources to make it easier to find your records. This is very easy with Avo.
 
-<img :src="$withBase('/assets/img/filters.jpg')" alt="Avo filters" style="width: 300px;" class="border" />
+<img :src="$withBase('/assets/img/filters.jpg')" alt="Avo filters" style="width: 300px;" class="border mb-4" />
 
 Check out the additional [Filters documentation](filters).
 
@@ -114,6 +114,6 @@ Check out the additional [Filters documentation](filters).
 
 Most of the time, you will want to trigger some events against your records or run more heavy updates. Avo makes this so easy with **Actions**.
 
-<img :src="$withBase('/assets/img/actions.jpg')" alt="Avo actions" class="border" />
+<img :src="$withBase('/assets/img/actions.jpg')" alt="Avo actions" class="border mb-4" />
 
 Check out the additional [Actions documentation](actions).

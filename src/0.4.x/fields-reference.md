@@ -26,7 +26,7 @@ In the following example, the `is_available` id will render the label of the fie
 boolean :is_available
 ```
 
-<img :src="$withBase('/assets/img/fields-reference/naming-convention.jpg')" alt="Field naming convention" class="border" />
+<img :src="$withBase('/assets/img/fields-reference/naming-convention.jpg')" alt="Field naming convention" class="border mb-4" />
 
 If you want to customize the label, you can give it a name that's different from the field itself with the `name` property.
 
@@ -34,15 +34,15 @@ If you want to customize the label, you can give it a name that's different from
 text :body, name: 'Post body'
 ```
 
-<img :src="$withBase('/assets/img/fields-reference/naming-convention-override.jpg')" alt="Field naming convention override" class="border" />
+<img :src="$withBase('/assets/img/fields-reference/naming-convention-override.jpg')" alt="Field naming convention override" class="border mb-4" />
 
 ## Showing / Hiding fields on different views
 
-You may want to display a field in the **Create** and **Edit** view and hide it **Index** and **Show** view. For this you may use `hide_on`, 
-`show_on`, `only_on` and `except_on` methods like so. Available options for these methods are: `:create`, `:edit`, `:index`, `:show`, `:forms` 
+You may want to display a field in the **Create** and **Edit** view and hide it **Index** and **Show** view. For this you may use `hide_on`,
+`show_on`, `only_on` and `except_on` methods like so. Available options for these methods are: `:create`, `:edit`, `:index`, `:show`, `:forms`
 (both `:create` and `:edit`) and `:all` (only for `hide_on` and `show_on`).
 
-Be aware that some fields are designed in such a way that a few methods or a few options don't work. Check the documentation for fields to find out 
+Be aware that some fields are designed in such a way that a few methods or a few options don't work. Check the documentation for fields to find out
 more!
 
 ```ruby
@@ -71,7 +71,7 @@ text :is_writer, format_using: -> (value) { value ? '👍' : '👎' }
 
 This example snippet will make the `:is_writer` field to generate emojis instead of 1/0 values.
 
-<img :src="$withBase('/assets/img/fields-reference/fields-formatter.jpg')" alt="Fields formatter" class="border" />
+<img :src="$withBase('/assets/img/fields-reference/fields-formatter.jpg')" alt="Fields formatter" class="border mb-4" />
 
 ## Sortable fields
 
@@ -83,7 +83,7 @@ Just add it to any field, and Avo will make that column sortable in the **Index*
 text :name, sortable: true
 ```
 
-<img :src="$withBase('/assets/img/fields-reference/sortable-fields.jpg')" alt="Sortable fields" class="border" />
+<img :src="$withBase('/assets/img/fields-reference/sortable-fields.jpg')" alt="Sortable fields" class="border mb-4" />
 
 ## Placeholder
 
@@ -93,7 +93,7 @@ Some fields support the `placeholder` option which will be passed to the inputs 
 text :name, placeholder: 'John Doe'
 ```
 
-<img :src="$withBase('/assets/img/fields-reference/placeholder.jpg')" alt="Placeholder" class="border" />
+<img :src="$withBase('/assets/img/fields-reference/placeholder.jpg')" alt="Placeholder" class="border mb-4" />
 
 ## Required
 
@@ -103,7 +103,7 @@ Sometimes you will want to prevent the user from submitting the form without fil
 text :name, required: true
 ```
 
-<img :src="$withBase('/assets/img/fields-reference/required.jpg')" alt="Required" class="border" />
+<img :src="$withBase('/assets/img/fields-reference/required.jpg')" alt="Required" class="border mb-4" />
 
 However, you will need to add your validation logic to your model (`validates :name, presence: true`).
 
@@ -115,7 +115,7 @@ Sometimes you will want to prevent the user from editing a field. `readonly` wil
 text :name, readonly: true
 ```
 
-<img :src="$withBase('/assets/img/fields-reference/readonly.jpg')" alt="Readonly" class="border" />
+<img :src="$withBase('/assets/img/fields-reference/readonly.jpg')" alt="Readonly" class="border mb-4" />
 
 ## Default Value
 
@@ -143,7 +143,7 @@ code :custom_css, theme: 'dracula', language: 'css', help: "This enables you to 
 password :password, help: 'You may verify the password strength <a href="http://www.passwordmeter.com/">here</a>.'
 ```
 
-<img :src="$withBase('/assets/img/fields-reference/help-text.jpg')" alt="Help text" class="border" />
+<img :src="$withBase('/assets/img/fields-reference/help-text.jpg')" alt="Help text" class="border mb-4" />
 
 ## Nullable
 
@@ -175,4 +175,4 @@ text :name, link_to_resource: true
 gravatar :email, link_to_resource: true
 ```
 
-<img :src="$withBase('/assets/img/fields-reference/as-link-to-resource.jpg')" alt="As link to resource" class="border" />
+<img :src="$withBase('/assets/img/fields-reference/as-link-to-resource.jpg')" alt="As link to resource" class="border mb-4" />

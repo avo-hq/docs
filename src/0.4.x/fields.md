@@ -6,7 +6,7 @@
 
 The `Badge` field is used to display an easily recognizable status of a record in the database.
 
-<img :src="$withBase('/assets/img/fields/badge.jpg')" alt="Badge field" class="border" />
+<img :src="$withBase('/assets/img/fields/badge.jpg')" alt="Badge field" class="border mb-4" />
 
 ```ruby
 badge :stage, options: { info: [:discovery, :idea], success: :done, warning: 'on hold', danger: :cancelled } # The mapping of custom values to badge values.
@@ -20,7 +20,7 @@ The `Badge` field is intended to be displayed only on **Index** and **Show** vie
 
 ## Boolean
 
-<img :src="$withBase('/assets/img/fields/boolean.jpg')" alt="Boolean field" class="border" />
+<img :src="$withBase('/assets/img/fields/boolean.jpg')" alt="Boolean field" class="border mb-4" />
 
 The `Boolean` field renders a `input[type="checkbox"]` and supports the following options.
 
@@ -32,7 +32,7 @@ You might not use `true`/`false` or `1`/`0` to store the value in the database. 
 
 ## Boolean Group
 
-<img :src="$withBase('/assets/img/fields/boolean-group.jpg')" alt="Boolean group field" class="border" />
+<img :src="$withBase('/assets/img/fields/boolean-group.jpg')" alt="Boolean group field" class="border mb-4" />
 
 The `BooleanGroup` is used to update a `Hash` with `string` keys and `boolean` values in the database.
 
@@ -51,7 +51,7 @@ boolean_group :roles, name: 'User roles'
 
 ## Code
 
-<img :src="$withBase('/assets/img/fields/code.jpg')" alt="Code field" class="border" />
+<img :src="$withBase('/assets/img/fields/code.jpg')" alt="Code field" class="border mb-4" />
 
 The `Code` field generates a code editor using [vue-codemirror](https://github.surmon.me/vue-codemirror/) package. This field is hidden on **Index** view.
 
@@ -108,7 +108,7 @@ date :valid_until, relative: true
 
 ## DateTime
 
-<img :src="$withBase('/assets/img/fields/date-time.jpg')" alt="DateTime field" class="border" />
+<img :src="$withBase('/assets/img/fields/date-time.jpg')" alt="DateTime field" class="border mb-4" />
 
 The `DateTime` field is similar to the Date field with two new attributes. `time_24hr` tells the component to use 24 hours format and `timezone` to tell it in what timezone to display the time.
 
@@ -151,7 +151,7 @@ You can customize the image shown when gravatar is not found by changing the `de
 
 ## Heading
 
-<img :src="$withBase('/assets/img/fields/heading.jpg')" alt="Heading field" class="border" />
+<img :src="$withBase('/assets/img/fields/heading.jpg')" alt="Heading field" class="border mb-4" />
 
 The `Heading` field is used to display a banner between fields, such as a separator for big lists or a header for different sections.
 
@@ -187,7 +187,7 @@ This is a good field to add `as_link_to_resource` option to make it a shortcut t
 
 ## KeyValue
 
-<img :src="$withBase('/assets/img/fields/key-value.jpg')" alt="KeyValue field" class="border" />
+<img :src="$withBase('/assets/img/fields/key-value.jpg')" alt="KeyValue field" class="border mb-4" />
 
 The `KeyValue` field allows you to edit flat key-value pairs stored in `JSON` format in the database.
 
@@ -222,16 +222,16 @@ key_value :meta, # The database field ID
 
 ## Markdown
 
-<img :src="$withBase('/assets/img/fields/markdown.jpg')" alt="Trix field" class="border" />
+<img :src="$withBase('/assets/img/fields/markdown.jpg')" alt="Trix field" class="border mb-4" />
 
 The `Markdown` field renders a [Markdown Editor](https://github.com/hinesboy/mavonEditor) and is associated to a text or textarea column in the database.
-`Markdown` field converts text within the editor in raw Markdown text and stores it back to database. 
+`Markdown` field converts text within the editor in raw Markdown text and stores it back to database.
 
-Markdown field is hidden from **Index** view. By default, the Markdown field is not directly shown to the user on the **Show** view, instead being hidden under a 
+Markdown field is hidden from **Index** view. By default, the Markdown field is not directly shown to the user on the **Show** view, instead being hidden under a
 'Show Content' link, that triggers the visibility of the content. You can set Markdown to always display the content by setting `always_show` to **true**.
 
 ```ruby
-markdown :description, 
+markdown :description,
   always_show: true
 ```
 
@@ -245,9 +245,9 @@ number :age, min: 0, max: 120, step: 5
 
 ## Password
 
-The `Password` field renders a `input[type="password"]` element for that field. 
+The `Password` field renders a `input[type="password"]` element for that field.
 
-`Password` field is by default enforced to be shown only on `:forms` (`:create` and `:edit`). Because of security reasons, this type of field allows 
+`Password` field is by default enforced to be shown only on `:forms` (`:create` and `:edit`). Because of security reasons, this type of field allows
 only a few additional options for view visibility: `only_on`, `hide_on` methods and `:create`, `:edit` options for each method.
 
 ```ruby
@@ -289,7 +289,7 @@ This tells Avo to treat the value and the options a bit different because of the
 
 The `Status` field is used to visually display the status of a column, supporting the following options:
 
-<img :src="$withBase('/assets/img/fields/status.jpg')" alt="Status field" class="border" />
+<img :src="$withBase('/assets/img/fields/status.jpg')" alt="Status field" class="border mb-4" />
 
 ```ruby
 status :progress, failed_when: ['closed', 'rejected', 'failed'], loading_when: ['loading', 'running', 'waiting', 'in progress']
@@ -326,15 +326,15 @@ textarea :body, rows: 5
 
 ## Trix
 
-<img :src="$withBase('/assets/img/fields/trix.jpg')" alt="Trix field" class="border" />
+<img :src="$withBase('/assets/img/fields/trix.jpg')" alt="Trix field" class="border mb-4" />
 
 The `Trix` field renders a [WYSIWYG Trix Editor](https://trix-editor.org/) and is associated to a text or textarea column in the database.
-`Trix` field converts text within the editor in HTML and stores it back to database. 
+`Trix` field converts text within the editor in HTML and stores it back to database.
 
-Trix field is hidden from **Index** view. By default, the Trix field is not directly shown to the user on the **Show** view, instead being hidden under a 
+Trix field is hidden from **Index** view. By default, the Trix field is not directly shown to the user on the **Show** view, instead being hidden under a
 'Show Content' link, that triggers the visibility of the content. You can set Trix to always display the content by setting `always_show` to **true**.
 
 ```ruby
-trix :body, 
+trix :body,
   always_show: true
 ```

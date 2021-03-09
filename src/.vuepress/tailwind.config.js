@@ -5,7 +5,8 @@ module.exports = {
       "./theme/**/*.*",
       "./.vuepress/components/**/*.*",
       "./.vuepress/theme/**/*.*",
-      './0.x/**/*.md',
+      './0.4.x/**/*.md',
+      './0.5.x/**/*.md',
     ],
     options: {
       whitelist: [],

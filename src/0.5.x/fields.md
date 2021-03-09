@@ -1,0 +1,329 @@
+# Fields
+
+[[toc]]
+
+## Badge
+
+The `Badge` field is used to display an easily recognizable status of a record in the database.
+
+<img :src="$withBase('/assets/img/fields/badge.jpg')" alt="Badge field" class="border mb-4" />
+
+```ruby
+field.badge :stage, options: { info: [:discovery, :idea], success: :done, warning: 'on hold', danger: :cancelled } # The mapping of custom values to badge values.
+```
+
+By default, the badge field supports four values: `info` (blue), `success` (green), `danger` (red) and `warning` (yellow), having the possibility to override and or add values by providing `options` parameter.
+
+The `options` parameter is a `Hash` the has the state as the `key` and your agreed values as `value`. The `value` param can be a symbol, string, or array of symbols or strings.
+
+The `Badge` field is intended to be displayed only on **Index** and **Show** views. In order to update the value shown by badge field you need to use another field like [Text](#text) or [Select](#select), in combination with `hide_on: index` and `hide_on: show`.
+
+Below is an example on how you can use two fields in that combination.
+
+```ruby
+field.select :stage, hide_on: [:show, :index], options: { 'Discovery': :discovery, 'Idea': :idea, 'Done': :done, 'On hold': 'on hold', 'Cancelled': :cancelled }, placeholder: 'Choose the stage.'
+field.badge :stage, options: { info: [:discovery, :idea], success: :done, warning: 'on hold', danger: :cancelled }
+```
+
+
+## Boolean
+
+The `Boolean` field renders a `input[type="checkbox"]` on `Edit` and `Create` views and a nice green check icon/red X icon on the `Show` and `Index` views.
+
+<img :src="$withBase('/assets/img/fields/boolean.jpg')" alt="Boolean field" title="Boolean field on the Show view" class="border mb-4" />
+
+```ruby
+field.boolean :is_published, name: 'Published', true_value: 'yes', false_value: 'no',
+```
+
+You might not use `true`/`false` or `1`/`0` to store the value in the database. By using `true_value` and `false_value`, you may declare different values for that database field like `yes`/`no`.
+
+## Boolean Group
+
+<img :src="$withBase('/assets/img/fields/boolean-group.jpg')" alt="Boolean group field" class="border mb-4" />
+
+The `BooleanGroup` is used to update a `Hash` with `string` keys and `boolean` values in the database.
+
+```ruby
+field.boolean_group :roles, name: 'User roles', options: { admin: 'Administrator', manager: 'Manager', writer: 'Writer' }
+```
+
+It's useful when you want have something like a roles hash in your database.
+
+```ruby
+# Example boolean group hash stored in the database
+{
+  admin: true,
+  manager: true,
+  creator: true,
+}
+```
+
+## Code
+
+<img :src="$withBase('/assets/img/fields/code.jpg')" alt="Code field" class="border mb-4" />
+
+The `Code` field generates a code editor using [codemirror](https://codemirror.net/) package. This field is hidden on **Index** view.
+
+```ruby
+field.code :custom_css, theme: 'dracula', language: 'css'
+```
+
+### Customize Theme
+
+You can customize the theme of the `Code` field using the theme option. It defaults to `material-darker`, but you can choose from `material-darker`, `eclipse`, `dracula`. You can preview the themes here: [codemirror-themes](https://codemirror.net/demo/theme.html).
+
+### Customize Syntax Highlighting
+
+You can customize the programming language highlighting of the `Code` field using the language method. It defaults to `javascript` but you can choose from `css`, `dockerfile`, `htmlmixed`, `javascript`, `markdown`, `nginx`, `php`, `ruby`, `sass`, `shell`, `sql`, `vue` or `xml`.
+
+## Country
+
+`Country` field generates a [Select](#select) field on **Edit** view that includes all [ISO 3166-1](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes) countries. The value stored in the database is going to be the country code, and the value displayed in Avo is going to be the name of the country.
+
+You can easily choose to display the `name` of the countries in **Index** and **Show** views by declaring `display_name` to `true`.
+
+```ruby
+field.country :country, display_name: true
+```
+
+## Date
+
+The `Date` field may be used to display date values.
+For the `Index` and `Show` views you should use [ruby date format](https://apidock.com/ruby/DateTime/strftime) or [`Time::DATE_FORMATS`](https://api.rubyonrails.org/classes/Time.html#DATE_FORMATS) tokens.
+
+The `Edit` view of the picker is using [flatpickr](https://flatpickr.js.org). You may use the [formatting tokens](https://flatpickr.js.org/formatting/) to format the date.
+You may also pass the `first_day_of_week` attribute to have that reflected on the generated calendar component. 1 is Monday (default), and 7 is Sunday.
+
+```ruby
+field.date :birthday, first_day_of_week: 1, picker_format: 'F J Y', format: '%Y-%m-%d', placeholder: 'Feb 24th 1955'
+```
+
+If you'd like to show the time relative to the present (4 months ago, in 3 years, etc.) use the `relative: true` option.
+
+
+```ruby
+field.date :valid_until, relative: true
+```
+
+## DateTime
+
+<img :src="$withBase('/assets/img/fields/date-time.jpg')" alt="DateTime field" class="border mb-4" />
+
+The `DateTime` field is similar to the Date field with two new attributes. `time_24hr` tells flatpickr to use 24 hours format and `timezone` to tell it in what timezone to display the time. By default it uses your browser's timezone.
+
+```ruby
+filed.date_time :created_at, name: 'User joined', picker_format: 'Y-m-d H:i', format: :db, time_24hr: true, timezone: 'PST'
+```
+
+## External image
+
+You may have a field in the database that holds the url to an image and you want to display that in Avo. This is where the `ExternalImage` field comes in to help.
+
+It will take the value and insert it into an `image_tag`.
+
+```ruby
+field.external_image :logo
+```
+
+It takes three options `:width`, `:height` and `:radius` that get used on the `Index` view.
+
+You may also pass in a computed value or pass it as the grid `:preview` position.
+
+```ruby
+grid.external_image :logo, grid_position: :preview, link_to_resource: true do |model|
+  if model.url.present?
+    "//logo.clearbit.com/#{URI.parse(model.url).host}?size=180"
+  end
+end
+```
+
+## File
+
+The `File` field may be used to attach files using [Active Storage](https://edgeguides.rubyonrails.org/active_storage_overview.html). Avo will use your application's Active Storage settings. You may use whichever supported [disk services](https://edgeguides.rubyonrails.org/active_storage_overview.html#disk-service).
+
+```ruby
+field.file :avatar, is_image: true
+```
+
+The `is_image` option renders the file as an image instead of rendering the file name.
+
+## Files
+
+The `Files` field is similar to `File` and enables you to upload multiple files at once using [Active Storage](https://edgeguides.rubyonrails.org/active_storage_overview.html).
+
+```ruby
+field.files :documents
+```
+
+## Gravatar
+
+The `Gravatar` field should be linked to an email field from the database, displaying the avatar image assigned to that email address in the [Gravatar](https://en.gravatar.com/site/implement/images/) database. By default, it uses the `email` field, but if the email address is stored in another column, you can specify that column.
+
+```ruby
+field.gravatar :email, rounded: false, size: 60, default_url: 'some image url'
+```
+
+You may also pass in a computed value.
+
+```ruby
+field.gravatar :email do |model|
+  "#{model.google_username}@gmail.com"
+end
+```
+
+### Customization
+
+On `Index`, by default, the image is `rounded` and has size of `40 px`, but it can be changed by setting `rounded` to `false` and by specifying the `size` (in pixels) in field declaration.
+
+On `Show`, the image is always `squared` and the size is `responsive`.
+
+You can customize the image shown when gravatar is not found by changing the `default_url` attribute to a custom image URL.
+
+## Heading
+
+<img :src="$withBase('/assets/img/fields/heading.jpg')" alt="Heading field" class="border mb-4" />
+
+The `Heading` field is used to display a banner between fields, such as a separator for big lists or a header for different sections.
+
+`Heading` is not assigned to any column in the database and only visible on `Edit` and `Create` views.
+
+```ruby
+field.heading 'Address fields'
+```
+
+The `as_html` option will render it as HTML.
+
+```ruby
+field.heading '<div class="underline text-gray-800 uppercase">Address fields</div>', as_html: true
+```
+
+## Hidden
+
+You might have a scenario where you need a value to update a model. You may use the `Hidden` field to add the field to the form a hidden input but not render it on the page.
+
+```ruby
+field.hidden :group_id
+```
+
+## ID
+
+The `id` field is used to show the record's id.
+
+```ruby
+field.id :id
+```
+
+This is a good field to add `as_link_to_resource` option to make it a shortcut to the resource `Show` page.
+
+## Markdown
+
+<img :src="$withBase('/assets/img/fields/markdown.jpg')" alt="Trix field" class="border mb-4" />
+
+The `Markdown` field renders a [SimpleMDE Markdown Editor](https://simplemde.com/) and is associated to a text or textarea column in the database.
+`Markdown` field converts text within the editor in raw Markdown text and stores it back to database.
+
+Markdown field is hidden from the `Index` view. By default, the Markdown field is not directly shown to the user on the `Show` view, instead being hidden under a _Show Content_ link, that displays the content. You can set Markdown to always display the content by setting `always_show` to `true`.
+
+```ruby
+field.markdown :description, always_show: true
+```
+
+## Number
+
+The `Number` field renders a `input[type="number"]` element and has the regular `min`, `max`, and `step` options.
+
+```ruby
+field.number :age, min: 0, max: 120, step: 5
+```
+
+## Password
+
+The `Password` field renders a `input[type="password"]` element for that field.
+
+`Password` field is by default enforced to be shown only on `:forms` (`:create` and `:edit`). This field is rendered only on `Form` fields.
+
+```ruby
+field.password :password, placeholder: 'secret',
+```
+
+## Select
+
+The `Select` field renders a `select` field.
+
+```ruby
+field.select :type,
+  options: { 'Large container': :large, 'Medium container': :medium, 'Tiny container': :small },
+  display_with_value: true,
+  placeholder: 'Choose the size of the container.'
+```
+You may add options using the `options` attribute, which is a `Hash` with the `key` as the label and the `value` as the id (database value).
+
+On `Index`, `Show` and `Edit` views you may want to display the values and not the labels of the options. You may change that by setting `display_value` to `true`.
+
+The Select field also supports Active Record [enums](https://edgeapi.rubyonrails.org/classes/ActiveRecord/Enum.html). For that to work you only need switch `options` with `enum`.
+
+```ruby
+class Project < ApplicationRecord
+  enum type: { 'Large container': 'large', 'Medium container': 'medium', 'Tiny container': 'small' }
+end
+
+select :type,
+  enum: ::Project.types
+  display_with_value: true,
+  placeholder: 'Choose the size of the container.'
+```
+
+This tells Avo to treat the value and the options a bit different because of the way Rails casts the value from the enum.
+
+## Status
+
+The `Status` field is used to visually display the status of a column, supporting the following options:
+
+<img :src="$withBase('/assets/img/fields/status.jpg')" alt="Status field" class="border mb-4" />
+
+```ruby
+field.status :progress, failed_when: ['closed', 'rejected', 'failed'], loading_when: ['loading', 'running', 'waiting', 'in progress']
+```
+
+You may customize the `failed` and `loading` states by using `failed_when` and `loading_when`. `failed_when` defaults to `failed`, while `loading_when` defaults to both `waiting` and `running`.
+
+## Text
+
+The `Text` field renders a regular `text` `input`.
+
+```ruby
+field.text :title
+```
+
+You may customize it with as many options as you need.
+
+```ruby
+field.text :title, # The database field ID
+  name: 'Post title', # The name you want displayed
+  required: true, # Display it as required
+  readonly: true, # Display it disabled
+  placeholder: 'My shiny new post', # Update the placeholder text
+  format_using: -> (value) { value.truncate 3 } # Format the output
+```
+
+## Textarea
+
+The `Textarea` field renders a `textarea` element and takes has the `rows` option that controls how many rows it should render.
+
+```ruby
+field.textarea :body, rows: 5
+```
+
+## Trix
+
+<img :src="$withBase('/assets/img/fields/trix.jpg')" alt="Trix field" class="border mb-4" />
+
+The `Trix` field renders a [WYSIWYG Trix Editor](https://trix-editor.org/) and is associated to a text or textarea column in the database.
+`Trix` field converts text within the editor in HTML and stores it back to database.
+
+Trix field is hidden from `Index` view. By default, the Trix field is not directly shown to the user on the `Show` view, instead being hidden under a _Show Content_ link, that triggers the visibility of the content. You can set Trix to always display the content by setting `always_show` to `true`.
+
+```ruby
+field.trix :body, always_show: true
+```

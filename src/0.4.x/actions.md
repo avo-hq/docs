@@ -6,7 +6,7 @@ Avo actions allow you to perform specific tasks on one or more of your records. 
 
 Once you attach an action to a resource using `use_action` it may be ran using the **Actions** dropdown.
 
-<img :src="$withBase('/assets/img/actions/actions-dropdown.jpg')" alt="Actions dropdown" class="border" />
+<img :src="$withBase('/assets/img/actions/actions-dropdown.jpg')" alt="Actions dropdown" class="border mb-4" />
 
 ## Overview
 
@@ -28,7 +28,7 @@ module Avo
         end
 
         succeed 'Done!'
-        reload_resources
+        reload
       end
 
       fields do
@@ -49,7 +49,7 @@ fields do
 end
 ```
 
-<img :src="$withBase('/assets/img/actions.jpg')" alt="Avo actions" class="border" />
+<img :src="$withBase('/assets/img/actions.jpg')" alt="Avo actions" class="border mb-4" />
 
 The `handle` method is where the magic happens. This is where you put your action logic. In this method, you will have access to the current `request`, the selected `models` and, the values passed to the `fields`.
 
@@ -62,7 +62,7 @@ def handle(request, models, fields)
   end
 
   succeed 'Done!'
-  reload_resources
+  reload
 end
 ```
 
@@ -107,7 +107,7 @@ def handle(request, models, fields)
   end
 
   fail "Can't mark inactive! The user is an admin."
-  reload_resources
+  reload
 end
 ```
 
@@ -116,7 +116,7 @@ end
 
 ### Action responses
 
-After you notify the user about what happened through a message, you may want to execute an action like `reload` or `reload_resources`. You may use message and action responses together.
+After you notify the user about what happened through a message, you may want to execute an action like `reload` (default action) or `redirect_to`. You may use message and action responses together.
 
 ```ruby{8-9}
 def handle(request, models, fields)
@@ -127,7 +127,7 @@ def handle(request, models, fields)
   end
 
   fail "Can't mark inactive! The user is an admin."
-  reload_resources
+  reload
 end
 ```
 
@@ -148,24 +148,9 @@ def handle(request, models, fields)
 end
 ```
 
-#### `reload_resources`
+#### `redirect_to`
 
-On `reload_resources`, a `GET` request will be executed to fetch the resources similarly to the initial page load to reflect the model changes.
-
-```ruby{7}
-def handle(request, models, fields)
-  models.each do |project|
-    project.update active: false
-  end
-
-  succeed 'Done!'
-  reload_resources
-end
-```
-
-#### `redirect`
-
-`redirect` will execute a [Vue route push](https://router.vuejs.org/guide/essentials/navigation.html#router-push-location-oncomplete-onabort) that will navigate to a new path of your app.
+`redirect_to` will execute a [Vue route push](https://router.vuejs.org/guide/essentials/navigation.html#router-push-location-oncomplete-onabort) that will navigate to a new path of your app.
 
 ```ruby{7}
 def handle(request, models, fields)
@@ -174,37 +159,7 @@ def handle(request, models, fields)
   end
 
   succeed 'Done!'
-  redirect '/projects'
-end
-```
-
-#### `http_redirect`
-
-`http_redirect` will execute full HTTP redirect to a new path.
-
-```ruby{7}
-def handle(request, models, fields)
-  models.each do |project|
-    project.update active: false
-  end
-
-  succeed 'Done!'
-  http_redirect 'https://guides.rubyonrails.org'
-end
-```
-
-#### `open_in_a_new_tab`
-
-`open_in_a_new_tab` will open your path in a new tab.
-
-```ruby{7}
-def handle(request, models, fields)
-  models.each do |project|
-    project.update active: false
-  end
-
-  succeed 'Done!'
-  open_in_a_new_tab 'https://guides.rubyonrails.org'
+  redirect_to '/projects'
 end
 ```
 
@@ -240,7 +195,7 @@ def message
 end
 ```
 
-<img :src="$withBase('/assets/img/actions/actions-message.jpg')" alt="Avo message" class="border" />
+<img :src="$withBase('/assets/img/actions/actions-message.jpg')" alt="Avo message" class="border mb-4" />
 
 ### Customize the buttons
 
@@ -256,7 +211,7 @@ def cancel_text
 end
 ```
 
-<img :src="$withBase('/assets/img/actions/actions-button-labels.jpg')" alt="Avo button labels" class="border" />
+<img :src="$withBase('/assets/img/actions/actions-button-labels.jpg')" alt="Avo button labels" class="border mb-4" />
 
 
 

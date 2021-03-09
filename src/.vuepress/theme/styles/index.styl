@@ -1,4 +1,5 @@
 @tailwind base;
+
 @require './config'
 @require './code'
 @require './custom-blocks'
@@ -92,8 +93,8 @@ p a code
   color $accentColor
 
 p
-  margin-block-start: 1em;
-  margin-block-end: 1em;
+  margin-block-start: 0.5em;
+  margin-block-end: 0.5em;
 
 kbd
   background #eee
@@ -161,8 +162,8 @@ h2
   @apply mb-4 pt-20 -mt-16
 
 h3
-  font-size 1.35rem
-  @apply mb-4 pt-20 -mt-16
+  font-size 1.20rem
+  @apply mb-0 pt-6 font-normal
 
 h4
   font-size 1rem
@@ -183,7 +184,7 @@ code, kbd, .line-number
   font-family source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace
 
 p, ul, ol
-  line-height 1.7
+  line-height 1.5
 
 hr
   border 0

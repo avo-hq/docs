@@ -8,7 +8,7 @@ module.exports = {
     ['link', { href: "https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&amp;display=swap", rel: "stylesheet" }],
     ['meta', { name: 'theme-color', content: '#3eaf7c' }],
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
-    ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }]
+    ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }],
   ],
   plugins: [
     '@vuepress/plugin-back-to-top',
@@ -43,6 +43,7 @@ module.exports = {
     editLinks: true,
     editLinkText: 'Could you help us improve this page?',
     smoothScroll: true,
+    collapsable: false,
     sidebarDepth: 1,
     nav: [
       {
@@ -54,60 +55,94 @@ module.exports = {
         link: '/',
         items: [
           {
-            text: "0.x",
-            link: "/0.x/"
-          }
+            text: "0.5.x",
+            link: "/0.5.x/"
+          },
+          {
+            text: "0.4.x",
+            link: "/0.4.x/"
+          },
         ]
       }
     ],
     sidebar: {
-      '/0.x/': [
+      '/0.5.x/': [
         {
           title: 'Getting started',
-          path: '/0.x/',
+          path: '/0.5.x/',
+          collapsable: false,
+          sidebarDepth: 0,
+          children: [
+            '/0.5.x/installation',
+            '/0.5.x/upgrade',
+            '/0.5.x/resources',
+            '/0.5.x/fields-reference',
+            '/0.5.x/grid-view',
+          ]
+        },
+        '/0.5.x/fields',
+        '/0.5.x/associations',
+        {
+          title: 'Filters',
+          path: '/0.5.x/filters',
+          sidebarDepth: 0,
+        },
+        {
+          title: 'Actions',
+          path: '/0.5.x/actions',
+          sidebarDepth: 0,
+        },
+        '/0.5.x/authorization',
+        '/0.5.x/customization',
+        '/0.5.x/localization',
+      ],
+      '/0.4.x/': [
+        {
+          title: 'Getting started',
+          path: '/0.4.x/',
           collapsable: false,
           sidebarDepth: 1,
           children: [
-            '/0.x/installation',
-            '/0.x/resources',
-            '/0.x/fields-reference',
-            '/0.x/grid-view',
+            '/0.4.x/installation',
+            '/0.4.x/resources',
+            '/0.4.x/fields-reference',
+            '/0.4.x/grid-view',
           ]
         },
         {
           title: 'Fields',
-          path: '/0.x/fields',
+          path: '/0.4.x/fields',
           collapsable: false,
           sidebarDepth: 1,
           children: [
-            '/0.x/fields',
-            '/0.x/relations',
+            '/0.4.x/fields',
+            '/0.4.x/relations',
           ]
         },
         {
           title: 'Filters',
-          path: '/0.x/filters',
+          path: '/0.4.x/filters',
           collapsable: false,
           sidebarDepth: 1,
         },
         {
           title: 'Actions',
-          path: '/0.x/actions',
+          path: '/0.4.x/actions',
           collapsable: false,
           sidebarDepth: 1,
         },
-        '/0.x/authorization',
+        '/0.4.x/authorization',
         {
           title: 'Customize Avo',
-          path: '/0.x/customization',
+          path: '/0.4.x/customization',
           collapsable: false,
           sidebarDepth: 1,
           children: [
-            '/0.x/customization',
-            '/0.x/localization',
+            '/0.4.x/customization',
+            '/0.4.x/localization',
           ]
         },
-        '/0.x/dashboard',
+        '/0.4.x/dashboard',
       ],
     },
   },

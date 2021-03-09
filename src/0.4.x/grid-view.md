@@ -1,6 +1,6 @@
 # Grid view
 
-<img :src="$withBase('/assets/img/grid-view.jpg')" alt="Avo grid view" class="border" />
+<img :src="$withBase('/assets/img/grid-view.jpg')" alt="Avo grid view" class="border mb-4" />
 
 Some resources are best displayed in a grid view. The grid view enables you to display the resource using an image (`:preview`), a title (`:title`) and a sub-title (`:body`).
 To enable grid view in a resource you need to declare it in the resource initializer.

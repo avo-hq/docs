@@ -1,11 +1,11 @@
 [[redirects]]
   from = "/"
-  to = "/0.x"
+  to = "/0.5.x"
   status = 301
   force = false
 
 [[redirects]]
   from = "/0.1/*"
-  to = "/0.x/:splat"
+  to = "/0.4.x/:splat"
   status = 301
   force = false
