@@ -75,6 +75,7 @@ module.exports = {
           children: [
             '/0.5.x/installation',
             '/0.5.x/upgrade',
+            '/0.5.x/authentication',
             '/0.5.x/resources',
             '/0.5.x/fields-reference',
             '/0.5.x/grid-view',
