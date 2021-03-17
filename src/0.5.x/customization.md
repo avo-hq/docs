@@ -100,7 +100,7 @@ This will render all `id` fields in the `Index` view as link to that resource.
 
 ## Container width
 
-```ruby
+```ruby{2-3}
 Avo.configure do |config|
   config.full_width_index_view = false
   config.full_width_container = false
@@ -121,9 +121,27 @@ Using `full_width_container: true` tells Avo to display all views full-width.
 
 By default Avo caches each resource row (or Grid item for Grid view) for the performance benefits. You can disable that cache using the `cache_resources_on_index_view` configuration option.
 
-```ruby
+```ruby{2}
 Avo.configure do |config|
   config.cache_resources_on_index_view = false
+end
+```
+
+## Context
+
+In the `Resource` and `Action` classes you have a global `context` object to which you can attach a custom payload. For example you may add the `current_user`, the current request `params` or any other arbitrary data.
+
+You can configure it using the `set_context` method in your initializer. The block you pass in will be instance evaluated in `Avo::ApplicationController` so it will have access to the `current_user` method or `Current` object.
+
+```ruby{2-8}
+Avo.configure do |config|
+  config.set_context do
+    {
+      foo: 'bar',
+      user: current_user,
+      params: request.params,
+    }
+  end
 end
 ```
 

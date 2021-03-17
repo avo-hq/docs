@@ -4,7 +4,7 @@
 
 Avo actions allow you to perform specific tasks on one or more of your records. For example, you might want to mark a user as active/inactive and optionally send a message that may be customized by the person that wants to run the action.
 
-Once you attach an action to a resource using the `actions` method it may be used from the **Actions** dropdown.
+Once you attach an action to a resource using the `actions` method it will appear in the **Actions** dropdown.
 
 <img :src="$withBase('/assets/img/actions/actions-dropdown.jpg')" alt="Actions dropdown" class="border mb-4" />
 
@@ -12,41 +12,36 @@ Once you attach an action to a resource using the `actions` method it may be use
 
 Avo actions use two main methods. `handle` and `fields`.
 
-```ruby{9-19,23-24}
-module Avo
-  module Actions
-    class ToggleInactive < Action
-      def name
-        'Toggle inactive'
+```ruby{4-18,20-23}
+class ToggleActive < Avo::BaseAction
+  self.name = 'Toggle active'
+
+  def handle(models:, fields:)
+    models.each do |model|
+      if model.active
+        model.update active: false
+      else
+        model.update active: true
       end
 
-      def handle(request, models, fields)
-        models.each do |model|
-          if model.active
-            model.update active: false
-          else
-            model.update active: true
-          end
-
-          model.notify fields[:message] if fields[:notify_user]
-        end
-
-        succeed 'Perfect!'
-      end
-
-      def fields(request)
-        field.boolean :notify_user, default: true
-        field.text :message, default: 'Your account has been marked as inactive.'
-      end
+      # Optionally you may send a notification with the message to that user.
+      UserMailer.with(user: model).toggle_active(fields[:message]).deliver_later
     end
+
+    succeed 'Perfect!'
+  end
+
+  fields do |field|
+    field.boolean :notify_user, default: true
+    field.text :message, default: 'Your account has been marked as inactive.'
   end
 end
 ```
 
-In the `fields` method, you may declare extra fields just as you do it in resources. The `fields` method is optional. You may have options that don't have any fields attached.
+In the `fields` method, you may declare extra fields just as you do it in resources. The `fields` method is optional. You may have actions that don't have any fields attached.
 
 ```ruby
-def fields(request)
+fields do |field|
   field.boolean :notify_user
   field.textarea :message, default: 'Your account has been marked as inactive.'
 end
@@ -54,10 +49,10 @@ end
 
 <img :src="$withBase('/assets/img/actions.jpg')" alt="Avo actions" class="border mb-4" />
 
-The `handle` method is where the magic happens. This is where you put your action logic. In this method, you will have access to the current `request`, the selected `models` and, the values passed to the `fields`.
+The `handle` method is where the magic happens. This is where you put your action logic. In this method, you will have access to the selected `models` (if there's only one it will be automatically wrapped in an array) and, the values passed to the `fields`.
 
 ```ruby
-def handle(request, models, fields)
+def handle(models:, fields:)
   models.each do |model|
     if model.active
       model.update active: false
@@ -65,7 +60,8 @@ def handle(request, models, fields)
       model.update active: true
     end
 
-    model.notify fields[:message] if fields[:notify_user]
+    # Optionally you may send a notification with the message to that user.
+    UserMailer.with(user: model).toggle_active(fields[:message]).deliver_later
   end
 
   succeed 'Perfect!'
@@ -74,26 +70,20 @@ end
 
 ## Registering actions
 
-To use an action, you need to declare it on the resource using the `actions` method that has the `request` object available.
+To use an action, you need to declare it on the resource using the `actions` method.
 
-```ruby{15}
-module Avo
-  module Resources
-    class User < Resource
-      def configure
-        @title = :name
-        @search = [:id, :first_name, :last_name]
-      end
+```ruby{10-12}
+class UserResource < Avo::BaseResource
+  self.title = :name
+  self.search = [:id, :first_name, :last_name]
 
-      def fields(request)
-        field.id
-        # ... other fields
-      end
+  fields do |field|
+    field.id
+    # other fields
+  end
 
-      def actions(request)
-        action.use Avo::Actions::ToggleInactive
-      end
-    end
+  actions do |action|
+    action.use ToggleInactive
   end
 end
 ```
@@ -108,15 +98,15 @@ The default response is to reload the page and show the _Action ran successfully
 
 You will have two message response methods at your disposal `succeed` and `fail`. These will render out green or red alerts to the user.
 
-```ruby{8}
-def handle(request, models, fields)
+```ruby{4}
+def handle(models:, fields:)
   models.each do |model|
-    model.update active: false
-
-    model.notify fields['message'] if fields['notify_user']
+    if model.admin?
+      fail "Can't mark inactive! The user is an admin."
+    else
+      model.update active: false
+    end
   end
-
-  fail "Can't mark inactive! The user is an admin."
 end
 ```
 
@@ -127,15 +117,16 @@ end
 
 After you notify the user about what happened through a message, you may want to execute an action like `reload` (default action) or `redirect_to`. You may use message and action responses together.
 
-```ruby{8-9}
-def handle(request, models, fields)
+```ruby{10}
+def handle(models:, fields:)
   models.each do |model|
-    model.update active: false
-
-    model.notify fields['message'] if fields['notify_user']
+    if model.admin?
+      fail "Can't mark inactive! The user is an admin."
+    else
+      model.update active: false
+    end
   end
 
-  fail "Can't mark inactive! The user is an admin."
   reload
 end
 ```
@@ -147,7 +138,7 @@ The available action responses are:
 When you use `reload`, a full-page reload will be triggered.
 
 ```ruby{7}
-def handle(request, models, fields)
+def handle(models:, fields:)
   models.each do |project|
     project.update active: false
   end
@@ -162,13 +153,13 @@ end
 `redirect_to` will execute a redirect to a new path of your app.
 
 ```ruby{7}
-def handle(request, models, fields)
+def handle(models:, fields:)
   models.each do |project|
     project.update active: false
   end
 
   succeed 'Done!'
-  redirect_to '/projects'
+  redirect_to '/avo/resources/users'
 end
 ```
 
@@ -176,8 +167,8 @@ end
 
 `download` will start a file download to your specified `path` and `filename`.
 
-```ruby{11}
-def handle(request, models, fields)
+```ruby{12}
+def handle(models:, fields:)
   models.each do |project|
     project.update active: false
 
@@ -186,6 +177,7 @@ def handle(request, models, fields)
   end
 
   succeed 'Done!'
+
   if report_path.present? and report_filename.present?
     download report_path, report_filename
   end
@@ -194,35 +186,27 @@ end
 
 ## Customization
 
-```ruby{4-10}
-module Avo
-  module Actions
-    class TogglePublished < Action
-      def configure
-        @name = 'Toggle post published'
-        @message = 'Are you sure you want to mark this user as inactive?'
-        @confirm_text = 'Mark inactive'
-        @cancel_text = 'Not yet'
-        @no_confirmation = true
-      end
+```ruby{2-6}
+class TogglePublished < Avo::BaseAction
+  self.name = 'Mark inactive'
+  self.message = 'Are you sure you want to mark this user as inactive?'
+  self.confirm_button_label = 'Mark inactive'
+  self.cancel_button_label = 'Not yet'
+  self.no_confirmation = true
 ```
 
 ### Customize the message
 
-You may pass a `@message` instance variable to the `configure` method to customize the message if there are no fields present.
+You may update the `self.message` class attribute to customize the message if there are no fields present.
 
-<img :src="$withBase('/assets/img/actions/actions-message.jpg')" alt="Avo message" class="border mb-4" />
+<!-- <img :src="$withBase('/assets/img/actions/actions-message.jpg')" alt="Avo message" class="border mb-4" /> -->
 
 ### Customize the buttons
 
-You may also have custom labels for the action buttons using `@confirm_text` and `cancel_text`.
+You may customize the labels for the action buttons using `confirm_button_label` and `cancel_button_label`.
 
 <img :src="$withBase('/assets/img/actions/actions-button-labels.jpg')" alt="Avo button labels" class="border mb-4" />
 
 ### No confirmation actions
 
-If you don't want to show the confirmation modal, pass in the `@no_confirmation` instance variable. This will execute the action without showing the modal at all.
-
-
-
-
+If you don't want to show the confirmation modal, pass in the `self.no_confirmation = true` class attribute. This will execute the action without showing the modal at all.

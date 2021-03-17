@@ -9,7 +9,7 @@ Each Avo resource has a `fields` method that registers your `Resource`'s fields.
 To add a field you need to declare it in the `fields` method like so:
 
 ```ruby
-def fields(request)
+fields do |field|
   field.text :name
 end
 ```

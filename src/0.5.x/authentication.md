@@ -2,6 +2,8 @@
 
 [[toc]]
 
+## Filter out requests
+
 You probably do not want to allow Avo access to everybody. If you're using [devise](https://github.com/heartcombo/devise) in your app, use this block to filter out requests to it in your `routes.rb` file.
 
 ```ruby
@@ -17,6 +19,8 @@ authenticate :user, -> user { user.admin? } do
   mount Avo::Engine => '/avo'
 end
 ```
+
+Check out more examples of authentication on [sidekiq's authentication section](https://github.com/mperham/sidekiq/wiki/Monitoring#authentication).
 
 ## `authenticate_with` method
 

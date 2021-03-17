@@ -17,18 +17,14 @@ This command will generate a resource file under your `app/avo/resources` direct
 Inside the creates resource file will look like so:
 
 ```ruby
-module Avo
-  module Resources
-    class Post < Resource
-      def configure
-        @title = :id
-        @search = :id
-      end
+class PostResource < Avo::BaseResource
+  def configure
+    @title = :id
+    @search = :id
+  end
 
-      def fields(request)
-        f.id :id
-      end
-    end
+  fields do |field|
+    field.id :id
   end
 end
 ```
@@ -37,7 +33,13 @@ From this config, Avo will infer that the resource's model will be the `Post` mo
 
 ## Setting the title of the resource
 
-Initially, the `@title` attribute is set to `:id`, so the model's `id` attribute will be used to display the resource in search results and belongs select fields. You usually change it to something more representative, like the model's `title` or `name` attributes.
+Initially, the `title` attribute is set to `:id`, so the model's `id` attribute will be used to display the resource in search results and belongs select fields. You usually change it to something more representative, like the model's `title`, `name` or `label` attributes.
+
+```ruby
+class PostResource < Avo::BaseResource
+  self.title = :name # it will now reference @project.name to show you the title
+end
+```
 
 <!-- ## Search
 
@@ -45,11 +47,11 @@ Using the `@search` property you can tell Avo which fields it should look throug
 
 ## Eager loading
 
-If you regularly need access to a resource's associations, you can tell Avo to eager load those associations on the `Index` view using `@includes` in your `configure` method. This will help you avoid those nasty n+1 performance issues.
+If you regularly need access to a resource's associations, you can tell Avo to eager load those associations on the `Index` view using `includes`. This will help you avoid those nasty `n+1` performance issues.
 
 ```ruby
-def configure
-  @includes = [:user, :tags]
+class PostResource < Avo::BaseResource
+  self.includes = [:user, :tags]
 end
 ```
 
@@ -59,51 +61,52 @@ Each generated resource will have four views **Index** view where you see all yo
 
 ### Grid view
 
-On **Index view**, the most common view type is `:table`. But you might have some data that you want to display it in a **grid view**. You change that by setting `@default_view_type` in your `configure` method.
+On **Index view**, the most common view type is `:table`,b ut you might have some data that you want to display in a **grid view**. You change that by setting `default_view_type` to `:grid`.
 
 <img :src="$withBase('/assets/img/grid-view.jpg')" alt="Avo grid view" class="border mb-4" />
 
-```ruby{5}
-module Avo
-  module Resources
-    class Post < Resource
-      def configure
-        @default_view_type = :grid
-      end
+```ruby
+class PostResource < Avo::BaseResource
+  self.default_view_type = :grid
+end
 ```
 
 See how you can customize the grid item in the additional [grid view documentation](grid-view).
 
-## Custom model
+<!-- ## Custom model
 
 You might have a model that belongs to a namespace or that has a different name than than the resource. For those occasions you can use the `@model` option to tell Avo which model to reference.
 
 ```ruby{5}
-module Avo
-  module Resources
-    class DelayedJob < Resource
-      def configure
-        @model = Delayed::Job
-      end
+class DelayedJobResource < Avo::BaseResource
+  model_class = ::Delayed::Job
 
-      def fields(request)
-        f.id
-        f.number :priority, readonly: true
-        f.number :attempts, readonly: true
-        f.code :handler, readonly: true, language: :yaml
-        f.code :last_error, readonly: true, language: :shell
-        f.date_time :run_at, readonly: true
-        f.date_time :locked_at, readonly: true
-        f.date_time :failed_at, readonly: true
-        f.text :locked_by, readonly: true
-        f.text :queue, readonly: true
-      end
-
-      def actions(request)
-        a.use Avo::Actions::RetryJob
-      end
-    end
+  fields do |field|
+    f.id
+    f.number :priority, readonly: true
+    f.number :attempts, readonly: true
+    f.code :handler, readonly: true, language: :yaml
+    f.code :last_error, readonly: true, language: :shell
+    f.date_time :run_at, readonly: true
+    f.date_time :locked_at, readonly: true
+    f.date_time :failed_at, readonly: true
+    f.text :locked_by, readonly: true
+    f.text :queue, readonly: true
   end
+
+  def actions(request)
+    a.use Avo::Actions::RetryJob
+  end
+end
+``` -->
+
+## Devise password optional
+
+If you use `devise` and you update your user models (usually `User`) without passing a password you will get a validation error. You can use `devise_password_optional` to stop receiving that error. It will [strip out](https://stackoverflow.com/questions/5113248/devise-update-user-without-password/11676957#11676957) the `password` params.
+
+```ruby
+class UserResource < Avo::BaseResource
+  self.devise_password_optional = true
 end
 ```
 

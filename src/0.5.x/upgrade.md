@@ -6,13 +6,60 @@ If you're upgrading from <strong>0.4.x</strong> please follow the steps below to
 
 ## Resources
 
+### Resources inherit from `Avo::BaseResource`
+
+**Changes**
+  - all resources inherit from `Avo::BaseResource`
+  - all resources are standalone classes
+  - no more opening up the `Avo` namespace
+  - resource classes have the `Resource` suffix
+  - resource files have the `_resource` suffix
+
+All resources should now inherit from `Avo::BaseResource`. This is a pattern more widely used for these kinds of DSLs. Also all resources now have the `Resource` suffix (ex: `app/avo/resources/user.rb` becomes `app/avo/resources/user_resource.rb` with the class `UserResource`).
+
+```ruby{3-5}
+# 0.4.x notation
+# app/avo/resources/post.rb
+module Avo
+  module Resources
+    class Post < Resource
+      def initialize
+        ...
+      end
+
+      fields do
+        text :name
+      end
+
+      use_action ToggleAdmin
+
+      ...
+```
+
+```ruby{3}
+# 0.5.x notation
+# app/avo/resources/post_resource.rb
+PostResource < Avo::BaseResource
+  ...
+
+  fields do |field|
+    field.text :name
+  end
+
+  actions do |action|
+    action.use ToggleAdmin
+  end
+
+  ...
+```
+
 ### Fields
 
 **Changes**
-  - the `fields do` declaration renamed to `def fields(request)`
-  - declare fields on the `field` (or `f` alias) attribute
+  - the `fields do` declaration renamed to `fields do |field|`
+  - declare fields on the `field` attribute
 
-All fields declarations changed from using the `fields do` block to using a method that also gets the `request` object `def fields(request)`. Also, now you should declare the fields on the `field` (or `f` alias) attribute.
+All fields declarations changed from using the `fields do` block to also pass an object on which you declare the fields similar to how a form is declared (`form do |f|`). Also, now you should declare the fields on the attribute you pass in (`field`).
 
 ```ruby
 # 0.4.x notation
@@ -24,7 +71,7 @@ end
 
 ```ruby
 # 0.5.x notation
-def fields(request)
+fields do |field|
   field.text :name
   field.file :logo
 end
@@ -38,10 +85,11 @@ Ex: `bin/rails generate avo:controller post`.
 
 From now on, when you generate a resource, a controller will be generated also.
 
-### The configure method
+### The initialize method removed
 
 **Changes**
- - the `initialize` method renamed to `configure` in `Resource` files
+ - the `initialize` method removed
+ - all options from `initialize` become class attributes
 
 ```ruby{5}
 # 0.4.x notation
@@ -55,28 +103,22 @@ module Avo
       end
 ```
 
-```ruby{5}
+```ruby{3-5}
 # 0.5.x notation
-module Avo
-  module Resources
-    class Post < Resource
-      def configure
-        @title = :name
-        @includes = :user
-        @default_view_type = :grid
-      end
+PostResource < Avo::BaseResource
+  self.title = :name
+  self.includes = :user
+  self.default_view_type = :grid
 ```
 
 ### Grid fields declaration
 
 **Changes**
+  - the `grid do` declaration becomes to `grid do |cover, title, body|`
+  - declare grid fields on the `cover`, `title`, `body` attributes
+  - each grid field may now hold it's own configuration. It's not passed on from the `fields` method anymore.
 
- - `grid do` renamed to `def grid(request)`
- - declare fields on the `grid` (or `g` alias) attribute
- - each grid field may now hold it's own configuration. It's not passed on from the `fields` method anymore.
- - each grid field must use the `grid_position` option that can have the values `preview`, `title` or `body`
-
-The grid fields declaration method has changed to match the regular `fields` declaration method.
+The grid fields declaration method has changed to match the regular `fields` declaration method. This way you can configure and customize the grid fields however you need them.
 
 ```ruby
 # 0.4.x notation
@@ -89,10 +131,10 @@ end
 
 ```ruby
 # 0.5.x notation
-def grid(request)
-  grid.external_image :cdn_cover_photo, required: true, grid_position: :preview, link_to_resource: true
-  grid.text :name, required: true, grid_position: :title, link_to_resource: true
-  grid.text :excerpt, grid_position: :body do |model|
+grid do |cover, title, body|
+  cover.external_image :cdn_cover_photo, required: true, link_to_resource: true
+  title.text :name, required: true, link_to_resource: true
+  body.text :excerpt do |model|
     begin
       ActionView::Base.full_sanitizer.sanitize(model.body).truncate 120
     rescue => exception
@@ -117,15 +159,11 @@ module Avo
       end
 ```
 
-```ruby{7}
+```ruby{4}
 # 0.5.x
-module Avo
-  module Resources
-    class User < Resource
-      def configure
-        @title = :name
-        @devise_password_optional = true
-      end
+class UserResource < Avo::BaseResource
+  self.title = :name
+  self.devise_password_optional = true
 ```
 
 
@@ -146,16 +184,14 @@ module Avo
       end
 ```
 
-```ruby{7}
+```ruby{5}
 # 0.5.x
-module Avo
-  module Resources
-    class Project < Resource
-      def fields(request)
-        ...
-        f.date_time :started_at, name: 'Started', time_24hr: true, relative: true, timezone: 'EET'
-        ...
-      end
+class ProjectResource < Avo::BaseResource
+  fields do |field|
+    ...
+    field.date_time :started_at, name: 'Started', time_24hr: true, relative: true, timezone: 'EET'
+    ...
+  end
 ```
 
 ### `date` & `date_time` field format change
@@ -169,12 +205,31 @@ We're going to bring them back in a later iteration.
 
 ## Filters
 
+### Filters are standalone classes that inherit from base filter classes
+
+**Changes**
+  - all filters inherit from `Avo::Filter::SelectFilter` or `Avo::Filter::BooleanFilter`
+  - all filters are standalone classes
+  - no more opening up the `Avo` namespace
+
+```ruby
+# 0.4.x notation
+module Avo
+  module Filters
+    class FeaturedFilter < BooleanFilter
+```
+
+```ruby
+# 0.5.x notation
+class FeaturedFilter < Avo::Filters::BooleanFilter
+```
+
 ### `use_filter` deprecated
 
 **Changes**
 
  - `use_filter` is deprecated
- - wrap the filters in a `def filters(request)` method
+ - wrap the filters in a `filters do |filter|` method
  - declare filters on the `filter` attribute
 
 
@@ -186,41 +241,69 @@ use_filter Avo::Filters::PublishedFilter
 
 ```ruby
 # 0.5.x notation
-def filters(request)
-  filter.use Avo::Filters::FeaturedFilter
-  filter.use Avo::Filters::PublishedFilter
+filters do |filter|
+  filter.use FeaturedFilter
+  filter.use PublishedFilter
 end
 ```
 
-### Filters now have a `configure` method
+### Filters drop the `name` method
 
 **Changes**
-
- - add the `configure` method
  - remove the `name` method from filters
- - add the `@name` instance variable
+ - add the `self.name` class attribute
 
-```ruby{4-9}
+```ruby{5-7}
+# 0.4.x notation
 module Avo
-  module Actions
-    class TogglePublished < Action
-      def configure
-        @name = 'Toggle post published'
-        @message = 'Are you sure, sure?'
-        @confirm_text = 'Toggle'
-        @cancel_text = "Don't toggle yet"
+  module Filters
+    class PublishedFilter < SelectFilter
+      def name
+        'Published status'
       end
 ```
 
+```ruby{3}
+# 0.5.x notation
+class PublishedFilter < Avo::Filters::SelectFilter
+  self.name = 'Published status'
+```
+
 ## Actions
+
+### Actions are standalone classes that inherit from `Avo::BaseAction`
+
+**Changes**
+  - all actions inherit from `Avo::BaseAction` class
+  - all actions are standalone classes
+  - no more opening up the `Avo` namespace
+
+All filter should now inherit from the `Avo::BaseAction` class.
+
+```ruby
+# 0.4.x notation
+module Avo
+  module Actions
+    class TogglePublished < Action
+      def name
+        'Toggle post published'
+      end
+```
+
+```ruby
+# 0.5.x notation
+class TogglePublished < Avo::BaseAction
+  self.name = 'Toggle post published'
+```
 
 ### `use_action` is deprecated
 
 **Changes**
 
  - `use_action` is deprecated
- - wrap the filters in a `def actions(request)` method
- - declare filters on the `action` (or `a` alias) attribute
+ - wrap the filters in a `actions do |action|` method
+ - declare filters on the `action` attribute
+
 
 ```ruby
 # 0.4.x notation
@@ -229,37 +312,90 @@ use_action Avo::Actions::TogglePublished
 
 ```ruby
 # 0.5.x notation
-def actions(request)
-  action.use Avo::Actions::TogglePublished
+actions do |action|
+  action.use TogglePublished
 end
 ```
 
-### Actions now have a `configure` method
+### Actions drops the label methods in favour of class attributes
 
 **Changes**
+ - `name` method becomes `self.name` class attribute
+ - `message` method becomes `self.message` class attribute
+ - `confirm_text` method becomes `self.confirm_button_label` class attribute
+ - `cancel_text` method becomes `self.cancel_button_label` class attribute
+ - `no_confirmation` method becomes `self.no_confirmation` class attribute
 
- - add the `configure` method
- - remove the `message`, `confirm_text` and `cancel_text` methods from actions
- - add the `@message`, `@confirm_text` and `@cancel_text` instance variables
-
-```ruby{4-9}
+```ruby{5-23}
+# 0.4.x notation
 module Avo
   module Actions
     class TogglePublished < Action
-      def configure
-        @name = 'Toggle post published'
-        @message = 'Are you sure, sure?'
-        @confirm_text = 'Toggle'
-        @cancel_text = "Don't toggle yet"
+      def name
+        'Toggle post published'
       end
+
+      def message
+        'Are you sure, sure?'
+      end
+
+      def confirm_text
+        'Toggle'
+      end
+
+      def cancel_text
+        "Don't toggle yet"
+      end
+
+      def no_confirmation
+        true
+      end
+```
+
+```ruby{3-7}
+# 0.5.x notation
+TogglePublished < Avo::BaseAction
+  self.name = 'Toggle post published'
+  self.message = 'Are you sure, sure?'
+  self.confirm_button_label = 'Toggle'
+  self.cancel_button_label = "Don't toggle yet"
+  self.no_confirmation = true
 ```
 
 ### Fields
 
 **Changes**
 
- - the `fields do` declaration renamed to `def fields(request)`
- - declare fields on the `field` (or `f` alias) attribute
+ - the `fields do` declaration renamed to `fields do |field|`
+ - declare fields on the `field` attribute
+
+```ruby{7-10}
+# 0.4.x notation
+module Avo
+  module Actions
+    class ToggleInactive < Action
+      ...
+
+      fields do
+        boolean :notify_user
+        textarea :message, default: 'Your account has been marked as inactive.'
+      end
+    end
+  end
+end
+```
+
+```ruby{5-8}
+# 0.5.x notation
+class ToggleInactive < Avo::BaseAction
+  ...
+
+  fields do |field|
+    field.boolean :notify_user, default: true
+    field.text :message, default: 'Your account has been marked as inactive.'
+  end
+end
+```
 
 ## Locales
 

@@ -76,6 +76,7 @@ module.exports = {
             '/0.5.x/installation',
             '/0.5.x/upgrade',
             '/0.5.x/authentication',
+            '/0.5.x/licensing',
             '/0.5.x/resources',
             '/0.5.x/fields-reference',
             '/0.5.x/grid-view',

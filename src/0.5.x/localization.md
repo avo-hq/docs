@@ -4,23 +4,13 @@ Avo leverages Rails powerful I18n translations module. When you run `bin/rails a
 
 ## Localizing resources
 
-Let's say you want to localize a resource. All you need to do is add a `@translation_key` property in the resource initializer. This will tell Avo to use that translation key to localize this resource. This will change the labels of that resource everywhere in Avo.
+Let's say you want to localize a resource. All you need to do is add a `self.translation_key` class attribute in the `Resource` file. This will tell Avo to use that translation key to localize this resource. This will change the labels of that resource everywhere in Avo.
 
-
-```ruby{7}
-# app/avo/resources/user.rb
-module Avo
-  module Resources
-    class User < Resource
-      def configure
-        @title = :name
-        @translation_key = 'avo.resource_translations.user'
-        @search = [:id, :first_name, :last_name]
-        @includes = :posts
-        @has_devise_password = true
-      end
-    end
-  end
+```ruby{4}
+# app/avo/resources/user_resource.rb
+class UserResource < Avo::BaseResource
+  self.title = :name
+  self.translation_key = 'avo.resource_translations.user'
 end
 ```
 
@@ -42,20 +32,15 @@ en:
 Similarly, you can even localize fields. All you need to do is add a `translation_key:` option on the field declaration.
 
 
-```ruby{11}
-# app/avo/resources/project.rb
-module Avo
-  module Resources
-    class Project < Resource
-      def configure
-        @title = :name
-      end
-      fields do
-        id
-        # ... other fields
-        files :files, translation_key: 'avo.field_translations.file'
-      end
-    end
+```ruby{8}
+# app/avo/resources/project_resource.rb
+class ProjectResource < Avo::BaseResource
+  self.title = :name
+
+  fields do |field|
+    field.id
+    # ... other fields
+    field.files :files, translation_key: 'avo.field_translations.file'
   end
 end
 ```
@@ -83,3 +68,7 @@ Avo.configure do |config|
   config.locale = 'en-US'
 end
 ```
+
+## Re-generate the locale
+
+When updating Avo please run `bin/rails generate avo:locales` to re-generate the locales file.

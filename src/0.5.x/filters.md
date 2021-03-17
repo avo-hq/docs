@@ -15,21 +15,15 @@ Avo has two types of filters available at the moment [Boolean filter](#boolean-f
 You generate one running `bin/rails generate avo:filter featured_filter` creating a filter configuration file.
 
 ```ruby
-module Avo
-  module Filters
-    class FeaturedFilter < BooleanFilter
-      def name
-        'Featured filter'
-      end
+class FeaturedFilter < Avo::Filters::BooleanFilter
+  self.name = 'Featured filter'
 
-      def apply(request, query, values)
-        query
-      end
+  def apply(request, query, values)
+    query
+  end
 
-      def options
-        {}
-      end
-    end
+  def options
+    {}
   end
 end
 ```
@@ -52,33 +46,27 @@ The `options` method defines the available values of your filter. They should re
 
 The finished filter might look something like this.
 
-```ruby
-module Avo
-  module Filters
-    class FeaturedFilter < BooleanFilter
-      def name
-        'Featured status'
-      end
+```ruby{17-20}
+class FeaturedFilter < Avo::Filters::BooleanFilter
+  self.name = 'Featured status'
 
-      def apply(request, query, values)
-        return query if values[:is_featured] && values[:is_unfeatured]
+  def apply(request, query, values)
+    return query if values[:is_featured] && values[:is_unfeatured]
 
-        if values[:is_featured]
-          query = query.where(is_featured: true)
-        elsif values[:is_unfeatured]
-          query = query.where(is_featured: false)
-        end
-
-        query
-      end
-
-      def options
-        {
-          'is_featured': 'Featured',
-          'is_unfeatured': 'Unfeatured',
-        }
-      end
+    if values[:is_featured]
+      query = query.where(is_featured: true)
+    elsif values[:is_unfeatured]
+      query = query.where(is_featured: false)
     end
+
+    query
+  end
+
+  def options
+    {
+      'is_featured': 'Featured',
+      'is_unfeatured': 'Unfeatured',
+    }
   end
 end
 ```
@@ -87,39 +75,33 @@ end
 
 You can set a default value to the filter so it has a predetermined state on load. To do that return the state you desire it from the `default` method.
 
-```ruby{20-24}
-module Avo
-  module Filters
-    class FeaturedFilter < BooleanFilter
-      def name
-        'Featured status'
-      end
+```ruby{17-19}
+class FeaturedFilter < Avo::Filters::BooleanFilter
+  self.name = 'Featured status'
 
-      def apply(request, query, values)
-        return query if values[:is_featured] && values[:is_unfeatured]
+  def apply(request, query, values)
+    return query if values[:is_featured] && values[:is_unfeatured]
 
-        if values[:is_featured]
-          query = query.where(is_featured: true)
-        elsif values[:is_unfeatured]
-          query = query.where(is_featured: false)
-        end
-
-        query
-      end
-
-      def default
-        {
-          is_featured: true
-        }
-      end
-
-      def options
-        {
-          'is_featured': 'Featured',
-          'is_unfeatured': 'Unfeatured',
-        }
-      end
+    if values[:is_featured]
+      query = query.where(is_featured: true)
+    elsif values[:is_unfeatured]
+      query = query.where(is_featured: false)
     end
+
+    query
+  end
+
+  def default
+    {
+      is_featured: true
+    }
+  end
+
+  def options
+    {
+      'is_featured': 'Featured',
+      'is_unfeatured': 'Unfeatured',
+    }
   end
 end
 ```
@@ -133,31 +115,25 @@ The biggest difference from the **Boolean filter** is in the `apply` method. You
 A finished, select filter might look like this.
 
 ```ruby
-module Avo
-  module Filters
-    class PublishedFilter < SelectFilter
-      def name
-        'Published status'
-      end
+class PublishedFilter < Avo::Filters::SelectFilter
+  self.name = 'Published status'
 
-      def apply(request, query, value)
-        case value
-        when 'published'
-          query.where.not(published_at: nil)
-        when 'unpublished'
-          query.where(published_at: nil)
-        else
-          query
-        end
-      end
-
-      def options
-        {
-          'published': 'Published',
-          'unpublished': 'Unpublished',
-        }
-      end
+  def apply(request, query, value)
+    case value
+    when 'published'
+      query.where.not(published_at: nil)
+    when 'unpublished'
+      query.where(published_at: nil)
+    else
+      query
     end
+  end
+
+  def options
+    {
+      'published': 'Published',
+      'unpublished': 'Unpublished',
+    }
   end
 end
 ```
@@ -166,36 +142,30 @@ end
 
 The select filter supports setting a default too.
 
-```ruby{19-21}
-module Avo
-  module Filters
-    class PublishedFilter < SelectFilter
-      def name
-        'Published status'
-      end
+```ruby{15-17}
+class PublishedFilter < Avo::Filters::SelectFilter
+  self.name = 'Published status'
 
-      def apply(request, query, value)
-        case value
-        when 'published'
-          query.where.not(published_at: nil)
-        when 'unpublished'
-          query.where(published_at: nil)
-        else
-          query
-        end
-      end
-
-      def default
-        'published'
-      end
-
-      def options
-        {
-          'published': 'Published',
-          'unpublished': 'Unpublished',
-        }
-      end
+  def apply(request, query, value)
+    case value
+    when 'published'
+      query.where.not(published_at: nil)
+    when 'unpublished'
+      query.where(published_at: nil)
+    else
+      query
     end
+  end
+
+  def default
+    'published'
+  end
+
+  def options
+    {
+      'published': 'Published',
+      'unpublished': 'Unpublished',
+    }
   end
 end
 ```
