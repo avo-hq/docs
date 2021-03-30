@@ -47,7 +47,7 @@ The `_scripts.html.erb` partial enables you to insert scripts in the footer of y
 
 ## Resource Index view
 
-There are a few customization options to change the ways resources are displayed in the `Index` view.
+There are a few customization options to change the ways resources are displayed in the **Index** view.
 
 ### Resources per page
 
@@ -82,7 +82,7 @@ The `ResourceIndex` component supports two view types `:table` and `:grid`. You 
 
 ## ID links to resource
 
-On the `Index` view each row has at the end the controls component which allows the user to go to the `Show` and `Edit` views, and delete that entry. If you have a long row and a not-so-wide monitor it might not be that easy to scroll to the right-most section to click the `Show` link.
+On the **Index** view each row has at the end the controls component which allows the user to go to the **Show** and **Edit** views, and delete that entry. If you have a long row and a not-so-wide monitor it might not be that easy to scroll to the right-most section to click the **Show** link.
 
 To make it easier you can enable the `id_links_to_resource` config option.
 
@@ -94,7 +94,7 @@ Avo.configure do |config|
 end
 ```
 
-This will render all `id` fields in the `Index` view as link to that resource.
+This will render all `id` fields in the **Index** view as link to that resource.
 
 <img :src="$withBase('/assets/img/fields-reference/as-link-to-resource.jpg')" alt="As link to resource" class="border mb-4" />
 
@@ -111,7 +111,7 @@ By default Avo's main content is constrained to a regular [Tailwind CSS containe
 
 ### Display only the Index view full-width
 
-Using `full_width_index_view: true` tells Avo to display the `Index` view full-width.
+Using `full_width_index_view: true` tells Avo to display the **Index** view full-width.
 
 ### Display all views full-width
 

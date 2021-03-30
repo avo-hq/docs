@@ -15,8 +15,8 @@ end
 ```
 
 ```yml{6-10}
-# avo.en.yml
-en:
+# avo.es.yml
+es:
   avo:
     dashboard: 'Dashboard'
     # ... other translation keys
@@ -37,17 +37,15 @@ Similarly, you can even localize fields. All you need to do is add a `translatio
 class ProjectResource < Avo::BaseResource
   self.title = :name
 
-  fields do |field|
-    field.id
-    # ... other fields
-    field.files :files, translation_key: 'avo.field_translations.file'
-  end
+  field :id, as: :id
+  # ... other fields
+  field :files, as: :files, translation_key: 'avo.field_translations.file'
 end
 ```
 
 ```yml{6-10}
-# avo.en.yml
-en:
+# avo.es.yml
+es:
   avo:
     dashboard: 'Dashboard'
     # ... other translation keys

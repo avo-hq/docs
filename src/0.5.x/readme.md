@@ -4,7 +4,7 @@ next: ./installation
 
 # Get Started
 
-Avo is a beautiful next-generation framework that empowers developers and teams to deliver fast and in a uniform way fantastic admin panels for your Ruby on Rails apps.
+Avo is a beautiful next-generation framework that empowers developers and teams to deliver fast and in a uniform way beautiful admin panels for your Ruby on Rails apps.
 
 It's built with Hotwire so it speaks your favorite language, <span class="text-red-700">Ruby on Rails</span>.
 
@@ -14,9 +14,9 @@ Avo is a Ruby on Rails engine that runs isolated side by side with your app. It 
 
 ## Overview of Avo
 
-The primary goal of Avo is to administer your database records. To do that, it uses the concept of a [**Resource**](./resources.html). Each Avo `Resource` corresponds to a Rails `Model`.
+In the future we want Avo to be the central place where you do your work like manage resources, update app settings, view stats and dashboards and, bring your own functionality. At the moment, the primary goal of Avo is to administer your database records. To do that, it uses the concept of a [**Resource**](./resources.html). Each Avo `Resource` corresponds to a Rails `Model`.
 
-The next step after you define your `Resource` is to map the database fields, so Avo knows what data to display from the database and how to display it. Each field declaration adds a column of data into the `Index` view or a row in the `Show`, `Edit`, and `Create` views.
+The next step after you define your `Resource` is to map the database fields, so Avo knows what data to display from the database and how to display it. Each field declaration adds a column of data into the **Index** view and, a row in the **Show**, **Edit**, and **Create** views.
 
 There are the basic fields like [text](./fields.html#text), [textarea](./fields.html#textarea), [select](./fields.html#select) and [boolean](./fields.html#boolean), and the more complex ones like [trix](./fields.html#trix), [markdown](./fields.html#markdown), [gravatar](./fields.html#gravatar), and [boolean_group](./fields.html#boolean_group). There's even an amazing [file](./fields.html#file) field that's tightly integrated with `Active Storage`. **You've never added files integration as easy as this before.**
 

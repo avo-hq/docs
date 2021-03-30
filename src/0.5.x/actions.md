@@ -16,6 +16,9 @@ Avo actions use two main methods. `handle` and `fields`.
 class ToggleActive < Avo::BaseAction
   self.name = 'Toggle active'
 
+  field :notify_user, as: :boolean, default: true
+  field :message, as: :text, default: 'Your account has been marked as inactive.'
+
   def handle(models:, fields:)
     models.each do |model|
       if model.active
@@ -24,27 +27,20 @@ class ToggleActive < Avo::BaseAction
         model.update active: true
       end
 
-      # Optionally you may send a notification with the message to that user.
+      # Optionally you may send a notification with the message to that user from inside the action
       UserMailer.with(user: model).toggle_active(fields[:message]).deliver_later
     end
 
     succeed 'Perfect!'
   end
-
-  fields do |field|
-    field.boolean :notify_user, default: true
-    field.text :message, default: 'Your account has been marked as inactive.'
-  end
 end
 ```
 
-In the `fields` method, you may declare extra fields just as you do it in resources. The `fields` method is optional. You may have actions that don't have any fields attached.
+You may add fields to the action just as you do it in a resource. Adding fields is optional. You may have actions that don't have any fields attached.
 
 ```ruby
-fields do |field|
-  field.boolean :notify_user
-  field.textarea :message, default: 'Your account has been marked as inactive.'
-end
+field :notify_user, as: :boolean
+field :message, as: :textarea, default: 'Your account has been marked as inactive.'
 ```
 
 <img :src="$withBase('/assets/img/actions.jpg')" alt="Avo actions" class="border mb-4" />
@@ -70,21 +66,17 @@ end
 
 ## Registering actions
 
-To use an action, you need to declare it on the resource using the `actions` method.
+To add an action to one of your resources, you need to declare it on the resource using the `action` method.
 
 ```ruby{10-12}
 class UserResource < Avo::BaseResource
   self.title = :name
   self.search = [:id, :first_name, :last_name]
 
-  fields do |field|
-    field.id
-    # other fields
-  end
+  field :id, as: :id
+  # other fields
 
-  actions do |action|
-    action.use ToggleInactive
-  end
+  action ToggleInactive
 end
 ```
 
@@ -209,4 +201,4 @@ You may customize the labels for the action buttons using `confirm_button_label`
 
 ### No confirmation actions
 
-If you don't want to show the confirmation modal, pass in the `self.no_confirmation = true` class attribute. This will execute the action without showing the modal at all.
+By default when you run an action you will be prompted by a confirmation modal. If you don't want to show the confirmation modal, pass in the `self.no_confirmation = true` class attribute. This will execute the action without showing the modal at all.

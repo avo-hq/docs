@@ -18,14 +18,11 @@ Inside the creates resource file will look like so:
 
 ```ruby
 class PostResource < Avo::BaseResource
-  def configure
-    @title = :id
-    @search = :id
-  end
+  self.title = :id
+  self.includes = []
 
-  fields do |field|
-    field.id :id
-  end
+  field :id, as: :id
+  # add fields here
 end
 ```
 
@@ -47,7 +44,7 @@ Using the `@search` property you can tell Avo which fields it should look throug
 
 ## Eager loading
 
-If you regularly need access to a resource's associations, you can tell Avo to eager load those associations on the `Index` view using `includes`. This will help you avoid those nasty `n+1` performance issues.
+If you regularly need access to a resource's associations, you can tell Avo to eager load those associations on the **Index** view using `includes`. This will help you avoid those nasty `n+1` performance issues.
 
 ```ruby
 class PostResource < Avo::BaseResource
@@ -61,7 +58,7 @@ Each generated resource will have four views **Index** view where you see all yo
 
 ### Grid view
 
-On **Index view**, the most common view type is `:table`,b ut you might have some data that you want to display in a **grid view**. You change that by setting `default_view_type` to `:grid`.
+On **Index view**, the most common view type is `:table`. You might have some data that you want to display in a **grid view**. You change that by setting `default_view_type` to `:grid` and add the `grid` block.
 
 <img :src="$withBase('/assets/img/grid-view.jpg')" alt="Avo grid view" class="border mb-4" />
 
@@ -102,7 +99,7 @@ end
 
 ## Devise password optional
 
-If you use `devise` and you update your user models (usually `User`) without passing a password you will get a validation error. You can use `devise_password_optional` to stop receiving that error. It will [strip out](https://stackoverflow.com/questions/5113248/devise-update-user-without-password/11676957#11676957) the `password` params.
+If you use `devise` and you update your user models (usually `User`) without passing a password you will get a validation error. You can use `devise_password_optional` to stop receiving that error. It will [strip out](https://stackoverflow.com/questions/5113248/devise-update-user-without-password/11676957#11676957) the `password` key from `params`.
 
 ```ruby
 class UserResource < Avo::BaseResource

@@ -18,11 +18,11 @@ These methods control whether the resource appears on the sidebar, if the view/e
 
 ### index?
 
-`index?` is used to display the resources on the sidebar, display the related HasMany resources view and restrict access to the resources `Index` view.
+`index?` is used to display the resources on the sidebar, display the related HasMany resources view and restrict access to the resources **Index** view.
 
 ### show?
 
-When setting `show?` to `false`, the user will not see the show icon on the resource row and will not have access to the `Show` view of a resource.
+When setting `show?` to `false`, the user will not see the show icon on the resource row and will not have access to the **Show** view of a resource.
 
 ### create?
 
@@ -46,7 +46,7 @@ The `new?` method will control whether the users see the `Create new RESOURCE` b
 
 ## Scopes
 
-In the generated policy, you may also specify a scope for the `Index` view.
+In the generated policy, you may also specify a scope for the **Index** view.
 
 ```ruby{3-9}
 class PostPolicy < ApplicationPolicy
@@ -85,4 +85,4 @@ Avo.configure do |config|
 end
 ```
 
-Now, Avo will use `avo_index?` instead of `index?` to manage the `Index` view authorization.
+Now, Avo will use `avo_index?` instead of `index?` to manage the **Index** view authorization.

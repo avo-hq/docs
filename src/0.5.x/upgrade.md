@@ -1,4 +1,4 @@
-# Upgrade from 0.4.x
+# Upgrade from 0.4.x to 0.5.x
 
 [[toc]]
 
@@ -9,11 +9,11 @@ If you're upgrading from <strong>0.4.x</strong> please follow the steps below to
 ### Resources inherit from `Avo::BaseResource`
 
 **Changes**
-  - all resources inherit from `Avo::BaseResource`
   - all resources are standalone classes
+  - all resources inherit from `Avo::BaseResource`
   - no more opening up the `Avo` namespace
   - resource classes have the `Resource` suffix
-  - resource files have the `_resource` suffix
+  - resource files have the `_resource.rb` suffix
 
 All resources should now inherit from `Avo::BaseResource`. This is a pattern more widely used for these kinds of DSLs. Also all resources now have the `Resource` suffix (ex: `app/avo/resources/user.rb` becomes `app/avo/resources/user_resource.rb` with the class `UserResource`).
 
@@ -39,51 +39,76 @@ module Avo
 ```ruby{3}
 # 0.5.x notation
 # app/avo/resources/post_resource.rb
-PostResource < Avo::BaseResource
+class PostResource < Avo::BaseResource
   ...
-
-  fields do |field|
-    field.text :name
-  end
-
-  actions do |action|
-    action.use ToggleAdmin
-  end
-
-  ...
+end
 ```
 
 ### Fields
 
 **Changes**
-  - the `fields do` declaration renamed to `fields do |field|`
-  - declare fields on the `field` attribute
-
-All fields declarations changed from using the `fields do` block to also pass an object on which you declare the fields similar to how a form is declared (`form do |f|`). Also, now you should declare the fields on the attribute you pass in (`field`).
+  - the `fields do` declaration removed
+  - all fields are declared with the class method `field`
+  - the field type is declared using the `as:` attribute
 
 ```ruby
 # 0.4.x notation
-fields do
-  text :name
-  file :logo
+module Avo
+  module Resources
+    class Post < Resource
+      fields do
+        text :name
+        file :logo
+      end
+    end
+  end
 end
 ```
 
 ```ruby
 # 0.5.x notation
-fields do |field|
-  field.text :name
-  field.file :logo
+class PostResource < Avo::BaseResource
+  field :name, as: :text
+  field :logo, as: :file
+end
+```
+
+### `heading` field is now a class method
+
+**Changes**
+  - use the `heading` class method to add headings
+
+```ruby
+# 0.4.x notation
+module Avo
+  module Resources
+    class Post < Resource
+      fields do
+        heading 'Post details'
+        text :name
+        file :logo
+      end
+    end
+  end
+end
+```
+
+```ruby
+# 0.5.x notation
+class PostResource < Avo::BaseResource
+  heading 'Post details'
+  field :name, as: :text
+  field :logo, as: :file
 end
 ```
 
 ### Resource controllers
 
-All resources must have their own controllers that inherit from `Avo::ResourcesController`. You may generate a controller for each resource using the `bin/rails generate avo:controller RESOURCE_NAME` command.
+All resources must have their own controllers that inherit from `Avo::ResourcesController`. You may generate a controller for each of your existing resource using the `bin/rails generate avo:controller RESOURCE_NAME` command.
 
 Ex: `bin/rails generate avo:controller post`.
 
-From now on, when you generate a resource, a controller will be generated also.
+From now on a controller will be generated when you generate an Avo resource.
 
 ### The initialize method removed
 
@@ -114,9 +139,8 @@ PostResource < Avo::BaseResource
 ### Grid fields declaration
 
 **Changes**
-  - the `grid do` declaration becomes to `grid do |cover, title, body|`
-  - declare grid fields on the `cover`, `title`, `body` attributes
-  - each grid field may now hold it's own configuration. It's not passed on from the `fields` method anymore.
+  - inside the `grid do` declaration you declare fields on the `cover`, `title` and `body`
+  - each grid field will now hold it's own configuration. It's not passed on from the `fields` method anymore.
 
 The grid fields declaration method has changed to match the regular `fields` declaration method. This way you can configure and customize the grid fields however you need them.
 
@@ -131,10 +155,10 @@ end
 
 ```ruby
 # 0.5.x notation
-grid do |cover, title, body|
-  cover.external_image :cdn_cover_photo, required: true, link_to_resource: true
-  title.text :name, required: true, link_to_resource: true
-  body.text :excerpt do |model|
+grid do
+  cover :cdn_cover_photo, as: :external_image, required: true, link_to_resource: true
+  title :name, as: :text, required: true, link_to_resource: true
+  body :excerpt, as: :text do |model|
     begin
       ActionView::Base.full_sanitizer.sanitize(model.body).truncate 120
     rescue => exception
@@ -167,7 +191,6 @@ class UserResource < Avo::BaseResource
 ```
 
 
-
 ## Fields
 
 ### `datetime` field renamed to `date_time`
@@ -187,11 +210,7 @@ module Avo
 ```ruby{5}
 # 0.5.x
 class ProjectResource < Avo::BaseResource
-  fields do |field|
-    ...
-    field.date_time :started_at, name: 'Started', time_24hr: true, relative: true, timezone: 'EET'
-    ...
-  end
+  field :started_at, as: :date_time, name: 'Started', time_24hr: true, relative: true, timezone: 'EET'
 ```
 
 ### `date` & `date_time` field format change
@@ -229,8 +248,7 @@ class FeaturedFilter < Avo::Filters::BooleanFilter
 **Changes**
 
  - `use_filter` is deprecated
- - wrap the filters in a `filters do |filter|` method
- - declare filters on the `filter` attribute
+ - use the `filter` class method
 
 
 ```ruby
@@ -241,9 +259,9 @@ use_filter Avo::Filters::PublishedFilter
 
 ```ruby
 # 0.5.x notation
-filters do |filter|
-  filter.use FeaturedFilter
-  filter.use PublishedFilter
+class PostResource < Avo::BaseResource
+  filter FeaturedFilter
+  filter PublishedFilter
 end
 ```
 
@@ -301,8 +319,7 @@ class TogglePublished < Avo::BaseAction
 **Changes**
 
  - `use_action` is deprecated
- - wrap the filters in a `actions do |action|` method
- - declare filters on the `action` attribute
+ - use the `action` class method
 
 
 ```ruby
@@ -312,8 +329,8 @@ use_action Avo::Actions::TogglePublished
 
 ```ruby
 # 0.5.x notation
-actions do |action|
-  action.use TogglePublished
+class PostResource < Avo::BaseResource
+  action TogglePublished
 end
 ```
 
@@ -366,8 +383,8 @@ TogglePublished < Avo::BaseAction
 
 **Changes**
 
- - the `fields do` declaration renamed to `fields do |field|`
- - declare fields on the `field` attribute
+ - the `fields do` declaration removed
+ - declare fields using the `field` class method
 
 ```ruby{7-10}
 # 0.4.x notation
@@ -389,11 +406,9 @@ end
 # 0.5.x notation
 class ToggleInactive < Avo::BaseAction
   ...
-
-  fields do |field|
-    field.boolean :notify_user, default: true
-    field.text :message, default: 'Your account has been marked as inactive.'
-  end
+  field :notify_user, as: :boolean, default: true
+  field :message, as: :text, default: 'Your account has been marked as inactive.'
+  ...
 end
 ```
 
