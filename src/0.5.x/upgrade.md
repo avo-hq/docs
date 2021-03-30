@@ -1,4 +1,4 @@
-# Upgrade from 0.4.x to 0.5.x
+# Upgrade from 0.4.x to 0.5.x notation
 
 [[toc]]
 
@@ -173,7 +173,7 @@ end
 The `has_devise_password` resource configuration has been renamed to `devise_password_optional`.
 
 ```ruby{7}
-# 0.4.x
+# 0.4.x notation
 module Avo
   module Resources
     class User < Resource
@@ -184,7 +184,7 @@ module Avo
 ```
 
 ```ruby{4}
-# 0.5.x
+# 0.5.x notation
 class UserResource < Avo::BaseResource
   self.title = :name
   self.devise_password_optional = true
@@ -196,7 +196,7 @@ class UserResource < Avo::BaseResource
 ### `datetime` field renamed to `date_time`
 
 ```ruby{7}
-# 0.4.x
+# 0.4.x notation
 module Avo
   module Resources
     class Project < Resource
@@ -208,7 +208,7 @@ module Avo
 ```
 
 ```ruby{5}
-# 0.5.x
+# 0.5.x notation
 class ProjectResource < Avo::BaseResource
   field :started_at, as: :date_time, name: 'Started', time_24hr: true, relative: true, timezone: 'EET'
 ```
@@ -402,7 +402,7 @@ module Avo
 end
 ```
 
-```ruby{5-8}
+```ruby{4-5}
 # 0.5.x notation
 class ToggleInactive < Avo::BaseAction
   ...
