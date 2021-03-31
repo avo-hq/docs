@@ -55,8 +55,8 @@ module.exports = {
         link: '/',
         items: [
           {
-            text: "0.5.x",
-            link: "/0.5.x/"
+            text: "1.0",
+            link: "/1.0/"
           },
           {
             text: "0.4.x",
@@ -66,37 +66,37 @@ module.exports = {
       }
     ],
     sidebar: {
-      '/0.5.x/': [
+      '/1.0/': [
         {
           title: 'Getting started',
-          path: '/0.5.x/',
+          path: '/1.0/',
           collapsable: false,
           sidebarDepth: 0,
           children: [
-            '/0.5.x/installation',
-            '/0.5.x/upgrade',
-            '/0.5.x/authentication',
-            '/0.5.x/licensing',
-            '/0.5.x/resources',
-            '/0.5.x/fields-reference',
-            '/0.5.x/grid-view',
+            '/1.0/installation',
+            '/1.0/upgrade',
+            '/1.0/authentication',
+            '/1.0/licensing',
+            '/1.0/resources',
+            '/1.0/fields-reference',
+            '/1.0/grid-view',
           ]
         },
-        '/0.5.x/fields',
-        '/0.5.x/associations',
+        '/1.0/fields',
+        '/1.0/associations',
         {
           title: 'Filters',
-          path: '/0.5.x/filters',
+          path: '/1.0/filters',
           sidebarDepth: 0,
         },
         {
           title: 'Actions',
-          path: '/0.5.x/actions',
+          path: '/1.0/actions',
           sidebarDepth: 0,
         },
-        '/0.5.x/authorization',
-        '/0.5.x/customization',
-        '/0.5.x/localization',
+        '/1.0/authorization',
+        '/1.0/customization',
+        '/1.0/localization',
       ],
       '/0.4.x/': [
         {

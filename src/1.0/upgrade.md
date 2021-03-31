@@ -1,4 +1,4 @@
-# Upgrade from 0.4.x to 0.5.x notation
+# Upgrade from 0.4.x to 1.0
 
 [[toc]]
 
@@ -37,7 +37,7 @@ module Avo
 ```
 
 ```ruby{3}
-# 0.5.x notation
+# 1.0 notation
 # app/avo/resources/post_resource.rb
 class PostResource < Avo::BaseResource
   ...
@@ -66,7 +66,7 @@ end
 ```
 
 ```ruby
-# 0.5.x notation
+# 1.0 notation
 class PostResource < Avo::BaseResource
   field :name, as: :text
   field :logo, as: :file
@@ -94,7 +94,7 @@ end
 ```
 
 ```ruby
-# 0.5.x notation
+# 1.0 notation
 class PostResource < Avo::BaseResource
   heading 'Post details'
   field :name, as: :text
@@ -129,7 +129,7 @@ module Avo
 ```
 
 ```ruby{3-5}
-# 0.5.x notation
+# 1.0 notation
 PostResource < Avo::BaseResource
   self.title = :name
   self.includes = :user
@@ -154,7 +154,7 @@ end
 ```
 
 ```ruby
-# 0.5.x notation
+# 1.0 notation
 grid do
   cover :cdn_cover_photo, as: :external_image, required: true, link_to_resource: true
   title :name, as: :text, required: true, link_to_resource: true
@@ -184,7 +184,7 @@ module Avo
 ```
 
 ```ruby{4}
-# 0.5.x notation
+# 1.0 notation
 class UserResource < Avo::BaseResource
   self.title = :name
   self.devise_password_optional = true
@@ -208,7 +208,7 @@ module Avo
 ```
 
 ```ruby{5}
-# 0.5.x notation
+# 1.0 notation
 class ProjectResource < Avo::BaseResource
   field :started_at, as: :date_time, name: 'Started', time_24hr: true, relative: true, timezone: 'EET'
 ```
@@ -239,7 +239,7 @@ module Avo
 ```
 
 ```ruby
-# 0.5.x notation
+# 1.0 notation
 class FeaturedFilter < Avo::Filters::BooleanFilter
 ```
 
@@ -258,7 +258,7 @@ use_filter Avo::Filters::PublishedFilter
 ```
 
 ```ruby
-# 0.5.x notation
+# 1.0 notation
 class PostResource < Avo::BaseResource
   filter FeaturedFilter
   filter PublishedFilter
@@ -282,7 +282,7 @@ module Avo
 ```
 
 ```ruby{3}
-# 0.5.x notation
+# 1.0 notation
 class PublishedFilter < Avo::Filters::SelectFilter
   self.name = 'Published status'
 ```
@@ -309,7 +309,7 @@ module Avo
 ```
 
 ```ruby
-# 0.5.x notation
+# 1.0 notation
 class TogglePublished < Avo::BaseAction
   self.name = 'Toggle post published'
 ```
@@ -328,7 +328,7 @@ use_action Avo::Actions::TogglePublished
 ```
 
 ```ruby
-# 0.5.x notation
+# 1.0 notation
 class PostResource < Avo::BaseResource
   action TogglePublished
 end
@@ -370,7 +370,7 @@ module Avo
 ```
 
 ```ruby{3-7}
-# 0.5.x notation
+# 1.0 notation
 TogglePublished < Avo::BaseAction
   self.name = 'Toggle post published'
   self.message = 'Are you sure, sure?'
@@ -403,7 +403,7 @@ end
 ```
 
 ```ruby{4-5}
-# 0.5.x notation
+# 1.0 notation
 class ToggleInactive < Avo::BaseAction
   ...
   field :notify_user, as: :boolean, default: true

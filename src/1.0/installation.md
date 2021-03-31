@@ -1,5 +1,5 @@
 ---
-prev: /0.5.x/
+prev: /1.0/
 ---
 
 # Installation

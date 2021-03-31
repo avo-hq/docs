@@ -12,8 +12,8 @@ export default ({
   siteData // site metadata
 }) => {
   router.addRoutes([
-    { path: '/', redirect: '/0.5.x' },
-    { path: '/0.x/*', redirect: '/0.5.x' },
+    { path: '/', redirect: '/1.0' },
+    { path: '/0.x/*', redirect: '/1.0' },
     { path: '/0.1/*', redirect: '/0.4.x' },
   ])
 
