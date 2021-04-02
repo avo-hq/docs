@@ -14,9 +14,6 @@ module.exports = {
       './0.4.x/**/*.md',
       './1.0/**/*.md',
     ],
-    options: {
-      whitelist: [],
-    },
   },
   darkMode: false, // or 'media' or 'class'
   theme: {
