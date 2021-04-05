@@ -10,41 +10,6 @@ On the main navbar next to the logo Avo generates a link to the homepage of your
 
 In your data-rich app you might have a few fields where you reference `date`, `datetime` and `currency` fields. You may customize the global timezone and currency with `config.timezone = 'UTC'` and `config.currency = 'USD'` config options.
 
-## Partials
-
-You can customize some layout partials. Run `bin/rails generate avo:partials` to create the default partials.
-
-This will generate 4 partials:
-
-<!--
-
-1. `_header.html.erb` - displays the app name with a link to the homepage
-2. `_logo.html.erb` - displays the logo of your app (defaults to Avo's logo)
-3. `_footer.html.erb` - displays the copyright and Avo's version
-4. `_scripts.html.erb` - an empty partial where you can insert scripts and other types of content (Analytics, etc.) -->
-
-### Logo
-
-In the `app/views/vendor/avo/partials` directory you will find the `_logo.html.erb` partial which you may customize however you want. It will be displayed in place of Avo's logo.
-
-<img :src="$withBase('/assets/img/customization/logo.jpg')" alt="Avo logo customization" class="border mb-4" />
-
-### Header
-
-The `_header.html.erb` partial enables you to customize the name and link of your app.
-
-<img :src="$withBase('/assets/img/customization/header.jpg')" alt="Avo header customization" class="border mb-4" />
-
-### Footer
-
-The `_footer.html.erb` partial enables you to customize the footer of your admin.
-
-<img :src="$withBase('/assets/img/customization/footer.jpg')" alt="Avo footer customization" class="border mb-4" />
-
-### Scripts
-
-The `_scripts.html.erb` partial enables you to insert scripts in the footer of your admin.
-
 ## Resource Index view
 
 There are a few customization options to change the ways resources are displayed in the **Index** view.
@@ -163,7 +128,33 @@ Running via Spring preloader in process 20947
 
 A list with prepared templates:
 
- - `:sidebar` 👉 `app/views/avo/sidebar/_sidebar.html.erb`
+ - `:sidebar` ➡️ &nbsp; `app/views/avo/sidebar/_sidebar.html.erb`
+ - `:logo` ➡️ &nbsp; `app/views/avo/partials/logo.html.erb`
+ - `:header` ➡️ &nbsp; `app/views/avo/partials/header.html.erb`
+ - `:footer` ➡️ &nbsp; `app/views/avo/partials/footer.html.erb`
+ - `:scripts` ➡️ &nbsp; `app/views/avo/partials/scripts.html.erb`
+
+#### Logo
+
+In the `app/views/vendor/avo/partials` directory you will find the `_logo.html.erb` partial which you may customize however you want. It will be displayed in place of Avo's logo.
+
+<img :src="$withBase('/assets/img/customization/logo.jpg')" alt="Avo logo customization" class="border mb-4" />
+
+#### Header
+
+The `_header.html.erb` partial enables you to customize the name and link of your app.
+
+<img :src="$withBase('/assets/img/customization/header.jpg')" alt="Avo header customization" class="border mb-4" />
+
+#### Footer
+
+The `_footer.html.erb` partial enables you to customize the footer of your admin.
+
+<img :src="$withBase('/assets/img/customization/footer.jpg')" alt="Avo footer customization" class="border mb-4" />
+
+#### Scripts
+
+The `_scripts.html.erb` partial enables you to insert scripts in the footer of your admin.
 
 ### Eject any template
 
