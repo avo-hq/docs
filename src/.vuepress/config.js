@@ -94,6 +94,7 @@ module.exports = {
           path: '/1.0/actions',
           sidebarDepth: 0,
         },
+        '/1.0/custom-tools',
         '/1.0/authorization',
         '/1.0/customization',
         '/1.0/localization',

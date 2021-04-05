@@ -145,4 +145,35 @@ Avo.configure do |config|
 end
 ```
 
+## Eject views
+
+If you want to change one of Avo's built-in views, you can eject it, update it and use it in your admin.
+
+### Prepared templates
+
+We prepared a few templates to make it
+
+`bin/rails generate avo:eject :sidebar` will eject the `_sidebar.html.erb` partial.
+
+```
+▶ bin/rails generate avo:eject :sidebar
+Running via Spring preloader in process 20947
+      create  app/views/avo/sidebar/_sidebar.html.erb
+```
+
+A list with prepared templates:
+
+ - `:sidebar` 👉 `app/views/avo/sidebar/_sidebar.html.erb`
+
+### Eject any template
+
+You can eject any partial from Avo using the partial path.
+
+```
+▶ bin/rails generate avo:eject app/views/layouts/avo/application.html.erb
+      create  app/views/layouts/avo/application.html.erb
+```
+
+**Warning:** Once ejected, the views will not be receiving updates on new Avo versions.
+
 <!-- @todo: add docs for use_partials custom functionality -->
