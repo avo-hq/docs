@@ -167,4 +167,58 @@ You can eject any partial from Avo using the partial path.
 
 **Warning:** Once ejected, the views will not be receiving updates on new Avo versions.
 
+## Breadcrumbs
+
+By default Avo ships with breadcrumbs enabled.
+
+<img :src="$withBase('/assets/img/customization/breadcrumbs.jpg')" alt="Avo breadcrumbs" class="border mb-4" />
+
+You may disabled them using the `display_breadcrumbs` configuration option.
+
+```ruby{2}
+Avo.configure do |config|
+  config.display_breadcrumbs = false
+end
+```
+
+The first item on the breadcrumb is __Home__ with the `root_path` url. You can customize that using the `set_initial_breadcrumbs` block.
+
+```ruby{2-5}
+Avo.configure do |config|
+  config.set_initial_breadcrumbs do
+    add_breadcrumb "Casa", root_path
+    add_breadcrumb "Something else", something_other_path
+  end
+end
+```
+
+Avo uses the [breadcrumbs_on_rails](https://github.com/weppos/breadcrumbs_on_rails) gem under the hood.
+
+### Breadcrumbs for custom pages
+
+You can add breadcrumbs to custom pages in the controller action.
+
+```ruby{3}
+class Avo::ToolsController < Avo::ApplicationController
+  def custom_tool
+    add_breadcrumb "Custom tool"
+  end
+end
+```
+
+## Page titles
+
+If you want to update the page title for a custom tool or page you only need to pass in the `@page_title` instance variable in the controller method.
+
+```ruby{3}
+class Avo::ToolsController < Avo::ApplicationController
+  def custom_tool
+    @page_title = "Custom tool page title"
+  end
+end
+```
+
+Avo uses the [meta-tags](https://github.com/kpumuk/meta-tags) gem to compile and render the page title.
+
+
 <!-- @todo: add docs for use_partials custom functionality -->
