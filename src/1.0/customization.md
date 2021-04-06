@@ -169,11 +169,11 @@ You can eject any partial from Avo using the partial path.
 
 ## Breadcrumbs
 
-By default Avo ships with breadcrumbs enabled.
+By default, Avo ships with breadcrumbs enabled.
 
 <img :src="$withBase('/assets/img/customization/breadcrumbs.jpg')" alt="Avo breadcrumbs" class="border mb-4" />
 
-You may disabled them using the `display_breadcrumbs` configuration option.
+You may disable them using the `display_breadcrumbs` configuration option.
 
 ```ruby{2}
 Avo.configure do |config|
@@ -208,7 +208,7 @@ end
 
 ## Page titles
 
-If you want to update the page title for a custom tool or page you only need to pass in the `@page_title` instance variable in the controller method.
+When you want to update the page title for a custom tool or page, you only need to assign a value to the `@page_title` instance variable in the controller method.
 
 ```ruby{3}
 class Avo::ToolsController < Avo::ApplicationController
