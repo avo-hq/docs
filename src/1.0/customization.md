@@ -220,7 +220,7 @@ end
 
 Avo uses the [meta-tags](https://github.com/kpumuk/meta-tags) gem to compile and render the page title.
 
-## Change the home path
+## Home path
 
 When a user clicks your logo inside Avo or goes to the `/avo` url, they will be redirected to one of your resources. You might want to change that path to be something else like a custom page. You can do that with the `home_path` configuration.
 
