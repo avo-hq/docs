@@ -220,5 +220,28 @@ end
 
 Avo uses the [meta-tags](https://github.com/kpumuk/meta-tags) gem to compile and render the page title.
 
+## Change the home path
+
+When a user clicks your logo inside Avo or goes to the `/avo` url, they will be redirected to one of your resources. You might want to change that path to be something else like a custom page. You can do that with the `home_path` configuration.
+
+```ruby{2}
+Avo.configure do |config|
+  config.home_path = "/avo/dashboard"
+end
+```
+
+When you configure the `home_path` option, the `Get started` sidebar item will be hidden in the development environment.
+
+Now, whenever a user clicks the logo, they will be redirected to `/avo/dashboard`. You can use this configuration option alongside the `set_initial_breadcrumbs` option to create a more cohesive experience.
+
+```ruby{2-5}
+Avo.configure do |config|
+  config.home_path = "/avo/dashboard"
+  config.set_initial_breadcrumbs do
+    add_breadcrumb "Dashboard", "/avo/dashboard"
+  end
+end
+```
+
 
 <!-- @todo: add docs for use_partials custom functionality -->
