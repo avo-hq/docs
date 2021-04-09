@@ -4,7 +4,7 @@ Avo has two types of licenses. **Community edition** which is free and open sour
 
 ## Community vs Pro
 
-The **Community version** has features that you can use today like [Resource management](./resources.html), quite a lot of [feature-rich](./fields-reference.html) [fields](./fields.html), out-of-the box [sorting](./fields-reference.html#sortable-fields), [filtering](./filters.html) and [actions](./actions.html) and all the [associations](./associations.html) you need.
+The **Community version** has features that you can use today like [Resource management](./resources.html), quite a lot of [feature-rich](./field-options.html) [fields](./fields.html), out-of-the box [sorting](./field-options.html#sortable-fields), [filtering](./filters.html) and [actions](./actions.html) and all the [associations](./associations.html) you need.
 
 The **Pro version** has [advanced authorization](./authorization.html) using Pundit and [localization support](./localization.html). In the future we'll add other features such as Dashboards, Custom fields and tools, Settings screens, Themes and more.
 
