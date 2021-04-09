@@ -15,6 +15,7 @@ export default ({
     { path: '/', redirect: '/1.0' },
     { path: '/0.x/*', redirect: '/1.0' },
     { path: '/0.1/*', redirect: '/0.4.x' },
+    { path: '/1.0/fields-reference', redirect: '/1.0/field-options' },
   ])
 
   for (const [name, component] of Object.entries(pageComponents)) {

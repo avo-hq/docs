@@ -9,3 +9,9 @@
   to = "/0.4.x/:splat"
   status = 301
   force = false
+
+[[redirects]]
+  from = "/1.0/fields-reference"
+  to = "/1.0/field-options"
+  status = 301
+  force = false
