@@ -11,7 +11,7 @@
   force = false
 
 [[redirects]]
-  from = "/1.0/fields-reference"
-  to = "/1.0/field-options"
+  from = "/1.0/fields-reference.html"
+  to = "/1.0/field-options.html"
   status = 301
   force = false
