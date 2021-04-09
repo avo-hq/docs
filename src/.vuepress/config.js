@@ -78,7 +78,7 @@ module.exports = {
             '/1.0/authentication',
             '/1.0/licensing',
             '/1.0/resources',
-            '/1.0/fields-reference',
+            '/1.0/field-options',
             '/1.0/grid-view',
           ]
         },
