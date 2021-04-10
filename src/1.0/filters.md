@@ -169,3 +169,19 @@ class PublishedFilter < Avo::Filters::SelectFilter
   end
 end
 ```
+
+## Registering filters
+
+To add an filter to one of your resources, you need to declare it on the resource using the `filter` method.
+
+```ruby{10-12}
+class PostResource < Avo::BaseResource
+  self.title = :name
+  self.search = :id
+
+  field :id, as: :id
+  # other fields
+
+  filter PublishedFilter
+end
+```
