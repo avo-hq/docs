@@ -1,6 +1,6 @@
 module.exports = {
-  title: 'Avo Docs',
-  description: 'Avo documentation',
+  title: 'Avo Admin for Rails | Documentation',
+  description: 'The most beautiful, easy-to-use Ruby on Rails admin framework',
   theme: '@vuepress/theme-default',
   port: 3011,
   activeHeaderLinks: true,
