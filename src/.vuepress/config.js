@@ -11,6 +11,9 @@ module.exports = {
     ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }],
   ],
   plugins: [
+    ['@vuepress/search', {
+      test: '/1\.0/'
+    }],
     '@vuepress/plugin-back-to-top',
     '@vuepress/plugin-medium-zoom',
     [
