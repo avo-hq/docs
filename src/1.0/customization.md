@@ -128,11 +128,11 @@ Running via Spring preloader in process 20947
 
 A list with prepared templates:
 
- - `:sidebar` ➡️ &nbsp; `app/views/avo/sidebar/_sidebar.html.erb`
- - `:logo` ➡️ &nbsp; `app/views/avo/partials/logo.html.erb`
- - `:header` ➡️ &nbsp; `app/views/avo/partials/header.html.erb`
- - `:footer` ➡️ &nbsp; `app/views/avo/partials/footer.html.erb`
- - `:scripts` ➡️ &nbsp; `app/views/avo/partials/scripts.html.erb`
+- `:sidebar` ➡️ &nbsp; `app/views/avo/sidebar/_sidebar.html.erb`
+- `:logo` ➡️ &nbsp; `app/views/avo/partials/_logo.html.erb`
+- `:header` ➡️ &nbsp; `app/views/avo/partials/_header.html.erb`
+- `:footer` ➡️ &nbsp; `app/views/avo/partials/_footer.html.erb`
+- `:scripts` ➡️ &nbsp; `app/views/avo/partials/_scripts.html.erb`
 
 #### Logo
 
@@ -181,7 +181,7 @@ Avo.configure do |config|
 end
 ```
 
-The first item on the breadcrumb is __Home__ with the `root_path` url. You can customize that using the `set_initial_breadcrumbs` block.
+The first item on the breadcrumb is **Home** with the `root_path` url. You can customize that using the `set_initial_breadcrumbs` block.
 
 ```ruby{2-5}
 Avo.configure do |config|
@@ -242,6 +242,5 @@ Avo.configure do |config|
   end
 end
 ```
-
 
 <!-- @todo: add docs for use_partials custom functionality -->
