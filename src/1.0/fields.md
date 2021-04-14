@@ -228,6 +228,12 @@ Markdown field is hidden from the **Index** view. By default, the Markdown field
 field :description, as: :markdown, always_show: true
 ```
 
+You can also enable the spell checker using the `spell_checker: true` option.
+
+```ruby
+field :description, as: :markdown, spell_checker: true
+```
+
 ## Number
 
 The `Number` field renders a `input[type="number"]` element and has the `min`, `max`, and `step` options.

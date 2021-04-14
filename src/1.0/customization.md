@@ -260,11 +260,11 @@ When you use Webpacker 👇
 
 When you use Sprockets 👇
 
-```html.erb
+```html
 # app/views/avo/partials/_head.html.erb
 
-<%= javascript_include_tag 'avo' %>
-<%= stylesheet_link_tag 'avo', media: 'all' %>
+<%= javascript_include_tag 'custom_avo_script' %>
+<%= stylesheet_link_tag 'custom_avo_stylesheet', media: 'all' %>
 ```
 
 <!-- @todo: add docs for use_partials custom functionality -->
