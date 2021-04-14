@@ -11,7 +11,6 @@ prev: /1.0/
 
 - Ruby on Rails >= 6.0
 - Ruby >= 2.6
-- Webpacker gem (we're working on removing this dependency)
 
 ## Installing Avo
 
