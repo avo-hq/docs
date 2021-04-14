@@ -55,3 +55,7 @@ The `_new_tool.html.erb` partial will be added to the `app/views/avo/sidebar/ite
 
 If you want to further customize the sidebar partial you can [eject](./customization.html#eject-views) it and update it to your liking.
 
+## Add assets
+
+Please follow [this guide](./customization.html#bring-your-own-assets) to bring your own assets with your own asset pipeline.
+

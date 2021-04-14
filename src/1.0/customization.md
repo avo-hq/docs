@@ -243,5 +243,28 @@ Avo.configure do |config|
 end
 ```
 
+## Bring your own assets
+
+When creating custom tools you might want to import assets (javascript and stylesheets files). You can do that from v1.3. Avo's asset pipeline is abstracted away and you can use your own pipeline to bring new assets in.
+
+Whe you run `bin/rails generate avo:eject :head` a new partial will be created where you can add you assets.
+
+When you use Webpacker 👇
+
+```html.erb
+# app/views/avo/partials/_head.html.erb
+
+<%= javascript_pack_tag 'custom_avo_script' %>
+<%= stylesheet_pack_tag 'custom_avo_stylesheet', media: 'all' %>
+```
+
+When you use Sprockets 👇
+
+```html.erb
+# app/views/avo/partials/_head.html.erb
+
+<%= javascript_include_tag 'avo' %>
+<%= stylesheet_link_tag 'avo', media: 'all' %>
+```
 
 <!-- @todo: add docs for use_partials custom functionality -->
