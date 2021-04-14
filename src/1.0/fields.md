@@ -228,6 +228,8 @@ Markdown field is hidden from the **Index** view. By default, the Markdown field
 field :description, as: :markdown, always_show: true
 ```
 
+### Enable spell checker
+
 You can also enable the spell checker using the `spell_checker: true` option.
 
 ```ruby
