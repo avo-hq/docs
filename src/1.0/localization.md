@@ -32,7 +32,7 @@ es:
 Similarly, you can even localize fields. All you need to do is add a `translation_key:` option on the field declaration.
 
 
-```ruby{8}
+```ruby{7}
 # app/avo/resources/project_resource.rb
 class ProjectResource < Avo::BaseResource
   self.title = :name
