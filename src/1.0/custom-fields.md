@@ -197,12 +197,14 @@ For the `edit` view we're going to do something different. We'll implement a `ra
   <% end %>
   <!-- Add the range input with the settings we passed to the field -->
   <%= @form.range_field @field.id,
-    min: 0,
-    max: @field.max,
-    step: @field.step,
     class: 'w-full',
     placeholder: @field.placeholder,
-    disabled: @field.readonly %>
+    disabled: @field.readonly,
+    min: 0,
+    # add the field-specific options
+    max: @field.max,
+    step: @field.step,
+    %>
 <% end %>
 
 <script>
