@@ -28,6 +28,27 @@ end
 
 From this config, Avo will infer that the resource's model will be the `Post` model.
 
+You can add more fields to this resource below the `id` field.
+
+```ruby{5-15}
+class PostResource < Avo::BaseResource
+  self.title = :id
+  self.includes = []
+
+  field :id, as: :id
+  field :name, as: :text, required: true
+  field :body, as: :trix, placeholder: "Add the post body here", always_show: false
+  field :cover_photo, as: :file, is_image: true, link_to_resource: true
+  field :is_featured, as: :boolean
+
+  field :is_published, as: :boolean do |model|
+    model.published_at.present?
+  end
+
+  field :user, as: :belongs_to, placeholder: "—"
+end
+```
+
 ## Setting the title of the resource
 
 Initially, the `title` attribute is set to `:id`, so the model's `id` attribute will be used to display the resource in search results and belongs select fields. You usually change it to something more representative, like the model's `title`, `name` or `label` attributes.

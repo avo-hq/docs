@@ -12,6 +12,10 @@ module.exports = {
       './0.4.x/**/*.md',
       './1.0/**/*.md',
     ],
+    options: {
+      safelist: ['border'],
+      whitelist: ['border']
+    }
   },
   darkMode: false, // or 'media' or 'class'
   theme: {
