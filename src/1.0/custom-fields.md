@@ -184,7 +184,7 @@ No let's do something about those views. Let's add a progress bar to the `index`
 
 <img :src="$withBase('/assets/img/custom-fields/progress-index.jpg')" alt="Progress bar custom field on index" class="border mb-4" />
 
-For the `edit` view we're going to do something else. We'll implement a `range` input.
+For the `edit` view we're going to do something different. We'll implement a `range` input.
 
 ```erb
 <%= edit_field_wrapper field: @field, index: @index, form: @form, resource: @resource, displayed_in_modal: @displayed_in_modal do %>
