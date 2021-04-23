@@ -205,7 +205,6 @@ For the `edit` view we're going to do something else. We'll implement a `range` 
     disabled: @field.readonly %>
 <% end %>
 
-
 <script>
 // Get the input and value elements
 var input = document.getElementById('project_progress');
@@ -225,3 +224,19 @@ function updateValue(e) {
 
 In the example above we added the javascript on the page just to demonstrate the functionality. In reality you might add that to a stimulus controller inside your own Avo [dedicated pipeline](./custom-asset-pipeline.html) (webpacker or sprockets).
 
+There are also some styles that were added in the asset pipeline directly.
+```css
+progress {
+  @apply h-2 bg-white border border-gray-400 rounded shadow-inner;
+}
+progress[value]::-webkit-progress-bar {
+  @apply bg-white border border-gray-500 rounded shadow-inner;
+}
+progress[value]::-webkit-progress-value{
+  @apply bg-green-600 rounded;
+
+}
+progress[value]::-moz-progress-bar {
+  @apply bg-green-600 rounded appearance-none;
+}
+```
