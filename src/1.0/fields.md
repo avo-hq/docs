@@ -329,7 +329,7 @@ class Project < ApplicationRecord
   enum type: { 'Large container': 'large', 'Medium container': 'medium', 'Tiny container': 'small' }
 end
 
-select :type, enum: ::Project.types, display_with_value: true, placeholder: 'Choose the size of the container.'
+field :type, as: :select, enum: ::Project.types, display_with_value: true, placeholder: 'Choose the size of the container.'
 ```
 
 ## Status
