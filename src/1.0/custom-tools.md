@@ -57,5 +57,5 @@ If you want to further customize the sidebar partial you can [eject](./customiza
 
 ## Add assets
 
-Please follow [this guide](./custom-asset-pipeline.html) to bring your own assets with your own asset pipeline.
+When creating custom tools or fields, you might want to import assets (javascript and stylesheets files). You can do that so easily from v1.3. Please follow [this guide](./custom-asset-pipeline.html) to bring your assets with your asset pipeline.
 

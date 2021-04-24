@@ -224,6 +224,10 @@ function updateValue(e) {
 ```
 <img :src="$withBase('/assets/img/custom-fields/progress-edit.jpg')" alt="Progress bar custom field edit" class="border mb-4" />
 
+## Field assets
+
+Because there isn't just one standardized way of handling assets in Rails, we decided we won't provide **asset loading** support for custom fields for now. This doesn't mean that you can't use custom assets (javascript or css files), but that you will have to load them in your own pipeline in dedicated Avo files.
+
 In the example above we added the javascript on the page just to demonstrate the functionality. In reality you might add that to a stimulus controller inside your own Avo [dedicated pipeline](./custom-asset-pipeline.html) (webpacker or sprockets).
 
 There are also some styles that were added in the asset pipeline directly.
