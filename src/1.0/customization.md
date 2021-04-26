@@ -130,7 +130,9 @@ A list with prepared templates:
 
 - `:sidebar` ➡️ &nbsp; `app/views/avo/sidebar/_sidebar.html.erb`
 - `:logo` ➡️ &nbsp; `app/views/avo/partials/_logo.html.erb`
+- `:head` ➡️ &nbsp; `app/views/avo/partials/_head.html.erb`
 - `:header` ➡️ &nbsp; `app/views/avo/partials/_header.html.erb`
+- `:profile_dropdown` ➡️ &nbsp; `app/views/avo/partials/_profile_dropdown_.html.erb`
 - `:footer` ➡️ &nbsp; `app/views/avo/partials/_footer.html.erb`
 - `:scripts` ➡️ &nbsp; `app/views/avo/partials/_scripts.html.erb`
 
