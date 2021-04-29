@@ -4,8 +4,6 @@
 
 One of the most amazing things about Ruby on Rails is how easy it is to create [Active Record associations](https://guides.rubyonrails.org/association_basics.html) between models. We try to keep the same simple approach in Avo too.
 
-At the moment, Avo supports four association types.
-
 ## Belongs to
 
 ```ruby
