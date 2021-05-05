@@ -6,7 +6,7 @@ Avo has two types of licenses. **Community edition** which is free and open sour
 
 The **Community version** has features that you can use today like [Resource management](./resources.html), quite a lot of [feature-rich](./field-options.html) [fields](./fields.html), out-of-the box [sorting](./field-options.html#sortable-fields), [filtering](./filters.html) and [actions](./actions.html) and all the [associations](./associations.html) you need.
 
-The **Pro version** has [advanced authorization](./authorization.html) using Pundit, [localization support](./localization.html), [Custom tools](./custom-tools.html), [Custom fields](./custom-tools.html) and much more. More features are coming soon like Dashboards, Settings screens, Themes and [more](https://avohq.io/roadmap).
+The **Pro version** has [advanced authorization](./authorization.html) using Pundit, [localization support](./localization.html), [Custom tools](./custom-tools.html), [Custom fields](./custom-tools.html) and much more. [More](https://avohq.io/roadmap) features are coming soon like Dashboards, Settings screens, and Themes.
 
 ## One license per site
 
