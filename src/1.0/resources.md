@@ -91,32 +91,18 @@ end
 
 See how you can customize the grid item in the additional [grid view documentation](grid-view).
 
-<!-- ## Custom model
+## Custom model class
 
 You might have a model that belongs to a namespace or that has a different name than than the resource. For those occasions you can use the `@model` option to tell Avo which model to reference.
 
-```ruby{5}
+```ruby{2}
 class DelayedJobResource < Avo::BaseResource
-  model_class = ::Delayed::Job
+  self.model_class = ::Delayed::Job
 
-  fields do |field|
-    f.id
-    f.number :priority, readonly: true
-    f.number :attempts, readonly: true
-    f.code :handler, readonly: true, language: :yaml
-    f.code :last_error, readonly: true, language: :shell
-    f.date_time :run_at, readonly: true
-    f.date_time :locked_at, readonly: true
-    f.date_time :failed_at, readonly: true
-    f.text :locked_by, readonly: true
-    f.text :queue, readonly: true
-  end
-
-  def actions(request)
-    a.use Avo::Actions::RetryJob
-  end
+  field :id, as: :id
+  # ... other fields go here
 end
-``` -->
+```
 
 ## Devise password optional
 
