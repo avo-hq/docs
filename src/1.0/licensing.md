@@ -6,9 +6,35 @@ Avo has two types of licenses. **Community edition** which is free and open sour
 
 The **Community version** has features that you can use today like [Resource management](./resources.html), quite a lot of [feature-rich](./field-options.html) [fields](./fields.html), out-of-the box [sorting](./field-options.html#sortable-fields), [filtering](./filters.html) and [actions](./actions.html) and all the [associations](./associations.html) you need.
 
-The **Pro version** has [advanced authorization](./authorization.html) using Pundit and [localization support](./localization.html). In the future we'll add other features such as Dashboards, Custom fields and tools, Settings screens, Themes and more.
+The **Pro version** has [advanced authorization](./authorization.html) using Pundit, [localization support](./localization.html), [Custom tools](./custom-tools.html), [Custom fields](./custom-tools.html) and much more. More features are coming soon like Dashboards, Settings screens, Themes and [more](https://avohq.io/roadmap).
 
-## Adding the license key
+## One license per site
+
+Each license entitles you to run one site in one production environment.
+
+### More installations/environments per site
+
+You might have the same site running in multiple environments (`development`, `staging`, `test`, `QA`, etc.) for non-production purposes. You don't need extra licenses for those environments.
+
+We only need to check that the license key and URL matches the purchased license you're using for that one site (in any environment).
+
+### Sites
+
+In you [avohq.io  account](https://avohq.io/account) you can edit your sites and add the URLs for all your environments.
+
+<!-- ### Public Domains
+
+When Avo calls home we use a series of rules to determine if the domain it’s running on is considered "public".
+
+If any of the following rules match, the domain is considered **not public** (letting you stay in Trial Mode)
+
+- Is the host a single segment? eg. `localhost`
+- Is the host an IP address?
+- Does it use a port other than 80 or 443?
+- Does it have a dev-related subdomain? `test.`, `testing.`, `sandbox.`, `local.`, `dev.`, `stage.`, `staging.`
+- Does it use a dev-related TLD? `.local`, `.localhost`, `.test`, `.invalid`, `.example`, or `.wip` -->
+
+## Add the license key
 
 After you purchase an Avo license add it to your `config/initializers/avo.rb` file along with changing the license type from `community` to `pro`.
 
