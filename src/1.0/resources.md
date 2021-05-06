@@ -117,7 +117,7 @@ end
 
 ## Filters
 
-It's a very common scenario to add filters to your resources to make it easier to find your records. Check out the additional [Filters documentation](filters) to see how easy it is to set up custom filters with Avo.
+It's a very common scenario to add filters to your resources to make it easier to find your records. Check out the additional [Filters documentation](./filters.html) to see how easy it is to set up custom filters with Avo.
 
 <img :src="$withBase('/assets/img/filters.jpg')" alt="Avo filters" style="width: 300px;" class="border mb-4" />
 
@@ -127,4 +127,7 @@ Most of the time, you will want to trigger some events against your records or r
 
 <img :src="$withBase('/assets/img/actions.jpg')" alt="Avo actions" class="border mb-4" />
 
-Check out the additional [Actions documentation](actions).
+Check out the additional [Actions documentation](./actions.html).
+
+## Search
+Check out the additional [Search documentation](./search.html).

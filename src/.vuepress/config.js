@@ -87,6 +87,7 @@ module.exports = {
         },
         '/1.0/fields',
         '/1.0/associations',
+        '/1.0/search',
         {
           title: 'Filters',
           path: '/1.0/filters',
