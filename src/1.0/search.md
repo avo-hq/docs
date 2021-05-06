@@ -6,12 +6,12 @@ Finding what you're looking for fast is essential. That's why Avo leverages [ran
 
 ## Enable search for a resource
 
-To enable search for a resource, you need to add the `ransack_query` class variable to the resource file.
+To enable search for a resource, you need to add the `search_query` class variable to the resource file.
 
 ```ruby{3-5}
 class UserResource < Avo::BaseResource
   self.title = :name
-  self.ransack_query = ->(params:) do
+  self.search_query = ->(params:) do
     scope.ransack(id_eq: params[:q], first_name_cont: params[:q], last_name_cont: params[:q], m: "or").result(distinct: false)
   end
 
@@ -19,7 +19,7 @@ class UserResource < Avo::BaseResource
 end
 ```
 
-The `ransack_query` block passes over the `params` object that holds the `q` param, the actual query string. It also provides the `scope` variable on which you run the query. That ensures that the [authorization scopes](./authorization.html#scopes) have been appropriately applied.
+The `search_query` block passes over the `params` object that holds the `q` param, the actual query string. It also provides the `scope` variable on which you run the query. That ensures that the [authorization scopes](./authorization.html#scopes) have been appropriately applied.
 
 In this block, you may configure the search however strict or loose you need it. Check out [ransack's search matchers](https://github.com/activerecord-hackery/ransack#search-matchers) to compose the query better.
 
@@ -36,7 +36,7 @@ You may configure that to be something more complex using the `as_label` option.
 ```ruby{9-11}
 class PostResource < Avo::BaseResource
   self.title = :name
-  self.ransack_query = ->(params:) do
+  self.search_query = ->(params:) do
     scope.ransack(id_eq: params[:q], m: "or").result(distinct: false)
   end
 
@@ -59,7 +59,7 @@ You might want to show more than just the title in the search result. Avo provid
 ```ruby{12-16}
 class PostResource < Avo::BaseResource
   self.title = :name
-  self.ransack_query = ->(params:) do
+  self.search_query = ->(params:) do
     scope.ransack(id_eq: params[:q], m: "or").result(distinct: false)
   end
 
@@ -82,12 +82,10 @@ end
 
 You may improve the results listing by adding an avatar to each search result. You do that by using the `as_avatar` attribute. This attribute has three options `:square`, `:rounded` or `:circle`. This influences the final roundness of the avatar.
 
-
-
 ```ruby{17}
 class PostResource < Avo::BaseResource
   self.title = :name
-  self.ransack_query = ->(params:) do
+  self.search_query = ->(params:) do
     scope.ransack(id_eq: params[:q], m: "or").result(distinct: false)
   end
 
@@ -109,13 +107,13 @@ end
 
 ## Resource search
 
-When a resource has the `ransack_query` attribute, you will see a new search input in the `Index` view. You can use that to search that particular resource.
+When a resource has the `search_query` attribute, you will see a new search input in the `Index` view. You can use that to search that particular resource.
 
 <img :src="$withBase('/assets/img/search/resource_search.jpg')" alt="Resource search" class="border mb-4" />
 
 ## Global search
 
-Avo also has a global search feature. It will search through all the resources that have the `ransack_query` attribute present.
+Avo also has a global search feature. It will search through all the resources that have the `search_query` attribute present.
 
 You open the global search input by clicking the trigger on the navbar or by using the <kbd>CMD</kbd> + <kbd>K</kbd> keyboard shortcut (<kbd>Ctrl</kbd> + <kbd>K</kbd> on windows).
 
