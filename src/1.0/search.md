@@ -54,6 +54,8 @@ Notice the `hide_on: :all` option used to hide the computed `complex_name` attri
 
 ### Description
 
+* Search Description is a [Pro feature](https://avohq.io/purchase/pro).
+
 You might want to show more than just the title in the search result. Avo provides the `as_description` option to add some more information.
 
 ```ruby{12-16}
@@ -79,6 +81,8 @@ end
 <img :src="$withBase('/assets/img/search/search_description.jpg')" alt="Search description" class="border mb-4" />
 
 ### Avatar
+
+* Search Avatar is a [Pro feature](https://avohq.io/purchase/pro).
 
 You may improve the results listing by adding an avatar to each search result. You do that by using the `as_avatar` attribute. This attribute has three options `:square`, `:rounded` or `:circle`. This influences the final roundness of the avatar.
 
@@ -112,6 +116,8 @@ When a resource has the `search_query` attribute, you will see a new search inpu
 <img :src="$withBase('/assets/img/search/resource_search.jpg')" alt="Resource search" class="border mb-4" />
 
 ## Global search
+
+* Global Search is a [Pro feature](https://avohq.io/purchase/pro).
 
 Avo also has a global search feature. It will search through all the resources that have the `search_query` attribute present.
 
