@@ -37,22 +37,38 @@ end
 
 ## Customize the `current_user` method
 
-If you're not using [devise](https://github.com/heartcombo/devise) for authentication you may customize the `current_user` method to something else. The `current_user_method` key takes a block parameter (shorthand or full block).
+By default, Avo will not assume your authentication provider (the `current_user` method returns `nil`). That means Avo won't be able to retrieve the current user. You have to tell it how to get it.
+
+### Using devise
+
+For [devise](https://github.com/heartcombo/devise), you should set it to `current_user`.
+
+
+```ruby
+# config/initializers/avo.rb
+Avo.configure do |config|
+  config.current_user_method = :current_user
+end
+```
+
+### Use a different authenticator
+
+If you're using some other authentication provider, you may customize the `current_user` method to something else.
+
+```ruby
+# config/initializers/avo.rb
+Avo.configure do |config|
+  config.current_user_method = :current_admin
+end
+```
+
+If you get the current user from some other object like `Current.user`, you may pass a block to the `current_user_method` key.
 
 ```ruby
 # config/initializers/avo.rb
 Avo.configure do |config|
   config.current_user_method do
-    current_admin
+    Current.user
   end
-end
-```
-
-Using the block shorthand notation:
-
-```ruby
-# config/initializers/avo.rb
-Avo.configure do |config|
-  config.current_user_method(&:current_admin)
 end
 ```
