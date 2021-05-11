@@ -1,6 +1,21 @@
-# Upgrade from 0.4.x to 1.0
+# Upgrade guide
 
 [[toc]]
+
+## Upgrade from 1.5.x to 1.6.x
+
+### You need to add your current_user method to avo configuration.
+
+We removed the devise assumption. If you use [devise](https://github.com/heartcombo/devise) you need to add your `current_user` method to configuration.
+
+```ruby
+# config/initializers/avo.rb
+Avo.configure do |config|
+  config.current_user_method = :current_user
+end
+```
+
+## Upgrade from 0.4.x to 1.0
 
 If you're upgrading from <strong>0.4.x</strong> please follow the steps below to account for the API changes. If you're starting fresh, please follow the guides to [Defining resources](./resources.html).
 

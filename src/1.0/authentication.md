@@ -43,7 +43,6 @@ By default, Avo will not assume your authentication provider (the `current_user`
 
 For [devise](https://github.com/heartcombo/devise), you should set it to `current_user`.
 
-
 ```ruby
 # config/initializers/avo.rb
 Avo.configure do |config|
