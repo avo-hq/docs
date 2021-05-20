@@ -4,7 +4,7 @@
 
 ## Upgrade from 1.5.x to 1.6.x
 
-### You need to add your current_user method to avo configuration.
+### Add your current_user method to avo configuration.
 
 We removed the devise assumption. If you use [devise](https://github.com/heartcombo/devise) you need to add your `current_user` method to configuration.
 
