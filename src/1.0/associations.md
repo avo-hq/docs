@@ -24,6 +24,29 @@ On the **Edit** and **Create** views, you'll see a drop-down element with the av
 
 <img :src="$withBase('/assets/img/associations/belongs-to-edit.jpg')" alt="Belongs to edit" class="border mb-4" />
 
+### Polymorphic `belongs_to`
+
+To use a polymorphic relation you need to add the `polymorphic_as` and `polymorphic_for` properties. This is because Rails does not support computing polymorphic associations.
+
+```ruby{12-13}
+class CommentResource < Avo::BaseResource
+  self.title = :id
+
+  field :id, as: :id
+  field :body, as: :textarea
+  field :excerpt, as: :text, show_on: :index, as_description: true do |model|
+    ActionView::Base.full_sanitizer.sanitize(model.body).truncate 60
+  rescue
+    ""
+  end
+
+  field :post, as: :belongs_to, polymorphic_as: :commentable, polymorphic_for: ::Post
+  field :project, as: :belongs_to, polymorphic_as: :commentable, polymorphic_for: ::Project
+end
+```
+
+*Polymorphic associations are only read-only at the moment. You can't update the polymorphic relation from the polymorphic model. You can however do that from the parent model. In the scenario above 👆 you can't associate a comment to a post or project from the comment page, but you can create a comment and associate it to the post from the post page.*
+
 ## Has One
 
 The `HasOne` association shows the unfolded view of you `HasOne` association. It's like peaking on the **Show** view of that association. You also get the _Attach_/_Detach_ button to easily switch records.
