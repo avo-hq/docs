@@ -78,7 +78,7 @@ class UserResource < Avo::BaseResource
   field :id, as: :id
   # other fields
 
-  action ToggleInactive
+  action ToggleActive
 end
 ```
 
