@@ -10,6 +10,8 @@ Once you attach an action to a resource using the `actions` method it will appea
 
 ## Overview
 
+You generate one running `bin/rails generate avo:action toggle_active` creating an action configuration file.
+
 Avo actions use two main methods. `handle` and `fields`.
 
 ```ruby{4-18,20-23}
@@ -76,7 +78,7 @@ class UserResource < Avo::BaseResource
   field :id, as: :id
   # other fields
 
-  action ToggleInactive
+  action ToggleActive
 end
 ```
 
