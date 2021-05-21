@@ -152,6 +152,8 @@ class Avo::PostsController < Avo::BaseResourcesController
 end
 ```
 
+*You can't use `Avo::BaseController` and `Avo::ResourcesController` as **your base controller**. They are defined inside Avo.*
+
 ## Filters
 
 It's a very common scenario to add filters to your resources to make it easier to find your records. Check out the additional [Filters documentation](./filters.html) to see how easy it is to set up custom filters with Avo.
