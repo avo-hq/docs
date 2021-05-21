@@ -59,9 +59,25 @@ class PostResource < Avo::BaseResource
 end
 ```
 
-<!-- ## Search
+### Using a computed title
 
-Using the `@search` property you can tell Avo which fields it should look through when doing a search on this resource. -->
+You can use a computed `title` property for your resources if the field that is the title is not that unique.
+
+```ruby{2}
+# app/avo/resources/comment_resource.rb
+class CommentResource < Avo::BaseResource
+  self.title = :tiny_name
+
+  # field go here
+end
+
+# app/models/comment.rb
+class Comment < ApplicationRecord
+  def tiny_name
+    ActionView::Base.full_sanitizer.sanitize(body).truncate 30
+  end
+end
+```
 
 ## Eager loading
 
