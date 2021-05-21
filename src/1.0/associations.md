@@ -45,7 +45,9 @@ class CommentResource < Avo::BaseResource
 end
 ```
 
-*Polymorphic associations are only read-only at the moment. You can't update the polymorphic relation from the polymorphic model. You can however do that from the parent model. In the scenario above 👆 you can't associate a comment to a post or project from the comment page, but you can create a comment and associate it to the post from the post page.*
+*Polymorphic associations are read-only at the moment. You can't update the polymorphic relation from the polymorphic model. You can however do that from the parent model.*
+
+*In the scenario above 👆 you can't associate a comment to a post or project from the comment page, but you can create a comment and associate it to the post from the post page.*
 
 ## Has One
 
