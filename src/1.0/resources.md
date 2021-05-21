@@ -137,7 +137,7 @@ end
 
 ## Extend the Avo::ResourcesController
 
-You may need to execute additional actions on the `ResourcesController` before loading the Avo pages. You can do that by creating an `Avo::BaseResourcesController`.
+You may need to execute additional actions on the `ResourcesController` before loading the Avo pages. You can do that by creating an `Avo::BaseResourcesController` and extend your resource controller from it.
 
 ```ruby
 # app/controllers/avo/base_resources_controller.rb
