@@ -135,6 +135,23 @@ class ProjectResource < Avo::BaseResource
 end
 ```
 
+## Extend the Avo::ResourcesController
+
+You may need to execute additional actions on the `ResourcesController` before loading the Avo pages. You can do that by creating an `Avo::BaseResourcesController`.
+
+```ruby
+# app/controllers/avo/base_resources_controller.rb
+class Avo::BaseResourcesController < Avo::ResourcesController
+  include AuthenticationController::Authentication
+
+  before_action :is_logged_in?
+end
+
+# app/controllers/avo/posts_controller.rb
+class Avo::PostsController < Avo::BaseResourcesController
+end
+```
+
 ## Filters
 
 It's a very common scenario to add filters to your resources to make it easier to find your records. Check out the additional [Filters documentation](./filters.html) to see how easy it is to set up custom filters with Avo.
