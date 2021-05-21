@@ -114,6 +114,26 @@ class UserResource < Avo::BaseResource
 end
 ```
 
+## Unscoped queries on `Index`
+
+You might have a `default_scope` on your model and you don't want it to be applied to your resource when rendered on the Index view.
+
+```ruby{2}
+class Project < ApplicationRecord
+  default_scope { order(name: :asc) }
+end
+```
+
+You can unscope the query using the `unscoped_queries_on_index` (defaults to `false`) class variable on that resource.
+
+```ruby{3}
+class ProjectResource < Avo::BaseResource
+  self.title = :name
+  self.unscoped_queries_on_index = true
+
+  # fields go here
+end
+```
 
 ## Filters
 
