@@ -135,7 +135,7 @@ When you need to give a default value to your one of your fields on the **Create
 field :name, as: :text, default: 'John'
 
 # using a callback function
-field :level, as: :select, options: { 'Beginner': :beginner, 'Advanced': :advanced }, default: -> (model, resource, view, field) { Time.now.hour < 12 ? 'advanced' : 'beginner' }
+field :level, as: :select, options: { 'Beginner': :beginner, 'Advanced': :advanced }, default: -> { Time.now.hour < 12 ? 'advanced' : 'beginner' }
 ```
 
 ## Help text
