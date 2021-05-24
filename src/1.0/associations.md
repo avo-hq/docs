@@ -26,7 +26,7 @@ On the **Edit** and **Create** views, you'll see a drop-down element with the av
 
 ### Polymorphic `belongs_to`
 
-To use a polymorphic relation you need to add the `polymorphic_as` and `polymorphic_for` properties. This is because Rails does not support computing polymorphic associations.
+To use a polymorphic relation you need to add the `polymorphic_as` and `types` properties.
 
 ```ruby{12-13}
 class CommentResource < Avo::BaseResource
@@ -40,14 +40,9 @@ class CommentResource < Avo::BaseResource
     ""
   end
 
-  field :post, as: :belongs_to, polymorphic_as: :commentable, polymorphic_for: ::Post
-  field :project, as: :belongs_to, polymorphic_as: :commentable, polymorphic_for: ::Project
+  field :commentable, as: :belongs_to, polymorphic_as: :commentable, types: [::Post, ::Project]
 end
 ```
-
-*Polymorphic associations are read-only at the moment. You can't update the polymorphic relation from the polymorphic model. You can however do that from the parent model.*
-
-*In the scenario above 👆 you can't associate a comment to a post or project from the comment page, but you can create a comment and associate it to the post from the post page.*
 
 ## Has One
 
