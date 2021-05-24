@@ -337,7 +337,7 @@ class ProjectResource < Avo::BaseResource
 end
 ```
 
-### Computed select values
+### Computed options
 
 You may want to computed the values for your select field. You can use a lambda for that. That lambda gives you access to the `model`, `resource`, `view`, and `field` properties that you can pull data off.
 
