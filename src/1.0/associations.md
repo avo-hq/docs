@@ -28,7 +28,7 @@ On the **Edit** and **Create** views, you'll see a drop-down element with the av
 
 To use a polymorphic relation you need to add the `polymorphic_as` and `types` properties.
 
-```ruby{12-13}
+```ruby{12}
 class CommentResource < Avo::BaseResource
   self.title = :id
 
