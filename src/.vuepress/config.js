@@ -81,10 +81,10 @@ module.exports = {
             '/1.0/authentication',
             '/1.0/licensing',
             '/1.0/resources',
-            '/1.0/field-options',
             '/1.0/grid-view',
           ]
         },
+        '/1.0/field-options',
         '/1.0/fields',
         '/1.0/associations',
         '/1.0/search',
