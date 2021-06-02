@@ -428,3 +428,7 @@ You may want to use Trix only as a text editor and disable the attachments featu
 ```ruby
 field :body, as: :trix, attachments_disabled: true
 ```
+
+### Remove attachment attributes
+
+When adding an attachment, by default, Trix will add some meta-data in the editor (filename, filesize, and url). You might not need those to be present in the document. You can hide them using `hide_attachment_filename`, `hide_attachment_filesize`, and `hide_attachment_url`.
