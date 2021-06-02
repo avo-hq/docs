@@ -33,7 +33,7 @@ Next in your fields `Show` component you need to do a few things.
 1. Wrap the value in a div with the `hidden` class applied if the condition `@field.always_show` is `false`.
 1. Add the `content` target (`data-hidden-input-target="content"`) to that div.
 
-```erb{4,6,8}
+```erb{4-7,8}
 # app/components/avo/fields/color_picker_field/show_component.html.erb
 
 <%= show_field_wrapper field: @field, index: @index do %>
