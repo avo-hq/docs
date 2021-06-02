@@ -104,6 +104,7 @@ module.exports = {
         '/1.0/custom-asset-pipeline',
         '/1.0/authorization',
         '/1.0/localization',
+        '/1.0/stimulus-controllers',
       ],
       '/0.4.x/': [
         {
