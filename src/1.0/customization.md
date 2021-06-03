@@ -245,4 +245,52 @@ Avo.configure do |config|
 end
 ```
 
+## Mount Avo under nested path
+
+You may need to mount Avo under a nested path; something like `/uk/admin`. To do that there are a few things you need to consider.
+
+1. Move the engine mount point below any route for custom tools.
+
+```ruby{7,10}
+Rails.application.routes.draw do
+  # other routes
+
+  authenticate :user, ->(user) { user.is_admin? } do
+    scope :uk do
+      scope :admin do
+        get "dashboard", to: "avo/tools#dashboard" # custom tool added before engine
+      end
+
+      mount Avo::Engine, at: Avo.configuration.root_path # engine mounted last
+    end
+  end
+end
+```
+
+2. The `root_path` configuration should only be the last path segment.
+
+```ruby
+# 🚫 Don't add the scope to the root_path
+Avo.configure do |config|
+  config.root_path = "/uk/admin"
+end
+
+# ✅ Do this instead
+Avo.configure do |config|
+  config.root_path = "/admin"
+end
+```
+
+3. Use full paths for other configurations.
+
+```ruby
+Avo.configure do |config|
+  config.home_path = "/uk/admin/dashboard"
+
+  config.set_initial_breadcrumbs do
+    add_breadcrumb "Dashboard", "/uk/admin/dashboard"
+  end
+end
+```
+
 <!-- @todo: add docs for use_partials custom functionality -->
