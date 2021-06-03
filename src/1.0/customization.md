@@ -245,7 +245,7 @@ Avo.configure do |config|
 end
 ```
 
-## Mount Avo under nested path
+## Mount Avo under a nested path
 
 You may need to mount Avo under a nested path; something like `/uk/admin`. To do that there are a few things you need to consider.
 
