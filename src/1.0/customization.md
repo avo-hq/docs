@@ -293,4 +293,14 @@ Avo.configure do |config|
 end
 ```
 
+## Custom `view_component` path
+
+You may not keep your view components under `app/components` and want the generated field `view_component`s to be generated in your custom directory. You can change that using the `view_component_path` configuration key.
+
+```ruby
+Avo.configure do |config|
+  config.view_component_path = "app/frontend/components"
+end
+```
+
 <!-- @todo: add docs for use_partials custom functionality -->
