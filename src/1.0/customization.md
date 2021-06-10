@@ -303,4 +303,38 @@ Avo.configure do |config|
 end
 ```
 
+## Custom query scopes
+You may want to change the queries to add sorting or use gems like [friendly](https://github.com/norman/friendly_id).
+There are 2 possibilities to customize the queries in Avo:
+* customize query scope
+* customize find scope
+
+### Custom query scope
+If you need to replace the queries in order to sort or add custom functionality, define the `resolve_query_scope` on the resource definition.
+```ruby
+class UserResource < Avo::BaseResource
+  self.resolve_query_scope = ->(model_class:) do
+    model_class.order(last_name: :asc)
+  end
+end
+```
+
+### Custom find scope
+If you need to completely replace the record retrieving code, define the `resolve_find_scope` method on the resource definition.
+```ruby
+class UserResource < Avo::BaseResource
+  self.resolve_find_scope = ->(model_class:) do
+      model_class.friendly
+  end
+end
+```
+
+You also have to define the `friendly_id` in the model definition.
+```ruby
+class User < ApplicationRecord
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+end
+```
+
 <!-- @todo: add docs for use_partials custom functionality -->
