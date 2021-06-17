@@ -170,6 +170,25 @@ class PublishedFilter < Avo::Filters::SelectFilter
 end
 ```
 
+## Dynamic options
+
+The select filter can also take dynamic options:
+
+```ruby{15-17}
+class AuthorFilter < Avo::Filters::SelectFilter
+  self.name = 'Author'
+
+  def apply(request, query, value)
+    query = query.where(author_id: value) if value.present?
+    query
+  end
+
+  def options
+    Author.select(:id, :name).each_with_object({}) { |author, options| options[author.id] = author.name }
+  end
+end
+```
+
 ## Registering filters
 
 To add an filter to one of your resources, you need to declare it on the resource using the `filter` method.
