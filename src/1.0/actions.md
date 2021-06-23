@@ -204,3 +204,20 @@ You may customize the labels for the action buttons using `confirm_button_label`
 ### No confirmation actions
 
 By default when you run an action you will be prompted by a confirmation modal. If you don't want to show the confirmation modal, pass in the `self.no_confirmation = true` class attribute. This will execute the action without showing the modal at all.
+
+## Standalone actions
+
+You may need to run actions that are not necessarily tied to a model. Standalone actions help you do just that. Add `self.standalone` to an existing action to do that or generate a new one using the `--standalone` option (`bin/rails generate avo:action global_action --standalone`).
+
+```ruby{3}
+class DummyAction < Avo::BaseAction
+  self.name = "Dummy action"
+  self.standalone = true
+
+  def handle(fields:)
+    # Do something here
+
+    succeed 'Yup'
+  end
+end
+```
