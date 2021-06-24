@@ -2,6 +2,17 @@
 
 [[toc]]
 
+## Upgrade from 1.9.x to 1.10.x
+
+### Add ransack to your dependencies
+
+Because ransack [adds the `search` method](https://github.com/avo-hq/avo/issues/441) to models it's incompatible with other gems like `elasticsearch-rails`. We're removing this dependency from the gem and you need to add it for yourself to your app to continue to use search from Avo
+
+```ruby
+# Gemfile
+gem 'ransack'
+```
+
 ## Upgrade from 1.5.x to 1.6.x
 
 ### Add your current_user method to avo configuration.
