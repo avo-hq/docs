@@ -24,7 +24,7 @@ When setting `show?` to `false`, the user will not see the show icon on the reso
 
 ### create?
 
-The `create?` method will prevent the users from creating a resource.
+The `create?` method will prevent the users from creating a resource. This will also apply to the `Create new {model}` button on the relationship show page.
 
 ### new?
 
@@ -41,6 +41,25 @@ The `new?` method will control whether the users see the `Create new RESOURCE` b
 ### destroy?
 
 `destroy?` to `false` will prevent the user from destroying a resource and hiding the delete button.
+
+
+## Relationships
+
+When using relationships, you would like to set policies for `creating` new resources on the relationship, allowing to `attach` or `detach` relevant model. Avo makes this easy using a straight-forward naming schema.
+
+For the creation of a new resource from the relationship show page, you can use the `create?` method defined above to limit the display of the `Create new {model}` button.
+
+### attach_{model}?
+
+When you have a Post resource and a Comment resource and you want to authorize which users can add comments to a post, you should define an `attach_comment?` policy on your post model's policy class.
+
+If the name of you model is PascalCased like `MainUser`, you should define the policy as `attach_main_user?`.
+
+If you define your fields as `field :post, as: :has_one` and `field :posts, as: :has_many`, be aware that you have to define the two policy methods, one for `post` as `attach_post?` and one for `posts` as `attach_posts?`.
+
+### detach_{model}?
+
+`detach` method works similarly to `attach` one, but for detaching.
 
 ## Scopes
 
