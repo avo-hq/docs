@@ -25,7 +25,7 @@ field :is_available, as: :boolean
 
 <img :src="$withBase('/assets/img/fields-reference/naming-convention.jpg')" alt="Field naming convention" class="border mb-4" />
 
-If you want to customize the label, you can use the `name` property pick a different label.
+If you want to customize the label, you can use the `name` property to pick a different label.
 
 ```ruby
 field :is_available, as: :boolean, name: 'Availability'
