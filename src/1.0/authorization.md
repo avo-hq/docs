@@ -43,7 +43,7 @@ The `new?` method will control whether the users see the `Create new RESOURCE` b
 `destroy?` to `false` will prevent the user from destroying a resource and hiding the delete button.
 
 
-## Relationships
+## Associations
 
 When using relationships, you would like to set policies for `creating` new resources on the relationship, allowing to `attach` or `detach` relevant model. Avo makes this easy using a straight-forward naming schema.
 
