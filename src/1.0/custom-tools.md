@@ -59,3 +59,46 @@ If you want to further customize the sidebar partial you can [eject](./customiza
 
 When creating custom tools or fields, you might want to import assets (javascript and stylesheets files). You can do that so easily from v1.3. Please follow [this guide](./custom-asset-pipeline.html) to bring your assets with your asset pipeline.
 
+
+## Using helpers from your app
+
+You'll probably want to use some of your helpers in your custom tools. In order to have them available inside your custom controllers that inherit from Avo's `ApplicationController` you need to include them using the `helper` method.
+
+```ruby{3-5,10}
+# app/helpers/home_helper.rb
+module HomeHelper
+  def custom_helper
+    'hey from custom helper'
+  end
+end
+
+# app/controllers/avo/tools_controller.rb
+class Avo::ToolsController < Avo::ApplicationController
+  helper HomeHelper
+
+  def dashboard
+    @page_title = "Dashboard"
+  end
+end
+```
+
+```html{13}
+# app/views/avo/tools/dashboard.html.erb
+<div class="flex flex-col">
+  <%= render Avo::PanelComponent.new title: 'Dashboard', display_breadcrumbs: true do |c| %>
+    <% c.tools do %>
+      <div class="text-sm italic">This is the panels tools section.</div>
+    <% end %>
+
+    <% c.body do %>
+      <div class="flex flex-col justify-between py-6 min-h-24">
+        <div class="px-6 space-y-4">
+          <h3>What a nice new tool 👋</h3>
+
+          <%= custom_helper %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+```
