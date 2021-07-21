@@ -63,7 +63,7 @@ field :is_featured, as: :boolean, visible: -> (resource:) { resource.model.publi
 At times you might need to show a field with a value that you don't have in a database row. In that case, you may compute the value using a block that receives the `model` (the actual database record), the `resource` (the configured Avo resource), and the current `view`. With that information you can compute what to show on the field in the **Index** and **Show** views (computed fields are automatically hidden in **Edit** and **Create**).
 
 ```ruby
-field 'Has, as: :boolean written something' do |model, resource, view|
+field 'Has posts', as: :boolean do |model, resource, view|
   model.posts.present?
 end
 ```
