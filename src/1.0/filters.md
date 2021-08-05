@@ -170,6 +170,26 @@ class PublishedFilter < Avo::Filters::SelectFilter
 end
 ```
 
+## Multiple select filter
+
+You may also use a multiple select filter.
+
+```ruby
+class PostStatusFilter < Avo::Filters::MultipleSelectFilter
+  self.name = "Status"
+
+  def apply(request, query, value)
+    query.where(status: value.map(&:to_i))
+  end
+
+  def options
+    Post.statuses.invert
+  end
+end
+```
+
+<img :src="$withBase('/assets/img/multiple-select-filter.jpg')" alt="Avo multiple select filter" style="width: 300px;" class="border mb-4" />
+
 ## Dynamic options
 
 The select filter can also take dynamic options:
