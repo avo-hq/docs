@@ -12,6 +12,8 @@ Every new field comes with three [view components](https://viewcomponent.org/), 
 
 `bin/rails generate avo:field progress_bar` generates the files for you.
 
+**Please restart your rails server after adding a new custom field.**
+
 ```shell
 ▶ bin/rails generate avo:field progress_bar
       create  app/components/avo/fields/progress_bar_field
