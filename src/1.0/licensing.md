@@ -46,6 +46,16 @@ Avo.configure do |config|
 end
 ```
 
+## Configure display of license request timeout error
+
+If you want to hide the badge displaying the license request timeout error, you can do it by setting `display_license_request_timeout_error` configuration to `false`. It defaults to `true`.
+
+```ruby{3}
+# config/initializers/avo.rb
+Avo.configure do |config|
+  config.display_license_request_timeout_error = false
+end
+```
 ## Purchase a license
 
 You can purchase a license on the [purchase](https://avohq.io/purchase/pro) page.
