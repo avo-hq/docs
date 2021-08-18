@@ -119,6 +119,8 @@ end
 ### Header Help Text
 You may improve the results listing header by adding a text highlighting the fields you are looking for or any other instruction for the user. You do that by using the `search_query_help` attribute. This attribute takes a string and appends it to the title of the resource.
 
+<img :src="$withBase('/assets/img/search/search_header_help.jpg')" alt="Search Header Help" class="border mb-4" />
+
 ```ruby{6}
 class PostResource < Avo::BaseResource
   self.title = :name
