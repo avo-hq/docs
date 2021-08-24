@@ -116,6 +116,23 @@ end
 
 <img :src="$withBase('/assets/img/search/search_avatar.jpg')" alt="Search avatar" class="border mb-4" />
 
+### Header Help Text
+You may improve the results listing header by adding a text highlighting the fields you are looking for or any other instruction for the user. You do that by using the `search_query_help` attribute. This attribute takes a string and appends it to the title of the resource.
+
+<img :src="$withBase('/assets/img/search/search_header_help.jpg')" alt="Search Header Help" class="border mb-4" />
+
+```ruby{6}
+class PostResource < Avo::BaseResource
+  self.title = :name
+  self.search_query = ->(params:) do
+    scope.ransack(id_eq: params[:q], m: "or").result(distinct: false)
+  end
+  self.search_query_help = "- search by id"
+
+  field :id, as: :id
+end
+```
+
 ## Resource search
 
 When a resource has the `search_query` attribute, you will see a new search input in the `Index` view. You can use that to search that particular resource.
