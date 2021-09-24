@@ -35,6 +35,17 @@ Avo.configure do |config|
 end
 ```
 
+Note that Avo's `ApplicationController` does not inherit from your app's `ApplicationController`, so any protected methods you defined there would not work, and you would need to write out the authentication logic explicitly in the block. For example, if you store your `user_id` in the session hash, then you can do:
+
+```ruby
+# config/initializers/avo.rb
+Avo.configure do |config|
+  config.authenticate_with do
+    redirect_to '/' unless session[:user_id] == 1 # hard code user ids here
+  end
+end
+```
+
 ## Customize the `current_user` method
 
 By default, Avo will not assume your authentication provider (the `current_user` method returns `nil`). That means Avo won't be able to retrieve the current user. You have to tell it how to get it.
