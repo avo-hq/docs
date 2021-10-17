@@ -2,6 +2,33 @@
 
 [[toc]]
 
+## Upgrade from 1.13 to 1.14
+
+### Add files authorization methods
+
+On 1.14 we added the ability to control what buttons/inputs are displayed on the `File` and `Files` fields. If you use **pundit** you have to add these methods to your model's policy.
+
+```ruby
+# app/policies/YOUR_MODEL_policy.rb
+
+class ProjectPolicy < ApplicationPolicy
+  # Other policy methods
+
+  def upload_attachments?
+    true
+  end
+
+  def download_attachments?
+    true
+  end
+
+  def delete_attachments?
+    true
+  end
+end
+
+```
+
 ## Upgrade from 1.9.x to 1.10.x
 
 ### Add ransack to your dependencies
