@@ -58,6 +58,17 @@ The `new?` method will control whether the users see the `Create new RESOURCE` b
 
 `destroy?` to `false` will prevent the user from destroying a resource and hiding the delete button.
 
+### upload_attachments?
+
+Controls whether the attachment upload input should be visible in the `File` and `Files` fields.
+
+### download_attachments?
+
+Controls whether the attachment download button should be visible in the `File` and `Files` fields.
+
+### delete_attachments?
+
+Controls whether the attachment delete button should be visible in the `File` and `Files` fields.
 
 ## Associations
 
