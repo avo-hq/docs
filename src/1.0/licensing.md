@@ -20,7 +20,7 @@ We only need to check that the license key and URL matches the purchased license
 
 ### Sites
 
-In you [avohq.io  account](https://avohq.io/account) you can edit your sites and add the URLs for all your environments.
+On you [avohq.io licenses](https://avohq.io/licenses) page you can see your licenses keys.
 
 <!-- ### Public Domains
 
