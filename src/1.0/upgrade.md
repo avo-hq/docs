@@ -2,6 +2,35 @@
 
 [[toc]]
 
+## Upgrade from 1.16 to 1.17
+
+### New actions arguments
+
+On 1.17 we are exposing the `current_user` and the `resource` in actions. Because the arguments changed you need to update all your action's `handle` method to support the new arguments.
+
+```ruby{6-9}
+# app/avo/actions/YOUR_ACTION_FILE.rb
+class TogglePublished < Avo::BaseAction
+  self.name = "Toggle post published"
+  self.message = "Are you sure, sure?"
+
+-  def handle(models:, fields:) # remove this line
++  def handle(**args) # add these three lines
++    models, fields, current_user, resource = args.values_at(:models, :fields, :current_user, :resource)
++
+    models.each do |model|
+      if model.published_at.present?
+        model.update published_at: nil
+      else
+        model.update published_at: DateTime.now
+      end
+    end
+
+    succeed "Purrrfect!"
+  end
+end
+```
+
 ## Upgrade from 1.13 to 1.14
 
 ### Add files authorization methods
@@ -26,7 +55,6 @@ class ProjectPolicy < ApplicationPolicy
     true
   end
 end
-
 ```
 
 ## Upgrade from 1.9.x to 1.10.x

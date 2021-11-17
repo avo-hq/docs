@@ -21,7 +21,9 @@ class ToggleActive < Avo::BaseAction
   field :notify_user, as: :boolean, default: true
   field :message, as: :text, default: 'Your account has been marked as inactive.'
 
-  def handle(models:, fields:)
+  def handle(**args)
+    models, fields, current_user, resource = args.values_at(:models, :fields, :current_user, :resource)
+
     models.each do |model|
       if model.active
         model.update active: false
@@ -214,7 +216,9 @@ class DummyAction < Avo::BaseAction
   self.name = "Dummy action"
   self.standalone = true
 
-  def handle(fields:)
+  def handle(**args)
+    fields, current_user, resource = args.values_at(:fields, :current_user, :resource)
+
     # Do something here
 
     succeed 'Yup'
