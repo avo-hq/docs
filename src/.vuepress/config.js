@@ -43,6 +43,7 @@ module.exports = {
     logo: `/assets/img/logo.png`,
     displayAllHeaders: true,
     docsRepo: 'avo-hq/docs',
+    docsDir: 'src',
     editLinks: true,
     editLinkText: 'Could you help us improve this page?',
     smoothScroll: true,
