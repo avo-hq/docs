@@ -151,6 +151,20 @@ class ProjectResource < Avo::BaseResource
 end
 ```
 
+## Hide resource from sidebar
+
+You may hide a resource from the sidebar using the `visible_on_sidebar` class attribute.
+
+
+```ruby{3}
+class TeamMembershipResource < Avo::BaseResource
+  self.title = :id
+  self.visible_on_sidebar = true
+  
+  # fields declaration
+end
+```
+
 ## Extend the Avo::ResourcesController
 
 You may need to execute additional actions on the `ResourcesController` before loading the Avo pages. You can do that by creating an `Avo::BaseResourcesController` and extend your resource controller from it.
