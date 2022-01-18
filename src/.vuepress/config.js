@@ -88,6 +88,11 @@ module.exports = {
         '/1.0/field-options',
         '/1.0/fields',
         '/1.0/associations',
+        {
+          title: 'Dashboards',
+          path: '/1.0/dashboards',
+          sidebarDepth: 0,
+        },
         '/1.0/search',
         {
           title: 'Filters',
