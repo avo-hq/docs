@@ -223,3 +223,23 @@ class DummyAction < Avo::BaseAction
   end
 end
 ```
+
+## Hide actions on specific screens
+
+You may want to hide specific actions on specific screens, like a standalone action on the `Show` screen. You can do that using the `self.visible` attribute.
+
+```ruby{4}
+class DummyAction < Avo::BaseAction
+  self.name = "Dummy action"
+  self.standalone = true
+  self.visible = -> (resource:, view:) { view == :index }
+
+  def handle(**args)
+    fields, current_user, resource = args.values_at(:fields, :current_user, :resource)
+
+    # Do something here
+
+    succeed 'Yup'
+  end
+end
+```
