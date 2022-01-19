@@ -78,9 +78,9 @@ module.exports = {
           sidebarDepth: 0,
           children: [
             '/1.0/installation',
-            '/1.0/upgrade',
             '/1.0/authentication',
             '/1.0/licensing',
+            '/1.0/upgrade',
             '/1.0/resources',
             '/1.0/grid-view',
           ]
