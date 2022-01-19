@@ -76,6 +76,10 @@ Sometimes you will want to process the database value before showing it to the u
 
 ```ruby
 field :is_writer, as: :text, format_using: -> (value) { value.present? ? '👍' : '👎' }
+# or
+field :company_url, as: :text, format_using: -> (url) { link_to(url, url, target: "_blank") } do |model, *args|
+  main_app.companies_url(model)
+end
 ```
 
 This example snippet will make the `:is_writer` field to generate emojis instead of 1/0 values.

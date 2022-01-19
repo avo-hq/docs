@@ -111,6 +111,7 @@ module.exports = {
         '/1.0/authorization',
         '/1.0/localization',
         '/1.0/stimulus-controllers',
+        '/1.0/faq',
       ],
       '/0.4.x/': [
         {
