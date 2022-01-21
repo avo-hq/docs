@@ -130,3 +130,22 @@ end
 ```
 
 Now, Avo will use `avo_index?` instead of `index?` to manage the **Index** view authorization.
+
+## Raise errors when policies are missing
+
+The default behavior of Avo is to allow missing policies for resources silently. So, if you have a `User` model and a `UserResource` but don't have a `UserPolicy`, Avo will not raise errors regarding missing policies and authorize that resource.
+
+If, however, you need to be on the safe side of things and raise errors when a Resource is missing a Policy, you can toggle on the `raise_error_on_missing_policy` configuration.
+
+```ruby{7}
+# config/initializers/avo.rb
+Avo.configure do |config|
+  config.root_path = '/avo'
+  config.app_name = 'Avocadelicious'
+  config.license = 'pro'
+  config.license_key = ENV['AVO_LICENSE_KEY']
+  config.raise_error_on_missing_policy = true
+end
+```
+
+Now, you'll have to provide a policy to each resource you have in your app, thus making it a more secure app.
