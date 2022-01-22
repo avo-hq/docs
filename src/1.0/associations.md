@@ -87,3 +87,32 @@ The `HasAndBelongsToMany` association works similarly to `HasMany`.
 ```ruby
 field :users, as: :has_and_belongs_to_many
 ```
+
+# Single Table Inheritance (STI)
+
+When you have models that share behavior and fields through with STI, Rails will cast the model as the final class no matter how you query it.
+
+```ruby
+# app/models/user.rb
+class User < ApplicationRecord
+end
+
+# app/models/super_user.rb
+class SuperUser < User
+end
+
+# User.all.map(&:class) => [User, SuperUser]
+```
+
+For example, when you have two models, `User` and `SuperUser` with STI, when you call `User.all` Rails will return an instance of `User` and an instance of `SuperUser`. That confuses Avo in producing the proper resource of `User`. That's why when you deal with STI, the final resource `SuperUserResource` should receive the underlying `model_class` so Avo knows which model it represents.
+
+```ruby{4}
+class SuperUserResource < Avo::BaseResource
+  self.title = :name
+  self.includes = []
+  self.model_class = ::SuperUser
+
+  field :id, as: :id
+  field :name, as: :text
+end
+```

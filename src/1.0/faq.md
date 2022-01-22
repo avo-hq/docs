@@ -2,6 +2,19 @@
 
 [[toc]]
 
+## Show/hide buttons throughout the admin
+
+You might want to hide some buttons and not show them to your users. That's pretty handy using the [`Authorization`](authorization) feature. You control the display of those buttons using the policy methods.
+
+- Show button -> `show?` method
+- Edit button -> `edit?` method
+- Delete button -> `destroy?` method
+- Upload attachments button -> `upload_attachments?` method
+- Download attachments button -> `download_attachments?` method
+- Delete attachments button -> `delete_attachments?` method
+- Attach button -> `attach_#{RESOURCE_PLURL_NAME}?` (eg: `attach_posts?`) method
+- Detach button -> `detach_#{RESOURCE_PLURL_NAME}?` (eg: `detach_posts?`) method
+
 ## Why don't regular url helpers work as expected?
 
 When writing rails code somewhere in Avo domain you might want to use your regular url helpers like below:
@@ -63,3 +76,4 @@ Then you can customize different things based your requirements. Like if for ins
 Same if you want to [show/hide fields](https://docs.avohq.io/1.0/field-options.html#field-visibility) based on the type of resource or type of user.
 
 All in all **we're confident you'll have the necessary instruments** you need to build your admin.
+
