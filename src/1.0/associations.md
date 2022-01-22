@@ -88,7 +88,7 @@ The `HasAndBelongsToMany` association works similarly to `HasMany`.
 field :users, as: :has_and_belongs_to_many
 ```
 
-# Single Table Inheritance (STI)
+## Single Table Inheritance (STI)
 
 When you have models that share behavior and fields through with STI, Rails will cast the model as the final class no matter how you query it.
 
