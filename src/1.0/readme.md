@@ -33,3 +33,4 @@ Now that you know the basics, you can:
 1. [Explore the live demo app](https://avodemo.herokuapp.com)
 1. Explore these docs
 1. Enjoy building your app without ever worrying about the admin again
+1. Explore the [FAQ](faq) pages for guides on how to set up your Avo instance.
