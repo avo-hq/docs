@@ -50,7 +50,9 @@ field :message, as: :textarea, default: 'Your account has been marked as inactiv
 The `handle` method is where the magic happens. This is where you put your action logic. In this method, you will have access to the selected `models` (if there's only one it will be automatically wrapped in an array) and, the values passed to the `fields`.
 
 ```ruby
-def handle(models:, fields:)
+def handle(**args)
+  models, fields = args.values_at(:models, :fields)
+
   models.each do |model|
     if model.active
       model.update active: false
@@ -93,7 +95,9 @@ The default response is to reload the page and show the _Action ran successfully
 You will have two message response methods at your disposal `succeed` and `fail`. These will render out green or red alerts to the user.
 
 ```ruby{4}
-def handle(models:, fields:)
+def handle(**args)
+  models = args[:models]
+
   models.each do |model|
     if model.admin?
       fail "Can't mark inactive! The user is an admin."
@@ -112,7 +116,9 @@ end
 After you notify the user about what happened through a message, you may want to execute an action like `reload` (default action) or `redirect_to`. You may use message and action responses together.
 
 ```ruby{10}
-def handle(models:, fields:)
+def handle(**args)
+  models = args[:models]
+
   models.each do |model|
     if model.admin?
       fail "Can't mark inactive! The user is an admin."
@@ -132,7 +138,9 @@ The available action responses are:
 When you use `reload`, a full-page reload will be triggered.
 
 ```ruby{7}
-def handle(models:, fields:)
+def handle(**args)
+  models = args[:models]
+
   models.each do |project|
     project.update active: false
   end
@@ -147,7 +155,9 @@ end
 `redirect_to` will execute a redirect to a new path of your app.
 
 ```ruby{7}
-def handle(models:, fields:)
+def handle(**args)
+  models = args[:models]
+
   models.each do |project|
     project.update active: false
   end
@@ -162,7 +172,9 @@ end
 `download` will start a file download to your specified `path` and `filename`.
 
 ```ruby{12}
-def handle(models:, fields:)
+def handle(**args)
+  models = args[:models]
+
   models.each do |project|
     project.update active: false
 
