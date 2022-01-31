@@ -309,6 +309,7 @@ You can do that using `query_scope` and `find_scope`.
 
 ### Custom query scope
 If you need to replace the queries in order to add a sort condition or more query fields, add the `resolve_query_scope` option to the resource definition.
+
 ```ruby
 class UserResource < Avo::BaseResource
   self.resolve_query_scope = ->(model_class:) do

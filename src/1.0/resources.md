@@ -120,6 +120,28 @@ class DelayedJobResource < Avo::BaseResource
 end
 ```
 
+### `model_class` with namespace
+
+Because the controllers are generated, when changing the `model_class` for a resource, you might brake the model->route link, so make sure you update the controller too.
+
+```ruby
+# app/avo/resource/store_resource.rb
+class SpreeStoreResource < Avo::BaseResource
+  self.model_class = Spree::Store
+end
+
+
+# Before
+# app/controllers/avo/store_controller.rb
+class Avo::StoresController < Avo::ResourcesController
+end
+
+# After
+# app/controllers/avo/spree_store_controller.rb
+class Avo::SpreeStoresController < Avo::ResourcesController
+end
+```
+
 ## Devise password optional
 
 If you use `devise` and you update your user models (usually `User`) without passing a password you will get a validation error. You can use `devise_password_optional` to stop receiving that error. It will [strip out](https://stackoverflow.com/questions/5113248/devise-update-user-without-password/11676957#11676957) the `password` key from `params`.
