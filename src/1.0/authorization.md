@@ -40,11 +40,11 @@ When setting `show?` to `false`, the user will not see the show icon on the reso
 
 ### create?
 
-The `create?` method will prevent the users from creating a resource. This will also apply to the `Create new {model}` button on the relationship show page.
+The `create?` method will prevent the users from creating a resource. This will also apply to the `Create new {model}` button on the `Index`, the `Save` button on the `/new` page, and `Create new {model}` button on the association `Show` page.
 
 ### new?
 
-The `new?` method will control whether the users see the `Create new RESOURCE` button and their access to the `New` view.
+The `new?` method will control whether the users can save the new resource. You will also have access to the `record` variable with the form values pre-filled.
 
 ### edit?
 
@@ -52,7 +52,7 @@ The `new?` method will control whether the users see the `Create new RESOURCE` b
 
 ### update?
 
-`update?` to `false` will prevent the user from updating a resource.
+`update?` to `false` will prevent the user from updating a resource. You will also have access to the `record` variable with the form values pre-filled.
 
 ### destroy?
 
