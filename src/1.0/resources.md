@@ -126,18 +126,18 @@ Because the controllers are generated, when changing the `model_class` for a res
 
 ```ruby
 # app/avo/resource/store_resource.rb
-class SpreeStoreResource < Avo::BaseResource
+class StoreResource < Avo::BaseResource
   self.model_class = Spree::Store
 end
 
 
 # Before
-# app/controllers/avo/store_controller.rb
+# app/controllers/avo/stores_controller.rb
 class Avo::StoresController < Avo::ResourcesController
 end
 
 # After
-# app/controllers/avo/spree_store_controller.rb
+# app/controllers/avo/spree_stores_controller.rb
 class Avo::SpreeStoresController < Avo::ResourcesController
 end
 ```
