@@ -323,7 +323,7 @@ If you need to add to the way of how a record is found, add the `resolve_find_sc
 ```ruby
 class UserResource < Avo::BaseResource
   self.resolve_find_scope = ->(model_class:) do
-      model_class.friendly
+    model_class.friendly
   end
 end
 ```
@@ -335,5 +335,23 @@ class User < ApplicationRecord
   friendly_id :name, use: :slugged
 end
 ```
+
+## Disable features
+
+You might want to disable some Avo features. You can do that using the `disabled_features` option.
+
+```ruby{3}
+# config/initializers/avo.rb
+Avo.configure do |config|
+  config.disabled_features = [:global_search]
+end
+```
+
+After this setting the global search will be hidden for users.
+
+Supported options:
+
+- `global_search`
+
 
 <!-- @todo: add docs for use_partials custom functionality -->

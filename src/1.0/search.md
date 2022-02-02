@@ -161,3 +161,14 @@ Avo also has a global search feature. It will search through all the resources t
 You open the global search input by clicking the trigger on the navbar or by using the <kbd>CMD</kbd> + <kbd>K</kbd> keyboard shortcut (<kbd>Ctrl</kbd> + <kbd>K</kbd> on windows).
 
 <img :src="$withBase('/assets/img/search/global_search_trigger.jpg')" alt="Global search trigger" class="border mb-4" />
+
+### Hide the global search
+
+If you, by any chance want to hide the global search you can do so using this setting 👇
+
+```ruby{3}
+# config/initializers/avo.rb
+Avo.configure do |config|
+  config.disabled_features = [:global_search]
+end
+```
