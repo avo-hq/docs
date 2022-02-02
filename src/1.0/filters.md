@@ -211,7 +211,7 @@ end
 
 ## Text Filter
 
-You can also add text filters to Avo using the following template 👇.
+You can also add complex text filters to Avo by running `rails generate avo:filter name_filter --text`.
 
 ```ruby
 class NameFilter < Avo::Filters::TextFilter
@@ -219,7 +219,7 @@ class NameFilter < Avo::Filters::TextFilter
   self.button_label = "Filter by name"
 
   def apply(request, query, value)
-    query.where('name LIKE ?', "%#{value}%")
+    query.where('LOWER(name) LIKE ?', "%#{value}%")
   end
 end
 
