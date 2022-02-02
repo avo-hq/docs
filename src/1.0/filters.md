@@ -229,7 +229,7 @@ end
 
 To add an filter to one of your resources, you need to declare it on the resource using the `filter` method.
 
-```ruby{10-12}
+```ruby{8}
 class PostResource < Avo::BaseResource
   self.title = :name
   self.search = :id
