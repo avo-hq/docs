@@ -23,5 +23,6 @@ prev: /1.0/
 
 To make sure your app is safely secured and you have access to all the features you need please follow the next steps.
 
-1. Set up [authentication](authentication)
-1. Set up [licensing](licensing)
+1. Set up [authentication](authentication.html#customize-the-current-user-method) and tell Avo who is your `current_user`. This step is required for the authorization feature to work.
+1. Set up [authorization](authorization). Don't let your data to be exposed. Give users access to the data they need to see.
+1. Set up [licensing](licensing).

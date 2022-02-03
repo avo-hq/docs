@@ -29,7 +29,10 @@ Similarly, Avo makes it easy to apply transformations to one or more resources u
 Now that you know the basics, you can:
 
 1. [Install Avo in your app](./installation.html)
+1. [Set up the current user](authentication.html#customize-the-current-user-method)
 1. [Create a Resource](./resources.html#defining-resources)
+1. [Set up authorization](authorization.html)
+1. [Set up licensing](licensing)
 1. [Explore the live demo app](https://avodemo.herokuapp.com)
 1. Explore these docs
 1. Enjoy building your app without ever worrying about the admin again

@@ -20,6 +20,17 @@
 
 When you share access to Avo with your clients or large teams, you may want to restrict access to a resource or a subset of resources. One example may be that only admin level users may delete records. Avo leverages Pundit under the hood to manage the role-based authentication.
 
+## Make sure Avo knows who your current user is
+
+Before setting any policies up, please make sure Avo knows who your current user is. Usually, to do that you need this 👇 &nbsp;  set up should be fine, but follow [this](authentication.html#customize-the-current-user-method) page for more scenarios.
+
+```ruby
+# config/initializers/avo.rb
+Avo.configure do |config|
+  config.current_user_method = :current_user
+end
+```
+
 ## Policies
 
 To generate a new policy, just run the regular pundit `bin/rails g pundit:policy Post`.

@@ -2,6 +2,43 @@
 
 [[toc]]
 
+## Customize the `current_user` method
+
+By default, Avo will not assume your authentication provider (the `current_user` method returns `nil`). That means Avo won't be able to retrieve the current user. You have to tell it how to get it.
+
+### Using devise
+
+For [devise](https://github.com/heartcombo/devise), you should set it to `current_user`.
+
+```ruby
+# config/initializers/avo.rb
+Avo.configure do |config|
+  config.current_user_method = :current_user
+end
+```
+
+### Use a different authenticator
+
+If you're using some other authentication provider, you may customize the `current_user` method to something else.
+
+```ruby
+# config/initializers/avo.rb
+Avo.configure do |config|
+  config.current_user_method = :current_admin
+end
+```
+
+If you get the current user from some other object like `Current.user`, you may pass a block to the `current_user_method` key.
+
+```ruby
+# config/initializers/avo.rb
+Avo.configure do |config|
+  config.current_user_method do
+    Current.user
+  end
+end
+```
+
 ## Filter out requests
 
 You probably do not want to allow Avo access to everybody. If you're using [devise](https://github.com/heartcombo/devise) in your app, use this block to filter out requests to it in your `routes.rb` file.
@@ -42,43 +79,6 @@ Note that Avo's `ApplicationController` does not inherit from your app's `Applic
 Avo.configure do |config|
   config.authenticate_with do
     redirect_to '/' unless session[:user_id] == 1 # hard code user ids here
-  end
-end
-```
-
-## Customize the `current_user` method
-
-By default, Avo will not assume your authentication provider (the `current_user` method returns `nil`). That means Avo won't be able to retrieve the current user. You have to tell it how to get it.
-
-### Using devise
-
-For [devise](https://github.com/heartcombo/devise), you should set it to `current_user`.
-
-```ruby
-# config/initializers/avo.rb
-Avo.configure do |config|
-  config.current_user_method = :current_user
-end
-```
-
-### Use a different authenticator
-
-If you're using some other authentication provider, you may customize the `current_user` method to something else.
-
-```ruby
-# config/initializers/avo.rb
-Avo.configure do |config|
-  config.current_user_method = :current_admin
-end
-```
-
-If you get the current user from some other object like `Current.user`, you may pass a block to the `current_user_method` key.
-
-```ruby
-# config/initializers/avo.rb
-Avo.configure do |config|
-  config.current_user_method do
-    Current.user
   end
 end
 ```
