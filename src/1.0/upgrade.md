@@ -10,7 +10,7 @@ In this release, we replaced `webpacker` with `jsbundling`. That should not inte
 
 ### Changes to the path helpers
 
-We tidied up our path helpers. If you use any of the following methods in your custom tools/fields (you might use it if you ejected the `sidebar.html.erb` partial), please update them accordingly by following [the source code](https://github.com/avo-hq/avo/blob/2272ea9fdda6ee12fa3af078aa4e081807526470/app/helpers/avo/url_helpers.rb).
+We tidied up our path helpers. If you use any of the following methods in your custom tools/fields (you might use it if you ejected the `sidebar.html.erb` partial), please update them accordingly by following [the source code](https://github.com/avo-hq/avo/blob/2272ea9fdda6ee12fa3af078aa4e081807526470/app/helpers/avo/url_helpers.rb). The changes evolved around transforming the positional arguments into named arguments.
 
 - `resources_path`
 - `resource_path`
