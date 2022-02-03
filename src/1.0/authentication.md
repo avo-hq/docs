@@ -82,3 +82,7 @@ Avo.configure do |config|
   end
 end
 ```
+
+## Authorization
+
+When you share access to Avo with your clients or large teams, you may want to restrict access to a resource or a subset of resources. To do that, you should set up your authorization rules (policies). Check out the [authorization page](authorization) for details on how to set that up.

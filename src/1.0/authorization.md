@@ -22,7 +22,7 @@ When you share access to Avo with your clients or large teams, you may want to r
 
 ## Make sure Avo knows who your current user is
 
-Before setting any policies up, please make sure Avo knows who your current user is. Usually, to do that you need this 👇 &nbsp;  set up should be fine, but follow [this](authentication.html#customize-the-current-user-method) page for more scenarios.
+Before setting any policies up, please make sure Avo knows your current user. Usually, you need this 👇 &nbsp;  set up should be fine, but follow [this](authentication.html#customize-the-current-user-method) page for more scenarios.
 
 ```ruby
 # config/initializers/avo.rb
