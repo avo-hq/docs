@@ -77,7 +77,7 @@ Same if you want to [show/hide fields](https://docs.avohq.io/1.0/field-options.h
 
 All in all **we're confident you'll have the necessary instruments** you need to build your admin.
 
-# Try a pre-release version
+## Try a pre-release version
 
 From time to time we push pre-release versions of the gem for you to try out before pushing to the `main` branch. To test them out you need to specify the exact version in your `Gemfile`.
 
@@ -90,3 +90,12 @@ Let's say you want to try out `1.19.1.pre.1`. You need to specify it like below 
 
 gem 'avo', '1.19.1.pre.1'
 ```
+
+## The authorization features are not working
+
+If you're having trouble with the authorization feature, make sure you have the following enabled:
+
+- you are on a [Pro](licensing) license
+- you have set the [`current_user_method`](authentication.html#customize-the-current-user-method)
+- you have reset the rails server after the above settings
+- you have the pundit policy on the appropriate model
