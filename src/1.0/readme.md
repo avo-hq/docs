@@ -24,6 +24,12 @@ After you've set up your resources with the desired fields, you may want to filt
 
 Similarly, Avo makes it easy to apply transformations to one or more resources using [Actions](./actions.html). Actions can run by themselves or have configured fields that take your input before they run.
 
+## Seamless upgrades
+
+Avo comes packaged as a gem. It does not pollute your app with its internal files. Instead, everything is tucked away neatly in the package.
+
+That makes for a wonderful upgrade experience. You hit `bundle update avo`, and you get the newest and best of Avo without any file conflicts.
+
 ## Next up
 
 Now that you know the basics, you can:
