@@ -110,6 +110,8 @@ Avo.configure do |config|
 end
 ```
 
+The context data can also be reached using the `::Avo::App.context` object.
+
 ## Eject views
 
 If you want to change one of Avo's built-in views, you can eject it, update it and use it in your admin.

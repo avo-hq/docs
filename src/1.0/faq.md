@@ -99,3 +99,7 @@ If you're having trouble with the authorization feature, make sure you have the 
 - you have set the [`current_user_method`](authentication.html#customize-the-current-user-method)
 - you have reset the rails server after the above settings
 - you have the pundit policy on the appropriate model
+
+## Add custom methods/get custom data
+
+You might want to be able to send custom data to some of the blocks you use (`default` block, computed fields, field formatters, etc.). You can use the `context` block. The block is evaluated in the `ApplicationController` so it has access to the `params` and other common controller methods. More on that [here](customization#context).
