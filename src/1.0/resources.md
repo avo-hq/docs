@@ -59,6 +59,46 @@ class PostResource < Avo::BaseResource
 end
 ```
 
+## Resource description
+
+You might want to display some information about the current resource to your users. Using the `description` class attribute, you can add some text to the `Index`, `Show`, `Edit`, and `New` views.
+
+<img :src="$withBase('/assets/img/resources/description.jpg')" alt="Avo message" class="border mb-4" />
+
+There are two ways of setting the description. The quick way as a `string` and the more customizable way as a `block`.
+
+### Set the description as a string
+
+```ruby{3}
+class UserResource < Avo::BaseResource
+  self.title = :name
+  self.description = "These are the users of the app."
+end
+```
+
+This is the quick way to set the label, and it will be displayed **only on the `Index` page**. If you want to show the message on all views, use the block method.
+
+### Set the description as a block
+
+This is the more customizable method where you have access to the `model`, `view`, `user` (the current user), and `params` objects.
+
+```ruby{3}
+class UserResource < Avo::BaseResource
+  self.title = :name
+  self.description = -> () {
+    if view == :index
+    "These are the users of the app"
+    else
+      if user.is_admin?
+        "You can update all properties for this user: #{model.id}"
+      else
+        "You can update some properties for this user: #{model.id}"
+      end
+    end
+  }
+end
+```
+
 ### Using a computed title
 
 You can use a computed `title` property for your resources if the field that is the title is not that unique.
@@ -220,4 +260,5 @@ Most of the time, you will want to trigger some events against your records or r
 Check out the additional [Actions documentation](./actions.html).
 
 ## Search
+
 Check out the additional [Search documentation](./search.html).
