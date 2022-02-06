@@ -116,3 +116,30 @@ class SuperUserResource < Avo::BaseResource
   field :name, as: :text
 end
 ```
+
+## Add scopes to associations
+
+When displaying associations, you might want to scope out some associated records. You can use the `scope` option to do that.
+
+```ruby{5,15}
+# app/models/comment.rb
+class Comment < ApplicationRecord
+  belongs_to :user, optional: true
+
+  scope :starts_with, -> (prefix) { where('LOWER(body) LIKE ?', "#{prefix}%") }
+end
+
+# app/models/user.rb
+class User < ApplicationRecord
+  has_many :comments
+end
+
+# app/avo/resource/user_resource.rb
+class UserResource < Avo::BaseResource
+  field :comments, as: :has_many, scope: -> { starts_with :a }
+end
+```
+
+Now, the `comments` query on the user `Index` page will have the `starts_with` scope attached.
+
+<img :src="$withBase('/assets/img/associations/scope.jpg')" alt="Has many detach" class="border mb-4" />
