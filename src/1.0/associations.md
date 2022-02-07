@@ -142,4 +142,14 @@ end
 
 Now, the `comments` query on the user `Index` page will have the `starts_with` scope attached.
 
-<img :src="$withBase('/assets/img/associations/scope.jpg')" alt="Has many detach" class="border mb-4" />
+<img :src="$withBase('/assets/img/associations/scope.jpg')" alt="Association scope" class="border mb-4" />
+
+## Show/hide buttons
+
+You will want to control the visibility of the attach/detach/create/destroy/actions buttons that are visible throughout your app. You can use the policy methods to do that.
+
+Find out more on the [authorization](authorization#associations) page.
+
+<img :src="$withBase('/assets/img/associations/authorization.jpg')" alt="Associations authorization" class="border mb-4" />
+
+

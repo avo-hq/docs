@@ -81,23 +81,57 @@ Controls whether the attachment download button should be visible in the `File` 
 
 Controls whether the attachment delete button should be visible in the `File` and `Files` fields.
 
+### act_on?
+
+This controls whether the user can see the actions button on the `Index` page.
+
+<img :src="$withBase('/assets/img/authorization/actions_button.jpg')" alt="Actions button" class="border mb-4" />
+
 ## Associations
 
-When using relationships, you would like to set policies for `creating` new resources on the relationship, allowing to `attach` or `detach` relevant model. Avo makes this easy using a straight-forward naming schema.
+When using relationships, you would like to set policies for `creating` new records on the association, allowing to `attach`, `detach`, `create` or `destroy` relevant records. Avo makes this easy using a straight-forward naming schema.
 
-For the creation of a new resource from the relationship show page, you can use the `create?` method defined above to limit the display of the `Create new {model}` button.
+### attach_{association}?
 
-### attach_{model}?
+When you have a `Post` resource that has many `Comment`s throught the `has_many :comments` association and you want to authorize which users can attach `comments` to a post, you should define an `attach_comment?` policy on your post model's policy class. You should use the association name as the suffix of the policy method.
 
-When you have a Post resource and a Comment resource and you want to authorize which users can add comments to a post, you should define an `attach_comment?` policy on your post model's policy class.
+<img :src="$withBase('/assets/img/authorization/attach.jpg')" class="border mb-4" />
 
-If the name of you model is PascalCased like `MainUser`, you should define the policy as `attach_main_user?`.
-
-If you define your fields as `field :post, as: :has_one` and `field :posts, as: :has_many`, be aware that you have to define the two policy methods, one for `post` as `attach_post?` and one for `posts` as `attach_posts?`.
-
-### detach_{model}?
+### detach_{association}?
 
 `detach` method works similarly to `attach` one, but for detaching.
+
+<img :src="$withBase('/assets/img/authorization/detach.jpg')" class="border mb-4" />
+
+### view_{association}?
+
+This controls whether the view button is visible on the associated record row on the `Index` page. This **does not** control whether the user has access to that record. You control that using the Policy of that record.
+
+<img :src="$withBase('/assets/img/authorization/view.jpg')" class="border mb-4" />
+
+### edit_{association}?
+
+`create` method works similarly to `attach` one, but for detaching.
+
+<img :src="$withBase('/assets/img/authorization/edit.jpg')" class="border mb-4" />
+
+### create_{association}?
+
+`create` method works similarly to `attach` one, but for detaching.
+
+<img :src="$withBase('/assets/img/authorization/create.jpg')" class="border mb-4" />
+
+### destroy_{association}?
+
+`create` method works similarly to `attach` one, but for detaching.
+
+<img :src="$withBase('/assets/img/authorization/destroy.jpg')" class="border mb-4" />
+
+### act_on_{association}?
+
+`create` method works similarly to `attach` one, but for detaching.
+
+<img :src="$withBase('/assets/img/authorization/actions.jpg')" class="border mb-4" />
 
 ## Scopes
 
