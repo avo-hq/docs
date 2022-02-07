@@ -152,4 +152,10 @@ Find out more on the [authorization](authorization#associations) page.
 
 <img :src="$withBase('/assets/img/associations/authorization.jpg')" alt="Associations authorization" class="border mb-4" />
 
+## Add custom labels to the associations pages
 
+You might want to change the name that appears on the association page. For example, if you're displaying a `team_members` associations, by default your users will see `Team members` as the title, but you'd like to show them `Members`.
+
+You can customize that using [fields localization](localization.html#localizing-fields).
+
+<img :src="$withBase('/assets/img/associations/custom-label.jpg')" alt="Custom label" class="border mb-4" />
