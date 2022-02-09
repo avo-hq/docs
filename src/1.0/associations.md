@@ -96,6 +96,10 @@ end
 
 Avo uses the [search feature](search) behind the scenes, so **make sure the target resource has the `search_query` option configured**.
 
+Watch the video below to get an ideea on how it works.
+
+[![Demo video](https://img.youtube.com/vi/KLI_sVTPX-Q/0.jpg)](https://youtu.be/KLI_sVTPX-Q)
+
 ## Has One
 
 The `HasOne` association shows the unfolded view of you `HasOne` association. It's like peaking on the **Show** view of that association. You also get the _Attach_/_Detach_ button to easily switch records.
