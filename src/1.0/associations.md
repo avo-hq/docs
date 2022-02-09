@@ -44,6 +44,58 @@ class CommentResource < Avo::BaseResource
 end
 ```
 
+### Searchable `belongs_to`
+
+**Requires V 1.21 +**
+
+&nbsp;
+
+<div class="rounded-md bg-blue-50 p-4">
+  <div class="flex">
+    <div class="flex-shrink-0">
+      <svg class="h-5 w-5 text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+      </svg>
+    </div>
+    <div class="ml-3 flex-1 md:flex md:justify-between">
+      <div class="text-sm leading-5 text-blue-700">
+        Searchable associations are available as a <a href="https://avohq.io/purchase/pro" target="_blank" class="underline">pro</a> feature
+      </div>
+    </div>
+  </div>
+</div>
+
+There might be the case that you have a lot of records for the parent resource, and a simple drop-down won't cut it. This is where you can use the `searchable` option to get a better search experience for that resource.
+
+```ruby{7}
+class CommentResource < Avo::BaseResource
+  self.title = :id
+
+  field :id, as: :id
+  field :body, as: :textarea
+
+  field :user, as: :belongs_to, searchable: true
+end
+```
+
+<img :src="$withBase('/assets/img/associations/searchable-closed.jpg')" alt="Belongs to searchable" class="border mb-4" />
+<img :src="$withBase('/assets/img/associations/searchable-open.jpg')" alt="Belongs to searchable" class="border mb-4" />
+
+`searchable` works with `polymorphic` `belongs_to` associations too.
+
+```ruby{7}
+class CommentResource < Avo::BaseResource
+  self.title = :id
+
+  field :id, as: :id
+  field :body, as: :textarea
+
+  field :commentable, as: :belongs_to, polymorphic_as: :commentable, types: [::Post, ::Project], searchable: true
+end
+```
+
+Avo uses the [search feature](search) behind the scenes, so **make sure the target resource has the `search_query` option configured**.
+
 ## Has One
 
 The `HasOne` association shows the unfolded view of you `HasOne` association. It's like peaking on the **Show** view of that association. You also get the _Attach_/_Detach_ button to easily switch records.
