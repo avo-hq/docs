@@ -145,7 +145,15 @@ The `File` field may be used to attach files using [Active Storage](https://edge
 field :avatar, as: :file, is_image: true
 ```
 
+### Display the file as image
+
 The `is_image` option renders the file as an image instead of rendering the file name.
+
+### Display the file as an audio file
+
+The `is_audio` option renders an audio player that allows you to play the file.
+
+### Authorization
 
 <div class="rounded-md bg-blue-50 p-4">
   <div class="flex">
