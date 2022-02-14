@@ -112,6 +112,14 @@ module.exports = {
         '/1.0/localization',
         '/1.0/stimulus-controllers',
         '/1.0/faq',
+        {
+          title: 'Recipes & guides',
+          path: '/1.0/recipes',
+          sidebarDepth: 0,
+          children: [
+            '/1.0/rest-api-integration'
+          ]
+        },
       ],
       '/0.4.x/': [
         {
