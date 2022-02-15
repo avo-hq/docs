@@ -1,3 +1,7 @@
+const recipes = require('./getRecipes')
+
+const recipeChildren = recipes.map((file) => `/1.0/recipes/${file.replace('.md', '')}`)
+
 module.exports = {
   title: 'Avo Admin for Rails | Documentation',
   description: 'The most beautiful, easy-to-use Ruby on Rails admin framework',
@@ -116,9 +120,8 @@ module.exports = {
           title: 'Recipes & guides',
           path: '/1.0/recipes',
           sidebarDepth: 0,
-          children: [
-            '/1.0/rest-api-integration'
-          ]
+          collapsable: false,
+          children: recipeChildren
         },
       ],
       '/0.4.x/': [

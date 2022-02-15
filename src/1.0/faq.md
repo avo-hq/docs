@@ -21,7 +21,7 @@ When writing rails code somewhere in Avo domain you might want to use your regul
 
 ```ruby{2}
 field :partner_home, as: :text, as_html: true do |model, *args|
-  partner_home_url(model)
+  link_to 'Partner', partner_home_url(model)
 end
 ```
 
@@ -30,7 +30,7 @@ This will not work because Avo will execute that code inside itself, a Rails eng
 
 ```ruby{2}
 field :partner_home, as: :text, as_html: true do |model, *args|
-  main_app.partner_home_url(model)
+  link_to 'Partner', main_app.partner_home_url(model)
 end
 ```
 
