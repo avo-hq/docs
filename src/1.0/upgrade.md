@@ -2,6 +2,35 @@
 
 [[toc]]
 
+## Upgrade from 1.21 to 1.22
+
+### Update your sidebar & logo partials
+
+Following [this](https://github.com/avo-hq/avo/discussions/680) recommendation we moved the `root_path` link from the `_sidebar` partial to the `_logo` partial.
+So, if you ejected the `_sidebar` or `_logo` partial you need to do the same updates as in [this commit](https://github.com/avo-hq/avo/pull/683/commits/b2e0b531849838972fba33631d916514dcd43138). If you only ejected the `_logo` partial, you only need to do the `_logo` update.
+
+```html
+<!-- app/views/avo/partials/_logo.html.erb -->
+<!-- Before -->
+<%= image_tag '/avo-assets/logo.png', class: 'h-full', title: 'Avo' %>
+
+<!-- After -->
+<%= link_to root_path, class: 'logo-placeholder h-16 bg-white p-2 flex justify-center' do %>
+  <%= image_tag '/avo-assets/logo.png', class: 'h-full', title: 'Avo' %>
+<% end %>
+```
+
+```html
+<!-- app/views/avo/sidebar/_sidebar.html.erb -->
+<!-- Before -->
+<%= link_to root_path, class: 'logo-placeholder h-16 bg-white p-2 flex justify-center' do %>
+  <%= render partial: "avo/partials/logo" %>
+<% end %>
+
+<!-- After -->
+<%= render partial: "avo/partials/logo" %>
+```
+
 ## Upgrade from 1.19 to 1.20
 
 ### Removed webpacker in favor of jsbundling with esbuild
