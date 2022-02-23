@@ -86,6 +86,7 @@ module.exports = {
             '/1.0/licensing',
             '/1.0/upgrade',
             '/1.0/grid-view',
+            '/1.0/recipes',
           ]
         },
         '/1.0/resources',
