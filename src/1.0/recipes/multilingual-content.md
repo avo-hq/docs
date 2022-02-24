@@ -96,4 +96,14 @@ First you need to eject the `_profile_dropdown` partial using this command `bin/
 </div>
 ```
 
-Feel free to customize the dropdown as much as you need it to be.
+Feel free to customize the dropdown as much as you need it to and add as many locales as you need.
+
+## Workflow
+
+You will now be able to edit the attributed you marked as translatable (eg: `name`) in the locale you are in (default is `en`). Next you can go to the navbar on the top and switch to a new locale. The switch will then allow you to edit the record in that locale, and so on.
+
+## Support
+
+This is the first iteration of multilingual content. It's obvious that this could be done in a better way and we'll add that better way in the future, but until then you can use this method to edit your multilingual content.
+
+Thanks!
