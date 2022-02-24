@@ -12,7 +12,7 @@ Once you attach an action to a resource using the `actions` method it will appea
 
 You generate one running `bin/rails generate avo:action toggle_active` creating an action configuration file.
 
-```ruby{4-18,20-23}
+```ruby
 class ToggleActive < Avo::BaseAction
   self.name = 'Toggle active'
 
@@ -72,7 +72,7 @@ end
 
 To add an action to one of your resources, you need to declare it on the resource using the `action` method.
 
-```ruby{10-12}
+```ruby{8}
 class UserResource < Avo::BaseResource
   self.title = :name
   self.search = [:id, :first_name, :last_name]
@@ -94,7 +94,7 @@ The default response is to reload the page and show the _Action ran successfully
 
 You will have two message response methods at your disposal `succeed` and `fail`. These will render out green or red alerts to the user.
 
-```ruby{4}
+```ruby{6,10}
 def handle(**args)
   models = args[:models]
 
@@ -103,6 +103,8 @@ def handle(**args)
       fail "Can't mark inactive! The user is an admin."
     else
       model.update active: false
+
+      succeed "Done! User marked as inactive!"
     end
   end
 end
@@ -111,11 +113,11 @@ end
 <img :src="$withBase('/assets/img/actions/actions-succeed-message.jpg')" alt="Avo succeed message" class="border inline-block mr-2" />
 <img :src="$withBase('/assets/img/actions/actions-fail-message.jpg')" alt="Avo fail message" class="border inline-block" />
 
-### Action responses
+## Response types
 
 After you notify the user about what happened through a message, you may want to execute an action like `reload` (default action) or `redirect_to`. You may use message and action responses together.
 
-```ruby{10}
+```ruby{14}
 def handle(**args)
   models = args[:models]
 
@@ -124,6 +126,8 @@ def handle(**args)
       fail "Can't mark inactive! The user is an admin."
     else
       model.update active: false
+
+      succeed "Done! User marked as inactive!"
     end
   end
 
@@ -133,11 +137,11 @@ end
 
 The available action responses are:
 
-#### `reload`
+### `reload`
 
 When you use `reload`, a full-page reload will be triggered.
 
-```ruby{7}
+```ruby{9}
 def handle(**args)
   models = args[:models]
 
@@ -150,11 +154,11 @@ def handle(**args)
 end
 ```
 
-#### `redirect_to`
+### `redirect_to`
 
 `redirect_to` will execute a redirect to a new path of your app.
 
-```ruby{7}
+```ruby{9}
 def handle(**args)
   models = args[:models]
 
@@ -167,25 +171,34 @@ def handle(**args)
 end
 ```
 
-#### `download`
+### `download`
 
 `download` will start a file download to your specified `path` and `filename`.
 
-```ruby{12}
-def handle(**args)
-  models = args[:models]
+**You need to set may_download_file to true for the download response to work like below**. That's required because we can't respond with a file download (send_data) when making a Turbo request.
 
-  models.each do |project|
-    project.update active: false
+If you find another way, please let us know 😅.
 
-    report_path = project.report_path
-    report_filename = project.report_filename
-  end
+```ruby{3,18}
+class DownloadFile < Avo::BaseAction
+  self.name = "Download file"
+  self.may_download_file = true
 
-  succeed 'Done!'
+  def handle(**args)
+    models = args[:models]
 
-  if report_path.present? and report_filename.present?
-    download report_path, report_filename
+    models.each do |project|
+      project.update active: false
+
+      report_data = project.generate_report_data
+      report_filename = project.report_filename
+    end
+
+    succeed 'Done!'
+
+    if report_data.present? and report_filename.present?
+      download report_data, report_filename
+    end
   end
 end
 ```
