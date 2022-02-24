@@ -12,6 +12,18 @@ def set_locale
 end
 ```
 
+## Install the mobility gem
+
+Follow the install instructions [here](https://github.com/shioyama/mobility#installation). A brief introduction below (but follow their guid for best results)
+
+ - add the gem to your `Gemfile` `gem 'mobility', '~> 1.2.5'`
+ - `bundle install`
+ - install mobility `rails generate mobility:install`
+ - update the backend (like in the guide) `backend :key_value, type: :string`
+ - add mobility to your model `extend Mobility`
+ - add translatable field `translates :name`
+ - 🙌 that's it. The content should be translatable now.
+
 ## Add the language switcher
 
 First you need to eject the `_profile_dropdown` partial using this command `bin/rails generate avo:eject :profile_dropdown`. In that partail add the languages you need to support like so:
