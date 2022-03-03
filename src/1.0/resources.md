@@ -313,6 +313,10 @@ end
 
 <img :src="$withBase('/assets/img/resources/ordering_visible.jpg')" alt="Avo ordering" class="border mb-4" />
 
+Follow this video guide on how you could implement the feature in your app.
+
+<iframe class="w-full" style="aspect-ratio: 16/9" src="https://www.youtube.com/embed/LEALfPiyfRk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Filters
 
 It's a very common scenario to add filters to your resources to make it easier to find your records. Check out the additional [Filters documentation](./filters.html) to see how easy it is to set up custom filters with Avo.
