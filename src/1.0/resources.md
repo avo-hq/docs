@@ -245,6 +245,74 @@ end
 
 *You can't use `Avo::BaseController` and `Avo::ResourcesController` as **your base controller**. They are defined inside Avo.*
 
+## Records ordering
+
+**Requires V 1.24 +**
+
+<div class="rounded-md bg-blue-50 p-4">
+  <div class="flex">
+    <div class="flex-shrink-0">
+      <svg class="h-5 w-5 text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+      </svg>
+    </div>
+    <div class="ml-3 flex-1 md:flex md:justify-between">
+      <div class="text-sm leading-5 text-blue-700">
+        Records ordering is a <a href="https://avohq.io/purchase/pro" target="_blank" class="underline">pro</a> feature
+      </div>
+    </div>
+  </div>
+</div>
+
+A typical scenario is when you need to set your records into a specific order. Like re-ordering `Slide`s inside a `Carousel` or `MenuItem`s inside a `Menu`.
+
+The `ordering` class attribute is your friend for this. You can set four actions `higher`, `lower`, `to_top` or `to_bottom` and the `always_visible` option. The actions themselves are simple lambda functions but coupled with your logic or an ordering gem, they can be quite powerful.
+
+I'll demonstrate the ordering feature using the `act_as_list` gem.
+
+You need to install and configure the gem as instructed in the [tutorials](https://github.com/brendon/acts_as_list#example). Please make sure you [give all position attribute values](https://github.com/brendon/acts_as_list#adding-acts_as_list-to-an-existing-model) so the gem works appropriately.
+
+Next, you add the order actions like below.
+
+```ruby
+class CourseLinkResource < Avo::BaseResource
+  self.ordering = {
+    actions: {
+      higher: -> (record) { record.move_higher },
+      lower: -> (record) { record.move_lower },
+      to_top: -> (record) { record.move_to_top },
+      to_bottom: -> (record) { record.move_to_bottom },
+    }
+  }
+end
+```
+
+The `record` is the actual instantiated model. The `move_higher`, `move_lower`, `move_to_top`, and `move_to_bottom` methods are provided by `act_as_list`. If you're not using that gem, you can add your own logic inside to change the position of the record.
+
+That configuration will generate a button with a popover containing the ordering buttons.
+
+<img :src="$withBase('/assets/img/resources/ordering_hover.jpg')" alt="Avo ordering" class="border mb-4" />
+
+### Always show the order buttons
+
+If the resource you're trying to update requires re-ordering often, you can have the buttons visible at all times using the `always_visible: true` option.
+
+```ruby
+class CourseLinkResource < Avo::BaseResource
+  self.ordering = {
+    always_visible: true,
+    actions: {
+      higher: -> (record) { record.move_higher },
+      lower: -> (record) { record.move_lower },
+      to_top: -> (record) { record.move_to_top },
+      to_bottom: -> (record) { record.move_to_bottom },
+    }
+  }
+end
+```
+
+<img :src="$withBase('/assets/img/resources/ordering_visible.jpg')" alt="Avo ordering" class="border mb-4" />
+
 ## Filters
 
 It's a very common scenario to add filters to your resources to make it easier to find your records. Check out the additional [Filters documentation](./filters.html) to see how easy it is to set up custom filters with Avo.
