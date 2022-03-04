@@ -2,7 +2,7 @@
 
 [[toc]]
 
-**Requires V 1.21 +**
+**Requires V 2.0 +**
 
 There comes a point in your app's life when you need to display the data in an aggregated form like a metric or chart. That's what Avo's dashboards are all about. Making it easy for you to aggrgate the data.
 
