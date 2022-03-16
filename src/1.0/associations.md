@@ -143,7 +143,7 @@ In a similar fashion, you may detach a model using the detach button.
 
 <img :src="$withBase('/assets/img/associations/has-many-detach.jpg')" alt="Has many detach" class="border mb-4" />
 
-### Has many through
+## Has many through
 
 The `HasMany` association also supports the `:through` option.
 

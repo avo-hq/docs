@@ -143,7 +143,7 @@ In a similar fashion, you may detach a model using the detach button.
 
 <img :src="$withBase('/assets/img/associations/has-many-detach.jpg')" alt="Has many detach" class="border mb-4" />
 
-### Has many through
+## Has many through
 
 The `HasMany` association also supports the `:through` option.
 
@@ -158,6 +158,37 @@ The `HasAndBelongsToMany` association works similarly to `HasMany`.
 ```ruby
 field :users, as: :has_and_belongs_to_many
 ```
+
+### Searchable `has_many`
+
+**Requires V 1.25 +**
+
+&nbsp;
+
+<div class="rounded-md bg-blue-50 p-4">
+  <div class="flex">
+    <div class="flex-shrink-0">
+      <svg class="h-5 w-5 text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+      </svg>
+    </div>
+    <div class="ml-3 flex-1 md:flex md:justify-between">
+      <div class="text-sm leading-5 text-blue-700">
+        Searchable associations are available as a <a href="https://avohq.io/purchase/pro" target="_blank" class="underline">pro</a> feature
+      </div>
+    </div>
+  </div>
+</div>
+
+Similar to [`belongs_to`](#searchable-belongs-to), the `has_many` associations support the `searchable` option.
+
+```ruby{2}
+class CourseLink < Avo::BaseResource
+  field :links, as: :has_many, searchable: true, placeholder: "Click to choose a link"
+end
+```
+
+Please note that the associated resource has to have the [search](./search) option enabled.
 
 ## Single Table Inheritance (STI)
 
