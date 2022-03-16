@@ -64,6 +64,10 @@ module.exports = {
         link: '/',
         items: [
           {
+            text: "2.0",
+            link: "/2.0/"
+          },
+          {
             text: "1.0",
             link: "/1.0/"
           },
@@ -75,6 +79,57 @@ module.exports = {
       }
     ],
     sidebar: {
+      '/2.0/': [
+        {
+          title: 'Getting started',
+          path: '/2.0/',
+          collapsable: false,
+          sidebarDepth: 0,
+          children: [
+            '/2.0/installation',
+            '/2.0/authentication',
+            '/2.0/licensing',
+            '/2.0/upgrade',
+            '/2.0/grid-view',
+            '/2.0/recipes',
+          ]
+        },
+        '/2.0/resources',
+        '/2.0/field-options',
+        '/2.0/fields',
+        '/2.0/associations',
+        {
+          title: 'Dashboards',
+          path: '/2.0/dashboards',
+          sidebarDepth: 0,
+        },
+        '/2.0/search',
+        {
+          title: 'Filters',
+          path: '/2.0/filters',
+          sidebarDepth: 0,
+        },
+        {
+          title: 'Actions',
+          path: '/2.0/actions',
+          sidebarDepth: 0,
+        },
+        '/2.0/customization',
+        '/2.0/custom-tools',
+        '/2.0/custom-fields',
+        '/2.0/custom-asset-pipeline',
+        '/2.0/authorization',
+        '/2.0/localization',
+        '/2.0/stimulus-controllers',
+        '/2.0/faq',
+        {
+          title: 'Recipes & guides',
+          path: '/recipes',
+          sidebarDepth: 0,
+          collapsable: false,
+          children: recipeChildren
+        },
+      ],
       '/1.0/': [
         {
           title: 'Getting started',
@@ -94,11 +149,6 @@ module.exports = {
         '/1.0/field-options',
         '/1.0/fields',
         '/1.0/associations',
-        {
-          title: 'Dashboards',
-          path: '/1.0/dashboards',
-          sidebarDepth: 0,
-        },
         '/1.0/search',
         {
           title: 'Filters',
