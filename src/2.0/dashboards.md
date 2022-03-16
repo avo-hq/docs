@@ -4,10 +4,13 @@
 
 There comes the point in your app's life when you need to display the data in an aggregated form like a metric or chart. That's what Avo's Dashboards are all about.
 
+## Generate a dashboard
+
+Run `bin/rails g avo:dashboard my_dashboard` to get a shiny new dashboard.
 
 ```ruby
-class Dashy < Avo::Dashboards::BaseDashboard
-  self.id = 'dashy'
+class MyDashboard < Avo::Dashboards::BaseDashboard
+  self.id = 'my_dashboard'
   self.name = 'Dashy'
   self.description = 'The first dashbaord'
   self.grid_cols = 3
@@ -97,37 +100,6 @@ class UsersMetric < Avo::Dashboards::MetricCard
 end
 ```
 <img :src="$withBase('/assets/img/dashboards/map_card.jpg')" alt="Avo Dashboard Map card" class="border mb-4" />
-
-## Dividers
-
-You may want to separate the cards. You can use dividers to do that.
-
-```ruby{16}
-class Dashy < Avo::Dashboards::BaseDashboard
-  self.id = 'dashy'
-  self.name = 'Dashy'
-  self.description = 'The first dashbaord'
-  self.grid_cols = 3
-
-  card ExampleMetric
-  card ExampleAreaChart
-  card ExampleScatterChart
-  card PercentDone
-  card AmountRaised
-  card ExampleLineChart
-  card ExampleColumnChart
-  card ExamplePieChart
-  card ExampleBarChart
-  divider label: "Custom partials"
-  card ExampleCustomPartial
-  card MapCard
-end
-```
-
-<img :src="$withBase('/assets/img/dashboards/divider.jpg')" alt="Avo Dashboard Divider" class="border mb-4" />
-
-Dividers can be a simple line between your cards or have some text on them that you control using the `label` option.
-When you don't want to show even the line, you can enable the `invisible` option, which adds the divider but does not display a border or label.
 
 ### Metric card
 
@@ -293,3 +265,34 @@ end
 ```
 
 <img :src="$withBase('/assets/img/dashboards/map_card.jpg')" alt="Avo Dashboard Map card" class="border mb-4" />
+
+## Dividers
+
+You may want to separate the cards. You can use dividers to do that.
+
+```ruby{16}
+class Dashy < Avo::Dashboards::BaseDashboard
+  self.id = 'dashy'
+  self.name = 'Dashy'
+  self.description = 'The first dashbaord'
+  self.grid_cols = 3
+
+  card ExampleMetric
+  card ExampleAreaChart
+  card ExampleScatterChart
+  card PercentDone
+  card AmountRaised
+  card ExampleLineChart
+  card ExampleColumnChart
+  card ExamplePieChart
+  card ExampleBarChart
+  divider label: "Custom partials"
+  card ExampleCustomPartial
+  card MapCard
+end
+```
+
+<img :src="$withBase('/assets/img/dashboards/divider.jpg')" alt="Avo Dashboard Divider" class="border mb-4" />
+
+Dividers can be a simple line between your cards or have some text on them that you control using the `label` option.
+When you don't want to show even the line, you can enable the `invisible` option, which adds the divider but does not display a border or label.

@@ -15,6 +15,9 @@ Renamed the NavigationHeadingComponent to `SidebarHeadingComponent`.
 
 Ttranslations
 
+Controllers
+renamed `RelationsController` `AssociationsController`
+
 
 Added
 `avo.details`

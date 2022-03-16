@@ -82,10 +82,10 @@ This is the quick way to set the label, and it will be displayed **only on the `
 
 This is the more customizable method where you have access to the `model`, `view`, `user` (the current user), and `params` objects.
 
-```ruby{3}
+```ruby{3-13}
 class UserResource < Avo::BaseResource
   self.title = :name
-  self.description = -> () {
+  self.description = -> {
     if view == :index
     "These are the users of the app"
     else
