@@ -77,7 +77,8 @@ Avo pings the [HQ](https://avohq.io) (the license validation service) with some 
   environment: Rails.env,
   ip: current_request.ip,
   host: current_request.host,
-  port: current_request.port
+  port: current_request.port,
+  app_name: Rails.application.class.to_s.split("::").first
 }
 ```
 
