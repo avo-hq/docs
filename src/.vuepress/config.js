@@ -1,6 +1,8 @@
-const recipes = require('./getRecipes')
+const recipes1 = require('./getRecipes1')
+const recipes2 = require('./getRecipes2')
 
-const recipeChildren = recipes.map((file) => `/1.0/recipes/${file.replace('.md', '')}`)
+const recipeChildren1 = recipes1.reverse().map((file) => `/1.0/recipes/${file.replace('.md', '')}`)
+const recipeChildren2 = recipes2.reverse().map((file) => `/2.0/recipes/${file.replace('.md', '')}`)
 
 module.exports = {
   title: 'Avo Admin for Rails | Documentation',
@@ -92,6 +94,7 @@ module.exports = {
             '/2.0/upgrade',
             '/2.0/grid-view',
             '/2.0/recipes',
+            '/2.0/faq',
           ]
         },
         '/2.0/resources',
@@ -124,10 +127,10 @@ module.exports = {
         '/2.0/faq',
         {
           title: 'Recipes & guides',
-          path: '/recipes',
+          path: '/2.0/recipes',
           sidebarDepth: 0,
           collapsable: false,
-          children: recipeChildren
+          children: recipeChildren2
         },
       ],
       '/1.0/': [
@@ -143,6 +146,7 @@ module.exports = {
             '/1.0/upgrade',
             '/1.0/grid-view',
             '/1.0/recipes',
+            '/1.0/faq',
           ]
         },
         '/1.0/resources',
@@ -173,7 +177,7 @@ module.exports = {
           path: '/1.0/recipes',
           sidebarDepth: 0,
           collapsable: false,
-          children: recipeChildren
+          children: recipeChildren1
         },
       ],
       '/0.4.x/': [
