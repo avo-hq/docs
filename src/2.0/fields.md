@@ -153,6 +153,20 @@ The `is_image` option renders the file as an image instead of rendering the file
 
 The `is_audio` option renders an audio player that allows you to play the file.
 
+### Display the file as an video file
+
+The `is_video` option renders an video player that allows you to play the file.
+
+### Direct upload support
+
+If you have large files and you don't want to overload the server with uploads you can use the `direct_upload` feature which will upload the file directly to your cloud provider.
+
+<!-- @todo: add links to avodemo page, avodemo source code, rails docs and demo video -->
+
+```ruby
+field :cover_video, as: :file, direct_upload: true
+```
+
 ### Authorization
 
 <div class="rounded-md bg-blue-50 p-4">
@@ -176,6 +190,16 @@ The `Files` field is similar to `File` and enables you to upload multiple files 
 
 ```ruby
 field :documents, as: :files
+```
+
+### Direct upload support
+
+If you have large files and you don't want to overload the server with uploads you can use the `direct_upload` feature which will upload the file directly to your cloud provider.
+
+<!-- @todo: add links to avodemo page, avodemo source code, rails docs and demo video -->
+
+```ruby
+field :files, as: :files, direct_upload: true
 ```
 
 ## Gravatar

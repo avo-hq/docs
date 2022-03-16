@@ -99,7 +99,7 @@ class UserResource < Avo::BaseResource
 end
 ```
 
-### Using a computed title
+## Using a computed title
 
 You can use a computed `title` property for your resources if the field that is the title is not that unique.
 
