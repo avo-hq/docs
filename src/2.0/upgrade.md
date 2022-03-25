@@ -2,26 +2,34 @@
 
 [[toc]]
 
-## Upgrade from 1.0 to 2.0
+## Upgrade from 1.x to 2.0
+
+### Update the gem
+
+Run `bundle update avo` to update your gem. If you have a Pro license, follow this guide to update your license.
 
 ### Update your sidebar & profile partials
 
 We changed some of the remaining partials to `view_component`s.
 
+### View components
 
-Renamed the NavigationLinkComponent to `SidebarItemComponent`.
-Renamed the NavigationHeadingComponent to `SidebarHeadingComponent`.
+Renamed the following view components:
 
+- `NavigationLinkComponent` to `SidebarItemComponent`.
+- `NavigationHeadingComponent` to `SidebarHeadingComponent`.
 
-Ttranslations
+### Translations
 
-Controllers
-renamed `RelationsController` `AssociationsController`
+We added the following tags:
 
+ - `avo.details`
 
-Added
-`avo.details`
+Removed the following tags:
 
-removed
-`avo.resource_details`
-`avo.update_item`
+- `avo.resource_details`
+- `avo.update_item`
+
+### Controllers
+
+Renamed `RelationsController` to `AssociationsController`
