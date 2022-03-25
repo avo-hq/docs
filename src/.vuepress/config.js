@@ -19,7 +19,7 @@ module.exports = {
   ],
   plugins: [
     ['@vuepress/search', {
-      test: '/1\.0/'
+      test: '/2\.0/'
     }],
     '@vuepress/plugin-back-to-top',
     '@vuepress/plugin-medium-zoom',
