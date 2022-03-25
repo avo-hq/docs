@@ -6,7 +6,7 @@
 
 ### Update the gem
 
-Run `bundle update avo` to update your gem. If you have a Pro license, follow this guide to update your license.
+Run `bundle update avo` to update your gem. If you have a Pro license, follow [this guide](https://docs.avohq.io/2.0/licensing.html#upgrade-your-1-0-license-to-2-0) to update your license.
 
 ### Update your sidebar & profile partials
 
