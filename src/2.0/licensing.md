@@ -88,7 +88,7 @@ The requests are made at boot time and every hour when you use Avo.
 
 ## Upgrade your 1.0 license to 2.0
 
-We are gratefull to our `1.0` customers for believing in us. So we offer a free and easy upgrade path and a year of free updates for version `2.0`.
+We are gratefull to our `1.0` customers for believing in us. So we offer a free and easy upgrade path and **a year of free updates** for version `2.0`.
 
 If you have a 1.0 license and want to upgrade to 2.0 you need to log in to [avohq.io](https://avohq.io), go to the [licenses page](https://avohq.io/subscriptions), and hit the `Upgrade` button next to your license. You'll be redirected to the new subscription screen where you can start the subscription for 2.0.
 After you add your billing details you won't get charged right away, but on the next billing cycle next year.
