@@ -1,6 +1,6 @@
 [[redirects]]
   from = "/"
-  to = "/1.0"
+  to = "/2.0"
   status = 301
   force = false
 
