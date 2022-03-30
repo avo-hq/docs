@@ -88,3 +88,33 @@ end
 ## Re-generate the locale
 
 When updating Avo please run `bin/rails generate avo:locales` to re-generate the locales file.
+
+## FAQ
+
+If you try to localize your resources and fields and it doesn't seem to work please be aware of the following.
+
+### Advanced localization is a Pro feature
+
+Localizing strings in Avo will still work using Rails' `I18n` mechanism, but localizing fileds and resources require a `Pro` or above license.
+
+The reasoning behind this is that deep localization is a more advanced feature that usually falls in the commercial realm. If you create commercial products or apps for clients, and make revenue using Avo, we'd love to get your support to be able to maintain it and ship new features going forward.
+
+### The I18n.t method defaults to the name of that field/resource
+
+Internally the localization works like so `I18n.t(translation_key, count: 1, default: default)` where the `default` is the computed field/resource name. So check the structure of you translation keys.
+
+```yml
+# config/locales/avo.pt-BR.yml
+pt-BR:
+  avo:
+    field_translations:
+      file:
+        zero: 'arquivos'
+        one: 'arquivo'
+        other: 'arquivos'
+    resource_translations:
+      user:
+        zero: 'usuários'
+        one: 'usuário'
+        other: 'usuários'
+```
