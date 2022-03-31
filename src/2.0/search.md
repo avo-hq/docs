@@ -185,3 +185,23 @@ Avo.configure do |config|
   config.disabled_features = [:global_search]
 end
 ```
+
+## Hide a resource from the global search
+
+You might have a resource that you'd like to be able to perform a search on when on its `Index` page but not have it present in the global search. You can hide it using `search_hide_from_global_search = true`.
+
+```ruby{8}
+class TeamMembershipResource < Avo::BaseResource
+  self.title = :id
+  self.includes = [:user, :team]
+  self.visible_on_sidebar = false
+  self.search_query = ->(params:) do
+    scope.ransack(id_eq: params[:q], m: "or").result(distinct: false)
+  end
+  self.search_hide_from_global_search = true
+
+  field :id, as: :id
+  field :user, as: :belongs_to
+  field :team, as: :belongs_to
+end
+```
