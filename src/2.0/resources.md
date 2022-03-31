@@ -328,6 +328,21 @@ To control that you can use the `visible_on` option. THe possible values are `:i
 
 <iframe style="width: 100%; aspect-ratio: 16/9" src="https://www.youtube.com/embed/LEALfPiyfRk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
 
+## Show buttons on form footers
+
+If you have a lot of fields on a resource, that form might get pretty tall. It would be useful to have the `Save` button in the footer of that form.
+
+You can do that by setting the `buttons_on_form_footers` option to `true` in your initializer. That will add the `Back` and `Save` buttons on the footer of that form for the `New` and `Edit` screens.
+
+```ruby{3}
+# config/initializers/avo.rb
+Avo.configure do |config|
+  config.buttons_on_form_footers = true
+end
+```
+
+<img :src="$withBase('/assets/img/resources/buttons_on_footer.jpg')" alt="Buttons on footer" class="border mb-4" />
+
 ## Filters
 
 It's a very common scenario to add filters to your resources to make it easier to find your records. Check out the additional [Filters documentation](./filters.html) to see how easy it is to set up custom filters with Avo.
