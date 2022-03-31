@@ -296,3 +296,26 @@ end
 
 Dividers can be a simple line between your cards or have some text on them that you control using the `label` option.
 When you don't want to show even the line, you can enable the `invisible` option, which adds the divider but does not display a border or label.
+
+## Dashboards visibility
+
+You might want to hide certain dashboards from certain users. You can do that using the `visible` option. The option can be a boolean `true`/`false` or a block where you have access to the `params`, `current_user`, `context`, and `dashboard`.
+
+By default if you don't pass anything to `visible`, the dashboard will be available for anyone.
+
+```ruby{5-7}
+class ComplexDash < Avo::Dashboards::BaseDashboard
+  self.id = "complex_dash"
+  self.name = "Complex dash"
+  self.description = "Complex dash description"
+  self.visible = -> do
+    current_user.is_admin?
+    # or
+    params[:something] == 'something else'
+    # or
+    context[:your_param] == params[:something_else]
+  end
+
+  card UsersCount
+end
+```
