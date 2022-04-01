@@ -188,7 +188,7 @@ end
 
 ## Hide a resource from the global search
 
-You might have a resource that you'd like to be able to perform a search on when on its `Index` page but not have it present in the global search. You can hide it using `search_hide_from_global_search = true`.
+You might have a resource that you'd like to be able to perform a search on when on its `Index` page but not have it present in the global search. You can hide it using `hide_from_global_search = true`.
 
 ```ruby{8}
 class TeamMembershipResource < Avo::BaseResource
@@ -198,7 +198,7 @@ class TeamMembershipResource < Avo::BaseResource
   self.search_query = ->(params:) do
     scope.ransack(id_eq: params[:q], m: "or").result(distinct: false)
   end
-  self.search_hide_from_global_search = true
+  self.hide_from_global_search = true
 
   field :id, as: :id
   field :user, as: :belongs_to
