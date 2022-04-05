@@ -343,6 +343,22 @@ end
 
 <img :src="$withBase('/assets/img/resources/buttons_on_footer.jpg')" alt="Buttons on footer" class="border mb-4" />
 
+## Customize what happens after record is created/edited
+
+For some resources it might make sense to redirect to something else than the `Show` view. With `after_create_path` and `after_update_path` you can control that.
+
+The valid options are `:show` (default) or `:index`.
+
+```ruby{5-6}
+class CommentResource < Avo::BaseResource
+  self.after_create_path = :index
+  self.after_update_path = :index
+
+  field :id, as: :id
+  field :body, as: :textarea
+end
+```
+
 ## Filters
 
 It's a very common scenario to add filters to your resources to make it easier to find your records. Check out the additional [Filters documentation](./filters.html) to see how easy it is to set up custom filters with Avo.
