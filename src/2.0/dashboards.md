@@ -42,9 +42,9 @@ Using the ' grid_cols ' parameter, you may organize the cards in a grid with `3`
 
 ## Cards
 
-There are three types of cards you can add to your dashboard: `metric`, `chartkick`, and `partial`.
+All cards have a few base settings and a few custom ones.
 
-#### Setting the base settings
+### Base settings
 
 All cards have some standard settings like `id`, which must be unique, `label` and `description`. The `label` will be the title of your card, and `description` will show a tiny question mark icon on the bottom right with a tooltip with that description.
 
@@ -63,7 +63,7 @@ end
 
 <img :src="$withBase('/assets/img/dashboards/users_metric.jpg')" alt="Avo Dashboard Metric" class="border mb-4" />
 
-#### Control the aggregation using ranges
+### Control the aggregation using ranges
 
 You may also want to give the user the ability to query data in different ranges. Using the ' ranges ' attribute, you can control what's passed in the dropdown. The array passed here will be parsed and displayed on the card. All integers are transformed to days, and other string variables will be passed as they are.
 
@@ -78,7 +78,7 @@ class UsersMetric < Avo::Dashboards::MetricCard
 end
 ```
 
-#### Keep the data fresh
+### Keep the data fresh
 
 If this dashboard is something that you keep on the big screen, you need to keep the data fresh at all times. That's easy using `refresh_every`. You pass it the number of seconds you need to be refreshed in and forget about it. Avo will do it for you.
 
@@ -89,7 +89,7 @@ class UsersMetric < Avo::Dashboards::MetricCard
 end
 ```
 
-#### Hide the header
+### Hide the header
 
 In cases where you need to embed some content that should fill the whole card (like a map, for example), you can choose to hide the label and ranges dropdown.
 
@@ -100,6 +100,73 @@ class UsersMetric < Avo::Dashboards::MetricCard
 end
 ```
 <img :src="$withBase('/assets/img/dashboards/map_card.jpg')" alt="Avo Dashboard Map card" class="border mb-4" />
+
+### Override card options from the dashboard
+
+We found ourselves in the position to add a few cards that were actually the same card but with a slight difference. Ex: Have one `Users count` card and another `Active users count` card. They both count users, but the latter has an `active: true` condition applied.
+
+Before, we'd have to duplicate that card and make that slight modification to the `query` block but end up with duplicated boilerplate code.
+For those scenarios, we created the `options`... card option. It allows you to essentially send arbitrary options to the card from the parent like so.
+
+```ruby{6-8}
+class Dashy < Avo::Dashboards::BaseDashboard
+  self.id = "dashy"
+  self.name = "Dashy"
+
+  card UsersCount
+  card UsersCount, options: {
+    active_users: true
+  }
+end
+```
+
+Now we can pick up that option in the card and update the query accordingly.
+
+```ruby{9-11}
+class UsersCount < Avo::Dashboards::MetricCard
+  self.id = "users_metric"
+  self.label = "Users count"
+
+  # You have access to context, params, range, current dashboard, and current card
+  query do
+    scope = User
+
+    if card.options[:active_users].present?
+      scope = scope.active
+    end
+
+    result scope.count
+  end
+end
+```
+
+This gives you an extra layer of control without code duplication and the best developer experience.
+
+#### Control the base settings from the parent
+
+Evidently, you don't want to show the same `label`, `description`, and other details for that second card from the first card;. You can control the `label`, `description`, `cols`, `rows`, and `refresh_every` options from the parent declaration.
+
+```ruby{7-11}
+class Dashy < Avo::Dashboards::BaseDashboard
+  self.id = "dashy"
+  self.name = "Dashy"
+
+  card UsersCount
+  card UsersCount,
+    label: "Active users",
+    description: "Active users count",
+    cols: 2,
+    rows: 2,
+    refresh_every: 2.minutes,
+    options: {
+      active_users: true
+    }
+end
+```
+
+## Card types
+
+There are three types of cards you can add to your dashboard: `metric`, `chartkick`, and `partial`.
 
 ### Metric card
 
