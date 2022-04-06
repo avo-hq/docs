@@ -355,5 +355,25 @@ Supported options:
 
 - `global_search`
 
+## Customize profile name, photo, and title
+
+You might see on the sidebar footer a small profile widget. The widget displays three types of information about the user; `name`, `photo`, and `title`.
+
+### Customize the name of the user
+
+Avo checks to see if the object returned by your [`current_user_method`](authentication.html#customize-the-current-user-method) responds to a `name` method. If not it will try the `email` method and then fall back to `Avo user`.
+
+### Customize the profile photo
+
+Similarly, it will check if that current user responds to `avatar` and use that as the `src` of the photo.
+
+### Customize the title of the user
+
+Lastly, it will check if it responds to the `avo_title` method and uses that to display it under the name.
+
+### Customize the sign out link
+
+Please follow [this](authentication.html#customise-the-sign-out-link) guide in [authentication](authentication).
+
 
 <!-- @todo: add docs for use_partials custom functionality -->

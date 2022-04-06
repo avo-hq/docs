@@ -39,7 +39,7 @@ Avo.configure do |config|
 end
 ```
 
-## Customise the sign out link
+## Customize the sign out link
 
 The sign-out menu item on the bottom sidebar (when you click the three dots) can be customized using the `current_user_resource_name`. If you follow the `User` -> `current_user` convention, you might have a `destroy_current_user_session_path` that logs the user out.
 
