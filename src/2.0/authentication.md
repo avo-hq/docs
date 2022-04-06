@@ -39,6 +39,28 @@ Avo.configure do |config|
 end
 ```
 
+## Customise the sign out link
+
+The sign-out menu item on the bottom sidebar (when you click the three dots) can be customized using the `current_user_resource_name`. If you follow the `User` -> `current_user` convention, you might have a `destroy_current_user_session_path` that logs the user out.
+
+```ruby{3}
+# config/initializers/avo.rb
+Avo.configure do |config|
+  config.current_user_resource_name = :user
+end
+```
+
+But if you have a different type of user, `current_admin`, you need a `destroy_current_admin_path`.
+
+```ruby{3}
+# config/initializers/avo.rb
+Avo.configure do |config|
+  config.current_user_resource_name = :admin
+end
+```
+
+If your app does not respond to the destroy session path (`destroy_current_user_session_path`) the link will be hidden.
+
 ## Filter out requests
 
 You probably do not want to allow Avo access to everybody. If you're using [devise](https://github.com/heartcombo/devise) in your app, use this block to filter out requests to it in your `routes.rb` file.
