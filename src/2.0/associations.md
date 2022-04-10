@@ -115,6 +115,27 @@ Watch the video below to get an ideea on how it works.
 
 [![Demo video](https://img.youtube.com/vi/KLI_sVTPX-Q/0.jpg)](https://youtu.be/KLI_sVTPX-Q)
 
+### Allow detaching via the association
+
+By default, when you visit a record through an association that `belongs_to` field is disabled. There might be cases where you'd like that field not to be disabled and allow your users to change that association.
+
+You can instruct Avo to keep that field enabled in this scenario using `allow_via_detaching`.
+
+```ruby{11}
+class CommentResource < Avo::BaseResource
+  self.title = :id
+
+  field :id, as: :id
+  field :body, as: :textarea
+
+  field :commentable,
+    as: :belongs_to,
+    polymorphic_as: :commentable,
+    types: [::Post, ::Project],
+    allow_via_detaching: true
+end
+```
+
 ## Has One
 
 The `HasOne` association shows the unfolded view of you `HasOne` association. It's like peaking on the **Show** view of that association. You also get the _Attach_/_Detach_ button to easily switch records.

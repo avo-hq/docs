@@ -359,6 +359,23 @@ class CommentResource < Avo::BaseResource
 end
 ```
 
+## Hide the record selector checkbox
+
+You might have resources that will never be selected and you have no need for that checkbox to waste your horizontal space.
+
+You can hide it using the `record_selector` class_attribute.
+
+```ruby{2}
+class CommentResource < Avo::BaseResource
+  self.record_selector = false
+
+  field :id, as: :id
+  field :body, as: :textarea
+end
+```
+
+<img :src="$withBase('/assets/img/resources/record_selector.jpg')" alt="Hide the record selector." class="border mb-4" />
+
 ## Filters
 
 It's a very common scenario to add filters to your resources to make it easier to find your records. Check out the additional [Filters documentation](./filters.html) to see how easy it is to set up custom filters with Avo.
