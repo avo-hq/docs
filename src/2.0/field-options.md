@@ -191,3 +191,15 @@ field :email, as: :gravatar, link_to_resource: true
 You can add this property on `Id`, `Text`, and `Gravatar` fields.
 
 Optionally you can enable the global config `id_links_to_resource`. More on that on the [id links to resource docs page](./customization.html#id-links-to-resource).
+
+## Align text on Index view
+
+It's customary on tables to align numbers to the right. You can do that using the `index_text_align` option. Valid values are `:right` or `:center`.
+
+```ruby{2}
+class ProjectResource < Avo::BaseResource
+  field :users_required, as: :number, index_text_align: :right
+end
+```
+
+<img :src="$withBase('/assets/img/fields/index_text_align.jpg')" alt="Index text align" class="border mb-4" />
