@@ -109,7 +109,36 @@ class CommentResource < Avo::BaseResource
 end
 ```
 
-Avo uses the [search feature](search) behind the scenes, so **make sure the target resource has the `search_query` option configured**.
+<div class="rounded-md bg-yellow-50 p-4">
+  <div class="flex">
+    <div class="flex-shrink-0">
+      <svg class="h-5 w-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+      </svg>
+    </div>
+    <div class="ml-3 flex-1 md:flex md:justify-between">
+      <div class="text-sm leading-5 text-yellow-700">
+        Avo uses the <a href="/2.0/search.html">search feature</a> behind the scenes, so <strong>make sure the target resource has the `search_query` option configured</strong>.
+      </div>
+    </div>
+  </div>
+</div>
+
+```ruby
+# app/avo/resources/post_resource.rb
+class PostResource < Avo::BaseResource
+  self.search_query = ->(params:) do
+    scope.ransack(id_eq: params[:q], name_cont: params[:q], body_cont: params[:q], m: "or").result(distinct: false)
+  end
+end
+
+# app/avo/resources/project_resource.rb
+class ProjectResource < Avo::BaseResource
+  self.search_query = ->(params:) do
+    scope.ransack(id_eq: params[:q], name_cont: params[:q], country_cont: params[:q], m: "or").result(distinct: false)
+  end
+end
+```
 
 Watch the video below to get an ideea on how it works.
 
@@ -209,7 +238,29 @@ class CourseLink < Avo::BaseResource
 end
 ```
 
-Please note that the associated resource has to have the [search](./search) option enabled.
+<div class="rounded-md bg-yellow-50 p-4">
+  <div class="flex">
+    <div class="flex-shrink-0">
+      <svg class="h-5 w-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+      </svg>
+    </div>
+    <div class="ml-3 flex-1 md:flex md:justify-between">
+      <div class="text-sm leading-5 text-yellow-700">
+        Avo uses the <a href="/2.0/search.html">search feature</a> behind the scenes, so <strong>make sure the target resource has the `search_query` option configured</strong>.
+      </div>
+    </div>
+  </div>
+</div>
+
+```ruby
+# app/avo/resources/course_link_resource.rb
+class CourseLinkResource < Avo::BaseResource
+  self.search_query = ->(params:) do
+    scope.ransack(id_eq: params[:q], link_cont: params[:q], m: "or").result(distinct: false)
+  end
+end
+```
 
 ## Single Table Inheritance (STI)
 

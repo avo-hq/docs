@@ -17,8 +17,7 @@ module.exports = {
       '1.0/**/*.md',
     ],
     options: {
-      safelist: ['border', 'rounded-md', 'bg-blue-50', 'p-4', 'flex', 'flex-shrink-0', 'h-5', 'w-5', 'text-blue-400', 'ml-3', 'flex-1', 'md:flex', 'md:justify-between', 'text-sm', 'leading-5', 'text-blue-700', 'underline'],
-      whitelist: ['border', 'rounded-md', 'bg-blue-50', 'p-4', 'flex', 'flex-shrink-0', 'h-5', 'w-5', 'text-blue-400', 'ml-3', 'flex-1', 'md:flex', 'md:justify-between', 'text-sm', 'leading-5', 'text-blue-700', 'underline'],
+      safelist: ['border', 'rounded-md', 'bg-blue-50', 'p-4', 'flex', 'flex-shrink-0', 'h-5', 'w-5', 'text-blue-400', 'ml-3', 'flex-1', 'md:flex', 'md:justify-between', 'text-sm', 'leading-5', 'text-blue-700', 'underline', 'bg-yelow-50', 'text-yelow-400', 'text-yelow-700'],
     }
   },
   darkMode: false, // or 'media' or 'class'
