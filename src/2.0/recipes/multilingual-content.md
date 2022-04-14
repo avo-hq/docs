@@ -2,11 +2,11 @@
 
 This is not an official feature yet but until we add it with all the bells and whistles you can use this guide to monkey patch it into your app.
 
-We pushed some code to take in the `locale` param and set the `I18n.locale`. We not only set `I18n.locale` but also `I18n.default_locale` so all subsequent requests will use that locale.
+We pushed some code to take in the `set_locale` param and set the `I18n.locale` and `I18n.default_locale` so all subsequent requests will use that locale.
 
 ```ruby
 def set_locale
-  I18n.locale = params[:locale] || I18n.default_locale
+  I18n.locale = params[:set_locale] || I18n.default_locale
 
   I18n.default_locale = I18n.locale
 end
@@ -84,9 +84,9 @@ First you need to eject the `_profile_dropdown` partial using this command `bin/
       <% classes = "appearance-none bg-white text-left cursor-pointer text-green-600 font-semibold hover:text-white hover:bg-green-500 block px-4 py-1 w-full" %>
 
       <% if I18n.locale == :en %>
-        <%= link_to "Switch to Portuguese", { locale: 'pt-BR' }, class: classes %>
+        <%= link_to "Switch to Portuguese", { set_locale: 'pt-BR' }, class: classes %>
       <% else %>
-        <%= link_to "Switch to English", { locale: 'en' }, class: classes %>
+        <%= link_to "Switch to English", { set_locale: 'en' }, class: classes %>
       <%end%>
       <!-- Add this 👆 -->
 
