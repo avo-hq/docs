@@ -17,6 +17,10 @@
   </div>
 </div>
 
+<a href="https://github.com/avo-hq/avo/discussions/836" target="_blank" class="rounded bg-purple-600 hover:bg-purple-500 text-white no-underline px-2 py-1 inline leading-none mt-2">
+  Provide feedback
+</a>
+
 Avo ships with 20+ fields out of the box. They are well polished and ready to be used with your admins.
 
 When you need a field that isn't provided by default, Avo makes it easy to add it.

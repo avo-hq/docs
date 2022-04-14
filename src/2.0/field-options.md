@@ -2,6 +2,10 @@
 
 [[toc]]
 
+<a href="https://github.com/avo-hq/avo/discussions/834" target="_blank" class="rounded bg-purple-600 hover:bg-purple-500 text-white no-underline px-2 py-1 inline leading-none mt-2">
+  Provide feedback
+</a>
+
 ## Defining fields
 
 Each Avo resource has a `field` method that registers your `Resource`'s fields. Avo ships with a variety of fields like `text`, `textarea`, `number`, `password`, `boolean`, `select`, and others. We can use the `field` method like so:

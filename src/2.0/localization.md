@@ -11,7 +11,7 @@
     </div>
     <div class="ml-3 flex-1 md:flex md:justify-between">
       <div class="text-sm leading-5 text-blue-700">
-        This is a <a href="https://avohq.io/purchase/pro" target="_blank" class="underline">pro</a> feature
+        Localization is a <a href="https://avohq.io/purchase/pro" target="_blank" class="underline">Pro</a> feature
       </div>
     </div>
   </div>

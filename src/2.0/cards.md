@@ -1,6 +1,8 @@
-# Dashboards
+# Cards
 
 [[toc]]
+
+**Not yet released**
 
 <div class="rounded-md bg-blue-50 p-4">
   <div class="flex">
@@ -11,59 +13,21 @@
     </div>
     <div class="ml-3 flex-1 md:flex md:justify-between">
       <div class="text-sm leading-5 text-blue-700">
-        Dashboards are a <a href="https://avohq.io/purchase/pro" target="_blank" class="underline">Pro</a> feature
+        Cards is a <a href="https://avohq.io/purchase/pro" target="_blank" class="underline">Pro</a> feature
       </div>
     </div>
   </div>
 </div>
 
-<a href="https://github.com/avo-hq/avo/discussions/833" target="_blank" class="rounded bg-purple-600 hover:bg-purple-500 text-white no-underline px-2 py-1 inline leading-none mt-2">
+<a href="https://github.com/avo-hq/avo/discussions/839" target="_blank" class="rounded bg-purple-600 hover:bg-purple-500 text-white no-underline px-2 py-1 inline leading-none mt-2">
   Provide feedback
 </a>
 
-There comes the point in your app's life when you need to display the data in an aggregated form like a metric or chart. That's what Avo's Dashboards are all about.
+Cards are the one way of quickly adding custom content for your users.
 
-## Generate a dashboard
+There are three types of cards you can add to your dashboard: `partial`, `metric`, and`chartkick`.
 
-Run `bin/rails g avo:dashboard my_dashboard` to get a shiny new dashboard.
-
-```ruby
-class MyDashboard < Avo::Dashboards::BaseDashboard
-  self.id = 'my_dashboard'
-  self.name = 'Dashy'
-  self.description = 'The first dashbaord'
-  self.grid_cols = 3
-
-  card ExampleMetric
-  card ExampleAreaChart
-  card ExampleScatterChart
-  card PercentDone
-  card AmountRaised
-  card ExampleLineChart
-  card ExampleColumnChart
-  card ExamplePieChart
-  card ExampleBarChart
-  divider label: "Custom partials"
-  card ExampleCustomPartial
-  card MapCard
-end
-```
-
-<img :src="$withBase('/assets/img/dashboards/dashboard.jpg')" alt="Avo Dashboard" class="border mb-4" />
-
-## Settings
-
-Each dashboard is organized in a file. It holds information about itself like the `id`, `name`, `description`, and how many columns its grid has.
-
-The `id` field has to be unique. The `name` is what the user sees in big letters on top of the page, and the `description` is some text you pass to give the user more details regarding the dashboard.
-
-Using the ' grid_cols ' parameter, you may organize the cards in a grid with `3`, `4`, `5`, or `6` columns using the `grid_cols` parameter. The default is `3`.
-
-## Cards
-
-All cards have a few base settings and a few custom ones.
-
-### Base settings
+## Base settings
 
 All cards have some standard settings like `id`, which must be unique, `label` and `description`. The `label` will be the title of your card, and `description` will show a tiny question mark icon on the bottom right with a tooltip with that description.
 
@@ -82,7 +46,7 @@ end
 
 <img :src="$withBase('/assets/img/dashboards/users_metric.jpg')" alt="Avo Dashboard Metric" class="border mb-4" />
 
-### Control the aggregation using ranges
+#### Control the aggregation using ranges
 
 You may also want to give the user the ability to query data in different ranges. Using the ' ranges ' attribute, you can control what's passed in the dropdown. The array passed here will be parsed and displayed on the card. All integers are transformed to days, and other string variables will be passed as they are.
 
@@ -97,7 +61,7 @@ class UsersMetric < Avo::Dashboards::MetricCard
 end
 ```
 
-### Keep the data fresh
+#### Keep the data fresh
 
 If this dashboard is something that you keep on the big screen, you need to keep the data fresh at all times. That's easy using `refresh_every`. You pass it the number of seconds you need to be refreshed in and forget about it. Avo will do it for you.
 
@@ -108,7 +72,7 @@ class UsersMetric < Avo::Dashboards::MetricCard
 end
 ```
 
-### Hide the header
+#### Hide the header
 
 In cases where you need to embed some content that should fill the whole card (like a map, for example), you can choose to hide the label and ranges dropdown.
 
@@ -119,73 +83,6 @@ class UsersMetric < Avo::Dashboards::MetricCard
 end
 ```
 <img :src="$withBase('/assets/img/dashboards/map_card.jpg')" alt="Avo Dashboard Map card" class="border mb-4" />
-
-### Override card options from the dashboard
-
-We found ourselves in the position to add a few cards that were actually the same card but with a slight difference. Ex: Have one `Users count` card and another `Active users count` card. They both count users, but the latter has an `active: true` condition applied.
-
-Before, we'd have to duplicate that card and make that slight modification to the `query` block but end up with duplicated boilerplate code.
-For those scenarios, we created the `options`... card option. It allows you to essentially send arbitrary options to the card from the parent like so.
-
-```ruby{6-8}
-class Dashy < Avo::Dashboards::BaseDashboard
-  self.id = "dashy"
-  self.name = "Dashy"
-
-  card UsersCount
-  card UsersCount, options: {
-    active_users: true
-  }
-end
-```
-
-Now we can pick up that option in the card and update the query accordingly.
-
-```ruby{9-11}
-class UsersCount < Avo::Dashboards::MetricCard
-  self.id = "users_metric"
-  self.label = "Users count"
-
-  # You have access to context, params, range, current dashboard, and current card
-  query do
-    scope = User
-
-    if card.options[:active_users].present?
-      scope = scope.active
-    end
-
-    result scope.count
-  end
-end
-```
-
-This gives you an extra layer of control without code duplication and the best developer experience.
-
-#### Control the base settings from the parent
-
-Evidently, you don't want to show the same `label`, `description`, and other details for that second card from the first card;. You can control the `label`, `description`, `cols`, `rows`, and `refresh_every` options from the parent declaration.
-
-```ruby{7-11}
-class Dashy < Avo::Dashboards::BaseDashboard
-  self.id = "dashy"
-  self.name = "Dashy"
-
-  card UsersCount
-  card UsersCount,
-    label: "Active users",
-    description: "Active users count",
-    cols: 2,
-    rows: 2,
-    refresh_every: 2.minutes,
-    options: {
-      active_users: true
-    }
-end
-```
-
-## Card types
-
-There are three types of cards you can add to your dashboard: `metric`, `chartkick`, and `partial`.
 
 ### Metric card
 
@@ -352,56 +249,3 @@ end
 
 <img :src="$withBase('/assets/img/dashboards/map_card.jpg')" alt="Avo Dashboard Map card" class="border mb-4" />
 
-## Dividers
-
-You may want to separate the cards. You can use dividers to do that.
-
-```ruby{16}
-class Dashy < Avo::Dashboards::BaseDashboard
-  self.id = 'dashy'
-  self.name = 'Dashy'
-  self.description = 'The first dashbaord'
-  self.grid_cols = 3
-
-  card ExampleMetric
-  card ExampleAreaChart
-  card ExampleScatterChart
-  card PercentDone
-  card AmountRaised
-  card ExampleLineChart
-  card ExampleColumnChart
-  card ExamplePieChart
-  card ExampleBarChart
-  divider label: "Custom partials"
-  card ExampleCustomPartial
-  card MapCard
-end
-```
-
-<img :src="$withBase('/assets/img/dashboards/divider.jpg')" alt="Avo Dashboard Divider" class="border mb-4" />
-
-Dividers can be a simple line between your cards or have some text on them that you control using the `label` option.
-When you don't want to show even the line, you can enable the `invisible` option, which adds the divider but does not display a border or label.
-
-## Dashboards visibility
-
-You might want to hide certain dashboards from certain users. You can do that using the `visible` option. The option can be a boolean `true`/`false` or a block where you have access to the `params`, `current_user`, `context`, and `dashboard`.
-
-By default if you don't pass anything to `visible`, the dashboard will be available for anyone.
-
-```ruby{5-7}
-class ComplexDash < Avo::Dashboards::BaseDashboard
-  self.id = "complex_dash"
-  self.name = "Complex dash"
-  self.description = "Complex dash description"
-  self.visible = -> do
-    current_user.is_admin?
-    # or
-    params[:something] == 'something else'
-    # or
-    context[:your_param] == params[:something_else]
-  end
-
-  card UsersCount
-end
-```

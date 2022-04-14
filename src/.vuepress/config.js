@@ -102,8 +102,18 @@ module.exports = {
         '/2.0/fields',
         '/2.0/associations',
         {
+          title: 'Menu editor',
+          path: '/2.0/menu-editor',
+          sidebarDepth: 0,
+        },
+        {
           title: 'Dashboards',
           path: '/2.0/dashboards',
+          sidebarDepth: 0,
+        },
+        {
+          title: 'Cards',
+          path: '/2.0/cards',
           sidebarDepth: 0,
         },
         '/2.0/search',

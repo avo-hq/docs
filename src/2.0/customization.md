@@ -2,6 +2,10 @@
 
 [[toc]]
 
+<a href="https://github.com/avo-hq/avo/discussions/836" target="_blank" class="rounded bg-purple-600 hover:bg-purple-500 text-white no-underline px-2 py-1 inline leading-none mt-2">
+  Provide feedback
+</a>
+
 ## Change the app name
 
 On the main navbar next to the logo Avo generates a link to the homepage of your app. The label for the link is usually computed from your Rails app name. You can customize that however you want using `config.app_name = 'Avocadelicious'`.

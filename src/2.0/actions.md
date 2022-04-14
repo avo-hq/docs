@@ -2,6 +2,10 @@
 
 [[toc]]
 
+<a href="https://github.com/avo-hq/avo/discussions/837" target="_blank" class="rounded bg-purple-600 hover:bg-purple-500 text-white no-underline px-2 py-1 inline leading-none mt-2">
+  Provide feedback
+</a>
+
 Avo actions allow you to perform specific tasks on one or more of your records. For example, you might want to mark a user as active/inactive and optionally send a message that may be customized by the person that wants to run the action.
 
 Once you attach an action to a resource using the `actions` method it will appear in the **Actions** dropdown.

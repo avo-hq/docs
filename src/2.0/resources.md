@@ -2,6 +2,10 @@
 
 [[toc]]
 
+<a href="https://github.com/avo-hq/avo/discussions/835" target="_blank" class="rounded bg-purple-600 hover:bg-purple-500 text-white no-underline px-2 py-1 inline leading-none mt-2">
+  Provide feedback
+</a>
+
 Avo effortlessly empowers you to build a full admin dashboard for your Ruby on Rails application.
 One of the most powerful features is how easy you can administer your database records.
 Avo does this using **Resources**. Each resource maps out one of your models.
