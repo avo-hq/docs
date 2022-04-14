@@ -21,9 +21,9 @@
   Provide feedback
 </a>
 
-One common task you need to do is to organize your sidebar resources into menus. You can easily do that using the menu editor in the initializer.
+One common task you need to do is organize your sidebar resources into menus. You can easily do that using the menu editor in the initializer.
 
-When you start with Avo you'll get an auto-generated sidebar By default. That sidebar will contain all your resources, dashboards and custom tools. To start customizing that menu you have to add the `main_menu` key to your initializer.
+When you start with Avo, you'll get an auto-generated sidebar By default. That sidebar will contain all your resources, dashboards, and custom tools. To customize that menu, you have to add the `main_menu` key to your initializer.
 
 ```ruby{3}
 # config/initializers/avo.rb
@@ -37,7 +37,7 @@ Avo.configure do |config|
   }
 ```
 
-For now Avo supports editing only two menus `main_menu` and `profile_menu`. That might change in the future by allowing you to write custom menus for other parts of your app.
+For now, Avo supports editing only two menus, `main_menu` and `profile_menu`. However, that might change in the future by allowing you to write custom menus for other parts of your app.
 
 ```ruby
 # config/initializers/avo.rb
@@ -85,11 +85,11 @@ end
 
 ## Menu item types
 
-There are a few menu item types supported `link`, `section`, `group`, `resource`, and `dashboard`. There are a few helpers too like `all_resources`, `all_dashboards`, and `all_tools`.
+A few menu item types are supported `link`, `section`, `group`, `resource`, and `dashboard`. There are a few helpers too, like `all_resources`, `all_dashboards`, and `all_tools`.
 
 ## Link
 
-Link is the menu item that the user is probably going to interact the most. It will generate a link on your menu. You can specify the `name`, `path` , and `target`.
+Link is the menu item that the user will probably interact with the most. It will generate a link on your menu. You can specify the `name`, `path` , and `target`.
 
 ```ruby
 link "Google", path: "https://google.com", target: :_blank
@@ -97,7 +97,7 @@ link "Google", path: "https://google.com", target: :_blank
 
 ## Resource
 
-To make it a bit more easy you can use `resource` to quickly generate a link to one of your resources. You can pass a short symbol name `:user` or the full name `UserResource`.
+To make it a bit easier, you can use `resource` to quickly generate a link to one of your resources. For example, you can pass a short symbol name `:user` or the full name `UserResource`.
 
 
 ```ruby
@@ -107,7 +107,7 @@ resource "CommentsResource"
 
 ## Dashboard
 
-Similar to `resource` this is a helper to make it easier to reference a dashboard.
+Similar to `resource`, this is a helper to make it easier to reference a dashboard.
 
 ```ruby
 resource :dashy
@@ -139,7 +139,7 @@ end
 
 ## `all_` helpers
 
-For convenience sake we also added some helpers for the scenario where you want to customize part of a menu. Let's say you want to add some custom tools and mix and match the dashboards, but you don't want to disturb the resources. You can use `all_resources` to generate a list containing all of them.
+We also added some helpers for the scenario where you want to customize part of a menu for convenience. For example, let's say you want to add some custom tools and mix and match the dashboards, but you don't want to disturb the resources. You can use `all_resources` to generate a list containing all of them.
 
 ```ruby
 section "Dashboards", icon: "dashboards" do
@@ -158,7 +158,7 @@ end
 
 ## Icons
 
-For [`Section`](#section)s you can use icons to make them look better. You can use some local ones that we used throughout the app and all [heroicons](https://heroicons.com/) designed by [Steve Schoger](https://twitter.com/steveschoger). You can use the `solid` or `outline` versions. We used the `outline` version throughout the app.
+For [`Section`](#section)s, you can use icons to make them look better. You can use some local ones that we used throughout the app and all [heroicons](https://heroicons.com/) designed by [Steve Schoger](https://twitter.com/steveschoger). You can use the `solid` or `outline` versions. We used the `outline` version throughout the app.
 
 ```ruby
 section "Resources", icon: "heroicons/outline/academic-cap" do
@@ -176,7 +176,7 @@ end
 
 ## Profile menu
 
-The profile menu allows you to add items the menu displayed in the profile component. **The sign out link is automatically added for you.**
+The profile menu allows you to add items to the menu displayed in the profile component. **The sign-out link is automatically added for you.**
 
 ```ruby
 # config/initializers/avo.rb
