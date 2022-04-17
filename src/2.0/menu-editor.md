@@ -2,7 +2,7 @@
 
 [[toc]]
 
-**Feature not launched yet**
+**Available from `v2.2.2`**
 
 <div class="rounded-md bg-blue-50 p-4">
   <div class="flex">
@@ -138,6 +138,15 @@ group "Blog" do
   resource :comments
 end
 ```
+
+## Item visibility
+
+The `visible` option is avaialble on all menu item. It can be a boolean or a block that has access to a few things:
+
+  - the `current_user`. Given that you [set a way](authentication.html#customize-the-current-user-method) for Avo to know who the current user is, that will be available in that block call
+  - the [`context`](customization.html#context) object.
+  - the `params` object of that current request
+  - the [`view_context`](https://apidock.com/rails/AbstractController/Rendering/view_context) object. The `view_context` object lets you use the route helpers. eg: `view_context.main_app.posts_path`.
 
 ## `all_` helpers
 
