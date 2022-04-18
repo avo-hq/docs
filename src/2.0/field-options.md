@@ -102,6 +102,26 @@ field :name, as: :text, sortable: true
 
 <img :src="$withBase('/assets/img/fields-reference/sortable-fields.jpg')" alt="Sortable fields" class="border mb-4" />
 
+### Custom sortable block
+
+When using computed fields or `belongs_to` associations, you can't set `sortable: true` to that field because Avo doesn't know what to sort by. However, you can use a block to specify how the records should be sorted in those scenarios.
+
+```ruby{4-7}
+class UserResource < Avo::BaseResource
+  field :is_writer,
+    as: :text,
+    sortable: ->(query, direction) {
+      # Order by something else completely, just to make a test case that clearly and reliably does what we want.
+      query.order(id: direction)
+    },
+    hide_on: :edit do |model, resource, view, field|
+      model.posts.to_a.size > 0 ? "yes" : "no"
+    end
+end
+```
+
+The block receives the query and the direction in which the sorting should be made.
+
 ## Placeholder
 
 Some fields support the `placeholder` option which will be passed to the inputs on **Edit** and **New** views when they are empty.

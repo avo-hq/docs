@@ -97,6 +97,8 @@ Link is the menu item that the user will probably interact with the most. It wil
 link "Google", path: "https://google.com", target: :_blank
 ```
 
+When you add the `target: :_blank` option, a tiny external link icon will be displayed.
+
 ## Resource
 
 To make it a bit easier, you can use `resource` to quickly generate a link to one of your resources. For example, you can pass a short symbol name `:user` or the full name `UserResource`.
@@ -185,9 +187,35 @@ section "Resources", icon: "heroicons/outline/adjustments" do
 end
 ```
 
+## Collapsable sections and groups
+
+When you have a lot of items they can take up a lot of vertical space. You can choose to make those sidebar sections collapsable by you or your users.
+
+```ruby
+section "Resources", icon: "resources", collapsable: true do
+  resource :course
+end
+```
+
+That will add the arrow icon next to the section to indicate it's collapsable. When your users collapse and expand it, their choice will be stored in Local Storage and remembered in that browser.
+
+### Default collapsed state
+
+You can, however set a default collapsed state using the `collapsed` option.
+
+```ruby
+section "Resources", icon: "resources", collapsable: true, collapsed: true do
+  resource :course
+end
+```
+
+You might want to allow your users to hide certain items from view.
+
 ## Profile menu
 
 The profile menu allows you to add items to the menu displayed in the profile component. **The sign-out link is automatically added for you.**
+
+You may add the `icon` option to the `profile_menu` links.
 
 ```ruby
 # config/initializers/avo.rb
