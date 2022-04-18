@@ -19,9 +19,15 @@
   </div>
 </div>
 
-<a href="https://github.com/avo-hq/avo/discussions/831" target="_blank" class="rounded bg-purple-600 hover:bg-purple-500 text-white no-underline px-2 py-1 inline leading-none mt-2">
-  Provide feedback
-</a>
+<div class="space-x-2 mt-2">
+  <a href="https://github.com/avo-hq/avo/discussions/831" target="_blank" class="rounded bg-purple-600 hover:bg-purple-500 text-white no-underline px-2 py-1 inline leading-none mt-2">
+    Provide feedback
+  </a>
+
+  <a href="https://youtu.be/VMvG-j1Vxio" target="_blank" class="rounded bg-green-600 hover:bg-green-500 text-white no-underline px-2 py-1 inline leading-none mt-2">
+    Video demo
+  </a>
+</div>
 
 One common task you need to do is organize your sidebar resources into menus. You can easily do that using the menu editor in the initializer.
 
