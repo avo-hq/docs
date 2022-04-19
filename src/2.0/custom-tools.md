@@ -101,7 +101,7 @@ class Avo::ToolsController < Avo::ApplicationController
 end
 ```
 
-```html{13}
+```erb{13}
 # app/views/avo/tools/dashboard.html.erb
 <div class="flex flex-col">
   <%= render Avo::PanelComponent.new title: 'Dashboard', display_breadcrumbs: true do |c| %>
