@@ -86,6 +86,8 @@ For **STI** you can check out the models and resources in the [demo app](https:/
  - [person_resource.rb](https://github.com/avo-hq/avodemo/blob/main/app/avo/resources/person_resource.rb)
  - [spouse_resource.rb](https://github.com/avo-hq/avodemo/blob/main/app/avo/resources/spouse_resource.rb)
 
+One thing you should do is for the derived model (`Spouse` in this case) add the `model_class` to [the Avo resource](https://github.com/avo-hq/avodemo/blob/main/app/avo/resources/spouse_resource.rb#L5).
+
 ## Try a pre-release version
 
 From time to time we push pre-release versions of the gem for you to try out before pushing to the `main` branch. To test them out you need to specify the exact version in your `Gemfile`.
