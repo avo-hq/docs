@@ -77,6 +77,15 @@ Same if you want to [show/hide fields](https://docs.avohq.io/1.0/field-options.h
 
 All in all **we're confident you'll have the necessary instruments** you need to build your admin.
 
+### STI example
+
+For **STI** you can check out the models and resources in the [demo app](https://avodemo.herokuapp.com/).
+
+ - [person.rb](https://github.com/avo-hq/avodemo/blob/main/app/models/person.rb)
+ - [spouse.rb](https://github.com/avo-hq/avodemo/blob/main/app/models/spouse.rb)
+ - [person_resource.rb](https://github.com/avo-hq/avodemo/blob/main/app/avo/resources/person_resource.rb)
+ - [spouse_resource.rb](https://github.com/avo-hq/avodemo/blob/main/app/avo/resources/spouse_resource.rb)
+
 ## Try a pre-release version
 
 From time to time we push pre-release versions of the gem for you to try out before pushing to the `main` branch. To test them out you need to specify the exact version in your `Gemfile`.
