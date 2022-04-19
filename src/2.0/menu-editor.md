@@ -33,17 +33,33 @@ One common task you need to do is organize your sidebar resources into menus. Yo
 
 When you start with Avo, you'll get an auto-generated sidebar By default. That sidebar will contain all your resources, dashboards, and custom tools. To customize that menu, you have to add the `main_menu` key to your initializer.
 
-```ruby{3}
+```ruby{3-22}
 # config/initializers/avo.rb
 Avo.configure do |config|
   config.main_menu = -> {
     section "Resources", icon: "heroicons/outline/academic-cap" do
       group "Academia" do
         resource :course
+        resource :course_link
+      end
+
+      group "Blog", collapsable: true, collapsed: true do
+        dashboard :dashy
+
+        resource :post
+        resource :comment
       end
     end
+
+    section I18n.t('avo.other'), icon: "heroicons/outline/finger-print", collapsable: true, collapsed: true do
+      link 'Avo HQ', path: 'https://avohq.io', target: :_blank
+      link 'Jumpstart Rails', path: 'https://jumpstartrails.com/', target: :_blank
+    end
   }
+end
 ```
+
+<img :src="$withBase('/assets/img/menu-editor/main.jpg')" alt="Avo main menu" class="border mb-4" />
 
 For now, Avo supports editing only two menus, `main_menu` and `profile_menu`. However, that might change in the future by allowing you to write custom menus for other parts of your app.
 
@@ -102,6 +118,7 @@ Link is the menu item that the user will probably interact with the most. It wil
 ```ruby
 link "Google", path: "https://google.com", target: :_blank
 ```
+<img :src="$withBase('/assets/img/menu-editor/external-link.jpg')" alt="Avo menu editor" class="border mb-4" />
 
 When you add the `target: :_blank` option, a tiny external link icon will be displayed.
 
@@ -115,14 +132,18 @@ resource :posts
 resource "CommentsResource"
 ```
 
+<img :src="$withBase('/assets/img/menu-editor/resource.jpg')" alt="Avo menu editor" class="border mb-4" />
+
 ## Dashboard
 
-Similar to `resource`, this is a helper to make it easier to reference a dashboard.
+Similar to `resource`, this is a helper to make it easier to reference a dashboard. You pass in the `id` or the `name` of the dashboard.
 
 ```ruby
-resource :dashy
-resource "SalesDashboard"
+dashboard :dashy
+dashboard "Sales"
 ```
+
+<img :src="$withBase('/assets/img/menu-editor/dashboard.jpg')" alt="Avo menu editor" class="border mb-4" />
 
 ## Section
 
@@ -135,6 +156,8 @@ section "Resources", icon: "heroicons/outline/academic-cap" do
 end
 ```
 
+<img :src="$withBase('/assets/img/menu-editor/section.jpg')" alt="Avo menu editor" class="border mb-4" />
+
 ## Group
 
 Groups are smaller categories where you can bring together your items.
@@ -146,6 +169,8 @@ group "Blog" do
   resource :comments
 end
 ```
+
+<img :src="$withBase('/assets/img/menu-editor/group.jpg')" alt="Avo menu editor" class="border mb-4" />
 
 ## Item visibility
 
@@ -161,9 +186,10 @@ The `visible` option is avaialble on all menu item. It can be a boolean or a blo
 We also added some helpers for the scenario where you want to customize part of a menu for convenience. For example, let's say you want to add some custom tools and mix and match the dashboards, but you don't want to disturb the resources. You can use `all_resources` to generate a list containing all of them.
 
 ```ruby
-section "Dashboards", icon: "dashboards" do
-  dashboard :dashy, visible: -> { true }
-  dashboard "Sales", visible: -> { true }
+section "App", icon: "heroicons/outline/beaker" do
+  group "Dashboards", icon: "dashboards" do
+    all_dashboards
+  end
 
   group "Resources", icon: "resources" do
     all_resources
@@ -174,6 +200,8 @@ section "Dashboards", icon: "dashboards" do
   end
 end
 ```
+
+<img :src="$withBase('/assets/img/menu-editor/all-helpers.jpg')" alt="Avo menu editor" class="border mb-4" />
 
 ## Icons
 
@@ -193,6 +221,8 @@ section "Resources", icon: "heroicons/outline/adjustments" do
 end
 ```
 
+<img :src="$withBase('/assets/img/menu-editor/icons.jpg')" alt="Avo menu editor" class="border mb-4" />
+
 ## Collapsable sections and groups
 
 When you have a lot of items they can take up a lot of vertical space. You can choose to make those sidebar sections collapsable by you or your users.
@@ -202,6 +232,8 @@ section "Resources", icon: "resources", collapsable: true do
   resource :course
 end
 ```
+
+<img :src="$withBase('/assets/img/menu-editor/collapsable.jpg')" alt="Avo menu editor" class="border mb-4" />
 
 That will add the arrow icon next to the section to indicate it's collapsable. When your users collapse and expand it, their choice will be stored in Local Storage and remembered in that browser.
 
@@ -214,6 +246,8 @@ section "Resources", icon: "resources", collapsable: true, collapsed: true do
   resource :course
 end
 ```
+
+<img :src="$withBase('/assets/img/menu-editor/collapsed.jpg')" alt="Avo menu editor" class="border mb-4" />
 
 You might want to allow your users to hide certain items from view.
 
