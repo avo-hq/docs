@@ -2,7 +2,8 @@
 
 [[toc]]
 
-<a href="https://github.com/avo-hq/avo/discussions/838" target="_blank" class="rounded bg-purple-600 hover:bg-purple-500 text-white no-underline px-2 py-1 inline leading-none mt-2">
+<a href="https://github.com/avo-hq/avo/discussions/838" target="_blank"
+  class="rounded bg-purple-600 hover:bg-purple-500 text-white no-underline px-2 py-1 inline leading-none mt-2">
   Provide feedback
 </a>
 
@@ -14,6 +15,10 @@ Avo has two types of filters available at the moment [Boolean filter](#boolean-f
 
 <img :src="$withBase('/assets/img/filters.jpg')" alt="Avo filters" style="width: 300px;" class="border mb-4" />
 
+### Filter values
+
+Because the filters get serialized back and forth, the final `value`/`values` in the `apply` method will be stringified or have the keys stringified if they are hashes. You can declare them as regular hashes (with the keys symbolized) in the `options` method but they will get stringifed in the end.
+
 ## Boolean Filter
 
 You generate one running `bin/rails generate avo:filter featured_filter` creating a filter configuration file.
@@ -22,13 +27,36 @@ You generate one running `bin/rails generate avo:filter featured_filter` creatin
 class FeaturedFilter < Avo::Filters::BooleanFilter
   self.name = 'Featured filter'
 
+  # `values` comes as a hash with stringified keys
+  # Eg:
+  # {
+  #   'is_featured': true
+  # }
   def apply(request, query, values)
+    return query if values['is_featured'] && values['is_unfeatured']
+
+    if values['is_featured']
+      query = query.where(is_featured: true)
+    elsif values['is_unfeatured']
+      query = query.where(is_featured: false)
+    end
+
     query
   end
 
   def options
-    {}
+    {
+      is_featured: "Featured",
+      is_unfeatured: "Unfeatured"
+    }
   end
+
+  # Optional method to set the default state.
+  # def default
+  #   {
+  #     is_featured: true
+  #   }
+  # end
 end
 ```
 
@@ -41,25 +69,27 @@ The `apply` method is responsible for filtering out the records by giving you ac
 ```ruby
 # Example values payload
 {
-  is_featured: true,
-  is_unfeatured: false,
+  'is_featured': true,
+  'is_unfeatured': false,
 }
 ```
 
 The `options` method defines the available values of your filter. They should return a `Hash` with the option id as a key and option label as value.
 
-The finished filter might look something like this.
+### Default value
 
-```ruby{17-20}
+You can set a default value to the filter so it has a predetermined state on load. To do that return the state you desire it from the `default` method.
+
+```ruby{23-27}
 class FeaturedFilter < Avo::Filters::BooleanFilter
   self.name = 'Featured status'
 
   def apply(request, query, values)
-    return query if values[:is_featured] && values[:is_unfeatured]
+    return query if values['is_featured'] && values['is_unfeatured']
 
-    if values[:is_featured]
+    if values['is_featured']
       query = query.where(is_featured: true)
-    elsif values[:is_unfeatured]
+    elsif values['is_unfeatured']
       query = query.where(is_featured: false)
     end
 
@@ -68,43 +98,14 @@ class FeaturedFilter < Avo::Filters::BooleanFilter
 
   def options
     {
-      'is_featured': 'Featured',
-      'is_unfeatured': 'Unfeatured',
+      is_featured: "Featured",
+      is_unfeatured: "Unfeatured"
     }
-  end
-end
-```
-
-### Default value
-
-You can set a default value to the filter so it has a predetermined state on load. To do that return the state you desire it from the `default` method.
-
-```ruby{17-19}
-class FeaturedFilter < Avo::Filters::BooleanFilter
-  self.name = 'Featured status'
-
-  def apply(request, query, values)
-    return query if values[:is_featured] && values[:is_unfeatured]
-
-    if values[:is_featured]
-      query = query.where(is_featured: true)
-    elsif values[:is_unfeatured]
-      query = query.where(is_featured: false)
-    end
-
-    query
   end
 
   def default
     {
       is_featured: true
-    }
-  end
-
-  def options
-    {
-      'is_featured': 'Featured',
-      'is_unfeatured': 'Unfeatured',
     }
   end
 end
@@ -122,6 +123,8 @@ A finished, select filter might look like this.
 class PublishedFilter < Avo::Filters::SelectFilter
   self.name = 'Published status'
 
+  # `value` comes as a string
+  # Eg: 'published'
   def apply(request, query, value)
     case value
     when 'published'
@@ -135,18 +138,23 @@ class PublishedFilter < Avo::Filters::SelectFilter
 
   def options
     {
-      'published': 'Published',
-      'unpublished': 'Unpublished',
+      published: "Published",
+      unpublished: "Unpublished"
     }
   end
+
+  # Optional method to set the default state.
+  # def default
+  #   :published
+  # end
 end
 ```
 
 ### Default value
 
-The select filter supports setting a default too.
+The select filter supports setting a default too. That should be a string or symbol with the select item. It will be stringified by Avo automatically.
 
-```ruby{15-17}
+```ruby{22-24}
 class PublishedFilter < Avo::Filters::SelectFilter
   self.name = 'Published status'
 
@@ -161,15 +169,15 @@ class PublishedFilter < Avo::Filters::SelectFilter
     end
   end
 
-  def default
-    'published'
-  end
-
   def options
     {
       'published': 'Published',
       'unpublished': 'Unpublished',
     }
+  end
+
+  def default
+    :published
   end
 end
 ```
@@ -182,13 +190,31 @@ You may also use a multiple select filter.
 class PostStatusFilter < Avo::Filters::MultipleSelectFilter
   self.name = "Status"
 
+  # `value` comes as an array of strings
+  # Ex: ['admins', 'non_admins']
   def apply(request, query, value)
-    query.where(status: value.map(&:to_i))
+    if value.include? 'admins'
+      query = query.admins
+    end
+
+    if value.include? 'non_admins'
+      query = query.non_admins
+    end
+
+    query
   end
 
   def options
-    Post.statuses.invert
+    {
+      admins: "Admins",
+      non_admins: "Non admins",
+    }
   end
+
+  # Optional method to set the default state.
+  # def default
+  #   ['admins', 'non_admins']
+  # end
 end
 ```
 
@@ -222,16 +248,22 @@ class NameFilter < Avo::Filters::TextFilter
   self.name = "Name filter"
   self.button_label = "Filter by name"
 
+  # `value` comes as text
+  # Eg: 'avo'
   def apply(request, query, value)
     query.where('LOWER(name) LIKE ?', "%#{value}%")
   end
+
+  # def default
+  #   'avo'
+  # end
 end
 
 ```
 
 ## Registering filters
 
-To add an filter to one of your resources, you need to declare it on the resource using the `filter` method.
+To add an filter to one of your resources, you need to declare it on the resource using the `filter` method to which you pass the filter class.
 
 ```ruby{8}
 class PostResource < Avo::BaseResource
