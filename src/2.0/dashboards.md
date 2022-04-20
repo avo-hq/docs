@@ -389,7 +389,7 @@ You might want to hide certain dashboards from certain users. You can do that us
 
 By default if you don't pass anything to `visible`, the dashboard will be available for anyone.
 
-```ruby{5-7}
+```ruby{5-11}
 class ComplexDash < Avo::Dashboards::BaseDashboard
   self.id = "complex_dash"
   self.name = "Complex dash"

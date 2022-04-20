@@ -134,6 +134,7 @@ module.exports = {
         '/2.0/authorization',
         '/2.0/localization',
         '/2.0/stimulus-controllers',
+        '/2.0/evaluation-hosts',
         '/2.0/faq',
         {
           title: 'Recipes & guides',
