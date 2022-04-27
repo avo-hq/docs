@@ -17,7 +17,7 @@
   </div>
 </div>
 
-**Requires v2.4.0**
+**Requires v2.5.0**
 
 ## Basic info
 
