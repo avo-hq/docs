@@ -124,23 +124,22 @@ If you want to change one of Avo's built-in views, you can eject it, update it a
 
 We prepared a few templates to make it
 
-`bin/rails generate avo:eject :sidebar` will eject the `_sidebar.html.erb` partial.
+`bin/rails generate avo:eject :logo` will eject the `_logo.html.erb` partial.
 
 ```
-▶ bin/rails generate avo:eject :sidebar
+▶ bin/rails generate avo:eject :logo
 Running via Spring preloader in process 20947
-      create  app/views/avo/sidebar/_sidebar.html.erb
+      create  app/views/avo/logo/_logo.html.erb
 ```
 
 A list with prepared templates:
 
-- `:sidebar` ➡️ &nbsp; `app/views/avo/sidebar/_sidebar.html.erb`
 - `:logo` ➡️ &nbsp; `app/views/avo/partials/_logo.html.erb`
 - `:head` ➡️ &nbsp; `app/views/avo/partials/_head.html.erb`
 - `:header` ➡️ &nbsp; `app/views/avo/partials/_header.html.erb`
-- `:profile_dropdown` ➡️ &nbsp; `app/views/avo/partials/_profile_dropdown.html.erb`
 - `:footer` ➡️ &nbsp; `app/views/avo/partials/_footer.html.erb`
 - `:scripts` ➡️ &nbsp; `app/views/avo/partials/_scripts.html.erb`
+- `:sidebar_extra` ➡️ &nbsp; `app/views/avo/partials/_sidebar_extra.html.erb`
 
 #### Logo
 
