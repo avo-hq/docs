@@ -59,6 +59,35 @@ class CommentResource < Avo::BaseResource
 end
 ```
 
+### Polymorphic help
+
+**Requires V 2.5 +**
+
+When displaying a polymorphic association, you will get two dropdowns. One selects the polymorphic type (`Post` or `Project`), and one for choosing the actual record. You may want to give the user explicit information about those dropdowns. For example, you can use the `polymorphic_help` option for the first dropdown and `help` for the second.
+
+```ruby{16-17}
+class CommentResource < Avo::BaseResource
+  self.title = :id
+
+  field :id, as: :id
+  field :body, as: :textarea
+  field :excerpt, as: :text, show_on: :index, as_description: true do |model|
+    ActionView::Base.full_sanitizer.sanitize(model.body).truncate 60
+  rescue
+    ""
+  end
+
+  field :reviewable,
+    as: :belongs_to,
+    polymorphic_as: :reviewable,
+    types: [::Post, ::Project, ::Team],
+    polymorphic_help: "Choose the type of record to review",
+    help: "Choose the record you need"
+end
+```
+
+<img :src="$withBase('/assets/img/associations/polymorphic_help.jpg')" alt="Belongs to ploymorphic help" class="border mb-4" />
+
 ### Searchable `belongs_to`
 
 **Requires V 1.21 +**
@@ -295,7 +324,7 @@ end
 
 When displaying associations, you might want to scope out some associated records. You can use the `scope` option to do that.
 
-```ruby{5,15}
+```ruby{5,16,22}
 # app/models/comment.rb
 class Comment < ApplicationRecord
   belongs_to :user, optional: true
@@ -310,13 +339,22 @@ end
 
 # app/avo/resource/user_resource.rb
 class UserResource < Avo::BaseResource
+  # Version before v2.5.0
   field :comments, as: :has_many, scope: -> { starts_with :a }
+end
+
+# app/avo/resource/user_resource.rb
+class UserResource < Avo::BaseResource
+  # Version after v2.5.0
+  field :comments, as: :has_many, scope: -> { query.starts_with :a }
 end
 ```
 
 Now, the `comments` query on the user `Index` page will have the `starts_with` scope attached.
 
 <img :src="$withBase('/assets/img/associations/scope.jpg')" alt="Association scope" class="border mb-4" />
+
+With version 2.5.0 you'll also have access to the `parent` record so you can use that to scope your associated models even better.
 
 ## Show/hide buttons
 
