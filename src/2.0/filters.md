@@ -233,7 +233,17 @@ class AuthorFilter < Avo::Filters::SelectFilter
     query
   end
 
+  # Example `applied_filters`
+  # applied_filters = {
+  #   "CourseCountryFilter" => {
+  #     "USA" => true,
+  #     "Japan" => true,
+  #     "Spain" => false,
+  #     "Thailand" => false,
+  #   }
+  # }
   def options
+    # Here you have access to the `applied_filters` object too
     Author.select(:id, :name).each_with_object({}) { |author, options| options[author.id] = author.name }
   end
 end
@@ -389,6 +399,8 @@ class CourseCityFilter < Avo::Filters::BooleanFilter
 end
 ```
 
+<img :src="$withBase('/assets/img/filters/dynamic-options.png')" alt="Avo filters" style="width: 300px;" class="border mb-4" />
+
 The `countries` method above will check if the `CourseCountryFilter` has anything selected. If so, get the names of the chosen ones. This way, you show only the cities from the selected countries and not all them.
 
 ## React to filters
@@ -503,11 +515,15 @@ end
 Besides checking if the countries filter is populated (`applied_filters["CourseCountryFilter"].present?`), we also want to allow the user to customize the cities filter further, so we need to check if the user has added a value to that filter (`applied_filters["CourseCityFilter"].blank?`).
 If these conditions are true, the country filter has a value, and the user hasn't selected any values from the cities filter, we can react to it and set a value as the default one.
 
+<img :src="$withBase('/assets/img/filters/dynamic-options.gif')" alt="Avo filters" style="width: 300px;" class="border mb-4" />
+
 Of course, you can modify the logic and return all kinds of values based on your needs.
 
 ## Empty message text
 
 There might be times when you will want to show a message to the user when you're not returning any options. You may customize that message using the `empty_message` option.
+
+<img :src="$withBase('/assets/img/filters/empty-message.gif')" alt="Avo filters" style="width: 300px;" class="border mb-4" />
 
 ```ruby{4}
 # app/avo/filters/course_city_filter.rb
@@ -553,3 +569,5 @@ class CourseResource < Avo::BaseResource
   filter CourseCityFilter
 end
 ```
+
+<img :src="$withBase('/assets/img/filters/keep-filters-panel-open.gif')" alt="Avo filters" style="width: 300px;" class="border mb-4" />
