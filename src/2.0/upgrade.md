@@ -2,6 +2,37 @@
 
 [[toc]]
 
+## Upgrade from 2.5 to 2.6
+
+### Change the way the cards run their queries
+
+We made a change to the way you build your queries in cards. Instead of using the `query` block, you can use the query method.
+
+The change should be straightforward and shouldn't really impact the logic of your card. You'll have access to all the same data as before.
+
+```ruby{11-14,16-19}
+class AmountRaised < Avo::Dashboards::MetricCard
+  self.id = "amount_raised"
+  self.label = "Amount raised"
+  # self.description = "Some description"
+  # self.cols = 1
+  # self.initial_range = 30
+  # self.ranges = [7, 30, 60, 365, "TODAY", "MTD", "QTD", "YTD", "ALL"]
+  self.prefix = "$"
+  # self.suffix = ""
+
+  # Before
+  query do
+    result 9001
+  end
+
+  # Current
+  def query
+    result 9001
+  end
+end
+```
+
 ## Upgrade from 2.4 to 2.5
 
 ### Change the way the scope is declared in associations

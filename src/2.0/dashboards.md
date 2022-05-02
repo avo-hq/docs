@@ -124,7 +124,7 @@ end
 
 We found ourselves in the position to add a few cards that were actually the same card but with a slight difference. Ex: Have one `Users count` card and another `Active users count` card. They both count users, but the latter has an `active: true` condition applied.
 
-Before, we'd have to duplicate that card and make that slight modification to the `query` block but end up with duplicated boilerplate code.
+Before, we'd have to duplicate that card and make that slight modification to the `query` method but end up with duplicated boilerplate code.
 For those scenarios, we created the `options`... card option. It allows you to essentially send arbitrary options to the card from the parent like so.
 
 ```ruby{6-8}
@@ -147,7 +147,7 @@ class UsersCount < Avo::Dashboards::MetricCard
   self.label = "Users count"
 
   # You have access to context, params, range, current dashboard, and current card
-  query do
+  def query
     scope = User
 
     if card.options[:active_users].present?
@@ -195,9 +195,9 @@ The metric card is your friend when you only need to display a simple big number
 
 #### Calculate results
 
-To calculate your result, you may use the `query` block. After you make the query, use the `result` method to store the value that will be displayed on the card.
+To calculate your result, you may use the `query` method. After you run your query, use the `result` method to store the value that will be displayed on the card.
 
-In the `query` block you have access to a few variables like `context` (the [App context](https://docs.avohq.io/2.0/customization.html#context)), `params` (the request params), `range` (the range that was requested), `dashboard` (the current dashboard the card is on), and current `card`.
+In the `query` method you have access to a few variables like `context` (the [App context](https://docs.avohq.io/2.0/customization.html#context)), `params` (the request params), `range` (the range that was requested), `dashboard` (the current dashboard the card is on), and current `card`.
 
 ```ruby{13-34,36}
 class UsersMetric < Avo::Dashboards::MetricCard
@@ -212,7 +212,7 @@ class UsersMetric < Avo::Dashboards::MetricCard
   # self.suffix = '%'
   # self.refresh_every = 10.minutes
 
-  query do
+  def query
     from = Date.today.midnight - 1.week
     to = DateTime.current
 
@@ -275,7 +275,7 @@ class UserSignups < Avo::Dashboards::ChartkickCard
   # self.legend_on_left = false
   # self.legend_on_right = false
 
-  query do
+  def query
     points = 16
     i = Time.new.year.to_i - points
     base_data =
