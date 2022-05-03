@@ -289,6 +289,10 @@ end
 
 ## Dynamic filter options
 
+<a href="https://youtu.be/M2RsNPPFOio" target="_blank" class="rounded bg-green-600 hover:bg-green-500 text-white no-underline px-2 py-1 inline leading-none mt-2">
+  Demo video
+</a>
+
 You might want to compose more advanced filters, like when you have two filters, one for the country and another for cities, and you'd like to have the cities one populated with cities from the selected country.
 
 Let's take the `CourseResource` as an example.
@@ -404,6 +408,10 @@ end
 The `countries` method above will check if the `CourseCountryFilter` has anything selected. If so, get the names of the chosen ones. This way, you show only the cities from the selected countries and not all them.
 
 ## React to filters
+
+<a href="https://youtu.be/M2RsNPPFOio?t=219" target="_blank" class="rounded bg-green-600 hover:bg-green-500 text-white no-underline px-2 py-1 inline leading-none mt-2">
+  Demo video
+</a>
 
 Going further with the example above, a filter can react to other filters. For example, let's say that when a user selects `USA` from the list of countries, you want to display a list of cities from the USA (that's already happening in `options`), and you'd like to select the first one on the list. You can do that with the `react` method.
 
@@ -521,6 +529,10 @@ Of course, you can modify the logic and return all kinds of values based on your
 
 ## Empty message text
 
+<a href="https://youtu.be/M2RsNPPFOio?t=347" target="_blank" class="rounded bg-green-600 hover:bg-green-500 text-white no-underline px-2 py-1 inline leading-none mt-2">
+  Demo video
+</a>
+
 There might be times when you will want to show a message to the user when you're not returning any options. You may customize that message using the `empty_message` option.
 
 <img :src="$withBase('/assets/img/filters/empty-message.gif')" alt="Avo filters" style="width: 300px;" class="border mb-4" />
@@ -552,6 +564,10 @@ end
 ```
 
 ## Keep filters panel open
+
+<a href="https://youtu.be/M2RsNPPFOio?t=374" target="_blank" class="rounded bg-green-600 hover:bg-green-500 text-white no-underline px-2 py-1 inline leading-none mt-2">
+  Demo video
+</a>
 
 There are scenarios where you wouldn't want to close the filters panel when you change the values. For that, you can use the `keep_filters_panel_open` resource option.
 
