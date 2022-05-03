@@ -322,6 +322,10 @@ end
 
 ## Add scopes to associations
 
+<a href="https://youtu.be/3ee9iq2CnzA" target="_blank" class="rounded bg-green-600 hover:bg-green-500 text-white no-underline px-2 py-1 inline leading-none mt-2">
+  Demo video
+</a>
+
 When displaying associations, you might want to scope out some associated records. You can use the `scope` option to do that.
 
 ```ruby{5,16,22}
