@@ -96,7 +96,7 @@ The default response is to reload the page and show the _Action ran successfully
 
 ### Message responses
 
-You will have two message response methods at your disposal `succeed` and `fail`. These will render out green or red alerts to the user.
+You will have four message response methods at your disposal `succeed`, `fail`, `warn`, and `inform`. These will render out green, red, orange, and blue alerts to the user.
 
 ```ruby{6,10}
 def handle(**args)
@@ -116,6 +116,19 @@ end
 
 <img :src="$withBase('/assets/img/actions/actions-succeed-message.jpg')" alt="Avo succeed message" class="border inline-block mr-2" />
 <img :src="$withBase('/assets/img/actions/actions-fail-message.jpg')" alt="Avo fail message" class="border inline-block" />
+
+```ruby{4-7}
+def handle(**args)
+  # Demo handle action
+
+  succeed "Success response ✌️"
+  warn "Warning response ✌️"
+  inform "Info response ✌️"
+  fail "Error response ✌️"
+end
+```
+
+<img :src="$withBase('/assets/img/actions/alert-responses.png')" alt="Avo alert responses" class="border inline-block" />
 
 ## Response types
 
