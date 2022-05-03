@@ -19,6 +19,13 @@ prev: /1.0/
 1. Run `bin/rails generate avo:install` to generate the initializer and add Avo to the `routes.rb` file.
 1. [Generate an Avo Resource](resources)
 
+**OR**
+
+Run this command inside your rails app.
+
+`rails app:template LOCATION='https://avohq.io/app-template'`
+
+
 ## Next steps
 
 Please follow the next steps to ensure your app is safely secured and you have access to all the features you need.
