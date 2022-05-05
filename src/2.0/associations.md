@@ -173,6 +173,26 @@ Watch the video below to get an ideea on how it works.
 
 [![Demo video](https://img.youtube.com/vi/KLI_sVTPX-Q/0.jpg)](https://youtu.be/KLI_sVTPX-Q)
 
+### Belongs to attach scope
+
+When you edit a record that has a `belongs_to` association, on the edit screen, you will have a list of records from which you can choose a record to associate with.
+
+Let's take, for example, a `Post` belongs to a `User`. On the post edit screen, you will have a dropdown (or a search field if it's [searchable](#searchable-belongs-to)) with all the available users. But that's not ideal. Maybe you don't want to show all the users in your app but only those who are not admins.
+
+You can use the `attach_scope` option to keep only the users you need in the `belongs_to` dropdown field.
+
+```ruby
+# app/models/user.rb
+class User < ApplicationRecord
+  scope :non_admins, -> { where "(roles->>'admin')::boolean != true" }
+end
+
+# app/avo/resources/post_resource.rb
+class PostResource < Avo::BaseResource
+  field :user, as: :belongs_to, attach_scope: -> { query.non_admins }
+end
+```
+
 ### Allow detaching via the association
 
 By default, when you visit a record through an association that `belongs_to` field is disabled. There might be cases where you'd like that field not to be disabled and allow your users to change that association.
@@ -326,14 +346,14 @@ end
   Demo video
 </a>
 
-When displaying associations, you might want to scope out some associated records. You can use the `scope` option to do that.
+When displaying `has_many` associations, you might want to scope out some associated records. For example a user might have multiple comments, but on the user's `Show` page you don't want to display all the comments, but only the ones that have been approved beforehand.
 
 ```ruby{5,16,22}
 # app/models/comment.rb
 class Comment < ApplicationRecord
   belongs_to :user, optional: true
 
-  scope :starts_with, -> (prefix) { where('LOWER(body) LIKE ?', "#{prefix}%") }
+  scope :approved, -> { where(approved: true) }
 end
 
 # app/models/user.rb
@@ -344,21 +364,23 @@ end
 # app/avo/resource/user_resource.rb
 class UserResource < Avo::BaseResource
   # Version before v2.5.0
-  field :comments, as: :has_many, scope: -> { starts_with :a }
+  field :comments, as: :has_many, scope: -> { approved }
 end
 
 # app/avo/resource/user_resource.rb
 class UserResource < Avo::BaseResource
   # Version after v2.5.0
-  field :comments, as: :has_many, scope: -> { query.starts_with :a }
+  field :comments, as: :has_many, scope: -> { query.approved }
 end
 ```
 
-Now, the `comments` query on the user `Index` page will have the `starts_with` scope attached.
+Now, the `comments` query on the user `Index` page will have the `approved` scope attached.
 
 <img :src="$withBase('/assets/img/associations/scope.jpg')" alt="Association scope" class="border mb-4" />
 
 With version 2.5.0 you'll also have access to the `parent` record so you can use that to scope your associated models even better.
+
+All the `has_many` associations have the [`attach_scope`](#belongs-to-attach-scope) option available too.
 
 ## Show/hide buttons
 
