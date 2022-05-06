@@ -26,6 +26,8 @@ Follow the install instructions [here](https://github.com/shioyama/mobility#inst
 
 ## Add the language switcher
 
+**Before v 2.3.0**
+
 First you need to eject the `_profile_dropdown` partial using this command `bin/rails generate avo:eject :profile_dropdown`. In that partail add the languages you need to support like so:
 
 ```erb
@@ -97,6 +99,20 @@ First you need to eject the `_profile_dropdown` partial using this command `bin/
 ```
 
 Feel free to customize the dropdown as much as you need it to and add as many locales as you need.
+
+**After v 2.3.0**
+
+Use the `profile_menu` to add the language switching links.
+
+```ruby
+# config/initializers/avo.rb
+Avo.configure do |config|
+  config.profile_menu = -> {
+    link "Switch to Portuguese", path: "?set_locale=pt-BR"
+    link "Switch to English", path: "?set_locale=en"
+  }
+end
+```
 
 ## Workflow
 

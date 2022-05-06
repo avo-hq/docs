@@ -2,7 +2,7 @@
 
 [[toc]]
 
-**Available from `v2.2.2`**
+**Available from `v2.3.0`**
 
 <div class="rounded-md bg-blue-50 p-4">
   <div class="flex">
