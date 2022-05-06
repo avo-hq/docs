@@ -89,7 +89,7 @@ First you need to eject the `_profile_dropdown` partial using this command `bin/
         <%= link_to "Switch to Portuguese", { set_locale: 'pt-BR' }, class: classes %>
       <% else %>
         <%= link_to "Switch to English", { set_locale: 'en' }, class: classes %>
-      <%end%>
+      <% end %>
       <!-- Add this 👆 -->
 
       <%= button_to t('avo.sign_out'), main_app.send(:destroy_user_session_path), method: :delete, form: { "data-turbo" => "false" }, class: classes %>
