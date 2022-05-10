@@ -99,7 +99,7 @@ When you have a `Post` resource that has many `Comment`s throught the `has_many 
 
 ### detach_{association}?
 
-`detach` method works similarly to `attach` one, but for detaching.
+`detach` method works similarly to `attach`, but for detaching.
 
 <img :src="$withBase('/assets/img/authorization/detach.jpg')" class="border mb-4" />
 
@@ -111,25 +111,25 @@ This controls whether the view button is visible on the associated record row on
 
 ### edit_{association}?
 
-`create` method works similarly to `attach` one, but for detaching.
+`edit` method works similarly to `attach`, but for editing.
 
 <img :src="$withBase('/assets/img/authorization/edit.jpg')" class="border mb-4" />
 
 ### create_{association}?
 
-`create` method works similarly to `attach` one, but for detaching.
+`create` method works similarly to `attach`, but for creating.
 
 <img :src="$withBase('/assets/img/authorization/create.jpg')" class="border mb-4" />
 
 ### destroy_{association}?
 
-`create` method works similarly to `attach` one, but for detaching.
+`destroy` method works similarly to `attach`, but for destroying.
 
 <img :src="$withBase('/assets/img/authorization/destroy.jpg')" class="border mb-4" />
 
 ### act_on_{association}?
 
-`create` method works similarly to `attach` one, but for detaching.
+`act_on_` method works similarly to `attach`, but for showing actions.
 
 <img :src="$withBase('/assets/img/authorization/actions.jpg')" class="border mb-4" />
 
