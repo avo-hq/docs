@@ -358,25 +358,6 @@ Supported options:
 
 - `global_search`
 
-## Customize the back path for resource views
-
-<img :src="$withBase('/assets/img/customization/back-path.png')" alt="Back path hidden" class="border mb-4" />
-
-By default, Avo ships with a computed back path for resource views. It tries to figure out where to navigate next or redirect in different contexts. That might not be what you want, and you prefer that the back button do the same as the browser back button. You can change that by the `back_path` configuration option.
-
-```ruby
-# config/initializers/avo.rb
-Avo.configure do |config|
-  config.back_path = :computed # default
-  config.back_path = :javascript_history_back # behaves like the browser's back button
-  config.back_path = nil # hides the back button all together
-end
-```
-
-You can also hide it altogether if you set it to `nil`.
-
-<img :src="$withBase('/assets/img/customization/back-path-nil.png')" alt="Back path hidden" class="border mb-4" />
-
 ## Customize profile name, photo, and title
 
 You might see on the sidebar footer a small profile widget. The widget displays three types of information about the user; `name`, `photo`, and `title`.
