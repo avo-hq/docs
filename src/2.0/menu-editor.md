@@ -181,6 +181,32 @@ The `visible` option is avaialble on all menu item. It can be a boolean or a blo
   - the `params` object of that current request
   - the [`view_context`](https://apidock.com/rails/AbstractController/Rendering/view_context) object. The `view_context` object lets you use the route helpers. eg: `view_context.main_app.posts_path`.
 
+```ruby
+# config/initializers/avo.rb
+Avo.configure do |config|
+  config.main_menu = -> {
+    resource :user, visible: -> do
+      context[:something] == :something_else
+    end
+  }
+end
+```
+
+## Using authorization rules
+
+When you switch from a generated menu to a custom one you might want to keep using the same authorization rules as before. To easily to that, use the `authorize` method in the `visible` option/
+
+```ruby
+# config/initializers/avo.rb
+Avo.configure do |config|
+  config.main_menu = -> {
+    resource :user, visible: -> do
+      authorize current_user, User, "index?", raise_exception: false
+    end
+  }
+end
+```
+
 ## `all_` helpers
 
 We also added some helpers for the scenario where you want to customize part of a menu for convenience. For example, let's say you want to add some custom tools and mix and match the dashboards, but you don't want to disturb the resources. You can use `all_resources` to generate a list containing all of them.

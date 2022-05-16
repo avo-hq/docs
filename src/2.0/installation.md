@@ -10,7 +10,7 @@ prev: /1.0/
 ## Requirements
 
 - Ruby on Rails >= 6.0
-- Ruby >= 2.6
+- Ruby >= 2.7
 
 ## Installing Avo
 
