@@ -194,14 +194,15 @@ end
 
 ## Using authorization rules
 
-When you switch from a generated menu to a custom one you might want to keep using the same authorization rules as before. To easily to that, use the `authorize` method in the `visible` option/
+When you switch from a generated menu to a custom one you might want to keep using the same authorization rules as before. To easily to that, use the `authorize` method in the `visible` option.
 
 ```ruby
 # config/initializers/avo.rb
 Avo.configure do |config|
   config.main_menu = -> {
-    resource :user, visible: -> do
-      authorize current_user, User, "index?", raise_exception: false
+    resource :team, visible: -> do
+      # authorize current_user, MODEL_THAT_NEEDS_TO_BE_AUTHORIZED, METHOD_THAT_NEEDS_TO_BE_AUTHORIZED
+      authorize current_user, Team, "index?", raise_exception: false
     end
   }
 end
