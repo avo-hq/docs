@@ -130,6 +130,7 @@ module.exports = {
         '/2.0/customization',
         '/2.0/custom-tools',
         '/2.0/custom-fields',
+        '/2.0/resource-tools',
         '/2.0/custom-asset-pipeline',
         '/2.0/authorization',
         '/2.0/localization',

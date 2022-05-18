@@ -25,7 +25,7 @@
   </a>
 
   <a href="https://youtu.be/VMvG-j1Vxio" target="_blank" class="rounded bg-green-600 hover:bg-green-500 text-white no-underline px-2 py-1 inline leading-none mt-2">
-    Video demo
+    Demo video
   </a>
 </div>
 
@@ -277,6 +277,33 @@ end
 <img :src="$withBase('/assets/img/menu-editor/collapsed.jpg')" alt="Avo menu editor" class="border mb-4" />
 
 You might want to allow your users to hide certain items from view.
+
+## Authorization
+
+
+<div class="space-x-2 mt-2">
+  <a href="https://youtu.be/Eex8CiinQZ8?t=373" target="_blank" class="rounded bg-green-600 hover:bg-green-500 text-white no-underline px-2 py-1 inline leading-none mt-2">
+    Demo video
+  </a>
+</div>
+
+If you use the [authorization feature](authorization), you will need an easy way to authorize your items in the menu builder.
+For that scenario, we added the `authorize` helper.
+
+```ruby{3}
+Avo.configure do |config|
+  config.main_menu = -> {
+    resource :team, visible: -> {
+      # authorize current_user, THE_RESOURCE_MODEL, THE_POLICY_METHOD, raise_exception: false
+      authorize current_user, Team, "index?", raise_exception: false
+    }
+  }
+end
+```
+
+Use it in the `visible` block by giving it the `current_user` (which is available in that block), the class of the resource, the method that you'd like to authorize for (default is `index?`), and tell it not to throw an exception.
+
+Now, the item visibility will use the `index?` method from the `TeamPolicy` class.
 
 ## Profile menu
 
