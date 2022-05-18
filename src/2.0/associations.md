@@ -181,6 +181,8 @@ Let's take, for example, a `Post` belongs to a `User`. On the post edit screen, 
 
 You can use the `attach_scope` option to keep only the users you need in the `belongs_to` dropdown field.
 
+You have access to the `query` that you can alter and return it and the `parent` object which is the actual record where you want to assign the association (the actual `Post` in the below example).
+
 ```ruby
 # app/models/user.rb
 class User < ApplicationRecord
@@ -192,6 +194,14 @@ class PostResource < Avo::BaseResource
   field :user, as: :belongs_to, attach_scope: -> { query.non_admins }
 end
 ```
+
+For the scenarios where you need to add a record associated to that resource (you create a `Post` through a `Category`), the `parent` is not available (the `Post` is not persisted in the database). Avo makes the `parent` an instantiated object with it's parent populated (a `Post` with the `category_id` populated with the parent `Category` from which you started the creation process) so you can better scope out the data (you know from which `Category` it was initiated).
+
+<div class="space-x-2 mt-2">
+  <a href="https://youtu.be/Eex8CiinQZ8?t=6" target="_blank" class="rounded bg-green-600 hover:bg-green-500 text-white no-underline px-2 py-1 inline leading-none mt-2">
+    Demo video
+  </a>
+</div>
 
 ### Allow detaching via the association
 
