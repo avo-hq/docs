@@ -9,3 +9,5 @@
 [Use in an API only Rails app](recipes/api-only-app)
 
 [Pretty JSON objects to the code field](recipes/format-ruby-object-to-json)
+
+[Use route level multitenancy](recipes/multitenancy)
