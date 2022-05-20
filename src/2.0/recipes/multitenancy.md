@@ -132,3 +132,5 @@ Avo.configure do |config|
   end
 end
 ```
+
+Check out [this PR](https://github.com/avo-hq/avodemo/pull/4) for how to update an app to support multitenancy.
