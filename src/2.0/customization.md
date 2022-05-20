@@ -239,6 +239,8 @@ end
 
 ### Use a lambda function for the home_path
 
+**Required v2.8.0+**
+
 You can also use a lambda function to define that path.
 
 ```ruby{2}
