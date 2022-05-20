@@ -45,6 +45,8 @@ These methods control whether the resource appears on the sidebar, if the view/e
 
 `index?` is used to display the resources on the sidebar, display the related HasMany resources view and restrict access to the resources **Index** view.
 
+**Warning**: This policy method is used in the generated menu, not in the [menu editor](menu-editor.html). You have to use your own logic in the [`visible` block](menu-editor.html#authorization) for that.
+
 ### show?
 
 When setting `show?` to `false`, the user will not see the show icon on the resource row and will not have access to the **Show** view of a resource.

@@ -230,6 +230,8 @@ class TeamMembershipResource < Avo::BaseResource
 end
 ```
 
+**Warning**: This option is for the generated menu, not for the [menu editor](menu-editor.html). You have to use your own logic in the [`visible` block](menu-editor.html#item-visibility) for that.
+
 ## Extend the Avo::ResourcesController
 
 You may need to execute additional actions on the `ResourcesController` before loading the Avo pages. You can do that by creating an `Avo::BaseResourcesController` and extend your resource controller from it.
