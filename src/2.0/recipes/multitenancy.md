@@ -114,3 +114,21 @@ class Avo::ToolsController < Avo::ApplicationController
   end
 end
 ```
+
+## Retrieve and use the account
+
+Throughout your app you can use `Current.account` or if you add it to Avo's [`context`](customization.html#context) object and use it from there.
+
+```ruby{8}
+# config/initializers/avo.rb
+Avo.configure do |config|
+  config.set_context do
+    {
+      foo: 'bar',
+      user: current_user,
+      params: request.params,
+      account: Current.account
+    }
+  end
+end
+```
