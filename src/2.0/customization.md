@@ -237,6 +237,16 @@ Avo.configure do |config|
 end
 ```
 
+### Use a lambda function for the home_path
+
+You can also use a lambda function to define that path.
+
+```ruby{2}
+Avo.configure do |config|
+  config.home_path = -> { avo.dashboard_path(:dashy) }
+end
+```
+
 When you configure the `home_path` option, the `Get started` sidebar item will be hidden in the development environment.
 
 Now, whenever a user clicks the logo, they will be redirected to `/avo/dashboard`. You can use this configuration option alongside the `set_initial_breadcrumbs` option to create a more cohesive experience.
