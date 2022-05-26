@@ -11,3 +11,5 @@
 [Pretty JSON objects to the code field](recipes/format-ruby-object-to-json)
 
 [Use route level multitenancy](recipes/multitenancy)
+
+[Manage information-heavy resources](recipes/manage-information-heavy-resources)
