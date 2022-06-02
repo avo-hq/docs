@@ -64,6 +64,32 @@ field :is_featured, as: :boolean, visible: -> (resource:) { resource.name.includ
 field :is_featured, as: :boolean, visible: -> (resource:) { resource.model.published_at.present? } # show field based on a model attribute
 ```
 
+### Using `if` for field visibility
+
+You might be tempted to use the `if` statement to show/hide fields conditionally. That's not the best choice because the fields are registered at boot time, and some features are only available at runtime. Let's take the `context` object, for example. You might have the `current_user` assigned to the `context`, which will not be present at the app's boot time. Instead, that's present at request time when you have a `request` present from which you can find the user.
+
+```ruby
+# Don't do
+class CommentResource < Avo::BaseResource
+  field :id, as: :id
+  if context[:current_user].admin?
+    field :body, as: :textarea
+    field :tiny_name, as: :text, only_on: :index, as_description: true
+  end
+end
+
+# Do instead
+class CommentResource < Avo::BaseResource
+  field :id, as: :id
+  with_options visible: -> (resource:) { context[:current_user].admin?} do
+    field :body, as: :textarea
+    field :tiny_name, as: :text, only_on: :index, as_description: true
+  end
+end
+```
+
+So now, instead of relying on a request object that's not available at boot time, you can pass it a lambda function that will be executed on request time with all the required information.
+
 ## Computed Fields
 
 At times you might need to show a field with a value that you don't have in a database row. In that case, you may compute the value using a block that receives the `model` (the actual database record), the `resource` (the configured Avo resource), and the current `view`. With that information you can compute what to show on the field in the **Index** and **Show** views (computed fields are automatically hidden in **Edit** and **Create**).
