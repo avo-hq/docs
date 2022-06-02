@@ -234,9 +234,13 @@ field :admin, as: :has_one
 
 <img :src="$withBase('/assets/img/associations/has-one.jpg')" alt="Has one" class="border mb-4" />
 
+### Show on edit screens
+
+By default, `has_one` is only visible on the **Show** page. If you want to enable it on the **Form** pages as well you need to add the `show_on: :forms` option.
+
 ## Has Many
 
-The `HasMany` field is visible only on the **Show** page. Below the regular fields panel, you will see a new panel with the model's associated records.
+The `HasMany` field is visible, by default, only on the **Show** page. Below the regular fields panel, you will see a new panel with the model's associated records.
 
 ```ruby
 field :projects, as: :has_many
@@ -252,13 +256,21 @@ In a similar fashion, you may detach a model using the detach button.
 
 <img :src="$withBase('/assets/img/associations/has-many-detach.jpg')" alt="Has many detach" class="border mb-4" />
 
-## Has many through
+### Show on edit screens
+
+By default, `has_many` is only visible on the **Show** page. If you want to enable it on the **Form** pages as well you need to add the `show_on: :forms` option.
+
+## Has Many Through
 
 The `HasMany` association also supports the `:through` option.
 
 ```ruby
 field :members, as: :has_many, through: :memberships
 ```
+
+### Show on edit screens
+
+By default, `has_many` is only visible on the **Show** page. If you want to enable it on the **Form** pages as well you need to add the `show_on: :forms` option.
 
 ## Has And Belongs To Many
 
@@ -267,6 +279,10 @@ The `HasAndBelongsToMany` association works similarly to `HasMany`.
 ```ruby
 field :users, as: :has_and_belongs_to_many
 ```
+
+### Show on edit screens
+
+By default, `has_and_belongs_to_many` is only visible on the **Show** page. If you want to enable it on the **Form** pages as well you need to add the `show_on: :forms` option.
 
 ### Searchable `has_many`
 
