@@ -52,12 +52,24 @@ You may also want to give the user the ability to query data in different ranges
 
 You can also set a default range using the `initial_range` attribute.
 
+Since **version 2.8**, the ranges have been changed a bit. The parameter you pass to the `range` option will be directly passed to the [`options_for_select`](https://apidock.com/rails/v5.2.3/ActionView/Helpers/FormOptionsHelper/options_for_select) helper, so it behaves more like a regular `select_tag`.
+
 ```ruby{4,5}
 class UsersMetric < Avo::Dashboards::MetricCard
   self.id = 'users_metric'
   self.label = 'Users count'
   self.initial_range = 30
-  self.ranges = [7, 30, 60, 365, 'TODAY', 'MTD', 'QTD', 'YTD', 'ALL']
+  self.ranges = {
+    "7 days": 7,
+    "30 days": 30,
+    "60 days": 60,
+    "365 days": 365,
+    Today: "TODAY",
+    "Month to date": "MTD",
+    "Quarter to date": "QTD",
+    "Year to date": "YTD",
+    All: "ALL"
+  }
 end
 ```
 
@@ -104,7 +116,17 @@ class UsersMetric < Avo::Dashboards::MetricCard
   self.cols = 1
   # self.rows = 1
   # self.initial_range = 30
-  # self.ranges = [7, 30, 60, 365, 'TODAY', 'MTD', 'QTD', 'YTD', 'ALL']
+  # self.ranges = {
+  #   "7 days": 7,
+  #   "30 days": 30,
+  #   "60 days": 60,
+  #   "365 days": 365,
+  #   Today: "TODAY",
+  #   "Month to date": "MTD",
+  #   "Quarter to date": "QTD",
+  #   "Year to date": "YTD",
+  #   All: "ALL",
+  # }
   # self.prefix = '$'
   # self.suffix = '%'
   # self.refresh_every = 10.minutes
