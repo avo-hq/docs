@@ -103,6 +103,27 @@ The possible values are `index`, `show`, `edit`, or `new`
 
 Using the `html` option you can attach `style`, `classes`, and `data` attributes. The `style` attribute adds the `style` tag to your element, `classes` adds the `class` tag, and the `data` attribute the `data` tag to the element you choose.
 
+Pass the `style` and `classes` attributes as strings, and the `data` attribute a Hash.
+
+```ruby{4-11}
+field :name, as: :text, html: {
+  edit: {
+    wrapper: {
+      style: "background: red; text: white;" # string
+      classes: "absolute h-[41px] w-full" # string
+      data: {
+        foo: record,
+        resource: resource,
+        action: "input->resource-edit#toggle",
+        resource_edit_toggle_target_param: "skills_tags_wrapper",
+      } # Hash
+    }
+  }
+}
+```
+
+### Declare the fields form the outside in
+
 When you add these attributes, you need to think from the outside in. So first the `view` (`index`, `show`, or `edit`), next the element to which you add the attribute (`wrapper` or `input`), and then the attribute `style`, `classes`, or `data`.
 
 **The `edit` value will be used for both the `Edit` and `New` views.**
