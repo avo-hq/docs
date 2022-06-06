@@ -5,6 +5,12 @@
   force = false
 
 [[redirects]]
+  from = "/2.0/stimulus-controllers.html"
+  to = "/2.0/custom-fields.html#use-pre-built-stimulus-controllers"
+  status = 301
+  force = false
+
+[[redirects]]
   from = "/0.1/*"
   to = "/0.4.x/:splat"
   status = 301
