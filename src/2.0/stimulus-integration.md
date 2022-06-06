@@ -14,7 +14,7 @@ This light layer will allow you to hook into the views and inject your functiona
 
 You'll be able to add your Stimulus controllers to the resource views (`Index`, `Show`, `Edit`, and `New`), attach `classes`, `style`, and `data` attributes to the fields and inputs in different views.
 
-## Assign Stimulus controller to resource views
+## Assign Stimulus controllers to resource views
 
 To enable a stimulus controller to resource view, you can use the `stimulus_controllers` option on the resource file.
 
