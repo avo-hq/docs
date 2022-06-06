@@ -11,6 +11,10 @@
 **Warning**: This feature is in the **beta** phase. The API might change while seeing how the community uses it to build their apps.
 This is not the **dependable fields** feature but a placeholder so we can observe and see what we need to ship to make it helpful to you.
 
+_What we'll be able to do at the end of reading these docs_
+
+<img :src="$withBase('/assets/img/stimulus/country-city-select.gif')" alt="Debug on input stimulus method" class="border mb-4" />
+
 <hr/>
 
 One of the most requested features is the ability to make the forms more dynamic. We want to bring the first iteration of this feature through Stimulus JS integration.
