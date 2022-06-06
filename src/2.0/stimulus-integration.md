@@ -2,6 +2,10 @@
 
 [[toc]]
 
+<a href="https://github.com/avo-hq/avo/discussions/943" target="_blank" class="rounded bg-purple-600 hover:bg-purple-500 text-white no-underline px-2 py-1 inline leading-none mt-2">
+  Provide feedback
+</a>
+
 **Since version 2.8**
 
 **Warning**: This feature is in the **beta** phase. The API might change while seeing how the community uses it to build their apps.
@@ -39,13 +43,13 @@ Avo will add a `resource-[VIEW]` (`resource-edit`, `resource-show`, or `resource
 By default, Avo will add stimulus target data attributes to all field wrappers. The notation scheme uses the name and field type `[FIELD_NAME][FIELD_TYPE]WrapperTarget`.
 
 ```ruby
-# data-[CONTROLLER]-target="nameTextWrapper" and can be targeted using nameTextWrapperTarget
+# Wrappers get the `data-[CONTROLLER]-target="nameTextWrapper"` attribute and can be targeted using nameTextWrapperTarget
 field :name, as: :text
 
-# data-[CONTROLLER]-target="createdAtDateTimeWrapper" and can be targeted using createdAtDateTimeWrapperTarget
+# Wrappers get the `data-[CONTROLLER]-target="createdAtDateTimeWrapper"` attribute and can be targeted using createdAtDateTimeWrapperTarget
 field :created_at, as: :date_time
 
-# data-[CONTROLLER]-target="hasSkillsTags" and can be targeted using hasSkillsTagsWrapperTarget
+# Wrappers get the `data-[CONTROLLER]-target="hasSkillsTagsWrapper"` attribute and can be targeted using hasSkillsTagsWrapperTarget
 field :has_skills, as: :tags
 ```
 
@@ -65,6 +69,21 @@ For example for the following stimulus controllers `self.stimulus_controllers = 
 ```
 
 You can add those targets to your controllers and use them in your JS code.
+
+### Field inputs as targets
+
+Similarly to the wrapper element, inputs in the `Edit` and `New` views get the `[FIELD_NAME][FIELD_TYPE]InputTarget`. On more complex fields like the searchable, polymorphic `belongs_to` field, where there are mor than one input, the target attributes are attached to all `input`, `select`, and `button` elements.
+
+```ruby
+# Inputs get the `data-[CONTROLLER]-target="nameTextInput"` attribute and can be targeted using nameTextInputTarget
+field :name, as: :text
+
+# Inputs get the `data-[CONTROLLER]-target="createdAtDateTimeInput"` attribute and can be targeted using createdAtDateTimeInputTarget
+field :created_at, as: :date_time
+
+# Inputs get the `data-[CONTROLLER]-target="hasSkillsTagsInput"` attribute and can be targeted using hasSkillsTagsInputTarget
+field :has_skills, as: :tags
+```
 
 ### All controllers receive the `view` value
 
@@ -188,8 +207,7 @@ field :has_skills,
   end
 ```
 
-
-## Where are the attributes displayed?
+## Where are the attributes added?
 
 For the `index`, `show`, or `edit` blocks, you can add attributes to the `wrapper` element.
 
@@ -200,6 +218,9 @@ _Index field wrapper_
 <img :src="$withBase('/assets/img/stimulus/index-field-wrapper.png')" alt="Index field wrapper" class="border mb-4" />
 
 For the `edit` block, you can add attributes to the `input` field too.
+
+_Edit input target_
+<img :src="$withBase('/assets/img/stimulus/edit-input-target.png')" alt="Index field wrapper" class="border mb-4" />
 
 ## Composing the attributes together
 
@@ -274,24 +295,40 @@ field :has_skills, as: :boolean, html: {
     input: {
       data: {
         action: "input->resource-edit#disable", # use the pre-made stimulus method on input
-        resource_edit_disable_target_param: "country_select_wrapper", # target to be disabled
+        resource_edit_disable_target_param: "country_select_input", # target to be disabled
         # resource_edit_disable_targets_param: ["country_select_wrapper"] # add more than one target to disable
       }
     }
   }
 }
-field :country, as: :select, options: Course.countries.map { |country| [country, country] }.to_h, html: {
+field :country, as: :select, options: Course.countries.map { |country| [country, country] }.to_h
+```
+
+<img :src="$withBase('/assets/img/stimulus/disable-method.gif')" alt="Disable method" class="border mb-4" />
+
+You may also target the `wrapper` element for that field if the target field has more than one input like the searchable polymorphic `belongs_to` field.
+
+```ruby{6}
+field :has_skills, as: :boolean, html: {
   edit: {
     input: {
       data: {
-        course_resource_target: "countryFieldInput", # add a target data attribute to the input so we can disable it
+        action: "input->resource-edit#disable", # use the pre-made stimulus method on input
+        resource_edit_disable_target_param: "country_select_wrapper", # target the wrapper so all inputs are disabled
+        # resource_edit_disable_targets_param: ["country_select_wrapper"] # add more than one target to disable
       }
     }
   }
 }
+field :country, as: :select, options: Course.countries.map { |country| [country, country] }.to_h
 ```
 
-<img :src="$withBase('/assets/img/stimulus/disable-method.gif')" alt="Disable method" class="border mb-4" />
+### `resource_edit#debugOnInput`
+
+For debugging purposes only, the `resource_edit` Stimulus JS controller, provides the `debugOnInput` method that outputs to the console the event and value for an action. Use this just to make sure you targeted your fields properly. It doesn't have any real use.
+
+<img :src="$withBase('/assets/img/stimulus/debug-on-input.gif')" alt="Debug on input stimulus method" class="border mb-4" />
+
 
 ## Custom Stimulus controllers
 
