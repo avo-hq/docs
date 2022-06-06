@@ -329,7 +329,6 @@ For debugging purposes only, the `resource_edit` Stimulus JS controller, provide
 
 <img :src="$withBase('/assets/img/stimulus/debug-on-input.gif')" alt="Debug on input stimulus method" class="border mb-4" />
 
-
 ## Custom Stimulus controllers
 
 The bigger purpose of this feature is to create your own Stimulus JS controllers to bring the functionality you need to the CRUD interface.
@@ -337,10 +336,12 @@ The bigger purpose of this feature is to create your own Stimulus JS controllers
 Below is an example of how you could implement a city & country select feature where the city select will have it's options changed when the user selects a country:
 
 1. Add an action to the country select to trigger a change.
-2. The stimulus method `onCountryChange` will be triggered when the user changes the country.
-3. That will trigger a fetch from the server where Rails will return an array of cities for the provided country.
-4. The cities will be added to the `city` select field and if it's present, the initial value will be selected.
-5. All of this will happen only on the `New` and `Edit` views because of the condition we added to the `connect` method.
+1. The stimulus method `onCountryChange` will be triggered when the user changes the country.
+1. That will trigger a fetch from the server where Rails will return an array of cities for the provided country.
+1. The city field will have a `loading` state while we fetch the results.
+1. The cities will be added to the `city` select field
+1. If the initial value is present in the returned results it will be selected.
+1. All of this will happen only on the `New` and `Edit` views because of the condition we added to the `connect` method.
 
 ```ruby{11-12,21,31}
 # app/avo/resources/course_resource.rb
@@ -507,3 +508,7 @@ export default class extends Controller {
   }
 }
 ```
+
+This is how the fields behave with this Stimulus JS controller.
+
+<img :src="$withBase('/assets/img/stimulus/country-city-select.gif')" alt="Debug on input stimulus method" class="border mb-4" />
