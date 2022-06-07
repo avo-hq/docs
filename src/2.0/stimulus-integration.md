@@ -135,8 +135,6 @@ field :name, as: :text, html: {
       style: "background: red; text: white;" # string
       classes: "absolute h-[41px] w-full" # string
       data: {
-        foo: record,
-        resource: resource,
         action: "input->resource-edit#toggle",
         resource_edit_toggle_target_param: "skills_tags_wrapper",
       } # Hash
@@ -188,6 +186,11 @@ field :has_skills,
           if current_user.admin?
             {
               action: "click->admin#do_something_admin"
+            }
+          else
+            {
+              record: record,
+              resource: resource,
             }
           end
         end
