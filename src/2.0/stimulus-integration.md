@@ -262,7 +262,7 @@ export default class extends Controller {
   static targets = ['skillsTagsWrapper'] // use the target Avo prepared for you
 
   toggleSkills() {
-    skillsTagsFieldTarget.classList.toggle('hidden')
+    this.skillsTagsWrapperTarget.classList.toggle('hidden')
   }
 }
 ```
