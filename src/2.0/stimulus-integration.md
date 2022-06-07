@@ -259,7 +259,7 @@ You can use the attributes together to make your fields more dynamic.
 import { Controller } from '@hotwired/stimulus'
 
 export default class extends Controller {
-  static targets = ['skillsTagsField'] // use the target Avo prepared for you
+  static targets = ['skillsTagsWrapper'] // use the target Avo prepared for you
 
   toggleSkills() {
     skillsTagsFieldTarget.classList.toggle('hidden')
