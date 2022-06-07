@@ -143,7 +143,7 @@ field :name, as: :text, html: {
 }
 ```
 
-### Declare the fields form the outside in
+### Declare the fields from the outside in
 
 When you add these attributes, you need to think from the outside in. So first the `view` (`index`, `show`, or `edit`), next the element to which you add the attribute (`wrapper` or `input`), and then the attribute `style`, `classes`, or `data`.
 
