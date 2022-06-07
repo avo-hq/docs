@@ -130,6 +130,19 @@ end
 
 <img :src="$withBase('/assets/img/actions/alert-responses.png')" alt="Avo alert responses" class="border inline-block" />
 
+### Run actions silently
+
+You may want to run an action and show no notification when it's done. That is useful for redirect scenarios. You can use the `silent` response for that.
+
+```ruby
+def handle(**args)
+  # Demo handle action
+
+  redirect_to '/admin/some-tool'
+  silent
+end
+```
+
 ## Response types
 
 After you notify the user about what happened through a message, you may want to execute an action like `reload` (default action) or `redirect_to`. You may use message and action responses together.

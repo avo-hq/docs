@@ -84,7 +84,7 @@ end
 
 ### Control the aggregation using ranges
 
-You may also want to give the user the ability to query data in different ranges. Using the ' ranges ' attribute, you can control what's passed in the dropdown. The array passed here will be parsed and displayed on the card. All integers are transformed to days, and other string variables will be passed as they are.
+You may also want to give the user the ability to query data in different ranges. Using the `ranges` attribute, you can control what's passed in the dropdown. The array passed here will be parsed and displayed on the card. All integers are transformed to days, and other string variables will be passed as they are.
 
 You can also set a default range using the `initial_range` attribute.
 
