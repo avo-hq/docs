@@ -54,7 +54,7 @@ You can also set a default range using the `initial_range` attribute.
 
 Since **version 2.8**, the ranges have been changed a bit. The parameter you pass to the `range` option will be directly passed to the [`options_for_select`](https://apidock.com/rails/v5.2.3/ActionView/Helpers/FormOptionsHelper/options_for_select) helper, so it behaves more like a regular `select_tag`.
 
-```ruby{4,5}
+```ruby{4,15}
 class UsersMetric < Avo::Dashboards::MetricCard
   self.id = 'users_metric'
   self.label = 'Users count'

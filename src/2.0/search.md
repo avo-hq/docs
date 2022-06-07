@@ -205,3 +205,22 @@ class TeamMembershipResource < Avo::BaseResource
   field :team, as: :belongs_to
 end
 ```
+
+### Scope out global or resource searches
+
+You may want to perform different searches on the `global` search from the `resource` search. You may use the `params[:global]` flag to figure that out.
+
+
+```ruby{8}
+class OrderResource < Avo::BaseResource
+  self.search_query = ->(params:) do
+    if params[:global]
+      # Perform global search
+      scope.ransack(id_eq: params[:q], m: "or").result(distinct: false)
+    else
+      # Perform resource search
+      scope.ransack(id_eq: params[:q], details_cont: params[:q], m: "or").result(distinct: false)
+    end
+  end
+end
+```
