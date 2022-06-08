@@ -281,8 +281,8 @@ field :has_country, as: :boolean, html: {
     input: {
       data: {
         action: "input->resource-edit#toggle", # use the pre-made stimulus method on input
-        resource_edit_toggle_target_param: "country_select_wrapper", # target to be toggled
-        # resource_edit_toggle_targets_param: ["country_select_wrapper"] # add more than one target
+        resource_edit_toggle_target_param: "countrySelectWrapper", # target to be toggled
+        # resource_edit_toggle_targets_param: ["countrySelectWrapper"] # add more than one target
       }
     }
   }
@@ -302,8 +302,8 @@ field :has_skills, as: :boolean, html: {
     input: {
       data: {
         action: "input->resource-edit#disable", # use the pre-made stimulus method on input
-        resource_edit_disable_target_param: "country_select_input", # target to be disabled
-        # resource_edit_disable_targets_param: ["country_select_wrapper"] # add more than one target to disable
+        resource_edit_disable_target_param: "countrySelectInput", # target to be disabled
+        # resource_edit_disable_targets_param: ["countrySelectWrapper"] # add more than one target to disable
       }
     }
   }
@@ -321,8 +321,8 @@ field :has_skills, as: :boolean, html: {
     input: {
       data: {
         action: "input->resource-edit#disable", # use the pre-made stimulus method on input
-        resource_edit_disable_target_param: "country_select_wrapper", # target the wrapper so all inputs are disabled
-        # resource_edit_disable_targets_param: ["country_select_wrapper"] # add more than one target to disable
+        resource_edit_disable_target_param: "countrySelectWrapper", # target the wrapper so all inputs are disabled
+        # resource_edit_disable_targets_param: ["countrySelectWrapper"] # add more than one target to disable
       }
     }
   }
