@@ -271,9 +271,9 @@ export default class extends Controller {
 
 Avo ships with a few JS methods you may use on your resources.
 
-### `resource_edit#toggle`
+### `resource-edit#toggle`
 
-On your `Edit` views, you can use the `resource_edit#toggle` method to toggle the field visibility from another field.
+On your `Edit` views, you can use the `resource-edit#toggle` method to toggle the field visibility from another field.
 
 ```ruby{5-7}
 field :has_country, as: :boolean, html: {
@@ -292,7 +292,7 @@ field :country, as: :select, options: Course.countries.map { |country| [country,
 
 <img :src="$withBase('/assets/img/stimulus/toggle-method.gif')" alt="Toggle method" class="border mb-4" />
 
-### `resource_edit#disable`
+### `resource-edit#disable`
 
 Disable works similarly to toggle, with the difference that it disables the field instead of hiding it.
 
@@ -330,7 +330,7 @@ field :has_skills, as: :boolean, html: {
 field :country, as: :select, options: Course.countries.map { |country| [country, country] }.to_h
 ```
 
-### `resource_edit#debugOnInput`
+### `resource-edit#debugOnInput`
 
 For debugging purposes only, the `resource_edit` Stimulus JS controller, provides the `debugOnInput` method that outputs to the console the event and value for an action. Use this just to make sure you targeted your fields properly. It doesn't have any real use.
 
