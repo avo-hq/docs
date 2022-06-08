@@ -114,3 +114,82 @@ If you're having trouble with the authorization feature, make sure you have the 
 ## Add custom methods/get custom data
 
 You might want to be able to send custom data to some of the blocks you use (`default` block, computed fields, field formatters, etc.). You can use the `context` block. The block is evaluated in the `ApplicationController` so it has access to the `params` and other common controller methods. More on that [here](customization#context).
+
+## Get access to the `ActionView` helper methods
+
+For convenience sake, we capture the `view_context` for you and set it to the `Avo::App.view_context` global object. You can use all the `ActionView` methods you'd regularly use in your helpers throughout your Avo configuration.
+
+On the `Resource` and `Field` classes, it's already delegated for you, so you can just use `view_context`.
+
+```ruby{6,9}
+class CommentResource < Avo::BaseResource
+  field :id, as: :id
+  field :body,
+    as: :textarea,
+    format_using: -> (value) do
+      view_context.content_tag(:div, style: 'white-space: pre-line') { value }
+    end
+  field :computed_field, as: :text do |model|
+    view_context.link_to("Login", main_app.new_user_session_path)
+  end
+end
+```
+
+## Render new lines for textarea fields
+
+**From version 2.8**
+
+When adding content using the `textarea` field, you might see that the newlines are not displayed on the `Show` view.
+
+```ruby{2}
+class CommentResource < Avo::BaseResource
+  field :body, as: :textarea
+end
+```
+
+<img :src="$withBase('/assets/img/faq/newline/edit.png')" alt="Render new lines" class="border mb-4" />
+<img :src="$withBase('/assets/img/faq/newline/default.png')" alt="Render new lines" class="border mb-4" />
+
+You can change the way you display the information there by using the `format_using` option.
+
+### Use `simple_format`
+
+```ruby{5}
+class CommentResource < Avo::BaseResource
+  field :body,
+    as: :textarea,
+    format_using: -> (value) do
+      simple_format value
+    end
+end
+```
+
+<img :src="$withBase('/assets/img/faq/newline/simple_format.png')" alt="Render new lines" class="border mb-4" />
+
+### Use the `white-space: pre-line` style rule
+
+```ruby{5}
+class CommentResource < Avo::BaseResource
+  field :body,
+    as: :textarea,
+    format_using: -> (value) do
+      content_tag(:div, style: 'white-space: pre-line') { value }
+    end
+end
+```
+
+<img :src="$withBase('/assets/img/faq/newline/whitespace.png')" alt="Render new lines" class="border mb-4" />
+
+### Use the `whitespace-pre-line` class
+
+```ruby{5}
+class CommentResource < Avo::BaseResource
+  field :body,
+    as: :textarea,
+    format_using: -> (value) do
+      content_tag(:div, class: 'whitespace-pre-line') { value }
+    end
+end
+```
+
+<img :src="$withBase('/assets/img/faq/newline/whitespace.png')" alt="Render new lines" class="border mb-4" />
