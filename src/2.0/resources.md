@@ -59,7 +59,7 @@ Initially, the `title` attribute is set to `:id`, so the model's `id` attribute 
 
 ```ruby
 class PostResource < Avo::BaseResource
-  self.title = :name # it will now reference @project.name to show you the title
+  self.title = :name # it will now reference @post.name to show you the title
 end
 ```
 
