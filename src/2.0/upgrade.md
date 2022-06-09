@@ -4,6 +4,22 @@
 
 ## Upgrade from 2.7 to 2.8
 
+### Pass the `resource` to the `show_field_wrapper` in custom fields
+
+When we added the Stimulus JS integration we used the field wrappers to add the HTML attributes. The fields generator didn't pass the `resource` to the field wrapper so all fields generated before don't have it and you need to add it manually. `resource: @resource, ` to `show_field_wrapper`.
+
+```erb{2,7}
+<!-- Before -->
+<%= show_field_wrapper field: @field, index: @index do %>
+  <%= @field.value %>
+<% end %>
+
+<!-- After -->
+<%= show_field_wrapper field: @field, resource: @resource, index: @index do %>
+  <%= @field.value %>
+<% end %>
+```
+
 ### Changed the way the `ranges` option is processed
 
 We no longer process the `ranges` option to cast integers as days. The `ranges` option is passed to the [`options_for_select`](https://apidock.com/rails/v5.2.3/ActionView/Helpers/FormOptionsHelper/options_for_select) helper, so it behaves more like a regular `select_tag`.
