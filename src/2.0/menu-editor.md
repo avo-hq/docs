@@ -126,13 +126,18 @@ When you add the `target: :_blank` option, a tiny external link icon will be dis
 
 To make it a bit easier, you can use `resource` to quickly generate a link to one of your resources. For example, you can pass a short symbol name `:user` or the full name `UserResource`.
 
-
 ```ruby
 resource :posts
 resource "CommentsResource"
 ```
 
 <img :src="$withBase('/assets/img/menu-editor/resource.jpg')" alt="Avo menu editor" class="border mb-4" />
+
+You can also change the label for the `resource` items to something else.
+
+```ruby
+resource :posts, label: "News posts"
+```
 
 ## Dashboard
 
@@ -144,6 +149,12 @@ dashboard "Sales"
 ```
 
 <img :src="$withBase('/assets/img/menu-editor/dashboard.jpg')" alt="Avo menu editor" class="border mb-4" />
+
+You can also change the label for the `dashboard` items to something else.
+
+```ruby
+dashboard :dashy, label: "Dashy Dashboard"
+```
 
 ## Section
 
@@ -279,7 +290,6 @@ end
 You might want to allow your users to hide certain items from view.
 
 ## Authorization
-
 
 <div class="space-x-2 mt-2">
   <a href="https://youtu.be/Eex8CiinQZ8?t=373" target="_blank" class="rounded bg-green-600 hover:bg-green-500 text-white no-underline px-2 py-1 inline leading-none mt-2">
