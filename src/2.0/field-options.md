@@ -176,7 +176,6 @@ However, you will need to add validation logic to your model (`validates :name, 
 
 You may use a block as well. It will be executed in the `ViewRecordHost` and you will have access to the `view`, `record`, `params`, `context`, `view_context`, and `current_user`.
 
-
 ```ruby
 field :name, as: :text, required: -> { view == :new } # make the field required only on the new screen and not on edit
 ```
