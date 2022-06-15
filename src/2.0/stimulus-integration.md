@@ -15,6 +15,8 @@ _What we'll be able to do at the end of reading these docs_
 
 <img :src="$withBase('/assets/img/stimulus/country-city-select.gif')" alt="Debug on input stimulus method" class="border mb-4" />
 
+**Please note** that in order to have the JS code from your controllers loaded in Avo you'll need to add your own asset pipeline using [these instructions](custom-asset-pipeline.html). It's really easier than it sounds. It's like you'd add a new JS file to your regular Rails app.
+
 <hr/>
 
 One of the most requested features is the ability to make the forms more dynamic. We want to bring the first iteration of this feature through Stimulus JS integration.
