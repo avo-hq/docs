@@ -224,7 +224,7 @@ You may hide a resource from the sidebar using the `visible_on_sidebar` class at
 ```ruby{3}
 class TeamMembershipResource < Avo::BaseResource
   self.title = :id
-  self.visible_on_sidebar = true
+  self.visible_on_sidebar = false
 
   # fields declaration
 end
