@@ -43,3 +43,21 @@ Now that you know the basics, you can:
 1. Explore these docs
 1. Enjoy building your app without ever worrying about the admin again
 1. Explore the [FAQ](faq) pages for guides on how to set up your Avo instance.
+
+## Walkthrough videos
+
+### Build a blog admin panel
+
+<br/>
+
+<div class="aspect-video">
+  <iframe width="100%" height="100%" src="https://www.youtube.com/embed/WgNK-oINFww" title="Build a production-ready blog admin panel" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+### Build a booking app
+
+<br/>
+
+<div class="aspect-video">
+  <iframe width="100%" height="100%" src="https://www.youtube.com/embed/BK47E7TMXn0" title="Build a booking app in less than an hour" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>

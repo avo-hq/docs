@@ -8,7 +8,7 @@
 
 Avo actions allow you to perform specific tasks on one or more of your records. For example, you might want to mark a user as active/inactive and optionally send a message that may be customized by the person that wants to run the action.
 
-Once you attach an action to a resource using the `actions` method it will appear in the **Actions** dropdown.
+Once you attach an action to a resource using the `action` method it will appear in the **Actions** dropdown. By default, actions appear on the `Index`, `Show`, and `Edit` views. Versions previous to 2.9 would only display the actions on the `Index` and `Show` views.
 
 <img :src="$withBase('/assets/img/actions/actions-dropdown.jpg')" alt="Actions dropdown" class="border mb-4" />
 
@@ -279,7 +279,7 @@ class DummyAction < Avo::BaseAction
 end
 ```
 
-## Hide actions on specific screens
+## Actions visibility
 
 You may want to hide specific actions on specific screens, like a standalone action on the `Show` screen. You can do that using the `self.visible` attribute.
 
@@ -297,4 +297,13 @@ class DummyAction < Avo::BaseAction
     succeed 'Yup'
   end
 end
+```
+
+By default, actions are visible on the `Index`, `Show`, and `Edit` views but you can enable them on the `New` screen too (from version 2.9.0).
+
+```ruby
+self.visible = -> (resource:, view:) { view == :new }
+
+# Or use this if you want them to be visible on any view
+self.visible = -> (resource:, view:) { true }
 ```

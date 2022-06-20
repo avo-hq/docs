@@ -4,6 +4,14 @@
 
 ## Upgrade from 2.8 to 2.9
 
+### Actions are visible on the Edit view
+
+We changed the way we display [Actions](actions). Now they will be visible on the `Edit` view too. You my disable that using the `visible` option on each action.
+
+```ruby
+self.visible = -> (resource:, view:) { view.in?([:index, :show]) }
+```
+
 ### Eject translation files
 
 Before 2.9 [we were loading](https://github.com/avo-hq/avo/pull/960/files#diff-3d269fbd54784c3eeb51983191c4565230a00b86e352c58b493282c916a18018L20) the translation directory in the engine file so your translation files would get less important and wouldn't load for those languages we provided. We fixed that by removing Avo's directory
