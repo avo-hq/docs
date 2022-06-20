@@ -4,6 +4,13 @@
 
 ## Upgrade from 2.8 to 2.9
 
+### Avo generates paths based on the resource name not the model name
+
+We made this change so you get more predictable paths. You really shouldn't have to do anything. You will be affected only if you have hardcoded paths towards Avo.
+For example, if you have a `SubscriptionResource` with `self.model_class = Pay::Subscription`, the resource path before was `/avo/resurces/pay_subscriptions` and now it's going to be `/avo/resurces/subscriptions`. the path will be build following the resource class, not the model class.
+
+Get more information on [this ticket](https://github.com/avo-hq/avo/pull/953).
+
 ### Actions are visible on the Edit view
 
 We changed the way we display [Actions](actions). Now they will be visible on the `Edit` view too. You my disable that using the `visible` option on each action.
