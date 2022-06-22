@@ -1,5 +1,13 @@
 # Use Avo in an `api_only` Rails app
 
+**After Avo version 2.9 👇**
+
+The `api_mode` might not be supported. The reason for that is that Rails does not generate some paths for the [`resource` route helper](https://guides.rubyonrails.org/routing.html#resource-routing-the-rails-default). Most important being the `new` and `edit` paths. That's because APIs don't have the `new` path (they have the `create` path).
+
+But you're probably safer using Rails with `api_only` disabled (`config.api_only = false`).
+
+**Pre Avo version 2.9 👇**
+
 You might have an api-only Rails app where you'd like to use Avo. In my early explorations I found that it needs the `::ActionDispatch::Flash` middleware for it to properly work.
 
 So, add it in your `application.rb` file.
