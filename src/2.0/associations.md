@@ -290,7 +290,7 @@ field :users, as: :has_and_belongs_to_many
 
 ### Show on edit screens
 
-By default, `has_and_belongs_to_many` is only visible on the **Show** page. If you want to enable it on the **Form** pages as well you need to add the `show_on: :forms` option.
+By default, `has_and_belongs_to_many` is only visible on the **Show** page. If you want to enable it on the **Form** pages as well you need to add the `show_on: :edit` option.
 
 ### Searchable `has_many`
 
