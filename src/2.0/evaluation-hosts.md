@@ -48,4 +48,4 @@ Different hosts have different pieces of state.
 
 ## `RecordHost`
 
-The `RecordHost` is inherited from `BaseHost` and has the `record` available. The `record` is the actual model class instantiated with the DB information (like doing `User.find 1`) in that context.
+The `RecordHost` inherits from `BaseHost` and has the `record` available. The `record` is the actual model class instantiated with the DB information (like doing `User.find 1`) in that context.
