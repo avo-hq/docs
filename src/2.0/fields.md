@@ -182,7 +182,7 @@ field :cover_video, as: :file, direct_upload: true
     </div>
     <div class="ml-3 flex-1 md:flex md:justify-between">
       <div class="text-sm leading-5 text-blue-700">
-        If you're using <strong>pundit</strong>, please make sure you have the <code>upload_attachments?</code>, <code>delete_attachments?</code> and <code>download_attachments?</code> methods set on your model policy. Otherwise the input and download/delete button will not be shown.
+         Please make sure you have the <code>upload_attachments?</code>, <code>delete_attachments?</code> and <code>download_attachments?</code> methods set on your model's <strong>pundit</strong> policy. Otherwise the input and download/delete button will not be shown.
       </div>
     </div>
   </div>
