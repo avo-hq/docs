@@ -109,6 +109,10 @@ If you'd like to show the time relative to the present (4 months ago, in 3 years
 field :valid_until, as: :date, relative: true
 ```
 
+### Mobile date picker
+
+By default, flatpickr is [disabled on mobile](https://flatpickr.js.org/mobile-support/) because the mobile date pickers tend to give a better experience, but you can override that using `disabled_mobile: true`. That option will override that behavior and display flatpickr on mobile devices too. The same applies to the `date_time` field too.
+
 ## DateTime
 
 <img :src="$withBase('/assets/img/fields/date-time.jpg')" alt="DateTime field" class="border mb-4" />
