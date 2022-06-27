@@ -111,7 +111,7 @@ field :valid_until, as: :date, relative: true
 
 ### Mobile date picker
 
-By default, flatpickr is [disabled on mobile](https://flatpickr.js.org/mobile-support/) because the mobile date pickers tend to give a better experience, but you can override that using `disabled_mobile: true`. That option will override that behavior and display flatpickr on mobile devices too. The same applies to the `date_time` field too.
+By default, flatpickr is [disabled on mobile](https://flatpickr.js.org/mobile-support/) because the mobile date pickers tend to give a better experience, but you can override that using `disable_mobile: true`. That option will override that behavior and display flatpickr on mobile devices too. The same applies to the `date_time` field too.
 
 ## DateTime
 
