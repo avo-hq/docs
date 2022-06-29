@@ -18,7 +18,7 @@ bin/rails generate avo:resource post
 
 This command will generate a resource file under your `app/avo/resources` directory. The `app/avo` directory will hold all of your Avo configuration files.
 
-Inside the creates resource file will look like so:
+The created resource file will have the following code:
 
 ```ruby
 class PostResource < Avo::BaseResource
