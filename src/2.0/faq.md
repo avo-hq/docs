@@ -25,7 +25,7 @@ field :partner_home, as: :text, as_html: true do |model, *args|
 end
 ```
 
-This will not work because Avo will execute that code inside itself, a Rails engine. So per the [Rails documentation](https://guides.rubyonrails.org/engines.html#routes) you have to preprend the helper with `main_app` for it to work. Rails need to know for which engine should it search the route. So the above query becomes this 👇
+This will not work because Avo will execute that code inside itself, a Rails engine. So per the [Rails documentation](https://guides.rubyonrails.org/engines.html#routes) you have to preprend the helper with `main_app` for it to work. Rails needs to know which engine  it should find a route for. So the above query becomes this 👇
 
 
 ```ruby{2}
@@ -64,7 +64,7 @@ Avo.configure do |config|
 end
 ```
 
-## I want to have 2 different resources maped to the same model with different type
+## I want to have 2 different resources mapped to the same model with different types
 
 This depends on your setup:
 
