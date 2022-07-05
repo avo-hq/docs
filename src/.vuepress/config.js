@@ -102,6 +102,11 @@ module.exports = {
         '/2.0/fields',
         '/2.0/associations',
         {
+          title: 'Tabs and panels',
+          path: '/2.0/tabs',
+          sidebarDepth: 0,
+        },
+        {
           title: 'Menu editor',
           path: '/2.0/menu-editor',
           sidebarDepth: 0,
