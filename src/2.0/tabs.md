@@ -4,7 +4,6 @@
 
 **Available from `v2.10`**
 
-
 <div class="rounded-md bg-blue-50 p-4">
   <div class="flex">
     <div class="flex-shrink-0">
