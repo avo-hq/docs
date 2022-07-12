@@ -405,6 +405,16 @@ end
 
 The output value must be a supported [`options_for_select`](https://apidock.com/rails/ActionView/Helpers/FormOptionsHelper/options_for_select) value.
 
+### Include blank
+
+The `Select` field also has the `include_blank` option. This can have three values.
+
+If it's set to `false` (default) it will not show any blank option, but only the options you configured.
+
+If it's set to `true` and you have a `placeholder` value assigned, it will use that placeholder string as the first option.
+
+If it's a string `include_blank: "No country"`, the `No country` string will appear as the first option in the `<select>` and it will set the value empty or `nil` depending on your settings.
+
 ## Status
 
 The `Status` field is used to visually display the status of a column (loading or failed), supporting the following options:
@@ -449,7 +459,7 @@ field :skills, as: :tags
 You can pass suggestions to your users to pick from. The `suggestions` option can be an array of strings, an object with the keys `value`, `label`, and (optionally) `avatar`, or a block that returns an array of that type of object. The block is a [`RecordHost`](evaluation-hosts.html#recordhost), so it has access to the `record`.
 
 ```ruby
-# app/avo/resource/course_resource.rb
+# app/avo/resources/course_resource.rb
 class CourseResource < Avo::BaseResource
   field :skills, as: :tags, suggestions: -> { record.skill_suggestions }
 end
@@ -471,7 +481,7 @@ The suggestions will be displayed to the user as a dropdown under the field.
 You might only want to allow the user to select from a pre-configured list of items. You can use `enforce_suggestions` to do that. Now the user won't be able to add anything else than what you posted in the `suggestions` option.
 
 ```ruby
-# app/avo/resource/course_resource.rb
+# app/avo/resources/course_resource.rb
 class CourseResource < Avo::BaseResource
   field :skills, as: :tags, suggestions: %w(one two three), enforce_suggestions: true
 end
@@ -484,7 +494,7 @@ end
 The `disallowed` param works similarly to `suggestions`. Use it to prevent the user from adding specific values.
 
 ```ruby
-# app/avo/resource/course_resource.rb
+# app/avo/resources/course_resource.rb
 class CourseResource < Avo::BaseResource
   field :skills, as: :tags, disallowed: ['not', 'that']
 end
@@ -497,7 +507,7 @@ end
 By default, the delimiter that cuts off the content when the user inputs data is a comma `,`. You can customize that using the `delimiters` option.
 
 ```ruby
-# app/avo/resource/course_resource.rb
+# app/avo/resources/course_resource.rb
 class CourseResource < Avo::BaseResource
   field :skills, as: :tags, delimiters: [',', ' ']
 end
@@ -512,7 +522,7 @@ Valid values are comma `,` and space ` `.
 If you have `suggestions` enabled, the dropdown with the options will keep open after the user selects an option. You can choose to close it after a selection using `close_on_select`.
 
 ```ruby
-# app/avo/resource/post_resource.rb
+# app/avo/resources/post_resource.rb
 class PostResource < Avo::BaseResource
   field :items, as: :tags, suggestions: -> { Post.tags_suggestions }, close_on_select: true
 end
@@ -548,7 +558,7 @@ end
 You can use the tags field with the PostgreSQL array field.
 
 ```ruby{9}
-# app/avo/resource/course_resource.rb
+# app/avo/resources/course_resource.rb
 class CourseResource < Avo::BaseResource
   field :skills, as: :tags
 end
@@ -566,7 +576,7 @@ end
 We haven't tested all the possibilities, but the tags field should play nicely with any array fields provided by Rails.
 
 ```ruby{8-10,12-14}
-# app/avo/resource/post_resource.rb
+# app/avo/resources/post_resource.rb
 class PostResource < Avo::BaseResource
   field :items, as: :tags
 end
@@ -590,7 +600,7 @@ One very popular gem used for tagging is [`acts-as-taggable-on`](https://github.
 You need to add `gem 'acts-as-taggable-on', '~> 9.0'` in your `Gemfile`, add it to your model `acts_as_taggable_on :tags`, and use `acts_as_taggable_on` on the field.
 
 ```ruby{5}
-# app/avo/resource/post_resource.rb
+# app/avo/resources/post_resource.rb
 class PostResource < Avo::BaseResource
   field :tags,
     as: :tags,
