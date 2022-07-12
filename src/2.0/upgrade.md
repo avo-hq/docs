@@ -126,13 +126,13 @@ class User < ApplicationRecord
   has_many :comments
 end
 
-# app/avo/resource/user_resource.rb
+# app/avo/resources/user_resource.rb
 class UserResource < Avo::BaseResource
   # Version before v2.5.0
   field :comments, as: :has_many, scope: -> { starts_with :a }
 end
 
-# app/avo/resource/user_resource.rb
+# app/avo/resources/user_resource.rb
 class UserResource < Avo::BaseResource
   # Version after v2.5.0
   field :comments, as: :has_many, scope: -> { query.starts_with :a }
