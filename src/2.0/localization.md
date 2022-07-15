@@ -76,14 +76,19 @@ es:
 
 ## Setting the locale
 
-Setting the locale for Avo is simple. Just use the `config.locale = 'en-US'` config attribute.
-
+Setting the locale for Avo is simple. Just use the `config.locale = :en` config attribute. Default is `nil` and it will fallback to whatever you have configured in `application.rb`.
 
 ```ruby{2}
 Avo.configure do |config|
-  config.locale = 'en-US'
+  config.locale = :en # default is nil
 end
 ```
+
+This will change the locale only for Avo requests. The rest of your app will still use your locale set in `application.rb`. If you wish to change the locale for the whole app you can use the `set_locale=pt-BR` param. That will set the default locale until you restart your server.
+
+If you wish to change the locale only for one request use the `force_locale=pt-BR` param. This will set the locale for that request and will keep the `force_locale` param while you navigate Avo. Remove that param when you want to go back to your configured `default_locale`.
+
+Check out our guide for [multilingual records](recipes/multilingual-content).
 
 ## Re-generate the locale
 

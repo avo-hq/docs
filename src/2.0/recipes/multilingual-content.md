@@ -132,6 +132,16 @@ end
 
 The `set_locale` param will change the locale for the entire website (for you and your customers). If you need to change it just for the current visit, use `force_locale`. This will switch the locale for that request only not for your customers. It will also add the `force_locale` param to each link going forward making it easy to update all the multi-lingual content you have.
 
+**After v2.11**
+
+A change was pushed to take into account the `locale` from the initializer. This will change the locale for Avo requests.
+
+```ruby{2}
+Avo.configure do |config|
+  config.locale = :en # default is nil
+end
+```
+
 ## Workflow
 
 You will now be able to edit the attributed you marked as translatable (eg: `name`) in the locale you are in (default is `en`). Next you can go to the navbar on the top and switch to a new locale. The switch will then allow you to edit the record in that locale, and so on.

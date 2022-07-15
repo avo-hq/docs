@@ -2,6 +2,20 @@
 
 [[toc]]
 
+## Upgrade from 2.10 to 2.11
+
+### Avo uses the `locale` configuration from the initializer
+
+In 2.11 a change was pushed so Avo uses the `locale` configuration option from the `avo.rb` initializer.
+
+```ruby{2}
+Avo.configure do |config|
+  config.locale = :en # default is nil
+end
+```
+
+So if you get locale-related crashes after an update make sure the locale is set to a valid locale or set it to `nil` if you want to fallback to what you have configured in your app.
+
 ## Upgrade from 2.8 to 2.9
 
 ### Avo generates paths based on the resource name not the model name
