@@ -175,6 +175,14 @@ If you have large files and you don't want to overload the server with uploads y
 field :cover_video, as: :file, direct_upload: true
 ```
 
+### Accept option
+
+You can instruct the browser to accept only a certain type of files in the field input using the `accept` option.
+
+```ruby
+field :cover_video, as: :file, accept: "image/*"
+```
+
 ### Authorization
 
 <div class="rounded-md bg-blue-50 p-4">
