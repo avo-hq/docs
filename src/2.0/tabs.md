@@ -23,6 +23,14 @@
   <div class="flex flex-grow-0 rounded-md border border-blue-500 py-1 px-4" title="This feature is in public beta">
     Public Beta
   </div>
+
+  <a href="https://github.com/avo-hq/avo/discussions/1073" target="_blank" class="rounded bg-purple-600 hover:bg-purple-500 text-white no-underline px-2 py-1 inline leading-none mt-2">
+    Provide feedback
+  </a>
+
+  <a href="https://youtu.be/B1Y-Z-R-Ys8?t=175" target="_blank" class="rounded bg-green-600 hover:bg-green-500 text-white no-underline px-2 py-1 inline leading-none mt-2">
+    Demo video
+  </a>
 </div>
 
 Once your Avo resources reach a certain level of complexity you feel the need to better organize them into groups. You can already use the [`heading`](fields.html#heading) to separate the fields inside a panel but maybe you'd like to do more.
