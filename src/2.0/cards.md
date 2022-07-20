@@ -54,7 +54,7 @@ You can also set a default range using the `initial_range` attribute.
 
 Since **version 2.8**, the ranges have been changed a bit. The parameter you pass to the `range` option will be directly passed to the [`options_for_select`](https://apidock.com/rails/v5.2.3/ActionView/Helpers/FormOptionsHelper/options_for_select) helper, so it behaves more like a regular `select_tag`.
 
-```ruby{4,15}
+```ruby{4-15}
 class UsersMetric < Avo::Dashboards::MetricCard
   self.id = 'users_metric'
   self.label = 'Users count'
@@ -104,11 +104,11 @@ The metric card is your friend when you only need to display a simple big number
 
 #### Calculate results
 
-To calculate your result, you may use the `query` block. After you make the query, use the `result` method to store the value that will be displayed on the card.
+To calculate your result, you may use the `query` method. After you make the query, use the `result` method to store the value that will be displayed on the card.
 
-In the `query` block you have access to a few variables like `context` (the [App context](https://docs.avohq.io/2.0/customization.html#context)), `params` (the request params), `range` (the range that was requested), `dashboard` (the current dashboard the card is on), and current `card`.
+In the `query` method you have access to a few variables like `context` (the [App context](https://docs.avohq.io/2.0/customization.html#context)), `params` (the request params), `range` (the range that was requested), `dashboard` (the current dashboard the card is on), and current `card`.
 
-```ruby{13-34,36}
+```ruby{23-47,36}
 class UsersMetric < Avo::Dashboards::MetricCard
   self.id = 'users_metric'
   self.label = 'Users count'
@@ -131,7 +131,7 @@ class UsersMetric < Avo::Dashboards::MetricCard
   # self.suffix = '%'
   # self.refresh_every = 10.minutes
 
-  query do
+  def query
     from = Date.today.midnight - 1.week
     to = DateTime.current
 
@@ -194,7 +194,7 @@ class UserSignups < Avo::Dashboards::ChartkickCard
   # self.legend_on_left = false
   # self.legend_on_right = false
 
-  query do
+  def query
     points = 16
     i = Time.new.year.to_i - points
     base_data =
