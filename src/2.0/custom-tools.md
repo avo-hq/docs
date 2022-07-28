@@ -128,8 +128,8 @@ Because you're in a Rails engine you will have to prepend the engine object to t
 
 #### For Avo paths
 
-Unstead of writing `resources_posts_path(1)` you have to write `avo.resources_posts_path(1)`.
+Instead of writing `resources_posts_path(1)` you have to write `avo.resources_posts_path(1)`.
 
 #### For the main app paths
 
-Unstead of writing `posts_path(1)` you have to write `main_app.posts_path`.
+When you want to reference paths from your main app, instead of writing `posts_path(1)` you have to write `main_app.posts_path`.
