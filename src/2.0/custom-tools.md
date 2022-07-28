@@ -121,3 +121,15 @@ end
   <% end %>
 </div>
 ```
+
+### Using path helpers
+
+Because you're in a Rails engine you will have to prepend the engine object to the path.
+
+#### For Avo paths
+
+Unstead of writing `resources_posts_path(1)` you have to write `avo.resources_posts_path(1)`.
+
+#### For the main app paths
+
+Unstead of writing `posts_path(1)` you have to write `main_app.posts_path`.

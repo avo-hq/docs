@@ -355,7 +355,7 @@ For some resources it might make sense to redirect to something else than the `S
 
 The valid options are `:show` (default) or `:index`.
 
-```ruby{5-6}
+```ruby{2-3}
 class CommentResource < Avo::BaseResource
   self.after_create_path = :index
   self.after_update_path = :index
