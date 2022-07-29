@@ -303,7 +303,7 @@ By default, `has_and_belongs_to_many` is only visible on the **Show** page. If y
 
 ### Discreet pagination
 
-By default, `has_many` shows the pagination options and details. If you want to hide the pagination information when there are less than one page of records you need to add the `discreet_pagination: true` option.
+By default, `has_and_belongs_to_many` shows the pagination options and details. If you want to hide the pagination information when there are less than one page of records you need to add the `discreet_pagination: true` option.
 
 
 ### Searchable `has_many`
