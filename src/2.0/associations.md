@@ -260,6 +260,10 @@ In a similar fashion, you may detach a model using the detach button.
 
 By default, `has_many` is only visible on the **Show** page. If you want to enable it on the **Form** pages as well you need to add the `show_on: :edit` option.
 
+### Discreet pagination
+
+By default, `has_many` shows the pagination options and details. If you want to hide the pagination information when there are less than one page of records you need to add the `discreet_pagination: true` option.
+
 ## Has Many Through
 
 The `HasMany` association also supports the `:through` option.
@@ -280,6 +284,11 @@ You may use the [redirect helpers](resources.html#customize-what-happens-after-r
 1. User creates the record. They get redirected to the `Show`/`Edit` screen where they can see the association panels.
 1. User attaches associations.
 
+### Discreet pagination
+
+By default, `has_many` shows the pagination options and details. If you want to hide the pagination information when there are less than one page of records you need to add the `discreet_pagination: true` option.
+
+
 ## Has And Belongs To Many
 
 The `HasAndBelongsToMany` association works similarly to `HasMany`.
@@ -291,6 +300,11 @@ field :users, as: :has_and_belongs_to_many
 ### Show on edit screens
 
 By default, `has_and_belongs_to_many` is only visible on the **Show** page. If you want to enable it on the **Form** pages as well you need to add the `show_on: :edit` option.
+
+### Discreet pagination
+
+By default, `has_and_belongs_to_many` shows the pagination options and details. If you want to hide the pagination information when there are less than one page of records you need to add the `discreet_pagination: true` option.
+
 
 ### Searchable `has_many`
 
