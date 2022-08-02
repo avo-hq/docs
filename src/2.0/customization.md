@@ -67,6 +67,18 @@ This will render all `id` fields in the **Index** view as link to that resource.
 
 <img :src="$withBase('/assets/img/fields-reference/as-link-to-resource.jpg')" alt="As link to resource" class="border mb-4" />
 
+## Resource controls on the left side
+
+By default the resource controls are located on the right side of the record rows and they might be hidden if there are a lot of columns. You might want to move the controls to the left side in that situation using the `resource_controls_placement` option
+
+```ruby{2}
+Avo.configure do |config|
+  config.resource_controls_placement = :left
+end
+```
+
+<img :src="$withBase('/assets/img/customization/resource-controls-left.jpg')" alt="Resource controls on the left side" class="border mb-4" />
+
 ## Container width
 
 ```ruby{2-3}
