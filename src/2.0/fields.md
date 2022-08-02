@@ -660,6 +660,19 @@ field :title, # The database field ID
   format_using: -> (value) { value.truncate 3 } # Format the output
 ```
 
+### Protocol
+
+You may have fields that can be rendered better than just as text. For that Avo provides the `protocol` option that prepends what you give it to that field. For example you can make a text field a `mailto` link very quick.
+
+
+```ruby
+field :email, as: :text, protocol: :mailto
+```
+
+<a href="https://www.youtube.com/watch?v=MfryUtcXqvU&t=662s" target="_blank" class="rounded bg-green-600 hover:bg-green-500 text-white no-underline px-2 py-1 inline leading-none mt-2">
+  Demo video
+</a>
+
 ## Textarea
 
 The `Textarea` field renders a `textarea` element and has the `rows` option that controls how many rows it should render.

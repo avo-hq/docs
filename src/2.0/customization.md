@@ -77,6 +77,10 @@ Avo.configure do |config|
 end
 ```
 
+<a href="https://youtu.be/MfryUtcXqvU?t=706" target="_blank" class="rounded bg-green-600 hover:bg-green-500 text-white no-underline px-2 py-1 inline leading-none mt-2">
+  Demo video
+</a>
+
 <img :src="$withBase('/assets/img/customization/resource-controls-left.jpg')" alt="Resource controls on the left side" class="border mb-4" />
 
 ## Container width

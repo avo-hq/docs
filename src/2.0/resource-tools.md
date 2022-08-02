@@ -224,3 +224,7 @@ end
 ```
 
 If you run this code you'll notice that the `information.information_age` param will not reach the `information=` method because we haven't allowed it in the `extra_params` option.
+
+<a href="https://youtu.be/MfryUtcXqvU?t=838" target="_blank" class="rounded bg-green-600 hover:bg-green-500 text-white no-underline px-2 py-1 inline leading-none mt-2">
+  Demo video
+</a>
