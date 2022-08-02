@@ -298,15 +298,6 @@ You may use the [redirect helpers](resources.html#customize-what-happens-after-r
 
 By default, `has_many` shows the pagination options and details. If you want to hide the pagination information when there are less than one page of records you need to add the `discreet_pagination: true` option.
 
-### Use resource
-
-By default, `has_many` will use the field resource. 
-
-For example `field :comments, as: :has_many` will use `CommentResource`.
-
-If you want to use a custom resource you need to add the **`use_resource: YourCustomResource`** option.
-
-Make sure to have `YourCustomResource` prepared to be used by adding `self.model_class = ::YourModel`
 
 ## Has And Belongs To Many
 
