@@ -264,6 +264,16 @@ By default, `has_many` is only visible on the **Show** page. If you want to enab
 
 By default, `has_many` shows the pagination options and details. If you want to hide the pagination information when there are less than one page of records you need to add the `discreet_pagination: true` option.
 
+### Use resource
+
+By default, `has_many` will use the field resource. 
+
+For example `field :comments, as: :has_many` will use `CommentResource`.
+
+If you want to use a custom resource you need to add the **`use_resource: YourCustomResource`** option.
+
+Make sure to have the custom resource prepared to be used by adding `self.model_class = ::YourModel`
+
 ## Has Many Through
 
 The `HasMany` association also supports the `:through` option.
@@ -288,6 +298,15 @@ You may use the [redirect helpers](resources.html#customize-what-happens-after-r
 
 By default, `has_many` shows the pagination options and details. If you want to hide the pagination information when there are less than one page of records you need to add the `discreet_pagination: true` option.
 
+### Use resource
+
+By default, `has_many` will use the field resource. 
+
+For example `field :comments, as: :has_many` will use `CommentResource`.
+
+If you want to use a custom resource you need to add the **`use_resource: YourCustomResource`** option.
+
+Make sure to have `YourCustomResource` prepared to be used by adding `self.model_class = ::YourModel`
 
 ## Has And Belongs To Many
 
@@ -305,6 +324,15 @@ By default, `has_and_belongs_to_many` is only visible on the **Show** page. If y
 
 By default, `has_and_belongs_to_many` shows the pagination options and details. If you want to hide the pagination information when there are less than one page of records you need to add the `discreet_pagination: true` option.
 
+### Use resource
+
+By default, `has_and_belongs_to_many` will use the field resource. 
+
+For example `field :teams, as: :has_and_belongs_to_many` will use `TeamResource`.
+
+If you want to use a custom resource you need to add the `use_resource: YourCustomResource` option.
+
+Make sure to have `YourCustomResource` prepared to be used by adding `self.model_class = ::YourModel`
 
 ### Searchable `has_many`
 
