@@ -2,19 +2,6 @@
 
 [[toc]]
 
-## Show/hide buttons throughout the admin
-
-You might want to hide some buttons and not show them to your users. That's pretty handy using the [`Authorization`](authorization) feature. You control the display of those buttons using the policy methods.
-
-- Show button -> `show?` method
-- Edit button -> `edit?` method
-- Delete button -> `destroy?` method
-- Upload attachments button -> `upload_attachments?` method
-- Download attachments button -> `download_attachments?` method
-- Delete attachments button -> `delete_attachments?` method
-- Attach button -> `attach_#{RESOURCE_PLURL_NAME}?` (eg: `attach_posts?`) method
-- Detach button -> `detach_#{RESOURCE_PLURL_NAME}?` (eg: `detach_posts?`) method
-
 ## Why don't regular url helpers work as expected?
 
 When writing rails code somewhere in Avo domain you might want to use your regular url helpers like below:
@@ -33,6 +20,45 @@ field :partner_home, as: :text, as_html: true do |model, *args|
   link_to 'Partner', main_app.partner_home_url(model)
 end
 ```
+
+## Use helpers
+
+You probably have some helpers already set up in your app and would like to have them available in Avo too.
+
+```ruby{2-4}
+module ApplicationHelper
+  def tag_url(model)
+    "/#{model.something}"
+  end
+end
+```
+
+You need to include it in the Resource controller of choice and then refernce it in the field through the `view_context` object.
+
+```ruby{2,7}
+class Avo::CustomersController < Avo::ResourcesController
+  include ApplicationHelper
+end
+
+class CustomerResource < Avo::BaseResource
+  field :tag, as: :text, format_using: ->(value) do
+    link_to value, view_context.controller.tag_url(model), target: :_blank
+  end
+end
+```
+
+## Show/hide buttons throughout the app
+
+You might want to hide some buttons and not show them to your users. That's pretty handy using the [`Authorization`](authorization) feature. You control the display of those buttons using the policy methods.
+
+- Show button -> `show?` method
+- Edit button -> `edit?` method
+- Delete button -> `destroy?` method
+- Upload attachments button -> `upload_attachments?` method
+- Download attachments button -> `download_attachments?` method
+- Delete attachments button -> `delete_attachments?` method
+- Attach button -> `attach_#{RESOURCE_PLURL_NAME}?` (eg: `attach_posts?`) method
+- Detach button -> `detach_#{RESOURCE_PLURL_NAME}?` (eg: `detach_posts?`) method
 
 ## I want to give access to different kind of users to different resources.
 
