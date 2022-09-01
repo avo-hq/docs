@@ -184,6 +184,16 @@ end
 class Avo::SpreeStoresController < Avo::ResourcesController
 end
 ```
+## Custom policy
+
+By default, Avo will infer the policy from the model of the resource object. If you wish to use a different policy for a given resource, you can specify it directly like so:
+
+```ruby
+# app/avo/resources/photo_comment_resource.rb
+class PhotoCommentResource < Avo::BaseResource
+  self.authorization_policy = PhotoCommentPolicy
+end
+```
 
 ## Devise password optional
 
