@@ -178,6 +178,18 @@ end
 
 Now, Avo will use `avo_index?` instead of `index?` to manage the **Index** view authorization.
 
+## Using custom policies
+
+By default, Avo will infer the policy from the model of the resource object. If you wish to use a different policy for a given resource, you can specify it directly in the resource like so:
+
+```ruby
+class PhotoCommentResource < Avo::BaseResource
+  self.model_class = ::Comment
+  self.authorization_policy = PhotoCommentPolicy
+  # ...
+end
+```
+
 ## Raise errors when policies are missing
 
 The default behavior of Avo is to silently allow missing policies for resources. So, if you have a `User` model and a `UserResource` but don't have a `UserPolicy`, Avo will not raise errors regarding missing policies and authorize that resource.
