@@ -165,7 +165,7 @@ end
 Because the controllers are generated, when changing the `model_class` for a resource, you might brake the model->route link, so make sure you update the controller too.
 
 ```ruby{7-8,12-13}
-# app/avo/resource/store_resource.rb
+# app/avo/resources/store_resource.rb
 class StoreResource < Avo::BaseResource
   self.model_class = Spree::Store
 end

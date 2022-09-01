@@ -236,7 +236,7 @@ class User < ApplicationRecord
   has_many :comments
 end
 
-# app/avo/resource/user_resource.rb
+# app/avo/resources/user_resource.rb
 class UserResource < Avo::BaseResource
   field :comments, as: :has_many, scope: -> { starts_with :a }
 end

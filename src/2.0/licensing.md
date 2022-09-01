@@ -20,7 +20,7 @@ We only need to check that the license key and URL matches the purchased license
 
 ### Sites
 
-On you [avohq.io licenses](https://avohq.io/licenses) page you can see your licenses keys.
+On your [licenses](https://avohq.io/licenses) page you can see your licenses keys.
 
 <!-- ### Public Domains
 

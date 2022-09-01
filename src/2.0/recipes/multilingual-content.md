@@ -2,13 +2,27 @@
 
 This is not an official feature yet but until we add it with all the bells and whistles you can use this guide to monkey patch it into your app.
 
-We pushed some code to take in the `set_locale` param and set the `I18n.locale` and `I18n.default_locale` so all subsequent requests will use that locale.
+We pushed some code to take in the `set_locale` param and set the `I18n.locale` and `I18n.default_locale` so all subsequent requests will use that locale. **That will change the locale for your whole app. Even to the front-office**.
+
+If you don't want to change the locale for the whole app you can use `force_locale` that will change the locale for that request only. It will also append `force_locale` to all your links going forward.
 
 ```ruby
-def set_locale
+def set_default_locale
   I18n.locale = params[:set_locale] || I18n.default_locale
 
   I18n.default_locale = I18n.locale
+end
+
+# Temporary set the locale
+def set_force_locale
+  if params[:force_locale].present?
+    initial_locale = I18n.locale.to_s.dup
+    I18n.locale = params[:force_locale]
+    yield
+    I18n.locale = initial_locale
+  else
+    yield
+  end
 end
 ```
 
@@ -100,7 +114,7 @@ First you need to eject the `_profile_dropdown` partial using this command `bin/
 
 Feel free to customize the dropdown as much as you need it to and add as many locales as you need.
 
-**After v 2.3.0**
+**After v2.3.0**
 
 Use the `profile_menu` to add the language switching links.
 
@@ -111,6 +125,20 @@ Avo.configure do |config|
     link "Switch to Portuguese", path: "?set_locale=pt-BR"
     link "Switch to English", path: "?set_locale=en"
   }
+end
+```
+
+**After v2.10**
+
+The `set_locale` param will change the locale for the entire website (for you and your customers). If you need to change it just for the current visit, use `force_locale`. This will switch the locale for that request only not for your customers. It will also add the `force_locale` param to each link going forward making it easy to update all the multi-lingual content you have.
+
+**After v2.11**
+
+A change was pushed to take into account the `locale` from the initializer. This will change the locale for Avo requests.
+
+```ruby{2}
+Avo.configure do |config|
+  config.locale = :en # default is nil
 end
 ```
 

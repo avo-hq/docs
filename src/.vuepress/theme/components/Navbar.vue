@@ -26,6 +26,9 @@
         'max-width': linksWrapMaxWidth + 'px'
       } : {}"
     >
+      <a href="https://docs.avohq.io" class="bg-blue-800 mr-4 rounded px-4 text-white">
+        Click here to see a newer version of these docs.
+      </a>
       <AlgoliaSearchBox
         v-if="isAlgoliaSearch"
         :options="algolia"

@@ -29,7 +29,7 @@ end
 To make the grid the default way of viewing a resource **Index** we have to use the `default_view_type` class attribute.
 
 ```ruby{7}
-class Post < Avo::BaseResource
+class PostResource < Avo::BaseResource
   self.default_view_type = :grid
 end
 ```
@@ -40,7 +40,7 @@ Besides the regular `field` methods you should add a new `grid` block that confi
 
 
 ```ruby{7-11}
-class Post < Avo::BaseResource
+class PostResource < Avo::BaseResource
   self.default_view_type = :grid
 
   field :id, as: :id

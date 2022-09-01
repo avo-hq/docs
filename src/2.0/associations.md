@@ -260,6 +260,28 @@ In a similar fashion, you may detach a model using the detach button.
 
 By default, `has_many` is only visible on the **Show** page. If you want to enable it on the **Form** pages as well you need to add the `show_on: :edit` option.
 
+### Discreet pagination
+
+By default, `has_many` shows the pagination options and details. If you want to hide the pagination information when there are less than one page of records you need to add the `discreet_pagination: true` option.
+
+<a href="https://youtu.be/MfryUtcXqvU?t=765" target="_blank" class="rounded bg-green-600 hover:bg-green-500 text-white no-underline px-2 py-1 inline leading-none mt-2">
+  Demo video
+</a>
+
+### Use resource
+
+By default, `has_many` will use the field resource.
+
+For example `field :comments, as: :has_many` will use `CommentResource`.
+
+If you want to use a custom resource you need to add the **`use_resource: YourCustomResource`** option.
+
+Make sure to have the custom resource prepared to be used by adding `self.model_class = ::YourModel`
+
+<a href="https://youtu.be/MfryUtcXqvU?t=1330" target="_blank" class="rounded bg-green-600 hover:bg-green-500 text-white no-underline px-2 py-1 inline leading-none mt-2">
+  Demo video
+</a>
+
 ## Has Many Through
 
 The `HasMany` association also supports the `:through` option.
@@ -280,6 +302,14 @@ You may use the [redirect helpers](resources.html#customize-what-happens-after-r
 1. User creates the record. They get redirected to the `Show`/`Edit` screen where they can see the association panels.
 1. User attaches associations.
 
+### Discreet pagination
+
+By default, `has_many` shows the pagination options and details. If you want to hide the pagination information when there are less than one page of records you need to add the `discreet_pagination: true` option.
+
+<a href="https://youtu.be/MfryUtcXqvU?t=765" target="_blank" class="rounded bg-green-600 hover:bg-green-500 text-white no-underline px-2 py-1 inline leading-none mt-2">
+  Demo video
+</a>
+
 ## Has And Belongs To Many
 
 The `HasAndBelongsToMany` association works similarly to `HasMany`.
@@ -291,6 +321,24 @@ field :users, as: :has_and_belongs_to_many
 ### Show on edit screens
 
 By default, `has_and_belongs_to_many` is only visible on the **Show** page. If you want to enable it on the **Form** pages as well you need to add the `show_on: :edit` option.
+
+### Discreet pagination
+
+By default, `has_and_belongs_to_many` shows the pagination options and details. If you want to hide the pagination information when there are less than one page of records you need to add the `discreet_pagination: true` option.
+
+### Use resource
+
+By default, `has_and_belongs_to_many` will use the field resource.
+
+For example `field :teams, as: :has_and_belongs_to_many` will use `TeamResource`.
+
+If you want to use a custom resource you need to add the `use_resource: YourCustomResource` option.
+
+Make sure to have `YourCustomResource` prepared to be used by adding `self.model_class = ::YourModel`
+
+<a href="https://youtu.be/MfryUtcXqvU?t=1330" target="_blank" class="rounded bg-green-600 hover:bg-green-500 text-white no-underline px-2 py-1 inline leading-none mt-2">
+  Demo video
+</a>
 
 ### Searchable `has_many`
 
@@ -395,13 +443,13 @@ class User < ApplicationRecord
   has_many :comments
 end
 
-# app/avo/resource/user_resource.rb
+# app/avo/resources/user_resource.rb
 class UserResource < Avo::BaseResource
   # Version before v2.5.0
   field :comments, as: :has_many, scope: -> { approved }
 end
 
-# app/avo/resource/user_resource.rb
+# app/avo/resources/user_resource.rb
 class UserResource < Avo::BaseResource
   # Version after v2.5.0
   field :comments, as: :has_many, scope: -> { query.approved }

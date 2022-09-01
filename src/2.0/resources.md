@@ -16,9 +16,9 @@ Avo does this using **Resources**. Each resource maps out one of your models.
 bin/rails generate avo:resource post
 ```
 
-This command will generate a resource file under your `app/avo/resources` directory. The `app/avo` directory will hold all of your Avo configuration files.
+This command will generate a resource file under your `app/avo/resources` directory. The `app/avo` directory will have all of your Avo resource files.
 
-Inside the creates resource file will look like so:
+The created resource file will have the following code:
 
 ```ruby
 class PostResource < Avo::BaseResource
@@ -169,7 +169,7 @@ end
 Because the controllers are generated, when changing the `model_class` for a resource, you might brake the model->route link, so make sure you update the controller too.
 
 ```ruby{7-8,12-13}
-# app/avo/resource/store_resource.rb
+# app/avo/resources/store_resource.rb
 class StoreResource < Avo::BaseResource
   self.model_class = Spree::Store
 end
@@ -182,6 +182,16 @@ end
 # After
 # app/controllers/avo/spree_stores_controller.rb
 class Avo::SpreeStoresController < Avo::ResourcesController
+end
+```
+## Custom policy
+
+By default, Avo will infer the policy from the model of the resource object. If you wish to use a different policy for a given resource, you can specify it directly like so:
+
+```ruby
+# app/avo/resources/photo_comment_resource.rb
+class PhotoCommentResource < Avo::BaseResource
+  self.authorization_policy = PhotoCommentPolicy
 end
 ```
 
@@ -355,7 +365,7 @@ For some resources it might make sense to redirect to something else than the `S
 
 The valid options are `:show` (default) or `:index`.
 
-```ruby{5-6}
+```ruby{2-3}
 class CommentResource < Avo::BaseResource
   self.after_create_path = :index
   self.after_update_path = :index

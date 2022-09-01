@@ -13,3 +13,7 @@
 [Use route level multitenancy](recipes/multitenancy)
 
 [Manage information-heavy resources](recipes/manage-information-heavy-resources)
+
+[Ruby-on-Rails and Avo Tutorial](https://www.bootrails.com/blog/rails-avohq-tutorial) from [bootrails.com](https://www.bootrails.com).
+
+[Add nested fields to CRUD forms](recipes/add-nested-fields-to-forms)
