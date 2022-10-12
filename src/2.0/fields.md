@@ -123,17 +123,6 @@ The `DateTime` field is similar to the Date field with two new attributes. `time
 field :created_at, as: :date_time, name: 'User joined', picker_format: 'Y-m-d H:i', format: :db, time_24hr: true, timezone: 'PST'
 ```
 
-## Time
-
-<!-- Replace this image with one of the Time field -->
-<img :src="$withBase('/assets/img/fields/date-time.jpg')" alt="DateTime field" class="border mb-4" />
-
-The `Time` field is similar to the DateTime field and uses the time picker of flatpickr (without the calendar). You can use the `time_24hr` option for flatpickr to use the 24-hour format. Unlike in the `DateTime` field, the time stays static and is independent of your browser's timezone.
-
-```ruby
-field :starting_at, as: :time, picker_format: 'H:i', format: "HH:mm", time_24hr: true
-```
-
 ## External image
 
 You may have a field in the database that holds the url to an image and you want to display that in Avo. This is where the `ExternalImage` field comes in to help.
@@ -690,6 +679,17 @@ The `Textarea` field renders a `textarea` element and has the `rows` option that
 
 ```ruby
 field :body, as: :textarea, rows: 5
+```
+
+## Time
+
+<!-- Replace this image with one of the Time field -->
+<img :src="$withBase('/assets/img/fields/date-time.jpg')" alt="DateTime field" class="border mb-4" />
+
+The `Time` field is similar to the DateTime field and uses the time picker of flatpickr (without the calendar). You can use the `time_24hr` option for flatpickr to use the 24-hour format. Unlike in the `DateTime` field, the time stays static and is independent of your browser's timezone.
+
+```ruby
+field :starting_at, as: :time, picker_format: 'H:i', format: "HH:mm", time_24hr: true
 ```
 
 ## Trix
