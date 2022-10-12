@@ -120,7 +120,18 @@ By default, flatpickr is [disabled on mobile](https://flatpickr.js.org/mobile-su
 The `DateTime` field is similar to the Date field with two new attributes. `time_24hr` tells flatpickr to use 24 hours format and `timezone` to tell it in what timezone to display the time. By default it uses your browser's timezone.
 
 ```ruby
-filed :created_at, as: :date_time, name: 'User joined', picker_format: 'Y-m-d H:i', format: :db, time_24hr: true, timezone: 'PST'
+field :created_at, as: :date_time, name: 'User joined', picker_format: 'Y-m-d H:i', format: :db, time_24hr: true, timezone: 'PST'
+```
+
+## Time
+
+<!-- Replace this image with one of the Time field -->
+<img :src="$withBase('/assets/img/fields/date-time.jpg')" alt="DateTime field" class="border mb-4" />
+
+The `Time` field is similar to the DateTime field and uses the time picker of flatpickr (without the calendar). `time_24hr` tells flatpickr to use 24 hours format. Unlike in the `DateTime` field, the time always stays the same and doesn't change depending on your browser's timezone.
+
+```ruby
+field :starting_at, as: :time, picker_format: 'H:i', format: "HH:mm", time_24hr: true
 ```
 
 ## External image
