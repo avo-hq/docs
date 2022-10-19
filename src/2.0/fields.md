@@ -686,7 +686,7 @@ field :body, as: :textarea, rows: 5
 <!-- Replace this image with one of the Time field -->
 <img :src="$withBase('/assets/img/fields/date-time.jpg')" alt="DateTime field" class="border mb-4" />
 
-The `Time` field is similar to the DateTime field and uses the time picker of flatpickr (without the calendar). You can use the `time_24hr` option for flatpickr to use the 24-hour format. Unlike in the `DateTime` field, the time stays static and is independent of your browser's timezone.
+The `Time` field is similar to the DateTime field and uses the time picker of flatpickr (without the calendar). You can use the `time_24hr` option for flatpickr to use the 24-hour format. Add the option `relative: false` if you want the time to stay absolute and not change based on the browser's timezone.
 
 ```ruby
 field :starting_at, as: :time, picker_format: 'H:i', format: "HH:mm", time_24hr: true
