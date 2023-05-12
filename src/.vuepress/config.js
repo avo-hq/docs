@@ -23,13 +23,6 @@ module.exports = {
     }],
     '@vuepress/plugin-back-to-top',
     '@vuepress/plugin-medium-zoom',
-    [
-      '@vuepress/pwa',
-      {
-        serviceWorker: true,
-        updatePopup: true
-      }
-    ],
     ['vuepress-plugin-code-copy'],
     [
       '@vuepress/google-analytics',
