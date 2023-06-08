@@ -37,7 +37,7 @@ To generate a new policy, just run the regular pundit `bin/rails g pundit:policy
 
 **If this is a new app you need to install pundit first <code>bin/rails g pundit:install</code>.**
 
-With this new policy, you may control what every type o user can do with Avo. The policy has the default methods for the regular controller actions: `index?`, `show?`, `create?`, `new?`, `update?`, `edit?` and `destroy?`.
+With this new policy, you may control what every type of user can do with Avo. The policy has the default methods for the regular controller actions: `index?`, `show?`, `create?`, `new?`, `update?`, `edit?` and `destroy?`.
 
 These methods control whether the resource appears on the sidebar, if the view/edit/destroy buttons are visible or if a user has access to those index/show/edit/create pages.
 
